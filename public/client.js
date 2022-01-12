@@ -1,6 +1,6 @@
 /*This code is really really really bad. But it was literally my first website page so I'm keeping it out of charm (definitely not laziness!)*/
 
-//alert('Experimental updates are currently being made to the website. Please excuse any issues with mod creation for a short period.')
+//alert('If you are attempting to make mods right now, something is going horribly wrong. Please message me on discord at Krakenmeister#1672 thank you')
 
 var dataSeed = -1;
 

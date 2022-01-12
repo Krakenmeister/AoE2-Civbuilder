@@ -3,5 +3,4 @@ updatemods
 aoe2techtree
 package-lock.json
 modding/auto-mods
-modding/requested_mods/*
 node_modules

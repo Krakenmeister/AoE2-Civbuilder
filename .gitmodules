@@ -4,3 +4,4 @@
 [submodule "modding/genieutils"]
 	path = modding/genieutils
 	url = https://github.com/Tapsa/genieutils.git
+	ignore = dirty

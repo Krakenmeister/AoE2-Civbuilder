@@ -3,8 +3,6 @@ updatemods
 aoe2techtree
 package-lock.json
 modding/auto-mods
-modding/genieutils
 modding/pcrio
-modding/jsoncpp
 modding/requested_mods/*
 node_modules

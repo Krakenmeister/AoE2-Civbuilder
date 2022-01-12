@@ -22,7 +22,6 @@ typedef ResourceUsage<int16_t, int16_t, uint8_t> ResearchResourceCost;
 //Unit Classes:
 //Barracks Units, Stable Units, Archery Range Units, Siege Workshop Units, Elephant Units, Gunpowder Units, Foot Archers, Mounted Units, Camel Units, Siege Units,
 //Military Buildings, Drop-Off Buildings, All Explosive Units, Scorpion Units, Unique Units, Steppe Lancer Units, Eagle Units
-//
 vector<vector<int>> unit_class = {
 	{74, 75, 77, 473, 567, 93, 358, 359, 751, 753, 752, 759, 761, 882},
 	{448, 546, 441, 1707, 38, 283, 569, 329, 330, 207, 1132, 1134, 1180, 1370, 1372, 1181, 886, 887},

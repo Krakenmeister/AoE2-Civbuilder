@@ -1,0 +1,6 @@
+[submodule "modding/jsoncpp"]
+	path = modding/jsoncpp
+	url = https://github.com/open-source-parsers/jsoncpp.git
+[submodule "modding/genieutils"]
+	path = modding/genieutils
+	url = https://github.com/Tapsa/genieutils

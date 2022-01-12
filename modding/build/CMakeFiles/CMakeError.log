@@ -1,0 +1,35 @@
+Performing C++ SOURCE FILE Test ICONV_SECOND_ARGUMENT_IS_CONST failed with the following output:
+Change Dir: /var/www/krakenmeister.com/civdrafter/modding/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_d8acf/fast && /usr/bin/make -f CMakeFiles/cmTC_d8acf.dir/build.make CMakeFiles/cmTC_d8acf.dir/build
+make[1]: Entering directory '/var/www/krakenmeister.com/civdrafter/modding/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_d8acf.dir/src.cxx.o
+/usr/bin/c++    -static-libstdc++ -DICONV_SECOND_ARGUMENT_IS_CONST   -o CMakeFiles/cmTC_d8acf.dir/src.cxx.o -c /var/www/krakenmeister.com/civdrafter/modding/build/CMakeFiles/CMakeTmp/src.cxx
+/var/www/krakenmeister.com/civdrafter/modding/build/CMakeFiles/CMakeTmp/src.cxx: In function ‘int main()’:
+/var/www/krakenmeister.com/civdrafter/modding/build/CMakeFiles/CMakeTmp/src.cxx:9:17: error: invalid conversion from ‘const char**’ to ‘char**’ [-fpermissive]
+    9 |     iconv(conv, &in, &ilen, &out, &olen);
+      |                 ^~~
+      |                 |
+      |                 const char**
+In file included from /var/www/krakenmeister.com/civdrafter/modding/build/CMakeFiles/CMakeTmp/src.cxx:2:
+/usr/include/iconv.h:42:54: note:   initializing argument 2 of ‘size_t iconv(iconv_t, char**, size_t*, char**, size_t*)’
+   42 | extern size_t iconv (iconv_t __cd, char **__restrict __inbuf,
+      |                                    ~~~~~~~~~~~~~~~~~~^~~~~~~
+make[1]: *** [CMakeFiles/cmTC_d8acf.dir/build.make:66: CMakeFiles/cmTC_d8acf.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/var/www/krakenmeister.com/civdrafter/modding/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_d8acf/fast] Error 2
+
+
+Source file was:
+
+  #include <iconv.h>
+  int main(){
+    iconv_t conv = 0;
+    const char* in = 0;
+    size_t ilen = 0;
+    char* out = 0;
+    size_t olen = 0;
+    iconv(conv, &in, &ilen, &out, &olen);
+    return 0;
+  }
+

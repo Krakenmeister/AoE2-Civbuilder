@@ -1,0 +1,8 @@
+{
+	"Note" : "This is a configuration file",
+	"Config" : {
+		"server-ip"	: "cool data",
+		"server-port"	: "will be placed here",
+		"buffer-length"	: 420
+	}
+}

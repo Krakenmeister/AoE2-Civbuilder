@@ -750,3 +750,18 @@ upload:focus {
 	white-space: nowrap;
 	width: 85%;
 }
+
+#filterbox {
+	position: fixed;
+	display: flex;
+}
+
+#filterinput {
+	width: 10vw;
+}
+
+#filtertext {
+	width: auto;
+	margin-right: 10px;
+	font-size: 1.5rem;
+}

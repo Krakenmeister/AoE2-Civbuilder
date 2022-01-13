@@ -143,6 +143,44 @@ function renderPhase2() {
 		}
 	}
 
+	//Add filtering to cards
+	var filterbox = document.createElement('div')
+	filterbox.id = 'filterbox'
+	filterbox.style.top = '395px'
+	filterbox.style.left = '2vw'
+	filterbox.style.width = '100%'
+	filterbox.style.padding = '0'
+	filterbox.style.flexDirection = 'row'
+
+	var filtertext = document.createElement('div')
+	filtertext.id = 'filtertext'
+	filtertext.innerHTML = 'Filter:'
+
+	var filterinput = document.createElement('input')
+	filterinput.id = 'filterinput'
+	filterinput.type = 'text'
+	filterinput.onkeyup = function () {
+		var filter = document.getElementById('filterinput').value.toLowerCase()
+		if (filter == '') {
+			for (var i=0; i<num_cards[roundType]; i++) {
+				document.getElementById('card' + i).style.display = 'block'
+			}
+		} else {
+			for (var i=0; i<num_cards[roundType]; i++) {
+				var card = document.getElementById('card' + i)
+				if (card_descriptions[roundType][i].toLowerCase().includes(filter)) {
+					card.style.display = 'block'
+				} else {
+					card.style.display = 'none'
+				}
+			}
+		}
+	}
+
+	filterbox.appendChild(filtertext)
+	filterbox.appendChild(filterinput)
+	players.appendChild(filterbox)
+
 	//Show player information to the left of the board
 	var player = document.createElement('div')
 	player.className = 'playercard'

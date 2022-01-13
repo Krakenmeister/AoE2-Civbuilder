@@ -715,6 +715,8 @@ if (btn7) {
 		var instructionstext = document.createElement('p')
 		instructionstext.id = 'instructionstext'
 		instructionstext.innerHTML = '' +
+			'<b>01-13-2022</b><br>' +
+			'&emsp;&emsp;• Bonuses, units, and techs can be filtered/searched for<br><br>' +
 			'<b>01-12-2022</b><br>' +
 			'&emsp;&emsp;• Fixed a bug causing some civilization links to become corrupted<br>' +
 			'&emsp;&emsp;• Allowed civilization viewer and editor to read in .json files with empty values<br><br>' +

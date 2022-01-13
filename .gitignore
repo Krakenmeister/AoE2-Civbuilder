@@ -7,4 +7,3 @@ node_modules
 empty.json
 modding/requested_mods/*
 !modding/requested_mods/README.md
-database.json

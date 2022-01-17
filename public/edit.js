@@ -364,7 +364,7 @@ function renderPhase2() {
 	//Add finish button
 	var boardtoolbar = document.createElement('div')
 	boardtoolbar.id = 'boardtoolbar'
-	boardtoolbar.style.top = '395px'
+	boardtoolbar.style.top = '450px'
 	boardtoolbar.style.left = '6.5vw'
 	boardtoolbar.style.width = '13.5vw'
 	boardtoolbar.style.padding = '0'

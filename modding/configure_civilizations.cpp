@@ -2061,8 +2061,14 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	//Make warrior monks get monk upgrades
 	for (Effect &effect : df->Effects) {
 		int initSize = effect.EffectCommands.size();
+		bool alreadyApplies = false;
 		for (int i=0; i<initSize; i++) {
-			if (effect.EffectCommands[i].A == -1 && effect.EffectCommands[i].B == 18 && effect.EffectCommands[i].C != 12) {
+			if (effect.EffectCommands[i].A == warmonkID || effect.EffectCommands[i].B == 6) {
+				alreadyApplies = true;
+			}
+		}
+		for (int i=0; i<initSize; i++) {
+			if (effect.EffectCommands[i].A == -1 && effect.EffectCommands[i].B == 18 && effect.EffectCommands[i].C != 12 && !alreadyApplies) {
 				EffectCommand copyEffect1 = effect.EffectCommands[i];
 				EffectCommand copyEffect2 = effect.EffectCommands[i];
 				copyEffect1.A = warmonkID;
@@ -2082,6 +2088,8 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	df->Effects[41].EffectCommands.push_back(createEC(4, (warmonkID + 1), -1, 109, 20));
 	df->Effects[220].EffectCommands.push_back(createEC(4, warmonkID, -1, 12, 1));
 	df->Effects[220].EffectCommands.push_back(createEC(4, (warmonkID + 1), -1, 12, 1));
+	df->Effects[547].EffectCommands.push_back(createEC(5, warmonkID, -1, 10, 0.75));
+	df->Effects[547].EffectCommands.push_back(createEC(5, (warmonkID + 1), -1, 10, 0.75));
 	//Make madrasah affect missionaries
 	copyEffectstoUnits(df, {{545, 0}}, {776});
 	//Make Shatagni affect Jannissaries
@@ -2565,6 +2573,8 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	//Monk units train 66% faster
 	e.EffectCommands.clear();
 	e.EffectCommands.push_back(createEC(5, -1, 18, 101, 0.6));
+	e.EffectCommands.push_back(createEC(5, warmonkID, -1, 101, 0.6));
+	e.EffectCommands.push_back(createEC(5, warmonkID + 1, -1, 101, 0.6));
 	addEffectandTech(df, e, "C-Bonus, Monks train 66% faster");
 	//Trebuchets train 50% faster
 	e.EffectCommands.clear();
@@ -2835,6 +2845,8 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	e.EffectCommands.clear();
 	e.EffectCommands.push_back(createEC(5, -1, 18, 5, 1.2));
 	e.EffectCommands.push_back(createEC(5, -1, 43, 5, 1.2));
+	e.EffectCommands.push_back(createEC(5, warmonkID, -1, 5, 1.2));
+	e.EffectCommands.push_back(createEC(5, warmonkID + 1, -1, 5, 1.2));
 	addEffectandTech(df, e, "C-Bonus, Monks +20% speed");
 	//Farms immediately provide 10 food after seeding
 	civ_bonuses.push_back({});
@@ -3388,6 +3400,8 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	e.EffectCommands.clear();
 	e.EffectCommands.push_back(createEC(4, -1, 18, 1, 2));
 	e.EffectCommands.push_back(createEC(4, -1, 43, 1, 2));
+	e.EffectCommands.push_back(createEC(4, warmonkID, -1, 1, 2));
+	e.EffectCommands.push_back(createEC(4, warmonkID + 1, -1, 1, 2));
 	addEffectandTB(df, e, "Monks +2 LOS");
 	//Herdables +2 LOS
 	e.EffectCommands.clear();

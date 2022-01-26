@@ -10,6 +10,7 @@ var marginSize = 0.6
 const num_cards = [287, 79, 39, 39, 75]
 const max_sizes = [6, 1, 1, 1, 1]
 
+document.title = 'Civilization Builder - ' + civ['alias']
 renderPhase2()
 var text = `<span><b>${civ['alias']}</b></span><br><br>`
 for (var a=0; a<civ['bonuses'][0].length; a++) {

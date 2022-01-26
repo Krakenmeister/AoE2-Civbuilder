@@ -2,7 +2,7 @@ var parts = pathToArr(window.location.href)
 var json = parts[parts.length-1].replaceAll('%7D', '}').replaceAll('%7C', '|').replaceAll('%7B', '{').replaceAll('%5E', '^').replaceAll('%60', '`')
 
 var civ = JSON.parse(decryptPath(json))
-console.log(civ)
+document.title = 'Civilization Builder - ' + civ['alias']
 var description = `<span><b>${civ['alias']}</b></span><br><br>`
 for (var a=0; a<civ['bonuses'][0].length; a++) {
 	description += '•'

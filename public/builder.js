@@ -72,6 +72,7 @@ function renderPhase1 () {
 		var inputbox = document.getElementById('alias')
 		if (validate(inputbox.value)) {
 			civ['alias'] = inputbox.value
+			document.title = 'Civilization Builder - ' + civ['alias']
 			renderPhase2()
 			showTechtree(civ['tree'], -1, 3, 0, '')
 		}

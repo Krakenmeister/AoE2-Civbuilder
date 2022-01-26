@@ -639,7 +639,7 @@ const writeIconsJson = (req, res, next) => {
 }
 
 app.get('/', function (req, res) {
-	res.sendFile(__dirname + '/public/home.html');
+	res.sendFile(__dirname + '/public/homepage/home.html');
 });
 
 /*app.get('/civbuilder', function (req, res) {

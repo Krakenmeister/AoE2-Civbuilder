@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
+
+.home-view {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+}
+
+#page1 {
+	background-repeat: no-repeat;
+	background-image: url('/homepage/krakenbackground.jpg');
+	background-size: 100% 100%;
+	font-family: 'Kaushan Script', cursive;
+	flex-direction: column;
+}
+
+#page2 {
+	background-repeat: no-repeat;
+	background-image: url('/homepage/smokebackground3.jpg');
+	background-size: 100% 100%;
+	font-family: 'Luxurious Roman', cursive;
+	flex-direction: column;
+	font-weight: 600;
+	text-shadow: 0px 0px 15px #fff, 0px 0px 15px #fff;
+}
+
+#page3 {
+	background-repeat: no-repeat;
+	background-image: url('/homepage/gearsbackground.jpg');
+	background-size: 100% 100%;
+	font-family: 'Luxurious Roman', cursive;
+	color: white;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+	grid-auto-rows: 1fr 2fr 2fr 1fr;
+}
+
+#page4 {
+	background-repeat: no-repeat;
+	background-image: url('/homepage/sailboatbackground.jpg');
+	background-size: 100% 100%;
+	font-family: 'Luxurious Roman', cursive;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 10px;
+	grid-auto-rows: 1fr 1fr 2fr;
+	text-align: center;
+}
+
+body {
+	margin: 0;
+	cursor: default;
+}
+
+.title {
+	font-size: 6rem;
+}
+
+.subtitle {
+	font-size: 2rem;
+}
+
+#aboutme {
+	font-size: 1.5rem;
+	width: 60%;
+	text-align: center;
+}
+
+#projectstitle {
+	font-size: 2.5rem;
+	grid-column: 1 / 3;
+	grid-row: 1;
+	text-align: center;
+}
+
+#project1 {
+	grid-column: 1;
+	grid-row: 2;
+}
+
+#project2 {
+	grid-column: 2;
+	grid-row: 2;
+}
+
+#project3 {
+	grid-column: 1;
+	grid-row: 3;
+}
+
+#project4 {
+	grid-column: 2;
+	grid-row: 3;
+}
+
+#spacer {
+	grid-column: 1 / 3;
+	grid-row: 4;
+}
+
+.project {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#contacttitle {
+	font-size: 2.5rem;
+	grid-column: 1 / 5;
+	grid-row: 1;
+}
+
+.contact {
+	font-size: 1.5rem;
+}
+
+.reveal {
+	font-size: 1.2rem;
+	cursor: pointer;
+}

@@ -1242,7 +1242,7 @@ function encryptJson (civ) {
 
 	for (let i=0; i<civ.bonuses.length; i++) {
 		for (let j=0; j<civ.bonuses[i].length; j++) {
-			if (civ.bonuses[i][j]) {
+			if (civ.bonuses[i][j] || civ.bonuses[i][j] === 0) {
 				path += civ.bonuses[i][j].toString();
 				if (j != civ.bonuses[i].length - 1) {
 					path += ":";
@@ -1253,12 +1253,15 @@ function encryptJson (civ) {
 			path += ";";
 		}
 	}
+	path = path.replaceAll(String.fromCharCode(92), '-')
 
 	return path;
 }
 
 function decryptPath (path) {
-	console.log(path);
+	path = path.replaceAll("-", String.fromCharCode(92))
+//	console.log(path)
+//	console.log(String.fromCharCode(92))
 	let civ = {};
 
 	const aliasLength = path.indexOf("!");

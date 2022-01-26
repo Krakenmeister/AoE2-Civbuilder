@@ -715,6 +715,8 @@ if (btn7) {
 		var instructionstext = document.createElement('p')
 		instructionstext.id = 'instructionstext'
 		instructionstext.innerHTML = '' +
+			'<b>01-25-2022</b><br>' +
+			'&emsp;&emsp;• Added icon and reflective tab titles<br><br>' +
 			'<b>01-16-2022</b><br>' +
 			'&emsp;&emsp;• Warrior monks now also benefit from monk bonuses unique to civbuilder, Inquisition increases their attack rate<br><br>' +
 			'<b>01-15-2022</b><br>' +

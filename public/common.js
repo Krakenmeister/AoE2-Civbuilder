@@ -662,7 +662,7 @@ function clientFlag (flag_palette, flag_id, scale) {
 	var secondary_division_colour = 'rgb(' + colour_palette[1][0] + ', ' + colour_palette[1][1] + ', ' + colour_palette[1][2] + ')'
 	var tertiary_division_colour = 'rgb(' + colour_palette[2][0] + ', ' + colour_palette[2][1] + ', ' + colour_palette[2][2] + ')'
 	var overlay_colour = 'rgb(' + colour_palette[3][0] + ', ' + colour_palette[3][1] + ', ' + colour_palette[3][2] + ')'
-	var image_path = '/symbol_' + (symbol-1) + '.png'
+	var image_path = '/symbols/symbol_' + (symbol-1) + '.png'
 
 	//Draw background
 	//0 = solid color background

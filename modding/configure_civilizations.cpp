@@ -795,6 +795,37 @@ void configureCivs (DatFile *df, Value cfg) {
 		randomizeCosts(df, cfg, logfile);
 	}
 	calculateTechDiscounts(df);
+/*	vector<string> uunames = {"Crusader Knight","Xolotl Warrior","Saboteur","Ninja","Flamethrower","Photonman","Centurion","Legionary","Monkey Boy","Amazon Warrior","Amazon Archer",
+"Iroquois Warrior","Varangian Guard","Gendarme","Cuahchiqueh","Ritterbruder","Kazak","Szlachcic","Cuirassier","Rajput","Seljuk Archer","Numidian Javelinman","Sosso Guard","Swiss Pikeman",
+"Headhunter","Teulu","Maillotins","Hashashin","Zweihander","Stradiot","Ahosi","Spadoni","Clibinarii","Silahtar","Jaridah","Wolf Warrior","Warrior Monk","Castellan","Lightning Warrior","Apukispay"};
+	vector<string> costTypes = {"Food", "Wood", "Stone", "Gold"};
+	for (int i=0; i<40; i++) {
+		for (int j = 1800 + (2*i) + 1; j <= 1800 + (2*i) + 2; j++) {
+			if (j == 1800 + (2*i) + 1) {
+				logfile << "Unit: " << uunames[i] << endl;
+			} else {
+				logfile << "Unit: Elite " << uunames[i] << endl;
+			}
+			logfile << "Hit Points: " << df->Civs[0].Units[j].HitPoints << endl;
+			logfile << "Speed: " << df->Civs[0].Units[j].Speed << endl;
+			logfile << "Range: " << df->Civs[0].Units[j].Type50.MaxRange << endl;
+			logfile << "Attacks: " << endl;
+			for (int a=0; a<df->Civs[0].Units[j].Type50.Attacks.size(); a++) {
+				logfile << "  type: " << df->Civs[0].Units[j].Type50.Attacks[a].Class << " || amount: " << df->Civs[0].Units[j].Type50.Attacks[a].Amount << endl;
+			}
+			logfile << "Armours: " << endl;
+			for (int a=0; a<df->Civs[0].Units[j].Type50.Armours.size(); a++) {
+				logfile << "  type: " << df->Civs[0].Units[j].Type50.Armours[a].Class << " || amount: " << df->Civs[0].Units[j].Type50.Armours[a].Amount << endl;
+			}
+			logfile << "Train Time: " << df->Civs[0].Units[j].Creatable.TrainTime << endl;
+			logfile << "Costs: " << endl;
+			for (int a=0; a<2; a++) {
+				if (df->Civs[0].Units[j].Creatable.ResourceCosts[a].Type >= 0 && df->Civs[0].Units[j].Creatable.ResourceCosts[a].Type <= 3 && df->Civs[0].Units[j].Creatable.ResourceCosts[a].Flag == 1) {
+					logfile << "  type: " << costTypes[df->Civs[0].Units[j].Creatable.ResourceCosts[a].Type] << " || amount: " << df->Civs[0].Units[j].Creatable.ResourceCosts[a].Amount << endl;
+				}
+			}
+		}
+	}*/
 	logfile.close();
 }
 
@@ -1913,8 +1944,8 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 		civ.Units[eID].Creatable.TrainTime = 20;
 	}
 	setUnitCosts(df, {uuID, eID}, {50, 0, 0, 85});
-	setCombatStats(df, uuID, {{4, 10}}, {{4, 1}, {3, 0}});
-	setCombatStats(df, eID, {{4, 14}}, {{4, 2}, {3, 0}});
+	setCombatStats(df, uuID, {{4, 10}}, {{4, 1}, {3, 0}, {19, 0}});
+	setCombatStats(df, eID, {{4, 14}}, {{4, 2}, {3, 0}, {19, 0}});
 
 		//Modify existing effects
 	//Give special barracks, archery range, stable, and siege workshop units the effects they deserve

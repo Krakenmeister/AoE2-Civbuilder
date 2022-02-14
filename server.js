@@ -440,7 +440,7 @@ const createModFolder = (req, res, next) => {
 }
 
 const createCivIcons = (req, res, next) => {
-	icons.generateFlags(`./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/menu/civs`, `./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons`, `./public`);
+	icons.generateFlags(`./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/menu/civs`, `./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons`, `./public/symbols`);
 	next();
 }
 
@@ -542,13 +542,13 @@ const writeIconsJson = (req, res, next) => {
 					`./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}.png`,
 					`./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_hover.png`,
 					`./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_pressed.png`,
-					`./public`);
+					`./public/symbols`);
 			} else {
 				icons.drawFlag(seed, symbol, `./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/menu/civs/${civName}.png`,
 					`./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}.png`,
 					`./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_hover.png`,
 					`./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_pressed.png`,
-					`./public`);
+					`./public/symbols`);
 			}
 		}
 	}
@@ -916,13 +916,13 @@ io.on('connection', function(socket) {
 							`./modding/requested_mods/${draft['id']}/${draft['id']}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}.png`,
 							`./modding/requested_mods/${draft['id']}/${draft['id']}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_hover.png`,
 							`./modding/requested_mods/${draft['id']}/${draft['id']}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_pressed.png`,
-							`./public`);
+							`./public/symbols`);
 					} else {
 						icons.drawFlag(seed, symbol, `./modding/requested_mods/${draft['id']}/${draft['id']}-ui/widgetui/textures/menu/civs/${civName}.png`,
 							`./modding/requested_mods/${draft['id']}/${draft['id']}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}.png`,
 							`./modding/requested_mods/${draft['id']}/${draft['id']}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_hover.png`,
 							`./modding/requested_mods/${draft['id']}/${draft['id']}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_pressed.png`,
-							`./public`);
+							`./public/symbols`);
 					}
 				}
 				//Copy Civ Icons

@@ -7,7 +7,7 @@ var roundType = 0
 var cardSize = 6
 var marginSize = 0.6
 
-const num_cards = [287, 79, 39, 39, 75]
+const num_cards = [287, 79, 44, 44, 75]
 const max_sizes = [6, 1, 1, 1, 1]
 
 document.title = 'Civilization Builder - ' + civ['alias']

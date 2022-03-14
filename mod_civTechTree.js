@@ -45,7 +45,7 @@ const UUArray = [
 	["Serjeant", 5538, 356, 5540, 753, 1658, 1659],
 	["Obuch", 5558, 369, 5559, 779, 1701, 1703],
 	["Hussite Wagon", 5561, 370, 5563, 781, 1704, 1706],
-	["Crusader Knight", 5610, 377, 5243, 852, 1801, 1802],
+	["Crusader Knight", 5610, 377, 5243, 852, 1801, 1802],	//Hard coded values
 	["Xolotl Warrior", 5040, 351, 5244, 854, 1803, 1804],
 	["Saboteur", 5588, 58, 5245, 856, 1805, 1806],
 	["Ninja", 5016, 299, 5286, 858, 1807, 1808],
@@ -114,7 +114,7 @@ const UTArray1 = [
 	["Corvinian Army", 7275, 514],
 	["Thalassocracy", 7293, 624],
 	["Tigui", 7254, 576],
-	["Hul'che Javilneers", 7379, 485], //Name = "Obsidian Arrows"?
+	["Hul'che Javilneers", 7379, 485],
 	["Nomads", 7280, 487],
 	["Kamandaran", 7281, 488],
 	["Carrack", 7250, 572],
@@ -128,7 +128,12 @@ const UTArray1 = [
 	["Chatras", 7297, 628],
 	["Chieftans", 7312, 463],
 	["Szlachta Privileges", 7348, 782],
-	["Wagenburg Tactics", 7350, 784] //Name = "Eastern Settlement"?
+	["Wagenburg Tactics", 7350, 784],
+	["Deconstruction", 7500, 931],	//Hard coded values
+	["Obsidian Arrows", 7501, 932],
+	["Tortoise Engineers", 7502, 933],
+	["Panoply", 7507, 938],
+	["Clout Archery", 7508, 939]
 ]
 
 //Imperial Unique Techs
@@ -143,7 +148,7 @@ const UTArray2 = [
 	["Logistica", 7318, 61],
 	["Furor Celtica", 7421, 5],
 	["Rocketry", 7432, 52],
-	["Elite Mercenaries", 7398, 690],	//Name = "Cuman Mercenaries"?
+	["Elite Mercenaries", 7398, 690],
 	["Torsion Engines", 7253, 575],
 	["Chivalry", 7287, 493],
 	["Perfusion", 7439, 457],
@@ -172,7 +177,12 @@ const UTArray2 = [
 	["Paper Money", 7298, 629],
 	["Berserkergang", 7431, 49],
 	["Lechitic Legacy", 7349, 783],
-	["Hussite Reforms", 7351, 785]
+	["Hussite Reforms", 7351, 785],	//Hard coded values
+	["Lamellar Armor", 7503, 934],
+	["Field Repairmen", 7504, 935],
+	["Golden Age", 7505, 936],
+	["Villager's Revenge", 7506, 937],
+	["Gate Crashing", 7509, 940]
 ]
 
 const missionary_node = {

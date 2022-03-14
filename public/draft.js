@@ -3,6 +3,7 @@ var socket = io()
 var client_palette
 var client_alias
 var client_architecture
+var client_language
 
 function renderLobby (draft) {
 	$('body').contents().not('script').remove()
@@ -90,6 +91,7 @@ function renderFlagTech (draft) {
 	if ((playerNumber >= 0) && (draft['players'][playerNumber]['ready'] === 0)) {
 		var flag_palette
 		var architecture
+		var language
 
 		var wrapping = document.createElement('div')
 		wrapping.id = 'wrapping'
@@ -149,6 +151,7 @@ function renderFlagTech (draft) {
 				client_palette = flag_palette
 				client_alias = inputbox.value
 				client_architecture = architecture
+				client_language = language
 
 				showTechtree(draft['players'][playerNumber]['tree'], playerNumber, 1, draft['preset']['points'], '')
 			}
@@ -157,6 +160,7 @@ function renderFlagTech (draft) {
 
 		flag_palette = draft['players'][playerNumber]['flag_palette']
 		architecture = draft['players'][playerNumber]['architecture']
+		language = draft['players'][playerNumber]['language']
 
 		function getFun1(val) {
 			return function() {
@@ -219,12 +223,41 @@ function renderFlagTech (draft) {
 		archbox.appendChild(architecturetext)
 		archbox.appendChild(iconforward)
 
+		var langbox = document.createElement('div')
+		langbox.id = 'langbox'
+
+		var languagetext = document.createElement('div')
+		languagetext.id = 'languagetext'
+		languagetext.innerHTML = languages[language]
+
+		var langiconback = document.createElement('button')
+		langiconback.className = 'backbutton'
+		langiconback.innerHTML = '<'
+		langiconback.onclick = function () {
+			language = (language + (languages.length - 1)) % languages.length
+			document.getElementById('languagetext').innerHTML = languages[language]
+		}
+
+		var langiconforward = document.createElement('button')
+		langiconforward.className = 'forwardbutton'
+		langiconforward.innerHTML = '>'
+		langiconforward.onclick = function () {
+			language = (language + 1) % languages.length
+			document.getElementById('languagetext').innerHTML = languages[language]
+		}
+
+		langbox.appendChild(langiconback)
+		langbox.appendChild(languagetext)
+		langbox.appendChild(langiconforward)
+
+
 		contain.appendChild(pickGrid)
 		contain.appendChild(flagDiv)
 
 		flagbox.appendChild(header)
 		flagbox.appendChild(contain)
 		flagbox.appendChild(archbox)
+		flagbox.appendChild(langbox)
 		flagbox.appendChild(label)
 		flagbox.appendChild(input)
 		flagbox.appendChild(next)
@@ -686,7 +719,7 @@ function readyLobby () {
 }
 
 function updateTree (playerNumber, tree, techtree_points) {
-	socket.emit('update tree', roomID, playerNumber, tree, techtree_points, client_alias, client_palette, client_architecture)
+	socket.emit('update tree', roomID, playerNumber, tree, techtree_points, client_alias, client_palette, client_architecture, client_language)
 }
 
 function endTurn (pick, client_turn) {

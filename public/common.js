@@ -32,7 +32,7 @@ const card_descriptions = [
 	"Camel units +10 hit points",
 	"Gunpowder units +25% hit points",
 	"Gold miners work 20% faster",
-	"Scout Cavalry, Light Cavalry, Hussar +1P armor",
+	"Scout Cavalry, Light Cavalry, Hussar +1 pierce armor",
 	"Warships cost -15% Feudal Age, -15% Castle Age, -20% Imperial Age",
 	"Infantry +10% hit points Feudal, +15% Castle, +20% Imperial Age",
 	"Cavalry archers fire 25% faster",
@@ -47,14 +47,14 @@ const card_descriptions = [
 	"+5 Monk hit points for each Monastery technology",
 	"Start with +1 villager, but -50 food",
 	"Cavalry Archers cost -10% Castle, -20% Imperial Age",
-	"Miltary units (except siege weapons) cost -20% wood",
+	"Military units (except siege weapons) cost -20% wood",
 	"Archer armor upgrades free",
 	"Can train Turtle Ships in docks",
 	"Can recruit Longboats from docks",
 	"Gunpowder units cost -20%",
 	"Can upgrade Heavy Camel Riders to Imperial Camel Riders",
 	"Fishermen work 10% faster",
-	"Stable units +1P armor in Castle and Imperial Age (+2 total)",
+	"Stable units +1 pierce armor in Castle and Imperial Age (+2 total)",
 	"Villagers cost -10% Dark, -15% Feudal, -20% Castle, -25% Imperial Age",
 	"Start with a free Llama",
 	"Buildings cost -15% stone",
@@ -73,7 +73,7 @@ const card_descriptions = [
 	"Receive +100 gold, +100 food when advancing to the next age",
 	"Pikeman upgrade free",
 	"Buildings cost -15% wood",
-	"Barracks units +1P armor per age (starting from Feudal Age)",
+	"Barracks units +1 pierce armor per age (starting from Feudal Age)",
 	"Gold resources last 30% longer",
 	"Villagers move 10% faster",
 	"Ships move 10% faster",
@@ -405,7 +405,12 @@ const card_descriptions = [
 	"Chatras (Elephant units +100 HP) [250F 250G]",
 	"Chieftans (Infantry deal bonus damage to cavalry) [700F 500G]",
 	"Szlachta Privileges (Knights cost -60% gold) [500F 300G]",
-	"Wagenburg Tactics (Gunpowder units move 15% faster) [300F 300G]"],
+	"Wagenburg Tactics (Gunpowder units move 15% faster) [300F 300G]",
+	"Deconstruction (Siege units +30 vs. buildings) [300W 200G]",
+	"Obsidian Arrows (Archer-line +6 attack vs. buildings) [300F 300G]",
+	"Tortoise Engineers (Rams train 100% faster) [100W 200G]",
+	"Panoply (Infantry +1/+1P armor, +1 attack) [300F 200G]",
+	"Clout Archery (Archery Ranges work 50% faster) [150W 250G]"],
 
 	["Garland Wars (Infantry +4 attack) [450F 750G]",
 	"Maghrebi Camels (Camel units regenerate) [700F 300G]",
@@ -445,7 +450,12 @@ const card_descriptions = [
 	"Paper Money (Each team member receives 500 gold) [500F 300W]",
 	"Berserkergang (Unique Unit regenerates) [850F 400G]",
 	"Lechitic Legacy (Light Cavalry deals trample damage) [750F 550G]",
-	"Hussite Reforms (Monks and Monastery upgrades have their gold cost replaced by food) [800F 450G]"],
+	"Hussite Reforms (Monks and Monastery upgrades have their gold cost replaced by food) [800F 450G]",
+	"Lamellar Armor (Camels and Cavalry Archers +2/+1P armor) [500W 500G]",
+	"Field Repairmen (Rams regain HP) [350W 650G]",
+	"Golden Age (All buildings work 10% faster) [300S 600G]",
+	"Villager's Revenge (Dead villagers become Halberdiers) [500F 250G]",
+	"Gate Crashing (Ram gold cost is replaced by additional wood cost) [600W 700G]"],
 
 	["Relics generate +33% gold",
 	"Genitour available in the Archery Range starting in the Castle Age",
@@ -642,6 +652,9 @@ const palette_sizes = [15, 15, 15, 15, 15, 12, 12, 81]
 
 const architectures = ['Central European Architecture', 'Western European Architecture', 'East Asian Architecture', 'Middle Eastern Architecture', 'Mesoamerican Architecture', 'Mediterranean Architecture', 'Indian Architecture',
 	'Eastern European Architecture', 'African Architecture', 'Southeast Asian Architecture', 'Central Asian Architecture']
+const languages = ['British', 'French', 'Gothic', 'Teuton', 'Japanese', 'Chinese', 'Byzantine', 'Persian', 'Saracen', 'Turk', 'Viking', 'Mongol', 'Celtic', 'Spanish', 'Aztec', 'Mayan',
+	'Hunnic', 'Korean', 'Italian', 'Indian', 'Incan', 'Magyar', 'Slavic', 'Portuguese', 'Ethiopian', 'Malian', 'Berber', 'Khmer', 'Malay', 'Burmese', 'Vietnamese', 'Bulgarian',
+	'Tatar', 'Cuman', 'Lithuanian', 'Burgundian', 'Sicilian', 'Polish', 'Bohemian']
 
 //Draw flag to canvas given a seed
 function clientFlag (flag_palette, flag_id, scale) {
@@ -1238,6 +1251,13 @@ function encryptJson (civ) {
 
 	binaryString = zeroFill(civ.architecture.toString(2), 6);
 	path += binaryToAscii(binaryString);
+
+	if (civ.language) {
+		binaryString = zeroFill(civ.language.toString(2), 6);
+		path += binaryToAscii(binaryString);
+	} else {
+		path += binaryToAscii("000000");
+	}
 	path += "!";
 
 	for (let i=0; i<civ.bonuses.length; i++) {
@@ -1287,10 +1307,12 @@ function decryptPath (path) {
 
 	civ.architecture = parseInt(asciiToBinary(path.substring(aliasLength+1+6+28, aliasLength+1+6+28+1)), 2);
 
+	civ.language = parseInt(asciiToBinary(path.substring(aliasLength+1+6+28+1, aliasLength+1+6+28+1+1)), 2);
+
 	civ.bonuses = [[], [], [], [], []];
 	let cardType = 0;
 	path += ':;';
-	let left = aliasLength+1+6+28+1+1;
+	let left = aliasLength+1+6+28+1+1+1;
 	let right = Math.min(path.indexOf(':', left), path.indexOf(';', left));
 	while (true) {
 		if (path.substring(left, right) != '') {

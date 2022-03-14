@@ -309,7 +309,8 @@ var uniqueCastleStrings = ["Atlatl (Skirmishers +1 attack, +1 range)", "Kasbah (
 	"Nomads (lost houses do not decrease population headroom)", "Kamandaran (Archer-line gold cost is replaced by additional wood cost)", "Carrack (Ships +1/+1 armor)", "Madrasah (Monks return 33% of their cost when killed)",
 	"this text will change", "Orthodoxy (Monk units +3/+3P armor)", "Inquisition (Monks convert faster)", "Silk Armor (Light Cavalry, Steppe Lancers and Cavalry Archers receive +1/+1P armor)",
 	"Ironclad (Siege units extra melee armor)", "Sipahi (Cavalry Archers +20 HP)", "Chatras (Elephant units +100 HP)", "Chieftans (Infantry deal bonus damage to cavalry)", "Szlachta Privileges (Knights cost -60% gold)",
-	"Wagenburg Tactics (Gunpowder units move 15% faster)"]
+	"Wagenburg Tactics (Gunpowder units move 15% faster)", "Deconstruction (Siege units +30 vs. buildings)", "Obsidian Arrows (Archer-line +6 attack vs. buildings)", "Tortoise Engineers (Rams train 100% faster)",
+	"Panoply (Infantry +1/+1P armor, +1 attack)", "Clout Archery (Archery Ranges work 50% faster)"]
 
 var uniqueImpStrings = ["Garland Wars (Infantry +4 attack)", "Maghrebi Camels (Camel units regenerate)", "Warwolf (Trebuchets do blast damage)", "Bagains (Militia-line gains +5 armor)",
 	"Flemish Revolution (Upgrades all existing Villagers to Flemish Militia; create Flemish Militia at Town Centers)", "Manipur Cavalry (Cavalry +5 attack vs. archers)", "this text will change", "Furor Celtica (Siege workshop units +40% HP)",
@@ -320,7 +321,8 @@ var uniqueImpStrings = ["Garland Wars (Infantry +4 attack)", "Maghrebi Camels (C
 	"Drill (Siege units move 50% faster)", "Mahouts (Elephants move 30% faster)", "Arquebus (gunpowder units more accurate)", "Zealotry (Camel units +20 hit points)",
 	"Hauberk (Knights +1/+2P armor)", "Druzhina (Infantry damage adjacent units)", "Supremacy (Villagers stronger in combat)", "Timurid Siegecraft (Trebuchets +2 range, enables Flaming Camels)",
 	"Crenellations (+3 range Castles garrisoned infantry fire arrows)", "Artillery (+2 range Bombard Towers, Bombard Cannons, Cannon Galleons)", "Paper Money (Each team member receives 500 gold)", "this text will change",
-	"Lechitic Legacy (Light Cavalry deals trample damage)", "Hussite Reforms (Monks and Monastery upgrades have their gold cost replaced by food)"]
+	"Lechitic Legacy (Light Cavalry deals trample damage)", "Hussite Reforms (Monks and Monastery upgrades have their gold cost replaced by food)", "Lamellar Armor (Camels and Cavalry Archers +2/+1P armor)",
+	"Field Repairmen (Rams regain HP)", "Golden Age (All buildings work 10% faster)", "Villager's Revenge (Dead villagers become Halberdiers)", "Gate Crashing (Ram gold cost is replaced by additional wood cost)"]
 
 const teamBonusStrings = ["Relics generate +33% gold", "Genitour available in the Archery Range starting in the Castle Age", "Archery Ranges work 20% faster", "Blacksmiths work 80% faster", "Relics generate both Gold and Food",
 	"Relics visible on the map at the start of the game", "Monks +100% heal speed", "Siege Workshops work 20% faster", "Farms +10% food", "Palisade Walls +33% HP", "Towers and Outposts +3 LOS", "Knights +2 LOS",
@@ -844,6 +846,36 @@ function interperateLanguage(json_path, txt_path) {
 	stringStream.write("7643 \"Elite Apukispay\"\n")
 	stringStream.write("8643 \"Upgrade to Elite Apukispay\"\n")
 	stringStream.write("28643 \"Upgrade to <b>Elite Apukispay<b> (<cost>) \\nUpgrades your Apukispay to Elite Apukispay, increasing their vitality and lengthening their presence on the battlefield.\"\n")
+	stringStream.write("7500 \"Deconstruction\"\n")
+	stringStream.write("8500 \"Research Deconstruction (Siege units +30 vs. buildings)\"\n")
+	stringStream.write("28500 \"Research <b>Deconstruction<b> (<cost>)\\nSiege units +30 vs. buildings.\"\n")
+	stringStream.write("7501 \"Obsidian Arrows\"\n")
+	stringStream.write("8501 \"Research Obsidian Arrows (Archer-line +6 attack vs. buildings)\"\n")
+	stringStream.write("28501 \"Research <b>Obsidian Arrows<b> (<cost>)\\nArcher-line +6 attack vs. buildings.\"\n")
+	stringStream.write("7502 \"Tortoise Engineers\"\n")
+	stringStream.write("8502 \"Research Tortoise Engineers (Rams train 100% faster)\"\n")
+	stringStream.write("28502 \"Research <b>Tortoise Engineers<b> (<cost>)\\nRams train 100% faster.\"\n")
+	stringStream.write("7503 \"Lamellar Armor\"\n")
+	stringStream.write("8503 \"Research Lamellar Armor (Camels and Cavalry Archers +2/+1P armor)\"\n")
+	stringStream.write("28503 \"Research <b>Lamellar Armor<b> (<cost>)\\nCamels and Cavalry Archers +2/+1P armor.\"\n")
+	stringStream.write("7504 \"Field Repairmen\"\n")
+	stringStream.write("8504 \"Research Field Repairmen (Rams regain HP)\"\n")
+	stringStream.write("28504 \"Research <b>Field Repairmen<b> (<cost>)\\nRams regain HP.\"\n")
+	stringStream.write("7505 \"Golden Age\"\n")
+	stringStream.write("8505 \"Research Golden Age (All buildings work 10% faster)\"\n")
+	stringStream.write("28505 \"Research <b>Golden Age<b> (<cost>)\\nAll buildings work 10% faster.\"\n")
+	stringStream.write("7506 \"Villager's Revenge\"\n")
+	stringStream.write("8506 \"Research Villager's Revenge (Dead villagers become Halberdiers)\"\n")
+	stringStream.write("28506 \"Research <b>Villager's Revenge<b> (<cost>)\\nDead villagers become Halberdiers.\"\n")
+	stringStream.write("7507 \"Panoply\"\n")
+	stringStream.write("8507 \"Research Panoply (Infantry +1/+1P armor, +1 attack)\"\n")
+	stringStream.write("28507 \"Research <b>Panoply<b> (<cost>)\\nInfantry +1/+1P armor, +1 attack.\"\n")
+	stringStream.write("7508  \"Clout Archery\"\n")
+	stringStream.write("8508 \"Research Clout Archery (Archery Ranges work 50% faster)\"\n")
+	stringStream.write("28508 \"Research <b>Clout Archery<b> (<cost>)\\nArchery Ranges work 50% faster.\"\n")
+	stringStream.write("7509 \"Gate Crashing\"\n")
+	stringStream.write("8509 \"Research Gate Crashing (Ram gold cost is replaced by additional wood cost)\"\n")
+	stringStream.write("28509 \"Research <b>Gate Crashing<b> (<cost>)\\nRam gold cost is replaced by additional wood cost.\"\n")
 
 	stringStream.end()
 }

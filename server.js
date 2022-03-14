@@ -41,8 +41,8 @@ app.use(express.static('public/aoe2techtree'));
 const num_bonuses = [
 	[140, 287],	//Civ bonuses
 	[39, 79],	//Unique units
-	[39, 39],	//Castle techs
-	[39, 39],	//Imp techs
+	[39, 44],	//Castle techs
+	[39, 44],	//Imp techs
 	[37, 75]	//Team bonuses
 ];
 
@@ -282,6 +282,7 @@ const createDraft = (req, res, next) => {
 		        [22, 101, 102, 103, 408]
 		];
 		player['architecture'] = 1;
+		player['language'] = 0;
 		player['priority'] = -1;
 		player['bonuses'] = [[], [], [], [], []];
 		players.push(player);
@@ -576,6 +577,7 @@ const writeIconsJson = (req, res, next) => {
 		mod_data.civ_bonus = [];
 		mod_data.team_bonus = [];
 		mod_data.architecture = [];
+		mod_data.language = [];
 		mod_data.random_costs = 0;
 		for (var i=0; i<civs.length; i++) {
 			mod_data.name.push(civs[i]['alias']);
@@ -632,6 +634,11 @@ const writeIconsJson = (req, res, next) => {
 			} else {
 				mod_data.architecture.push(civs[i]['architecture'])
 			}
+			if (civs[i]['language'] === undefined) {
+				mod_data.language.push(0)
+			} else {
+				mod_data.language.push(civs[i]['language'])
+			}
 		}
 		fs.writeFileSync(`./modding/requested_mods/${req.body.seed}/data.json`, JSON.stringify(mod_data, null, 2));
 		next();
@@ -676,6 +683,22 @@ app.get('/view/:json', function (req, res) {
 
 app.get('/edit/:json', function (req, res) {
 	res.sendFile(__dirname + '/public/edit.html');
+});
+
+app.get('/events', function (req, res) {
+	res.sendFile(__dirname + '/public/events/event.html');
+});
+
+app.get('/turbos', function (req, res) {
+	res.sendFile(__dirname + '/public/events/turbos.html');
+});
+
+app.get('/showmatch1', function (req, res) {
+	res.sendFile(__dirname + '/public/events/showmatch1.html');
+});
+
+app.get('/showmatch2', function (req, res) {
+	res.sendFile(__dirname + '/public/events/showmatch2.html');
 });
 
 app.get('/draft/host/:id', checkCookies, authenticateDraft, function (req, res) {
@@ -777,7 +800,7 @@ io.on('connection', function(socket) {
 		fs.writeFileSync('./database.json', JSON.stringify(data, null, 2));
 		io.in(roomID).emit('set gamestate', draft);
 	});
-	socket.on('update tree', (roomID, playerNumber, tree, techtree_points, civ_name, flag_palette, architecture) => {
+	socket.on('update tree', (roomID, playerNumber, tree, techtree_points, civ_name, flag_palette, architecture, language) => {
 		var datadraft = getDraft(roomID);
 		var data = datadraft[0];
 		var draft = datadraft[0]['drafts'][datadraft[1]];
@@ -788,7 +811,8 @@ io.on('connection', function(socket) {
 		draft['players'][playerNumber]['alias'] = civ_name;
 		draft['players'][playerNumber]['flag_palette'] = flag_palette;
 		draft['players'][playerNumber]['priority'] = techtree_points;
-		draft['players'][playerNumber]['architecture'] = architecture
+		draft['players'][playerNumber]['architecture'] = architecture;
+		draft['players'][playerNumber]['language'] = language;
 		var nextPhase = 1;
 		for (var i=0; i<numPlayers; i++) {
 			if (draft['players'][i]['ready'] != 1) {
@@ -936,6 +960,7 @@ io.on('connection', function(socket) {
 					mod_data.civ_bonus = [];
 					mod_data.team_bonus = [];
 					mod_data.architecture = [];
+					mod_data.language = [];
 					mod_data.random_costs = 0;
 					for (var i=0; i<numPlayers; i++) {
 						mod_data.name.push(draft['players'][i]['alias']);
@@ -963,6 +988,7 @@ io.on('connection', function(socket) {
 
 						mod_data.civ_bonus.push(draft['players'][i]['bonuses'][0]);
 						mod_data.architecture.push(draft['players'][i]['architecture']);
+						mod_data.language.push(draft['players'][i]['language']);
 
 						var team_bonuses = []
 						team_bonuses.push(draft['players'][i]['bonuses'][4][0]);

@@ -1,6 +1,6 @@
 /*This code is really really really bad. But it was literally my first website page so I'm keeping it out of charm (definitely not laziness!)*/
 
-//alert('If you are attempting to make mods right now, something is going horribly wrong. Please message me on discord at Krakenmeister#1672 thank you')
+//alert('Note! Website is undergoing changes at the moment, there will likely be many bugs as this is ongoing. You probably want to use the site tomorrow instead.')
 
 var dataSeed = -1;
 
@@ -660,7 +660,7 @@ if (btn5) {
 			'&emsp;&emsp;&emsp;&emsp;If you want to play a game with friends, one player has to create the draft. 250 tech tree points is recommended to force players to choose somewhat between strategies, but most ' +
 			'vanilla tech trees are more diverse and would require 300-350 tech tree points to create. If you plan on playing in teams, I recommend all players use their team name when joining the lobby (not as their ' +
 			'civilization name). When picking your tech trees, note that the player that spends the least points gets first pick in the drafting phases (and most points gets last pick). However, castle techs and team ' +
-			'bonuses are picked in reverse order. If you choose to \"refill\" on your turn, the board will draw new cards into empty slots, but you will only be able to pick from the newly drawn cards. If you chosse ' +
+			'bonuses are picked in reverse order. If you choose to \"refill\" on your turn, the board will draw new cards into empty slots, but you will only be able to pick from the newly drawn cards. If you choose ' +
 			'to \"clear\" on your turn, all cards will be refreshed, but you will receive three random choices. In-game, you can view other players\' civilizations by clicking on their name or flag. Once ' +
 			'everyone has finished picking team bonuses, the data and UI mods can be downloaded and published just like the randomized civilizations.<br><br>' +
 			'&emsp;&emsp;&emsp;&emsp;This website was created under Microsoft\'s \"Game Content Usage Rules\" using assets from Age of Empires II, and is not endorsed by or affiliated with Microsoft. Age of Empires II ' +
@@ -715,6 +715,19 @@ if (btn7) {
 		var instructionstext = document.createElement('p')
 		instructionstext.id = 'instructionstext'
 		instructionstext.innerHTML = '' +
+			'<b>03-12-2022</b><br>' +
+			'&emsp;&emsp;• Corrected a typo in Korean discount bonus<br>' +
+			'&emsp;&emsp;• Changed flamethrowers cost to 150w 25g instead of 150f 25g<br>' +
+			'&emsp;&emsp;• Fixed bug in university gunpowder attack bonus causing it to fail for units with melee attack<br>' +
+			'&emsp;&emsp;• Fixed that new unique techs didn\'t show up while editing civilizations<br>' +
+			'&emsp;&emsp;• Fixed bug where monks would change regional graphic while converting and galleon graphics didn\'t align<br>' +
+			'&emsp;&emsp;• Resolved an issue with integrating language selection into draft mode<br><br>' +
+			'<b>03-09-2022</b><br>' +
+			'&emsp;&emsp;• Fixed an issue with hovering over cards in parts of the screen<br><br>' +
+			'<b>03-08-2022</b><br>' +
+			'&emsp;&emsp;• Added 10 new unique technologies<br><br>' +
+			'<b>02-15-2022</b><br>' +
+			'&emsp;&emsp;• Added events page for all events related to civbuilder<br><br>' +
 			'<b>01-25-2022</b><br>' +
 			'&emsp;&emsp;• Added icon and reflective tab titles<br><br>' +
 			'<b>01-16-2022</b><br>' +
@@ -836,4 +849,11 @@ var invitebutton = document.getElementById('discordinvite')
 
 invitebutton.onclick = function () {
 	location.href = "https://discord.gg/vQxck6JDwf"
+}
+
+var btn8 = document.getElementById('events')
+if (btn8) {
+	btn8.addEventListener('click', function () {
+		window.location.href = 'https://krakenmeister.com/events'
+	})
 }

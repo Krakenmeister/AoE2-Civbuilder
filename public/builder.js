@@ -11,12 +11,13 @@ civ['tree'] = [
 ]
 civ['bonuses'] = [[], [], [], [], []]
 civ['architecture'] = 1
+civ['language'] = 0
 
 var roundType = 0
 var cardSize = 6
 var marginSize = 0.6
 
-const num_cards = [287, 79, 39, 39, 75]
+const num_cards = [287, 79, 44, 44, 75]
 const max_sizes = [6, 1, 1, 1, 1]
 
 renderPhase1()
@@ -139,12 +140,40 @@ function renderPhase1 () {
 	archbox.appendChild(architecturetext)
 	archbox.appendChild(iconforward)
 
+	var langbox = document.createElement('div')
+	langbox.id = 'langbox'
+
+	var languagetext = document.createElement('div')
+	languagetext.id = 'languagetext'
+	languagetext.innerHTML = languages[civ['language']]
+
+	var langiconback = document.createElement('button')
+	langiconback.className = 'backbutton'
+	langiconback.innerHTML = '<'
+	langiconback.onclick = function () {
+		civ['language'] = (civ['language'] + (languages.length - 1)) % languages.length
+		document.getElementById('languagetext').innerHTML = languages[civ['language']]
+	}
+
+	var langiconforward = document.createElement('button')
+	langiconforward.className = 'forwardbutton'
+	langiconforward.innerHTML = '>'
+	langiconforward.onclick = function () {
+		civ['language'] = (civ['language'] + 1) % languages.length
+		document.getElementById('languagetext').innerHTML = languages[civ['language']]
+	}
+
+	langbox.appendChild(langiconback)
+	langbox.appendChild(languagetext)
+	langbox.appendChild(langiconforward)
+
 	contain.appendChild(pickGrid)
 	contain.appendChild(flagDiv)
 
 	flagbox.appendChild(header)
 	flagbox.appendChild(contain)
 	flagbox.appendChild(archbox)
+	flagbox.appendChild(langbox)
 	flagbox.appendChild(label)
 	flagbox.appendChild(input)
 	flagbox.appendChild(next)

@@ -10,8 +10,8 @@ module.exports = {
 
 const num_civs = 39
 const num_unique_units = 79
-const num_castle_techs = 39
-const num_imp_techs = 39
+const num_castle_techs = 44
+const num_imp_techs = 44
 const num_civ_bonuses = 287
 const num_team_bonuses = 75
 
@@ -41,6 +41,9 @@ function createJson(output_path, costs) {
 
 	//Icon set 1-11
 	random_data.architecture = []
+
+	//Villager sfx file set
+	random_data.language = []
 
 	//0 = don't give random costs, 1 = do give random costs
 	if (costs == 'random') {
@@ -118,6 +121,11 @@ function createJson(output_path, costs) {
 	for (var i=0; i<random_data.techtree.length; i++) {
 		var rand_architecture = Math.floor(Math.random() * 11) + 1
 		random_data.architecture.push(rand_architecture)
+	}
+
+	for (var i=0; i<random_data.techtree.length; i++) {
+		var rand_language = Math.floor(Math.random() * num_civs)
+		random_data.language.push(rand_language)
 	}
 
 	fs.writeFileSync(output_path, JSON.stringify(random_data, null, 2))

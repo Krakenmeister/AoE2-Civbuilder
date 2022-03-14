@@ -87,6 +87,10 @@ a {
 	font-size: 1.6rem;
 }
 
+#navigation > #events {
+	font-size: 1.8rem;
+}
+
 button {
 	font-family: 'Cinzel', serif;
 	text-shadow: 1px 1px 3px black;
@@ -276,9 +280,7 @@ input[type=text] {
 }
 
 #wrapping {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	padding: 2rem;
 	width: 100vw;
 	height: 100vh;
 	position: absolute;
@@ -399,6 +401,7 @@ input[type=text] {
 	align-self: center;
 	background-color: white;
 	text-align: center;
+	z-index: 10;
 }
 
 .playercard {
@@ -679,7 +682,20 @@ upload:focus {
 	margin-top: 1rem;
 }
 
+#langbox {
+	display: flex;
+	height: 43m;
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+}
+
 #architecturetext {
+	font-size: 1.6rem;
+	width: 18rem;
+	text-align: center;
+}
+
+#languagetext {
 	font-size: 1.6rem;
 	width: 18rem;
 	text-align: center;

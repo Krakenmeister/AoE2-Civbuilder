@@ -19,6 +19,7 @@ using namespace genie;
 typedef ResourceUsage<int16_t, int16_t, int16_t> ResourceCost;
 typedef ResourceUsage<int16_t, int16_t, uint8_t> ResearchResourceCost;
 
+const int num_civs = 39;
 //Unit Classes:
 //Barracks Units, Stable Units, Archery Range Units, Siege Workshop Units, Elephant Units, Gunpowder Units, Foot Archers, Mounted Units, Camel Units, Siege Units,
 //Military Buildings, Drop-Off Buildings, All Explosive Units, Scorpion Units, Unique Units, Steppe Lancer Units, Eagle Units
@@ -125,9 +126,8 @@ const vector<int> basic_techs = {-1,-1,-1,-1,414,222,207,217,264,87,197,429,433,
 vector<vector<int>> uu_tech_ids = {{263, 360}, {275, 363}, {446, 365}, {276, 364}, {262, 366}, {268, 362}, {267, 361}, {269, 368}, {274, 367}, {271, 369}, {399, 398},
 	{273, 371}, {277, 370}, {58, 60}, {431, 432}, {26, 27}, {1, 2}, {449, 450}, {467, 468}, {480, 481}, {508, 509}, {471, 472}, {503, 504}, {562, 563}, {568, 569}, {566, 567},
 	{564, 565}, {614, 615}, {616, 617}, {618, 619}, {620, 621}, {677, 678}, {679, 680}, {681, 682}, {683, 684}, {750, 751}, {752, 753}, {778, 779}, {780, 781}};
-const vector<vector<int>> ut_ids = {{460, 24}, {578, 579}, {3, 461}, {685, 686}, {754, 755}, {626, 627}, {464, 61}, {482, 5}, {462, 52}, {689, 690}, {574, 575}, {83, 493}, {16, 457},
-	{483, 21}, {516, 517}, {506, 507}, {494, 499}, {484, 59}, {622, 623}, {486, 445}, {691, 692}, {514, 515}, {624, 625}, {576, 577}, {485, 4}, {487, 6}, {488, 7}, {572, 573},
-	{490, 9}, {756, 757}, {512, 513}, {492, 440}, {687, 688}, {489, 11}, {491, 10}, {628, 629}, {463, 49}, {782, 783}, {784, 785}};
+vector<int> castle_ut_ids = {460, 578, 3, 685, 754, 626, 464, 482, 462, 689, 574, 83, 16, 483, 516, 506, 494, 484, 622, 486, 691, 514, 624, 576, 485, 487, 488, 572, 490, 756, 512, 492, 687, 489, 491, 628, 463, 782, 784};
+vector<int> imp_ut_ids = {24, 579, 461, 686, 755, 627, 61, 5, 52, 690, 575, 493, 457, 21, 517, 507, 499, 59, 623, 445, 692, 515, 625, 577, 4, 6, 7, 573, 9, 757, 513, 440, 688, 11, 10, 629, 49, 783, 785};
 vector<vector<int>> civ_bonuses = {
 {381},
 {382, 403},
@@ -246,6 +246,7 @@ vector<int> university_techs = {50, 51, 194, 93, 47, 64, 140, 63, 377, 380, 54, 
 void clearCivs(DatFile *df, Value cfg);
 void createNewTechsBonuses(DatFile *df, Value cfg);
 void assignArchitectures(DatFile *df, Value cfg);
+void assignLanguages(DatFile *df, Value cfg, ofstream& logfile);
 void assignUniqueUnits(DatFile *df, Value cfg, ofstream& logfile);
 void assignTechs(DatFile *df, Value cfg, ofstream& logfile);
 void assignCivBonuses(DatFile *df, Value cfg);
@@ -632,6 +633,50 @@ void setCombatStats (DatFile *df, int unitID, vector<vector<int>> attacks, vecto
 	}
 }
 
+//Create a unique tech given parameters and an effect
+//type 0 = castle age, type 1 = imperial age UT
+void createUT (DatFile *df, Effect uteffect, int type, string name, vector<int> tech_costs, int techtime, int techDLL) {
+	df->Effects.push_back(uteffect);
+	Tech ut = Tech();
+	ut.Name = name;
+	ut.ResearchLocation = 82;
+	ut.ResearchTime = techtime;
+	ut.RequiredTechs.push_back(102 + type);
+	ut.RequiredTechCount = 1;
+	ut.Civ = 99;
+
+	if (type == 0) {
+		ut.IconID = 33;
+		ut.ButtonID = 7;
+	} else if (type == 1) {
+		ut.IconID = 107;
+		ut.ButtonID = 8;
+	}
+
+	int writeIndex = 0;
+	for (int i=0; i<tech_costs.size(); i++) {
+		if (tech_costs[i] != 0) {
+			ut.ResourceCosts[writeIndex].Type = i;
+			ut.ResourceCosts[writeIndex].Amount = tech_costs[i];
+			ut.ResourceCosts[writeIndex].Flag = 1;
+			writeIndex++;
+		}
+	}
+
+	ut.LanguageDLLName = techDLL;
+	ut.LanguageDLLDescription = techDLL + 1000;
+	ut.LanguageDLLHelp = techDLL + 100000;
+
+	ut.EffectID = (int) (df->Effects.size() - 1);
+	df->Techs.push_back(ut);
+
+	if (type == 0) {
+		castle_ut_ids.push_back((int) (df->Techs.size() - 1));
+	} else if (type == 1) {
+		imp_ut_ids.push_back((int) (df->Techs.size() - 1));
+	}
+}
+
 //Copy all building graphics from one civilization onto another
 void copyArchitecture (DatFile *df, int copyFrom, int copyTo) {
 	for (int i=0; i<df->Civs[copyFrom].Units.size(); i++) {
@@ -642,14 +687,19 @@ void copyArchitecture (DatFile *df, int copyFrom, int copyTo) {
 			df->Civs[copyTo].Units[i].DamageGraphics = df->Civs[copyFrom].Units[i].DamageGraphics;
 			df->Civs[copyTo].Units[i].Building = df->Civs[copyFrom].Units[i].Building;
 			df->Civs[copyTo].Units[i].Creatable.GarrisonGraphic = df->Civs[copyFrom].Units[i].Creatable.GarrisonGraphic;
-		} else if ((df->Civs[copyFrom].Units[i].Class == 59) || (df->Civs[copyFrom].Units[i].Class == 18) || (df->Civs[copyFrom].Units[i].Class == 43) || (df->Civs[copyFrom].Units[i].Class == 19)) {
+		} else if ((df->Civs[copyFrom].Units[i].Class == 59) || (df->Civs[copyFrom].Units[i].Class == 18) || (df->Civs[copyFrom].Units[i].Class == 43) || (df->Civs[copyFrom].Units[i].Class == 19) || (df->Civs[copyFrom].Units[i].Class == 22)) {
 			df->Civs[copyTo].Units[i].StandingGraphic = df->Civs[copyFrom].Units[i].StandingGraphic;
 			df->Civs[copyTo].Units[i].DyingGraphic = df->Civs[copyFrom].Units[i].DyingGraphic;
 			df->Civs[copyTo].Units[i].UndeadGraphic = df->Civs[copyFrom].Units[i].UndeadGraphic;
 			df->Civs[copyTo].Units[i].DeadFish.WalkingGraphic = df->Civs[copyFrom].Units[i].DeadFish.WalkingGraphic;
+			df->Civs[copyTo].Units[i].Type50.AttackGraphic = df->Civs[copyFrom].Units[i].Type50.AttackGraphic;
 			if (df->Civs[copyFrom].Units[i].Class == 19) {
 				for (int j=0; j<df->Civs[copyTo].Units[i].Bird.TaskList.size(); j++) {
 					df->Civs[copyTo].Units[i].Bird.TaskList[j].CarryingGraphicID = df->Civs[copyFrom].Units[i].Bird.TaskList[j].CarryingGraphicID;
+				}
+			} else if (df->Civs[copyFrom].Units[i].Class == 18) {
+				for (int j=0; j<df->Civs[copyTo].Units[i].Bird.TaskList.size(); j++) {
+					df->Civs[copyTo].Units[i].Bird.TaskList[j].ProceedingGraphicID = df->Civs[copyFrom].Units[i].Bird.TaskList[j].ProceedingGraphicID;
 				}
 			}
 		}
@@ -777,6 +827,14 @@ void configureCivs (DatFile *df, Value cfg) {
 	}
 	ofstream logfile;
 	logfile.open("logs.txt");
+	if (cfg["random_costs"].asInt() == 71) {
+		srand(time(NULL));
+		randomizeCosts(df, cfg, logfile);
+		calculateTechDiscounts(df);
+		df->Techs[148].EffectID = -1;
+		df->Techs[180].EffectID = -1;
+		return;
+	}
 	/*logfile << to_string(df->Effects[549].EffectCommands[5].D);
 	logfile << "\n";*/
 //	logfile << to_string(df->Civs[1].TeamBonusID);
@@ -784,6 +842,7 @@ void configureCivs (DatFile *df, Value cfg) {
 	clearCivs(df, cfg);
 	createNewTechsBonuses(df, cfg);
 	assignArchitectures(df, cfg);
+	assignLanguages(df, cfg, logfile);
 	assignUniqueUnits(df, cfg, logfile);
 	assignTechs(df, cfg, logfile);
 	assignCivBonuses(df, cfg);
@@ -894,6 +953,65 @@ void assignArchitectures (DatFile *df, Value cfg) {
 	}
 
 	df->Civs[0].IconSet = 2;
+}
+
+//Give civilizations the appropriate villager sfx files
+void assignLanguages (DatFile *df, Value cfg, ofstream& logfile) {
+	//On the mmm, mayans don't have a v at all
+	//On the 425 sound ID, celts prefix is at the end, and some don't have any at all
+	//On 436, some don't have
+	//On 487, some don't have
+	//Some have 3 with probability 33, some have 4 with probability 25, some have 2 with probability 50
+	//const vector<string> prefixes = {"b", "ff", "g", "te", "j", "c", "l", "f", "a", "t", "v", "m", "ga", "s", "z", "my", "hu", "kv", "it", "id", "in", "ma", "sla", "po", "et", "ml",
+	//	"rb", "kh", "mly", "bu", "vn", "bg", "ta", "cu", "li", "brg", "si", "pl", "bo"};
+	const vector<int> soundIDs = {295, 297, 298, 299, 300, 301, 302, 303, 420, 421, 422, 423, 424, 425, 434, 435, 436, 437, 438, 440, 441, 442, 443, 444, 448, 455, 487};
+	//Copy language sound items of the civilization we want
+	for (int i=0; i<cfg["language"].size(); i++) {
+		for (int j=0; j<soundIDs.size(); j++) {
+			int soundSize = df->Sounds[soundIDs[j]].Items.size();
+			for (int k=0; k<soundSize; k++) {
+				if ((df->Sounds[soundIDs[j]].Items[k].Civilization == (cfg["language"][i].asInt() + 1)) && (df->Sounds[soundIDs[j]].Items[k].Probability != 1)) {
+					SoundItem copyItem = df->Sounds[soundIDs[j]].Items[k];
+					copyItem.Probability = 1;
+					copyItem.Civilization = i+1;
+					df->Sounds[soundIDs[j]].Items.push_back(copyItem);
+				}
+			}
+		}
+	}
+	logfile << "Checkpoint 2" << endl;
+	//Delete the original sound items
+	for (int i=0; i<soundIDs.size(); i++) {
+		vector<int> itemCounts = {};
+		vector<int> hasSeenCivBefore = {};
+		for (int j=0; j<num_civs; j++) {
+			itemCounts.push_back(0);
+			hasSeenCivBefore.push_back(0);
+		}
+		for (int j=0; j<df->Sounds[soundIDs[i]].Items.size(); j++) {
+			if ((df->Sounds[soundIDs[i]].Items[j].Probability != 1) && (df->Sounds[soundIDs[i]].Items[j].Civilization != 0)) {
+//				df->Sounds[soundIDs[i]].Items[j].Probability = 0;
+				df->Sounds[soundIDs[i]].Items.erase(df->Sounds[soundIDs[i]].Items.begin() + j);
+				j--;
+			} else if ((df->Sounds[soundIDs[i]].Items[j].Probability == 1) && (df->Sounds[soundIDs[i]].Items[j].Civilization != 0)) {
+				itemCounts[df->Sounds[soundIDs[i]].Items[j].Civilization - 1]++;
+			}
+		}
+		logfile << "Checkpoint 2.5" << endl;
+		//Adjust copied sound items to their correct probabilities
+		for (int j=0; j<df->Sounds[soundIDs[i]].Items.size(); j++) {
+			if (df->Sounds[soundIDs[i]].Items[j].Probability != 0 && df->Sounds[soundIDs[i]].Items[j].Civilization != 0) {
+				if (hasSeenCivBefore[df->Sounds[soundIDs[i]].Items[j].Civilization - 1] == 0) {
+					df->Sounds[soundIDs[i]].Items[j].Probability = (int) ceil(100 / itemCounts[df->Sounds[soundIDs[i]].Items[j].Civilization - 1]);
+					hasSeenCivBefore[df->Sounds[soundIDs[i]].Items[j].Civilization - 1] = 1;
+				} else {
+					df->Sounds[soundIDs[i]].Items[j].Probability = (int) floor(100 / itemCounts[df->Sounds[soundIDs[i]].Items[j].Civilization - 1]);
+				}
+			}
+		}
+		logfile << "Checkpoint 2.9999" << endl;
+	}
+	logfile << "Checkpoint 3" << endl;
 }
 
 void assignUniqueUnits (DatFile *df, Value cfg, ofstream &logfile) {
@@ -1086,7 +1204,7 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 		civ.Units[eID].Type50.MaxRange = 6;
 		civ.Units[eID].Type50.DisplayedRange = 6;
 	}
-	setUnitCosts(df, {uuID, eID}, {150, 0, 0, 25});
+	setUnitCosts(df, {uuID, eID}, {0, 150, 0, 25});
 	//Photonman
 	createUU(df, 1577, "Photonman", {1000, 0, 0, 1000}, 120, 7609);
 	uuID = (int) (df->Civs[0].Units.size() - 2);
@@ -1947,6 +2065,79 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	setCombatStats(df, uuID, {{4, 10}}, {{4, 1}, {3, 0}, {19, 0}});
 	setCombatStats(df, eID, {{4, 14}}, {{4, 2}, {3, 0}, {19, 0}});
 
+		//Create new unique techs
+	//Deconstruction
+	Effect e = Effect();
+	e.Name = "Deconstruction";
+	for (int i=0; i<unit_class[9].size(); i++) {
+		e.EffectCommands.push_back(createEC(4, unit_class[9][i], -1, 9, amountTypetoD(30, 11)));
+	}
+	createUT(df, e, 0, "Deconstruction", {0, 300, 0, 200}, 40, 7500);
+	//Obsidian Arrows
+	e.EffectCommands.clear();
+	e.Name = "Obsidian Arrows";
+	e.EffectCommands.push_back(createEC(4, -1, 0, 9, amountTypetoD(6, 21)));
+	createUT(df, e, 0, "Obsidian Arrows", {300, 0, 0, 300}, 40, 7501);
+	//Tortoise Engineers
+	e.EffectCommands.clear();
+	e.Name = "Tortoise Engineers";
+	for (int i=0; i<rams.size(); i++) {
+		e.EffectCommands.push_back(createEC(5, rams[i], -1, 101, 0.5));
+	}
+	createUT(df, e, 0, "Tortoise Engineers", {0, 100, 0, 200}, 30, 7502);
+	//Lamellar Armour
+	e.EffectCommands.clear();
+	e.Name = "Lamellar Armour";
+	e.EffectCommands.push_back(createEC(4, -1, 36, 8, amountTypetoD(2, 4)));
+	e.EffectCommands.push_back(createEC(4, -1, 36, 8, amountTypetoD(1, 3)));
+	for (int i=0; i<unit_class[8].size(); i++) {
+		e.EffectCommands.push_back(createEC(4, unit_class[8][i], -1, 8, amountTypetoD(2, 4)));
+		e.EffectCommands.push_back(createEC(4, unit_class[8][i], -1, 8, amountTypetoD(1, 3)));
+	}
+	createUT(df, e, 1, "Lamellar Armour", {0, 500, 0, 500}, 40, 7503);
+	//Field Repairmen
+	e.EffectCommands.clear();
+	e.Name = "Field Repairmen";
+	for (int i=0; i<rams.size(); i++) {
+		e.EffectCommands.push_back(createEC(4, rams[i], -1, 109, 20));
+	}
+	createUT(df, e, 1, "Field Repairmen", {0, 350, 0, 650}, 80, 7504);
+	//Golden Age
+	e.EffectCommands.clear();
+	e.Name = "Golden Age";
+	e.EffectCommands.push_back(createEC(5, -1, 3, 13, 1.1));
+	createUT(df, e, 1, "Golden Age", {0, 0, 300, 600}, 90, 7505);
+	//Villager's Revenge
+	e.EffectCommands.clear();
+	e.Name = "Villager's Revenge";
+	const vector<int> villager_dead_ids = {58, 60, 224, 225, 353, 227, 228, 229, 213, 215, 217, 219, 221, 226, 211, 355, 591, 593};
+	for (int i=0; i<villager_dead_ids.size(); i++) {
+		e.EffectCommands.push_back(createEC(3, villager_dead_ids[i], 93, -1, 0));
+	}
+	createUT(df, e, 1, "Villager's Revenge", {500, 0, 0, 250}, 40, 7506);
+	//Panoply
+	e.EffectCommands.clear();
+	e.Name = "Panoply";
+	e.EffectCommands.push_back(createEC(4, -1, 6, 8, amountTypetoD(1, 3)));
+	e.EffectCommands.push_back(createEC(4, -1, 6, 8, amountTypetoD(1, 4)));
+	e.EffectCommands.push_back(createEC(4, -1, 6, 9, amountTypetoD(1, 4)));
+	createUT(df, e, 0, "Panoply", {300, 0, 0, 200}, 50, 7507);
+	//Clout Archery
+	e.EffectCommands.clear();
+	e.Name = "Clout Archery";
+	e.EffectCommands.push_back(createEC(5, 87, -1, 13, 1.5));
+	e.EffectCommands.push_back(createEC(5, 10, -1, 13, 1.5));
+	e.EffectCommands.push_back(createEC(5, 14, -1, 13, 1.5));
+	createUT(df, e, 0, "Clout Archery", {0, 150, 0, 250}, 40, 7508);
+	//Gate Crashing
+	e.EffectCommands.clear();
+	e.Name = "Gate Crashing";
+	for (int i=0; i<rams.size(); i++) {
+		e.EffectCommands.push_back(createEC(0, rams[i], -1, 105, 0));
+		e.EffectCommands.push_back(createEC(4, rams[i], -1, 104, 75));
+	}
+	createUT(df, e, 1, "Gate Crashing", {0, 600, 0, 700}, 60, 7509);
+
 		//Modify existing effects
 	//Give special barracks, archery range, stable, and siege workshop units the effects they deserve
 	EffectCommand melee_armor_1 = createEC(4, -1, -1, 8, amountTypetoD(1, 4));
@@ -2293,7 +2484,7 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 			civ.Units[rams[i]].Bird.TaskList.push_back(civ.Units[1228].Bird.TaskList[5]);
 			civ.Units[rams[i]].Bird.TaskList[5].ClassID = -1;
 			civ.Units[rams[i]].Bird.TaskList[5].ResourceOut = 2;
-			civ.Units[rams[i]].Bird.TaskList[5].WorkValue1 = 0.05;
+			civ.Units[rams[i]].Bird.TaskList[5].WorkValue1 = 0.02;
 		}
 	}
 	//Genericize unique units outside of castle
@@ -2340,22 +2531,22 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	//Create all the civ bonuses that are just a list of free techs
 	const vector<vector<int>> free_techs = {{12, 13, 14}, {67, 68, 75}, {716}, {8, 280}, {322, 441}, {47}, {254, 428, 786}, {213, 249}, {140, 63, 64}, {315}};
 	for (int i=0; i<free_techs.size(); i++) {
-		Effect e = Effect();
+		Effect ef = Effect();
 		for (int j=0; j<free_techs[i].size(); j++) {
 			for (int k=0; k<4; k++) {
-				e.EffectCommands.push_back(createEC(101, free_techs[i][j], k, 0, 0));
+				ef.EffectCommands.push_back(createEC(101, free_techs[i][j], k, 0, 0));
 			}
 			if (i == 7) {
 				//Exception for wheelbarrow/hand cart for compatibility with other civ bonuses
-				e.EffectCommands.push_back(createEC(103, free_techs[i][j], -1, 0, 1));
+				ef.EffectCommands.push_back(createEC(103, free_techs[i][j], -1, 0, 1));
 			} else {
-				e.EffectCommands.push_back(createEC(103, free_techs[i][j], -1, 0, 0));
+				ef.EffectCommands.push_back(createEC(103, free_techs[i][j], -1, 0, 0));
 			}
 		}
-		addEffectandTech(df, e, "C-Bonus, Free techs (set 1) " + to_string(i));
+		addEffectandTech(df, ef, "C-Bonus, Free techs (set 1) " + to_string(i));
 	}
 	//Farmers work 10% faster
-	Effect e = Effect();
+	e.EffectCommands.clear();
 	e.EffectCommands.push_back(createEC(5, 214, -1, 13, 1.18));
 	e.EffectCommands.push_back(createEC(5, 259, -1, 13, 1.18));
 	e.EffectCommands.push_back(createEC(5, 50, -1, 13, 1.1));
@@ -3355,7 +3546,16 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	//Gunpowder units +1 attack per university tech
 	e.EffectCommands.clear();
 	for (int i=0; i<unit_class[5].size(); i++) {
-		e.EffectCommands.push_back(createEC(4, unit_class[5][i], -1, 9, amountTypetoD(1, 3)));
+		int attack_type = -1;
+		for (int j=0; j<df->Civs[0].Units[unit_class[5][i]].Type50.Attacks.size(); j++) {
+			unit::AttackOrArmor attack = df->Civs[0].Units[unit_class[5][i]].Type50.Attacks[j];
+			if (((attack.Class == 4) || (attack.Class == 3) || (attack.Class == 31)) && (attack.Amount != 0)) {
+				attack_type = attack.Class;
+			}
+		}
+		if (attack_type != -1) {
+			e.EffectCommands.push_back(createEC(4, unit_class[5][i], -1, 9, amountTypetoD(1, attack_type)));
+		}
 	}
 	tech_ids.clear();
 	for (int i=0; i<university_techs.size(); i++) {
@@ -4279,10 +4479,10 @@ void assignTechs (DatFile *df, Value cfg, ofstream &logfile) {
 
 		for (int j=0; j<cfg["castletech"][i].size(); j++) {
 			int castle_index = cfg["castletech"][i][j].asInt();
-			Tech& castle_tech = df->Techs[ut_ids[castle_index][0]];
+			Tech& castle_tech = df->Techs[castle_ut_ids[castle_index]];
 
 			//Actually give the unique tech
-			allocateTech(df, ut_ids[castle_index][0], i+1);
+			allocateTech(df, castle_ut_ids[castle_index], i+1);
 
 			//Readjust some of the effects to appropriate the new civ culture
 			switch (castle_index) {
@@ -4346,9 +4546,9 @@ void assignTechs (DatFile *df, Value cfg, ofstream &logfile) {
 
 		for (int j=0; j<cfg["imptech"][i].size(); j++) {
 			int imp_index = cfg["imptech"][i][j].asInt();
-			Tech& imp_tech = df->Techs[ut_ids[imp_index][1]];
+			Tech& imp_tech = df->Techs[imp_ut_ids[imp_index]];
 
-			allocateTech(df, ut_ids[imp_index][1], i+1);
+			allocateTech(df, imp_ut_ids[imp_index], i+1);
 
 			switch (imp_index) {
 				//Allow teammates to train ten of your unique unit for free
@@ -4467,7 +4667,6 @@ vector<int> getRandomCosts (int min, int max, int p, int max_types, ofstream& lo
 }
 
 void setUnitCosts (DatFile *df, vector<int> costs, int civID, int unitID) {
-
 	int normalResources = 0;
 	Unit &unit = df->Civs[civID].Units[unitID];
 	for (int i=0; i<3; i++) {
@@ -4637,11 +4836,16 @@ void randomizeCosts (DatFile *df, Value cfg, ofstream& logfile) {
 		}
 	}
 	//Fun Easter eggs
-	int event1 = rand() % 100;
+/*	int event1 = rand() % 100;
 	int event2 = rand() % 100;
 	int event3 = rand() % 100;
 	int event4 = rand() % 50;
-	int event5 = rand() % 100;
+	int event5 = rand() % 100;*/
+	int event1 = -1;
+	int event2 = -1;
+	int event3 = -1;
+	int event4 = -1;
+	int event5 = -1;
 	if (event1 == 69) {
 		//Free villagers
 		for (int i=0; i<unit_sets[28].size(); i++) {

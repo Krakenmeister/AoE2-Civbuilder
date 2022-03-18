@@ -40,6 +40,10 @@ mkdir resources
 cd resources
 mkdir _common
 cd _common
+mkdir drs
+cd drs
+mkdir sounds
+cd ..
 mkdir wpfg
 cd wpfg
 mkdir resources

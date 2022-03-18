@@ -205,7 +205,7 @@ const civBonusStrings = [
 	"Land explosive units 2x HP",
 	"Receive 2 free villagers upon advancing to Feudal Age",
 	"All economic upgrades researched +100% faster",
-	"Castles +1500 HP",
+	"Castles +2000 HP",
 	"Blacksmith upgrades are free an age after they become available",
 	"Barracks cost -75 wood",
 	"Stables cost -75 wood",

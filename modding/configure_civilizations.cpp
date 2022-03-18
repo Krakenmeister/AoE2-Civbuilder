@@ -113,6 +113,9 @@ const vector<vector<int>> unit_sets = {
 /*Flemish Militia*/	{40, 100, 0, 2, 1663, 1697, 1699},
 /*Folwarks*/		{50, 200, 0, 2, 1711, 1720, 1734}
 };
+int vilspear = -1;
+int vilpike = -1;
+int vilhalb = -1;
 const vector<int> houses = {70, 191, 192, 463, 464, 465};
 const vector<int> rams = {35, 1258, 422, 548};
 const vector<int> enablingTechs = {16, 483, 695, 775, 690};
@@ -842,7 +845,7 @@ void configureCivs (DatFile *df, Value cfg) {
 	clearCivs(df, cfg);
 	createNewTechsBonuses(df, cfg);
 	assignArchitectures(df, cfg);
-	assignLanguages(df, cfg, logfile);
+//	assignLanguages(df, cfg, logfile);
 	assignUniqueUnits(df, cfg, logfile);
 	assignTechs(df, cfg, logfile);
 	assignCivBonuses(df, cfg);
@@ -854,37 +857,6 @@ void configureCivs (DatFile *df, Value cfg) {
 		randomizeCosts(df, cfg, logfile);
 	}
 	calculateTechDiscounts(df);
-/*	vector<string> uunames = {"Crusader Knight","Xolotl Warrior","Saboteur","Ninja","Flamethrower","Photonman","Centurion","Legionary","Monkey Boy","Amazon Warrior","Amazon Archer",
-"Iroquois Warrior","Varangian Guard","Gendarme","Cuahchiqueh","Ritterbruder","Kazak","Szlachcic","Cuirassier","Rajput","Seljuk Archer","Numidian Javelinman","Sosso Guard","Swiss Pikeman",
-"Headhunter","Teulu","Maillotins","Hashashin","Zweihander","Stradiot","Ahosi","Spadoni","Clibinarii","Silahtar","Jaridah","Wolf Warrior","Warrior Monk","Castellan","Lightning Warrior","Apukispay"};
-	vector<string> costTypes = {"Food", "Wood", "Stone", "Gold"};
-	for (int i=0; i<40; i++) {
-		for (int j = 1800 + (2*i) + 1; j <= 1800 + (2*i) + 2; j++) {
-			if (j == 1800 + (2*i) + 1) {
-				logfile << "Unit: " << uunames[i] << endl;
-			} else {
-				logfile << "Unit: Elite " << uunames[i] << endl;
-			}
-			logfile << "Hit Points: " << df->Civs[0].Units[j].HitPoints << endl;
-			logfile << "Speed: " << df->Civs[0].Units[j].Speed << endl;
-			logfile << "Range: " << df->Civs[0].Units[j].Type50.MaxRange << endl;
-			logfile << "Attacks: " << endl;
-			for (int a=0; a<df->Civs[0].Units[j].Type50.Attacks.size(); a++) {
-				logfile << "  type: " << df->Civs[0].Units[j].Type50.Attacks[a].Class << " || amount: " << df->Civs[0].Units[j].Type50.Attacks[a].Amount << endl;
-			}
-			logfile << "Armours: " << endl;
-			for (int a=0; a<df->Civs[0].Units[j].Type50.Armours.size(); a++) {
-				logfile << "  type: " << df->Civs[0].Units[j].Type50.Armours[a].Class << " || amount: " << df->Civs[0].Units[j].Type50.Armours[a].Amount << endl;
-			}
-			logfile << "Train Time: " << df->Civs[0].Units[j].Creatable.TrainTime << endl;
-			logfile << "Costs: " << endl;
-			for (int a=0; a<2; a++) {
-				if (df->Civs[0].Units[j].Creatable.ResourceCosts[a].Type >= 0 && df->Civs[0].Units[j].Creatable.ResourceCosts[a].Type <= 3 && df->Civs[0].Units[j].Creatable.ResourceCosts[a].Flag == 1) {
-					logfile << "  type: " << costTypes[df->Civs[0].Units[j].Creatable.ResourceCosts[a].Type] << " || amount: " << df->Civs[0].Units[j].Creatable.ResourceCosts[a].Amount << endl;
-				}
-			}
-		}
-	}*/
 	logfile.close();
 }
 
@@ -956,6 +928,7 @@ void assignArchitectures (DatFile *df, Value cfg) {
 }
 
 //Give civilizations the appropriate villager sfx files
+//Obsolete (didn't work)
 void assignLanguages (DatFile *df, Value cfg, ofstream& logfile) {
 	//On the mmm, mayans don't have a v at all
 	//On the 425 sound ID, celts prefix is at the end, and some don't have any at all
@@ -2107,13 +2080,43 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	e.Name = "Golden Age";
 	e.EffectCommands.push_back(createEC(5, -1, 3, 13, 1.1));
 	createUT(df, e, 1, "Golden Age", {0, 0, 300, 600}, 90, 7505);
+
 	//Villager's Revenge
 	e.EffectCommands.clear();
 	e.Name = "Villager's Revenge";
-	const vector<int> villager_dead_ids = {58, 60, 224, 225, 353, 227, 228, 229, 213, 215, 217, 219, 221, 226, 211, 355, 591, 593};
-	for (int i=0; i<villager_dead_ids.size(); i++) {
-		e.EffectCommands.push_back(createEC(3, villager_dead_ids[i], 93, -1, 0));
+	//Create villager spear units
+	for (Civ &civ : df->Civs) {
+		civ.Units.push_back(civ.Units[93]);
+		civ.UnitPointers.push_back(1);
+		vilspear = (int) (civ.Units.size() - 1);
+
+		civ.Units.push_back(civ.Units[358]);
+		civ.UnitPointers.push_back(1);
+		vilpike = (int) (civ.Units.size() - 1);
+
+		civ.Units.push_back(civ.Units[359]);
+		civ.UnitPointers.push_back(1);
+		vilhalb = (int) (civ.Units.size() - 1);
+
+		civ.Units[vilspear].Name = "VILPKEMN";
+		civ.Units[vilpike].Name = "VILPKM";
+		civ.Units[vilhalb].Name = "VILHLBDM";
+
+		civ.Units[vilspear].HitPoints = -1;
+		civ.Units[vilpike].HitPoints = -1;
+		civ.Units[vilhalb].HitPoints = -1;
+
+		civ.Units[vilspear].DeadUnitID = -1;
+		civ.Units[vilpike].DeadUnitID = -1;
+		civ.Units[vilhalb].DeadUnitID = -1;
 	}
+	df->Effects[190].EffectCommands.push_back(createEC(3, vilspear, vilpike, -1, 0));
+	df->Effects[189].EffectCommands.push_back(createEC(3, vilspear, vilhalb, -1, 0));
+	df->Effects[189].EffectCommands.push_back(createEC(3, vilpike, vilhalb, -1, 0));
+
+	e.EffectCommands.push_back(createEC(0, vilspear, -1, 0, 45));
+	e.EffectCommands.push_back(createEC(0, vilpike, -1, 0, 55));
+	e.EffectCommands.push_back(createEC(0, vilhalb, -1, 0, 60));
 	createUT(df, e, 1, "Villager's Revenge", {500, 0, 0, 250}, 40, 7506);
 	//Panoply
 	e.EffectCommands.clear();
@@ -2236,7 +2239,7 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	df->Effects[724].EffectCommands.push_back(createEC(4, 1181, -1, 8, amountTypetoD(1, 4)));
 	df->Effects[726].EffectCommands.push_back(createEC(5, 1181, -1, 101, 0.5));
 	//Make vanilla spear effects affect TC spearmen
-	custom_unit_class = {1182, 1183, 1184};
+	custom_unit_class = {1182, 1183, 1184, vilspear, vilpike, vilhalb};
 	for (int i=0; i<custom_unit_class.size(); i++) {
 		df->Effects[745].EffectCommands.push_back(createEC(5, custom_unit_class[i], -1, 5, 1.1));
 		df->Effects[283].EffectCommands.push_back(createEC(5, custom_unit_class[i], -1, 100, 0.75));
@@ -2880,10 +2883,10 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 		e.EffectCommands.push_back(createEC(103, tech_times[i][0], -1, 1, tech_times[i][1]));
 	}
 	addEffectandTech(df, e, "C-Bonus, Eco Upgrades research faster");
-	//Castles +1500 HP
+	//Castles +2000 HP
 	e.EffectCommands.clear();
-	e.EffectCommands.push_back(createEC(4, 82, -1, 0, 1500));
-	addEffectandTech(df, e, "C-Bonus, Castles +1500 HP");
+	e.EffectCommands.push_back(createEC(4, 82, -1, 0, 2000));
+	addEffectandTech(df, e, "C-Bonus, Castles +2000 HP");
 	//Blacksmith upgrades are free an age after they become available
 	const vector<int> blacksmith_2_3 = {199, 200, 211, 212, 67, 68, 81, 82, 74, 76};
 	vector<int> blacksmith_requirements = {};
@@ -3137,14 +3140,14 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	addEffectandTech(df, e, "C-Bonus, Feudal cost -25%");
 	//Spearmen and skirmishers train 50% faster
 	e.EffectCommands.clear();
-	custom_unit_class = {93, 358, 359, 1182, 1183, 1184, 6, 7, 1155};
+	custom_unit_class = {93, 358, 359, 1182, 1183, 1184, vilspear, vilpike, vilhalb, 6, 7, 1155};
 	for (int i=0; i<custom_unit_class.size(); i++) {
 		e.EffectCommands.push_back(createEC(5, custom_unit_class[i], -1, 101, 0.66));
 	}
 	addEffectandTech(df, e, "C-Bonus, Spearmen and Skirms train 50% faster");
 	//Spearman-line +25% HP
 	e.EffectCommands.clear();
-	custom_unit_class = {93, 358, 359, 1182, 1183, 1184};
+	custom_unit_class = {93, 358, 359, 1182, 1183, 1184, vilspear, vilpike, vilhalb};
 	for (int i=0; i<custom_unit_class.size(); i++) {
 		e.EffectCommands.push_back(createEC(5, custom_unit_class[i], -1, 0, 1.25));
 	}
@@ -3652,7 +3655,7 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	addEffectandTB(df, e, "Unique units +5% HP");
 	//Trash units train 20% faster
 	e.EffectCommands.clear();
-	custom_unit_class = {448, 546, 441, 1707, 93, 358, 359, 1182, 1183, 1184, 6, 7, 1155};
+	custom_unit_class = {448, 546, 441, 1707, 93, 358, 359, 1182, 1183, 1184, vilspear, vilpike, vilhalb, 6, 7, 1155};
 	for (int i=0; i<custom_unit_class.size(); i++) {
 		e.EffectCommands.push_back(createEC(5, custom_unit_class[i], -1, 101, 0.833));
 	}
@@ -3710,7 +3713,7 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	addEffectandTB(df, e, "Steppe Lancers +3 LOS");
 	//Spearmen +3 vs cavalry
 	e.EffectCommands.clear();
-	custom_unit_class = {93, 358, 359, 1182, 1183, 1184};
+	custom_unit_class = {93, 358, 359, 1182, 1183, 1184, vilspear, vilpike, vilhalb};
 	for (int i=0; i<custom_unit_class.size(); i++) {
 		e.EffectCommands.push_back(createEC(4, custom_unit_class[i], -1, 9, amountTypetoD(3, 8)));
 	}
@@ -3859,7 +3862,7 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 		civ.Units[1180].HitPoints = 400;
 		civ.Units[1180].Type50.DisplayedAttack = 16;
 		civ.Units[1180].Type50.Attacks[1].Amount = 16;
-		civ.Units[1180].Creatable.DisplayedPierceArmour = 5;
+		civ.Units[1180].Creatable.DisplayedPierceArmour = 4;
 		civ.Units[1180].Type50.Armours[3].Amount = 4;
 	}
 
@@ -4569,6 +4572,16 @@ void assignTechs (DatFile *df, Value cfg, ofstream &logfile) {
 				//Give torsion engines + chemistry
 				case 10: {
 					allocateTech(df, 609, i+1);
+					break;
+				}
+				//Give villager's revenge blood units
+				case 42: {
+					Civ &civ = df->Civs[i+1];
+					for (int k=0; k<civ.Units.size(); k++) {
+						if (civ.Units[k].Class == 4) {
+							civ.Units[k].BloodUnitID = vilspear;
+						}
+					}
 					break;
 				}
 			}

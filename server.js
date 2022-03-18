@@ -229,6 +229,7 @@ function os_func() {
 				console.error(`exec error: ${error}`);
 				return;
 			}
+//			console.log(stdout);
 			callback();
 		});
 	}
@@ -467,6 +468,20 @@ const copyNames = (req, res, next) => {
 	});
 }
 
+const addVoiceFiles = (req, res, next) => {
+	let command = `./copyVoices.sh /var/www/krakenmeister.com/civbuilder/modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/drs/sounds`;
+	let data = fs.readFileSync(`./modding/requested_mods/${req.body.seed}/data.json`);
+	let info = JSON.parse(data);
+
+	for (var i=0; i<info.language.length; i++) {
+		command += ` ${info.language[i]}`;
+	}
+
+	os.execCommand(command, function () {
+		next();
+	});
+}
+
 const writeUUIcons = (req, res, next) => {
 	for (var i=0; i<blanks.length; i++) {
 		os.execCommand(`cp ./public/uniticons/blank.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/wpfg/resources/uniticons/${blanks[i]}_50730.png`, function () {});
@@ -661,11 +676,11 @@ app.get('/build', function (req, res) {
 	res.sendFile(__dirname + '/public/civbuilder.html');
 });
 
-app.post('/file', createModFolder, createCivIcons, copyCivIcons, generateJson, writeNames, copyNames, writeUUIcons, writeTechTree, writeDatFile, zipModFolder, (req, res) => {
+app.post('/file', createModFolder, createCivIcons, copyCivIcons, generateJson, writeNames, copyNames, addVoiceFiles, writeUUIcons, writeTechTree, writeDatFile, zipModFolder, (req, res) => {
 	res.download(__dirname + '/modding/requested_mods/' + (req.body.seed) + '.zip');
 });
 
-app.post('/create', createModFolder, writeIconsJson, writeNames, copyNames, writeUUIcons, writeTechTree, writeDatFile, zipModFolder, (req, res) => {
+app.post('/create', createModFolder, writeIconsJson, writeNames, copyNames, addVoiceFiles, writeUUIcons, writeTechTree, writeDatFile, zipModFolder, (req, res) => {
 	res.download(__dirname + '/modding/requested_mods/' + (req.body.seed) + '.zip');
 });
 

@@ -193,7 +193,7 @@ const card_descriptions = [
 	"Land explosive units 2x HP",
 	"Receive 2 free villagers upon advancing to Feudal Age",
 	"All economic upgrades researched +100% faster",
-	"Castles +1500 HP",
+	"Castles +2000 HP",
 	"Blacksmith upgrades are free an age after they become available",
 	"Barracks cost -75 wood",
 	"Stables cost -75 wood",
@@ -654,7 +654,7 @@ const architectures = ['Central European Architecture', 'Western European Archit
 	'Eastern European Architecture', 'African Architecture', 'Southeast Asian Architecture', 'Central Asian Architecture']
 const languages = ['British', 'French', 'Gothic', 'Teuton', 'Japanese', 'Chinese', 'Byzantine', 'Persian', 'Saracen', 'Turk', 'Viking', 'Mongol', 'Celtic', 'Spanish', 'Aztec', 'Mayan',
 	'Hunnic', 'Korean', 'Italian', 'Indian', 'Incan', 'Magyar', 'Slavic', 'Portuguese', 'Ethiopian', 'Malian', 'Berber', 'Khmer', 'Malay', 'Burmese', 'Vietnamese', 'Bulgarian',
-	'Tatar', 'Cuman', 'Lithuanian', 'Burgundian', 'Sicilian', 'Polish', 'Bohemian']
+	'Tatar', 'Cuman', 'Lithuanian'/*, 'Burgundian', 'Sicilian', 'Polish', 'Bohemian'*/]
 
 //Draw flag to canvas given a seed
 function clientFlag (flag_palette, flag_id, scale) {

@@ -715,6 +715,10 @@ if (btn7) {
 		var instructionstext = document.createElement('p')
 		instructionstext.id = 'instructionstext'
 		instructionstext.innerHTML = '' +
+			'<b>03-17-2022</b><br>' +
+			'&emsp;&emsp;• Added functionality to language selection<br><br>' +
+			'<b>03-14-2022</b><br>' +
+			'&emsp;&emsp;• Villager\'s Revenge unique technology no longer crashes the game and works as intended<br><br>' +
 			'<b>03-12-2022</b><br>' +
 			'&emsp;&emsp;• Corrected a typo in Korean discount bonus<br>' +
 			'&emsp;&emsp;• Changed flamethrowers cost to 150w 25g instead of 150f 25g<br>' +

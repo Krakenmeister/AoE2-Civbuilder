@@ -49,18 +49,20 @@ No cheat codes, outside data mods, or other game modifications can be made to ga
 The winner will be announced after the finals of the tournament conclude.</div>
 <br><br>
 <div style = 'font-size:1.8rem'>Current Standings:</div><br>
-<div style='display:flex;width:100%;justify-content:space-between'>
+<div style='display:flex;width:100%;justify-content:space-between;font-size:1.2rem;'>
 <div style='text-align:center'>
 	<div>Mod 1</div><br>
-	<div>1. 26:14 | dianteforlife</div>
+	<div>1. 26:11 | dianteforlife</div>
 </div>
 <div style='text-align:center'>
 	<div>Mod 2</div><br>
-	<div>1. 24:34 | dianteforlife</div>
+	<div>1. 23:34 | DancePartyGirl</div><br>
+	<div>2. 24:34 | dianteforlife</div>
 </div>
 <div style='text-align:center'>
 	<div>Mod 3</div><br>
-	<div>1. 32:23 | dianteforlife</div>
+	<div>1. 32:11 | DancePartyGirl</div><br>
+	<div>2. 32:23 | dianteforlife</div>
 </div>
 <div style='text-align:center'>
 	<div>Mod 4</div><br>
@@ -68,7 +70,9 @@ The winner will be announced after the finals of the tournament conclude.</div>
 </div>
 <div style='text-align:center'>
 	<div>Mod 5</div><br>
-	<div>No submissions</div>
+	<div>1. 27:11 | DancePartyGirl</div><br>
+	<div>2. 27:19 | dianteforlife</div><br>
+	<div>3. 43:26 | JustPureLuck</div>
 </div>
 </div>`
 

@@ -338,18 +338,6 @@ const teamBonusStrings = ["Relics generate +33% gold", "Genitour available in th
 	"Upgrading Unique Units to Elite costs -20%", "Can upgrade Heavy Scorpions to Imperial Scorpions", "Can upgrade Elite Battle Elephants to Royal Battle Elephants", "Can upgrade Elite Steppe Lancers to Royal Lancers",
 	"Can train spearmen from Town Centers", "Can train Canoes from docks", "Scout Cavalry, Light Cavalry, Hussar +1 attack vs. Archers"]
 
-function getIndexOf(arr, tech) {
-	for (var i = 0; i < arr.length; i++) {
-		for (var j = 0; j < arr[i].length; j++) {
-			if (arr[i][j] == tech) {
-				return i;
-			}
-		}
-	}
-	//No one has that tech, language doesn't matter
-	return 0;
-}
-
 function getCivType(techtree) {
 	var civTypes = ["Infantry", "Archer", "Cavalry", "Siege", "Naval", "Monk", "Cavalry Archer", "Defensive", "Gunpowder", "Economic"]
 	var missingArray = [0, 0, 0, 0, 0, 0, 1, 0, 1, 1]
@@ -417,6 +405,29 @@ function interperateLanguage(json_path, txt_path) {
         var data = fs.readFileSync(json_path)
 	var civs = JSON.parse(data)
 	var stringStream = fs.createWriteStream(txt_path, {flags: 'a'})
+
+	let getUniqueName = (tech, type) => {
+		let index = -1
+		let cont = true
+		for (var i = 0; cont && (i < civs[type].length); i++) {
+			for (var j = 0; cont && (j < civs[type][i].length); j++) {
+				if (civs[type][i][j] == tech) {
+					if (index == -1) {
+						index = i
+					} else {
+						index = -1
+						cont = false
+					}
+				}
+			}
+		}
+		if (index != -1) {
+			return uniqueNames[civs['techtree'][index][0]]
+		} else {
+			return "Unique Units"
+		}
+	}
+
 	for (var i = 0; i < civs.name.length; i++) {
 		stringStream.write((i + 10271) + " \"" + civs.name[i] + "\"\n")
 	}
@@ -425,45 +436,45 @@ function interperateLanguage(json_path, txt_path) {
 	}
 //	stringStream.write("8296 \"Research Manipur Cavalry (Cavalry and " + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 5)][0]] + " +6 attack vs buildings)\"\n")
 //	stringStream.write("28296 \"Research <b>Manipur Cavalry<b> (<cost>) \\nCavalry and " + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 5)][0]] + " +6 bonus attack vs buildings.\"\n")
-	stringStream.write("8318 \"Research Logistica (" + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 6)][0]] + " cause trample damage)\"\n")
-	stringStream.write("28318 \"Research <b>Logistica<b> (<cost>) \\n " + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 6)][0]] + " cause trample damage.\"\n")
-	stringStream.write("8432 \"Research Rocketry (+2 " + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 8)][0]] + " attack, +4P scorpion attack)\"\n")
-	stringStream.write("28432 \"Research <b>Rocketry<b> (<cost>) \\n " + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 8)][0]] + " have +2 attack; scorpion units have +4 piercing attack.\"\n")
+	stringStream.write("8318 \"Research Logistica (" + getUniqueName(6, 'imptech') + " cause trample damage)\"\n")
+	stringStream.write("28318 \"Research <b>Logistica<b> (<cost>) \\n " + getUniqueName(6, 'imptech') + " cause trample damage.\"\n")
+	stringStream.write("8432 \"Research Rocketry (+2 " + getUniqueName(8, 'imptech') + " attack, +4P scorpion attack)\"\n")
+	stringStream.write("28432 \"Research <b>Rocketry<b> (<cost>) \\n " + getUniqueName(8, 'imptech') + " have +2 attack; scorpion units have +4 piercing attack.\"\n")
 	stringStream.write("7398 \"Elite Mercenaries\"\n")
 	stringStream.write("3132 \"%s has offered the services of elite mercenaries to their allies!\"\n")
-	stringStream.write("8398 \"Research Elite Mercenaries (Team receives 10 free Elite " + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 9)][0]] + " in Castle)\"\n")
-	stringStream.write("28398 \"Research <b>Elite Mercenaries<b> (<cost>) \\nTeam receives 10 free Elite " + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 9)][0]] + " in Castle.\"\n")
-	stringStream.write("8324 \"Research Bearded Axe (+2 attack for " + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 11)][0]] + ")\"\n")
-	stringStream.write("28324 \"Research <b>Bearded Axe<b> (<cost>) \\n +2 attack for " + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 11)][0]] + ".\"\n")
-	stringStream.write("8267 \"Research Fabric Shields (" + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 14)][0]] + ", Slingers, Eagles +1 armor/+2 pierce armor.)\"\n")
-	stringStream.write("28267 \"Research <b>Fabric Shields<b> (<cost>) \\n" + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 14)][0]] + ", Slingers, Eagles have +1 armor/+2 pierce armor.\"\n")
-	stringStream.write("8431 \"Research Berserkergang (" + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 36)][0]] + " can regenerate)\"\n")
-	stringStream.write("28431 \"Research <b>Berserkergang<b> (<cost>) \\n " + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 36)][0]] + " can regenerate.\"\n")
-	stringStream.write("8252 \"Research Royal Heirs (" + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 10)][0]] + " train twice as fast)\"\n")
-	stringStream.write("28252 \"Research <b>Royal Heirs<b> (<cost>) \\n" + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 10)][0]] + " train twice as fast.\"\n")
-	stringStream.write("8427 \"Research Anarchy (create " + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 12)][0]] + " at Barracks)\"\n")
-	stringStream.write("28427 \"Research <b>Anarchy<b> (<cost>) \\n Allows " + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 12)][0]] + " to be created at the Barracks.\"\n")
-	stringStream.write("8370 \"Research Marauders (create " + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 13)][0]] + " at Stables)\"\n")
-	stringStream.write("28370 \"Research <b>Marauders<b> (<cost>) \\nEnables you to create " + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 13)][0]] + " at Stables.\"\n")
-	stringStream.write("8272 \"Research Pavise (Archer-line, Condottiero, and " + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 16)][0]] + " +1 armor/+1 pierce armor)\"\n")
-	stringStream.write("28272 \"Research <b>Pavise<b> (<cost>) \\nArcher-line, Condottiero, and " + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 16)][0]] + " have +1 armor/+1 pierce armor.\"\n")
-	stringStream.write("8275 \"Research Corvinian Army (" + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 21)][0]] + " gold cost converted to additional food/wood cost)\"\n")
-	stringStream.write("28275 \"Research <b>Corvinian Army<b> (<cost>) \\n" + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 21)][0]] + " gold cost converted to additional food/wood cost.\"\n")
-	stringStream.write("8344 \"Research First Crusade (Each Town Center (maximum 5) spawns a one-time batch of 7 " + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 29)][0]] + "; units more resistant to conversion)\"\n")
-	stringStream.write("28344 \"Research <b>First Crusade<b> (<cost>) \\nEach Town Center (maximum 5) spawns a one-time batch of 7 " + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 29)][0]] + "; units more resistant to conversion.\"\n")
-	uniqueCastleStrings[10] = "Royal Heirs (" + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 10)][0]] + " train twice as fast)"
-	uniqueCastleStrings[11] = "Bearded Axe (+2 attack for " + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 11)][0]] + ")"
-	uniqueCastleStrings[12] = "Anarchy (create " + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 12)][0]] + " at Barracks)"
-	uniqueCastleStrings[13] = "Marauders (create " + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 13)][0]] + " at Stables)"
-	uniqueCastleStrings[16] = "Pavise (Archer-line, Condottieri, and " + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 16)][0]] + " +1 armor/+1 pierce armor)"
-	uniqueCastleStrings[21] = "Corvinian Army (" + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 21)][0]] + " gold cost converted to additional food/wood cost)"
-	uniqueCastleStrings[29] = "First Crusade (Each Town Center (maximum 5) spawns a one-time batch of 7 " + uniqueNames[civs.techtree[getIndexOf(civs.castletech, 29)][0]] + "; units more resistant to conversion)"
+	stringStream.write("8398 \"Research Elite Mercenaries (Team receives 10 free Elite " + getUniqueName(9, 'imptech') + " in Castle)\"\n")
+	stringStream.write("28398 \"Research <b>Elite Mercenaries<b> (<cost>) \\nTeam receives 10 free Elite " + getUniqueName(9, 'imptech') + " in Castle.\"\n")
+	stringStream.write("8324 \"Research Bearded Axe (+2 attack for " + getUniqueName(11, 'castletech') + ")\"\n")
+	stringStream.write("28324 \"Research <b>Bearded Axe<b> (<cost>) \\n +2 attack for " + getUniqueName(11, 'castletech') + ".\"\n")
+	stringStream.write("8267 \"Research Fabric Shields (" + getUniqueName(14, 'imptech') + ", Slingers, Eagles +1 armor/+2 pierce armor.)\"\n")
+	stringStream.write("28267 \"Research <b>Fabric Shields<b> (<cost>) \\n" + getUniqueName(14, 'imptech') + ", Slingers, Eagles have +1 armor/+2 pierce armor.\"\n")
+	stringStream.write("8431 \"Research Berserkergang (" + getUniqueName(36, 'imptech') + " can regenerate)\"\n")
+	stringStream.write("28431 \"Research <b>Berserkergang<b> (<cost>) \\n " + getUniqueName(36, 'imptech') + " can regenerate.\"\n")
+	stringStream.write("8252 \"Research Royal Heirs (" + getUniqueName(10, 'castletech') + " train twice as fast)\"\n")
+	stringStream.write("28252 \"Research <b>Royal Heirs<b> (<cost>) \\n" + getUniqueName(10, 'castletech') + " train twice as fast.\"\n")
+	stringStream.write("8427 \"Research Anarchy (create " + getUniqueName(12, 'castletech') + " at Barracks)\"\n")
+	stringStream.write("28427 \"Research <b>Anarchy<b> (<cost>) \\n Allows " + getUniqueName(12, 'castletech') + " to be created at the Barracks.\"\n")
+	stringStream.write("8370 \"Research Marauders (create " + getUniqueName(13, 'castletech') + " at Stables)\"\n")
+	stringStream.write("28370 \"Research <b>Marauders<b> (<cost>) \\nEnables you to create " + getUniqueName(13, 'castletech') + " at Stables.\"\n")
+	stringStream.write("8272 \"Research Pavise (Archer-line, Condottiero, and " + getUniqueName(16, 'castletech') + " +1 armor/+1 pierce armor)\"\n")
+	stringStream.write("28272 \"Research <b>Pavise<b> (<cost>) \\nArcher-line, Condottiero, and " + getUniqueName(16, 'castletech') + " have +1 armor/+1 pierce armor.\"\n")
+	stringStream.write("8275 \"Research Corvinian Army (" + getUniqueName(21, 'castletech') + " gold cost converted to additional food/wood cost)\"\n")
+	stringStream.write("28275 \"Research <b>Corvinian Army<b> (<cost>) \\n" + getUniqueName(21, 'castletech') + " gold cost converted to additional food/wood cost.\"\n")
+	stringStream.write("8344 \"Research First Crusade (Each Town Center (maximum 5) spawns a one-time batch of 7 " + getUniqueName(29, 'castletech') + "; units more resistant to conversion)\"\n")
+	stringStream.write("28344 \"Research <b>First Crusade<b> (<cost>) \\nEach Town Center (maximum 5) spawns a one-time batch of 7 " + getUniqueName(29, 'castletech') + "; units more resistant to conversion.\"\n")
+	uniqueCastleStrings[10] = "Royal Heirs (" + getUniqueName(10, 'castletech') + " train twice as fast)"
+	uniqueCastleStrings[11] = "Bearded Axe (+2 attack for " + getUniqueName(11, 'castletech') + ")"
+	uniqueCastleStrings[12] = "Anarchy (create " + getUniqueName(12, 'castletech') + " at Barracks)"
+	uniqueCastleStrings[13] = "Marauders (create " + getUniqueName(13, 'castletech') + " at Stables)"
+	uniqueCastleStrings[16] = "Pavise (Archer-line, Condottieri, and " + getUniqueName(16, 'castletech') + " +1 armor/+1 pierce armor)"
+	uniqueCastleStrings[21] = "Corvinian Army (" + getUniqueName(21, 'castletech') + " gold cost converted to additional food/wood cost)"
+	uniqueCastleStrings[29] = "First Crusade (Each Town Center (maximum 5) spawns a one-time batch of 7 " + getUniqueName(29, 'castletech') + "; units more resistant to conversion)"
 //	uniqueImpStrings[5] = "Manipur Cavalry (Cavalry and " + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 5)][0]] + " +6 attack vs. buildings)"
-	uniqueImpStrings[6] = "Logistica (" + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 6)][0]] + " cause trample damage)"
-	uniqueImpStrings[8] = "Rocketry (" + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 8)][0]] + " +2, scorpion units +4 attack)"
-	uniqueImpStrings[9] = "Elite Mercenaries (team members can create 10 free Elite " + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 9)][0]] + " in the Castle)"
-	uniqueImpStrings[14] = "Fabric Shields (" + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 14)][0]] + ", Slingers, Eagles +1/+2P armor)"
-	uniqueImpStrings[36] = "Berserkergang (" + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 36)][0]] + " can regenerate)"
+	uniqueImpStrings[6] = "Logistica (" + getUniqueName(6, 'imptech') + " cause trample damage)"
+	uniqueImpStrings[8] = "Rocketry (" + getUniqueName(8, 'imptech') + " +2, scorpion units +4 attack)"
+	uniqueImpStrings[9] = "Elite Mercenaries (team members can create 10 free Elite " + getUniqueName(9, 'imptech') + " in the Castle)"
+	uniqueImpStrings[14] = "Fabric Shields (" + getUniqueName(14, 'imptech') + ", Slingers, Eagles +1/+2P armor)"
+	uniqueImpStrings[36] = "Berserkergang (" + getUniqueName(36, 'imptech') + " can regenerate)"
 	for (var i = 0; i < civs.techtree.length; i++) {
 		stringStream.write((i + 120150) + " \"" + getCivType(civs.techtree[i]) + " civilization \\n\\n")
 		for (var j = 0; j < civs.civ_bonus[i].length; j++) {

@@ -16,17 +16,17 @@ do
 #		echo $dest
 		if [ -f "$dest" ]; then
 			newdest=${FILE#"/var/www/krakenmeister.com/civbuilder/public/voicefiles/"}
-			echo "$dest"
-			echo "${modfolder}/${newdest}"
-			echo "--------"
+#			echo "$dest"
+#			echo "${modfolder}/${newdest}"
+#			echo "--------"
 			cp "$dest" "${modfolder}/${newdest}"
 		else
 			newdest=${FILE#"/var/www/krakenmeister.com/civbuilder/public/voicefiles/"}
 			dest="${dest//[234]/1}"
 			if [ -f "$dest" ]; then
-				echo "$dest"
-				echo "${modfolder}/${newdest}"
-				echo "----------"
+#				echo "$dest"
+#				echo "${modfolder}/${newdest}"
+#				echo "----------"
 				cp "$dest" "${modfolder}/${newdest}"
 			fi
 		fi

@@ -118,8 +118,7 @@ int vilpike = -1;
 int vilhalb = -1;
 const vector<int> houses = {70, 191, 192, 463, 464, 465};
 const vector<int> rams = {35, 1258, 422, 548};
-const vector<int> enablingTechs = {16, 483, 695, 775, 690};
-const vector<vector<int>> duplicateUUs = {{759, 761}, {886, 887}, {1254, 1255}, {1660, 1661}, {-1, 1260}};
+vector<vector<int>> duplicationUnits = {};
 //Most of these vectors are used as index maps from the config file to in-game IDs
 //It serves as a function x |-> f(x) where x is the index in the vector as well as the ID in the config file, and f(x) is the in-game ID
 const vector<int> tech_tree_ids = {254,258,259,262,255,257,256,260,261,263,276,277,275,446,447,449,448,504,10,1,3,5,7,31,48,42,37,646,648,650,652,706,708,710,712,782,784,801,803};
@@ -1026,6 +1025,10 @@ void clearCivs (DatFile *df, Value cfg) {
 			i--;
 		}
 	}
+//	df->Effects[732].EffectCommands.erase(df->Effects[732].EffectCommands.begin() + 1);
+//	df->Effects[462].EffectCommands.clear();
+//	df->Effects[538].EffectCommands.clear();
+//	df->Effects[941].EffectCommands.clear();
 }
 
 void createNewTechsBonuses (DatFile *df, Value cfg) {
@@ -2527,6 +2530,18 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 					civ.Units[villager_tasks[i][0]].Bird.TaskList[j].ResourceMultiplier = villager_tasks[i][2];
 				}
 			}
+		}
+	}
+	//Make unique units only available in castle age
+	for (int i=0; i<uu_tech_ids.size(); i++) {
+		if (df->Techs[uu_tech_ids[i][0]].Name != "Serjeant (make avail)") {
+			int requirementsCount = 0;
+			for (int j=0; j<df->Techs[uu_tech_ids[i][0]].RequiredTechs.size() && j<df->Techs[uu_tech_ids[i][0]].getRequiredTechsSize(); j++) {
+				if (df->Techs[uu_tech_ids[i][0]].RequiredTechs[j] > 0) {
+					requirementsCount++;
+				}
+			}
+			df->Techs[uu_tech_ids[i][0]].RequiredTechCount = requirementsCount;
 		}
 	}
 
@@ -4138,40 +4153,75 @@ void assignCivBonuses (DatFile *df, Value cfg) {
 				//If they have Kreposts, let them train their unique unit in them!
 				case 93: {
 					for (Civ &civ : df->Civs) {
-						civ.Units[1254] = civ.Units[unique_unit];
-						civ.Units[1254].Name = "KREPOSTUNIT";
-						civ.Units[1254].Creatable.TrainLocationID = 1251;
-						civ.Units[1254].Creatable.ButtonID = 1;
-						civ.Units[1255] = civ.Units[unique_elite];
-						civ.Units[1255].Name = "EKREPOSTUNIT";
-						civ.Units[1255].Creatable.TrainLocationID = 1251;
-						civ.Units[1255].Creatable.ButtonID = 1;
+						civ.Units.push_back(civ.Units[unique_unit]);
+						civ.UnitPointers.push_back(1);
+						int duplicateUU = (int) (civ.Units.size() - 1);
+						civ.Units[duplicateUU].Name = "KREPOSTUNIT" + to_string(i);
+						civ.Units[duplicateUU].Creatable.TrainLocationID = 1251;
+						civ.Units[duplicateUU].Creatable.ButtonID = 1;
+
+						civ.Units.push_back(civ.Units[unique_elite]);
+						civ.UnitPointers.push_back(1);
+						int duplicateUUelite = (int) (civ.Units.size() - 1);
+						civ.Units[duplicateUUelite].Name = "EKREPOSTUNIT" + to_string(i);
+						civ.Units[duplicateUUelite].Creatable.TrainLocationID = 1251;
+						civ.Units[duplicateUUelite].Creatable.ButtonID = 1;
+					}
+					int dupUU = (int) (df->Civs[0].Units.size() - 2);
+					int dupUUe = (int) (df->Civs[0].Units.size() - 1);
+
+					for (Tech &tech : df->Techs) {
+						if (tech.Name == "C-Bonus, Enable Krepost" && tech.Civ == (i+1)) {
+							Effect enableUnit = Effect();
+							enableUnit.Name = "Enable Krepost & Unit";
+							enableUnit.EffectCommands.push_back(createEC(2, 1251, 1, -1, 0));
+							enableUnit.EffectCommands.push_back(createEC(2, dupUU, 1, -1, 0));
+							df->Effects.push_back(enableUnit);
+							tech.EffectID = (int) (df->Effects.size() - 1);
+						}
 					}
 
-					EffectCommand upgrade_unique = createEC(3, 1254, 1255, -1, 0);
-					df->Effects[df->Techs[uu_tech_ids[unique_index][1]].EffectID].EffectCommands.push_back(upgrade_unique);
+					duplicationUnits.push_back({unique_unit, unique_elite, dupUU, dupUUe});
 					break;
 				}
 				//If they have Donjons, let them train their unique unit in them!
 				case 109: {
 					for (Civ &civ : df->Civs) {
-						civ.Units[1660] = civ.Units[unique_unit];
-						civ.Units[1660].Name = "DONJONUNIT";
-						civ.Units[1660].Creatable.TrainLocationID = 1665;
-						civ.Units[1660].Creatable.ButtonID = 1;
-						civ.Units[1661] = civ.Units[unique_elite];
-						civ.Units[1661].Name = "EDONJONUNIT";
-						civ.Units[1661].Creatable.TrainLocationID = 1665;
-						civ.Units[1661].Creatable.ButtonID = 1;
+						civ.Units.push_back(civ.Units[unique_unit]);
+						civ.UnitPointers.push_back(1);
+						int duplicateUU = (int) (civ.Units.size() - 1);
+						civ.Units[duplicateUU].Name = "DONJONUNIT" + to_string(i);
+						civ.Units[duplicateUU].Creatable.TrainLocationID = 1665;
+						civ.Units[duplicateUU].Creatable.ButtonID = 1;
+
+						civ.Units.push_back(civ.Units[unique_elite]);
+						civ.UnitPointers.push_back(1);
+						int duplicateUUelite = (int) (civ.Units.size() - 1);
+						civ.Units[duplicateUUelite].Name = "EDONJONUNIT" + to_string(i);
+						civ.Units[duplicateUUelite].Creatable.TrainLocationID = 1665;
+						civ.Units[duplicateUUelite].Creatable.ButtonID = 1;
+					}
+					int dupUU = (int) (df->Civs[0].Units.size() - 2);
+					int dupUUe = (int) (df->Civs[0].Units.size() - 1);
+
+					for (Tech &tech : df->Techs) {
+						if (tech.Name == "Enable Donjon Unit" && tech.Civ == (i+1)) {
+							Effect enableUnit = Effect();
+							enableUnit.Name = "Enable Donjon Unit";
+							enableUnit.EffectCommands.push_back(createEC(2, dupUU, 1, -1, 0));
+							df->Effects.push_back(enableUnit);
+							tech.EffectID = (int) (df->Effects.size() - 1);
+							cout << to_string(tech.Civ) + " " + to_string(unique_unit) << endl;
+							if (unique_unit == 1658) {
+								tech.RequiredTechs[0] = 101;
+							} else {
+								tech.RequiredTechs[0] = 102;
+							}
+						}
 					}
 
-					EffectCommand upgrade_unique = createEC(3, 1660, 1661, -1, 0);
-					df->Effects[df->Techs[uu_tech_ids[unique_index][1]].EffectID].EffectCommands.push_back(upgrade_unique);
+					duplicationUnits.push_back({unique_unit, unique_elite, dupUU, dupUUe});
 
-					if (unique_unit != 1658) {
-						//Only available in Castle Age
-						df->Techs[civ_bonuses[109][1]].RequiredTechs[0] = 102;
-					}
 					break;
 				}
 				//Wonder provides +50 bonus pop
@@ -4328,12 +4378,12 @@ void assignTeamBonuses (DatFile *df, Value cfg) {
 
 //Any and all effects that apply to unique units should apply to their barracks/stable/krepost/donjon equivalent
 void duplicateUUEffects (DatFile *df, Value cfg) {
-	for (int i=0; i<enablingTechs.size(); i++) {
+/*	for (int i=0; i<duplicateEnablingTechs.size(); i++) {
 		int unique_unit = 0;
 		int unique_elite = 0;
 		//Identify the unique unit (and elite) that we're supposed to be copying the effects of
-		if (df->Techs[enablingTechs[i]].Civ != 99) {
-			int unique_index = cfg["techtree"][(df->Techs[enablingTechs[i]].Civ)-1][0].asInt();
+		if (df->Techs[duplicateEnablingTechs[i]].Civ != 99) {
+			int unique_index = cfg["techtree"][(df->Techs[duplicateEnablingTechs[i]].Civ)-1][0].asInt();
 			unique_unit = df->Effects[df->Techs[uu_tech_ids[unique_index][0]].EffectID].EffectCommands[0].A;
 			unique_elite = df->Effects[df->Techs[uu_tech_ids[unique_index][1]].EffectID].EffectCommands[0].B;
 		}
@@ -4359,22 +4409,38 @@ void duplicateUUEffects (DatFile *df, Value cfg) {
 				}
 			}
 		}
-	}
-	//Make ninja's armor-piercing attacks upgrade like other units
-/*	for (Effect &effect : df->Effects) {
-		int num_effect_commands = effect.EffectCommands.size();
-		for (int i=0; i<num_effect_commands; i++) {
-			if ((effect.EffectCommands[i].Type == 4) && (effect.EffectCommands[i].B == 6)) {
-				EffectCommand copy_effect1 = effect.EffectCommands[i];
-				EffectCommand copy_effect2 = effect.EffectCommands[i];
-				copy_effect1.A = 1807;	//Soft-coded unit ID
-				copy_effect2.A = 1808;
-				copy_effect1.B = -1;
-				copy_effect2.B = -1;
-				
+	}*/
+	for (int i=0; i<duplicationUnits.size(); i++) {
+		for (Effect &effect : df->Effects) {
+			int num_effect_commands = effect.EffectCommands.size();
+			for (int j=0; j<num_effect_commands; j++) {
+				//Don't duplicate effects that enable, upgrade since we make those when we give civ that unit
+				//Also spawning both types at the same time would be broken as hell
+				if ((effect.EffectCommands[j].A == duplicationUnits[i][0]) && (effect.EffectCommands[j].Type != 2) && (effect.EffectCommands[j].Type != 3) && (effect.EffectCommands[j].Type != 7)) {
+					//Give the same effect to special unique unit
+					EffectCommand copy_effect = effect.EffectCommands[j];
+					copy_effect.A = duplicationUnits[i][2];
+					if (duplicationUnits[i][2] != -1) {
+						effect.EffectCommands.push_back(copy_effect);
+					}
+				} else if (effect.EffectCommands[j].A == duplicationUnits[i][1]) {
+					//Give the same effect to special elite
+					EffectCommand copy_effect = effect.EffectCommands[j];
+					copy_effect.A = duplicationUnits[i][3];
+					effect.EffectCommands.push_back(copy_effect);
+				} else if ((effect.EffectCommands[j].A == duplicationUnits[i][0]) && (effect.EffectCommands[j].Type == 3)) {
+					EffectCommand copy_effect = effect.EffectCommands[j];
+					copy_effect.A = duplicationUnits[i][2];
+					copy_effect.B = duplicationUnits[i][3];
+					effect.EffectCommands.push_back(copy_effect);
+				}
 			}
 		}
-	}*/
+	}
+	//Undo elite konnik reversal to not create a different weird bug (elite not upgrading dismounted konniks on map)
+	EffectCommand etemp = df->Effects[715].EffectCommands[0];
+	df->Effects[715].EffectCommands[0] = df->Effects[715].EffectCommands[1];
+	df->Effects[715].EffectCommands[1] = etemp;
 }
 
 //There is no multiply tech costs so we have to calculate the flat discounts
@@ -4489,39 +4555,72 @@ void assignTechs (DatFile *df, Value cfg, ofstream &logfile) {
 
 			//Readjust some of the effects to appropriate the new civ culture
 			switch (castle_index) {
-				//Turn barracks-Huskarl into barracks-uniqueunit
+				//Create and give barracks-uniqueunit
 				case 12: {
 					for (Civ &civ : df->Civs) {
-						civ.Units[759] = civ.Units[unique_unit];
-						civ.Units[759].Name = "BARRACKSUU";
-						civ.Units[759].Creatable.TrainLocationID = 12;
-						civ.Units[759].Creatable.ButtonID = 14;
-						civ.Units[761] = civ.Units[unique_elite];
-						civ.Units[761].Name = "BARRACKSUUE";
-						civ.Units[761].Creatable.TrainLocationID = 12;
-						civ.Units[761].Creatable.ButtonID = 14;
+						civ.Units.push_back(civ.Units[unique_unit]);
+						civ.UnitPointers.push_back(1);
+						int duplicateUU = (int) (civ.Units.size() - 1);
+						civ.Units[duplicateUU].Name = "BARRACKSUU" + to_string(i);
+						civ.Units[duplicateUU].Creatable.TrainLocationID = 12;
+						civ.Units[duplicateUU].Creatable.ButtonID = 14;
+
+						civ.Units.push_back(civ.Units[unique_elite]);
+						civ.UnitPointers.push_back(1);
+						int duplicateUUelite = (int) (civ.Units.size() - 1);
+						civ.Units[duplicateUUelite].Name = "BARRACKSUUE" + to_string(i);
+						civ.Units[duplicateUUelite].Creatable.TrainLocationID = 12;
+						civ.Units[duplicateUUelite].Creatable.ButtonID = 14;
+					}
+					int dupUU = (int) (df->Civs[0].Units.size() - 2);
+					int dupUUe = (int) (df->Civs[0].Units.size() - 1);
+
+
+					for (Tech &tech : df->Techs) {
+						if (tech.Name == "Gothic Anarchy" && tech.Civ == (i+1)) {
+							Effect enableUnit = Effect();
+							enableUnit.Name = "Enable barracks unit";
+							enableUnit.EffectCommands.push_back(createEC(2, dupUU, 1, -1, 0));
+							df->Effects.push_back(enableUnit);
+							tech.EffectID = (int) (df->Effects.size() - 1);
+						}
 					}
 
-					allocateTech(df, 18, i+1);
-					EffectCommand upgrade_unique = createEC(3, 759, 761, -1, 0);
-					df->Effects[df->Techs[uu_tech_ids[unique_index][1]].EffectID].EffectCommands.push_back(upgrade_unique);
+					duplicationUnits.push_back({unique_unit, unique_elite, dupUU, dupUUe});
 					break;
 				}
 				//Turn stable-Tarkan into stable-uniqueunit
 				case 13: {
 					for (Civ &civ : df->Civs) {
-						civ.Units[886] = civ.Units[unique_unit];
-						civ.Units[886].Name = "STABLEUU";
-						civ.Units[886].Creatable.TrainLocationID = 101;
-						civ.Units[886].Creatable.ButtonID = 13;
-						civ.Units[887] = civ.Units[unique_elite];
-						civ.Units[887].Name = "STABLEUUE";
-						civ.Units[887].Creatable.TrainLocationID = 101;
-						civ.Units[887].Creatable.ButtonID = 13;
+						civ.Units.push_back(civ.Units[unique_unit]);
+						civ.UnitPointers.push_back(1);
+						int duplicateUU = (int) (civ.Units.size() - 1);
+						civ.Units[duplicateUU].Name = "STABLEUU";
+						civ.Units[duplicateUU].Creatable.TrainLocationID = 101;
+						civ.Units[duplicateUU].Creatable.ButtonID = 13;
+
+						civ.Units.push_back(civ.Units[unique_elite]);
+						civ.UnitPointers.push_back(1);
+						int duplicateUUelite = (int) (civ.Units.size() - 1);
+						civ.Units[duplicateUUelite].Name = "STABLEUUE";
+						civ.Units[duplicateUUelite].Creatable.TrainLocationID = 101;
+						civ.Units[duplicateUUelite].Creatable.ButtonID = 13;
+					}
+					int dupUU = (int) (df->Civs[0].Units.size() - 2);
+					int dupUUe = (int) (df->Civs[0].Units.size() - 1);
+
+					for (Tech &tech : df->Techs) {
+						if (tech.Name == "Huns UT" && tech.Civ == (i+1)) {
+							Effect enableUnit = Effect();
+							enableUnit.Name = "Enable stable unit";
+							enableUnit.EffectCommands.push_back(createEC(2, dupUU, 1, -1, 0));
+							df->Effects.push_back(enableUnit);
+							tech.EffectID = (int) (df->Effects.size() - 1);
+						}
 					}
 
-					EffectCommand upgrade_unique = createEC(3, 886, 887, -1, 0);
-					df->Effects[df->Techs[uu_tech_ids[unique_index][1]].EffectID].EffectCommands.push_back(upgrade_unique);
+					duplicationUnits.push_back({unique_unit, unique_elite, dupUU, dupUUe});
+
 					break;
 				}
 				//Give Thalassocracy + arrow upgrades
@@ -4536,7 +4635,19 @@ void assignTechs (DatFile *df, Value cfg, ofstream &logfile) {
 				}*/
 				//First Crusade
 				case 29: {
-					df->Effects[792].EffectCommands[1].A = unique_unit;
+					for (Tech &tech : df->Techs) {
+						if (tech.Name == "First Crusade" && tech.Civ == (i+1)) {
+							Effect crusadeUnit = Effect();
+							crusadeUnit.Name = "Enable crusade unit";
+							crusadeUnit.EffectCommands.push_back(createEC(1, 234, 0, -1, 5));
+							crusadeUnit.EffectCommands.push_back(createEC(7, unique_unit, 109, 7, 0));
+							crusadeUnit.EffectCommands.push_back(createEC(1, 77, 1, -1, 3));
+							crusadeUnit.EffectCommands.push_back(createEC(1, 178, 1, -1, 2));
+							crusadeUnit.EffectCommands.push_back(createEC(1, 179, 1, -1, 4));
+							df->Effects.push_back(crusadeUnit);
+							tech.EffectID = (int) (df->Effects.size() - 1);
+						}
+					}
 					break;
 				}
 			}
@@ -4567,6 +4678,7 @@ void assignTechs (DatFile *df, Value cfg, ofstream &logfile) {
 						civ.Units[1260].Creatable.ResourceCosts[1].Type = 215;
 						civ.Units[1260].Creatable.ResourceCosts[1].Amount = -1;
 					}
+					duplicationUnits.push_back({-2, unique_elite, -1, 1260});
 					break;
 				}
 				//Give torsion engines + chemistry
@@ -4778,12 +4890,12 @@ void randomizeCosts (DatFile *df, Value cfg, ofstream& logfile) {
 		}
 	}
 	//Copy costs to barracks/stable/krepost/donjon equivalent (but NOT elite mercernaries!)
-	for (int i=0; i<(enablingTechs.size()-1); i++) {
+/*	for (int i=0; i<(duplicateEnablingTechs.size()-1); i++) {
 		int unique_unit = 0;
 		int unique_elite = 0;
 		//Identify the unique unit (and elite) that we're supposed to be copying the costs of
-		if (df->Techs[enablingTechs[i]].Civ != 99) {
-			int unique_index = cfg["techtree"][(df->Techs[enablingTechs[i]].Civ)-1][0].asInt();
+		if (df->Techs[duplicateEnablingTechs[i]].Civ != 99) {
+			int unique_index = cfg["techtree"][(df->Techs[duplicateEnablingTechs[i]].Civ)-1][0].asInt();
 			unique_unit = df->Effects[df->Techs[uu_tech_ids[unique_index][0]].EffectID].EffectCommands[0].A;
 			unique_elite = df->Effects[df->Techs[uu_tech_ids[unique_index][1]].EffectID].EffectCommands[0].B;
 		}
@@ -4793,7 +4905,7 @@ void randomizeCosts (DatFile *df, Value cfg, ofstream& logfile) {
 				civ.Units[duplicateUUs[i][1]].Creatable.ResourceCosts = civ.Units[unique_elite].Creatable.ResourceCosts;
 			}
                 }
-        }
+        }*/
 	//Randomize costs of all techs
 	for (int i=0; i<df->Techs.size(); i++) {
 		vector<int> costs = {0, 0, 0, 0};

@@ -52,27 +52,34 @@ The winner will be announced after the finals of the tournament conclude.</div>
 <div style='display:flex;width:100%;justify-content:space-between;font-size:1.2rem;'>
 <div style='text-align:center'>
 	<div>Mod 1</div><br>
-	<div>1. 26:11 | dianteforlife</div>
+	<div>1. 24:48 | RAY</div><br>
+	<div>2. 25:08 | DancePartyGirl</div><br>
+	<div>2. 26:11 | dianteforlife</div>
 </div>
 <div style='text-align:center'>
 	<div>Mod 2</div><br>
-	<div>1. 23:34 | DancePartyGirl</div><br>
-	<div>2. 24:34 | dianteforlife</div>
+	<div>1. 23:19 | RAY</div><br>
+	<div>2. 23:34 | DancePartyGirl</div><br>
+	<div>3. 24:34 | dianteforlife</div>
 </div>
 <div style='text-align:center'>
 	<div>Mod 3</div><br>
-	<div>1. 32:11 | DancePartyGirl</div><br>
-	<div>2. 32:23 | dianteforlife</div>
+	<div>1. 31:31 | RAY</div><br>
+	<div>2. 32:11 | DancePartyGirl</div><br>
+	<div>3. 32:23 | dianteforlife</div>
 </div>
 <div style='text-align:center'>
 	<div>Mod 4</div><br>
-	<div>1. 26:23 | dianteforlife</div>
+	<div>1. 26:13 | RAY</div><br>
+	<div>2. 26:16 | DancePartyGirl</div><br>
+	<div>3. 26:23 | dianteforlife</div>
 </div>
 <div style='text-align:center'>
 	<div>Mod 5</div><br>
-	<div>1. 27:11 | DancePartyGirl</div><br>
-	<div>2. 27:19 | dianteforlife</div><br>
-	<div>3. 43:26 | JustPureLuck</div>
+	<div>1. 25:38 | RAY</div><br>
+	<div>2. 26:04 | dianteforlife</div><br>
+	<div>3. 27:11 | DancePartyGirl</div><br>
+	<div>4. 43:26 | JustPureLuck</div>
 </div>
 </div>`
 

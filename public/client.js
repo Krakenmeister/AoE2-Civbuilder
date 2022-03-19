@@ -338,58 +338,15 @@ function startaBuild() {
 					var preset = JSON.parse(presets[i])
 					for (var j=0; j<preset['bonuses'][0].length; j++) {
 						switch (preset['bonuses'][0][j]) {
-							case 93:
-								numDuplicates[0]++
-								break
 							case 102:
 								numDuplicates[6]++
-								break
-							case 109:
-								numDuplicates[1]++
-								break
-						}
-					}
-					for (var j=0; j<preset['bonuses'][2].length; j++) {
-						switch (preset['bonuses'][2][j]) {
-							case 10:
-								numDuplicates[7]++
-								break
-							case 11:
-								numDuplicates[8]++
-								break
-							case 12:
-								numDuplicates[2]++
-								break
-							case 13:
-								numDuplicates[3]++
-								break
-							case 16:
-								numDuplicates[9]++
-								break
-							case 21:
-								numDuplicates[10]++
-								break
-							case 29:
-								numDuplicates[4]++
 								break
 						}
 					}
 					for (var j=0; j<preset['bonuses'][3].length; j++) {
 						switch (preset['bonuses'][3][j]) {
-							case 5:
-								numDuplicates[11]++
-								break
-							case 6:
-								numDuplicates[12]++
-								break
-							case 8:
-								numDuplicates[13]++
-								break
-							case 14:
-								numDuplicates[14]++
-								break
-							case 36:
-								numDuplicates[15]++
+							case 9:
+								numDuplicates[5]++
 								break
 						}
 					}
@@ -398,14 +355,12 @@ function startaBuild() {
 				const errorMessages = ['Duplicate Krepost civs!', 'Duplicate Donjon civs!', 'Duplicate Anarchy civs!', 'Duplicate Marauder civs!', 'Duplicate First Crusade civs!', 'Duplicate Elite Mercenaries civs!',
 					'Duplicate relic bonus civs!', 'Duplicate Royal Heirs civs!', 'Duplicate Bearded Axe civs!', 'Duplicate Pavise civs!', 'Duplicate Corvinian Army civs!', 'Duplicate Manipur Cavalry civs!',
 					'Duplicate Logistica civs!', 'Duplicate Rocketry civs!', 'Duplicate Fabric Shields civs!', 'Duplicate Berserkergang civs!']
-				const compatibilityMessage = '\r\n\r\nMultiple civs having the following will result in UI incompatibilities:\r\n' +
-					'Relic bonus, Royal Heirs, Bearded Axe, Pavise, Corvinian Army, Manipur Cavalry, Logistica, Rocketry, Fabric Shields, Berserkergang' +
-					'\r\n\r\nMultiple civs having the following will result in Data Mod incompatibilities:\r\n' +
-					'Krepost, Donjon, Anarchy, Marauders, First Crusade, Elite Mercenaries'
+				const compatibilityMessage = '\r\n\r\nMultiple civs having the following will result in Data Mod incompatibilities:\r\n' +
+					'Relic bonus, Elite Mercenaries'
 				for (var i=0; i<numDuplicates.length; i++) {
 					if (numDuplicates[i] > 1) {
 						errorMessage = errorMessages[i]
-						if (i < 6) {
+						if (i < 7) {
 							errorMessage += ' Data Mod incompatibility. Aborting creation.'
 							errorMessage += compatibilityMessage
 							alert(errorMessage)
@@ -715,6 +670,10 @@ if (btn7) {
 		var instructionstext = document.createElement('p')
 		instructionstext.id = 'instructionstext'
 		instructionstext.innerHTML = '' +
+			'<b>03-18-2022</b><br>' +
+			'&emsp;&emsp;• Removed data incompatibility restriction for Kreposts, Donjons, Anarchy, Marauders, and First Crusade<br>' +
+			'&emsp;&emsp;• Removed all UI incompatibility restrictions<br>' +
+			'&emsp;&emsp;• Fixed some civilizations being able to recruit their unique unit from castles in Dark Age in Regicide<br><br>' +
 			'<b>03-17-2022</b><br>' +
 			'&emsp;&emsp;• Added functionality to language selection<br><br>' +
 			'<b>03-14-2022</b><br>' +

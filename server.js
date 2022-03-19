@@ -229,7 +229,7 @@ function os_func() {
 				console.error(`exec error: ${error}`);
 				return;
 			}
-//			console.log(stdout);
+			console.log(stdout);
 			callback();
 		});
 	}

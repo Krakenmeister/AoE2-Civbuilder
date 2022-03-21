@@ -652,9 +652,11 @@ const palette_sizes = [15, 15, 15, 15, 15, 12, 12, 81]
 
 const architectures = ['Central European Architecture', 'Western European Architecture', 'East Asian Architecture', 'Middle Eastern Architecture', 'Mesoamerican Architecture', 'Mediterranean Architecture', 'Indian Architecture',
 	'Eastern European Architecture', 'African Architecture', 'Southeast Asian Architecture', 'Central Asian Architecture']
-const languages = ['British', 'French', 'Gothic', 'Teuton', 'Japanese', 'Chinese', 'Byzantine', 'Persian', 'Saracen', 'Turk', 'Viking', 'Mongol', 'Celtic', 'Spanish', 'Aztec', 'Mayan',
-	'Hunnic', 'Korean', 'Italian', 'Indian', 'Incan', 'Magyar', 'Slavic', 'Portuguese', 'Ethiopian', 'Malian', 'Berber', 'Khmer', 'Malay', 'Burmese', 'Vietnamese', 'Bulgarian',
-	'Tatar', 'Cuman', 'Lithuanian'/*, 'Burgundian', 'Sicilian', 'Polish', 'Bohemian'*/]
+const languages = ['British Language', 'French Language', 'Gothic Language', 'Teuton Language', 'Japanese Language', 'Chinese Language', 'Byzantine Language', 'Persian Language',
+	'Saracen Language', 'Turk Language', 'Viking Language', 'Mongol Language', 'Celtic Language', 'Spanish Language', 'Aztec Language', 'Mayan Language', 'Hunnic Language',
+	'Korean Language', 'Italian Language', 'Indian Language', 'Incan Language', 'Magyar Language', 'Slavic Language', 'Portuguese Language', 'Ethiopian Language', 'Malian Language',
+	'Berber Language', 'Khmer Language', 'Malay Language', 'Burmese Language', 'Vietnamese Language', 'Bulgarian Language', 'Tatar Language', 'Cuman Language', 'Lithuanian Language'
+	/*, 'Burgundian', 'Sicilian', 'Polish', 'Bohemian'*/]
 
 //Draw flag to canvas given a seed
 function clientFlag (flag_palette, flag_id, scale) {
@@ -662,6 +664,13 @@ function clientFlag (flag_palette, flag_id, scale) {
 	var c = document.getElementById(flag_id)
 	var ctx = c.getContext('2d')
 	ctx.scale(scale, scale)
+	if (flag_palette[0] == -1) {
+		const img = document.createElement('img')
+		img.src = '/VanillaCivs/flag_' + flag_palette[7] + '.png'
+		const s = (scale*256)*(256/104)
+		ctx.drawImage(img, 0, 0, s, s)
+		return
+	}
 	colour_palette[0] = colours[flag_palette[0]]
 	colour_palette[1] = colours[flag_palette[1]]
 	colour_palette[2] = colours[flag_palette[2]]
@@ -1018,7 +1027,7 @@ function clientFlag (flag_palette, flag_id, scale) {
 		} else {
 			mergeFun()()
 		}
-    }
+	}
 }
 
 const treeMap = [[1, 87],
@@ -1220,7 +1229,7 @@ function reverseTreeMap (node) {
 	return -1;
 }
 
-function encryptJson (civ) {
+function  encryptJson (civ) {
 	let path = "";
 
 	path += civ.alias.replaceAll(" ", ":");
@@ -1228,7 +1237,9 @@ function encryptJson (civ) {
 
 	let binaryString = "";
 	for (let i=0; i<civ.flag_palette.length; i++) {
-		if (i < 7) {
+		if (i == 0) {
+			binaryString += zeroFill((civ.flag_palette[i]+1).toString(2), 4);
+		} else if (i < 7) {
 			binaryString += zeroFill(civ.flag_palette[i].toString(2), 4);
 		} else {
 			binaryString += zeroFill(civ.flag_palette[i].toString(2), 8);
@@ -1290,7 +1301,9 @@ function decryptPath (path) {
 	civ.flag_palette = [];
 	const encryptedPalette = asciiToBinary(path.substring(aliasLength+1, aliasLength+1+6));
 	for (let i=0; i<8; i++) {
-		if (i < 7) {
+		if (i == 0) {
+			civ.flag_palette.push(parseInt(encryptedPalette.substring(4*i, 4*(i+1)), 2) - 1);
+		} else if (i < 7) {
 			civ.flag_palette.push(parseInt(encryptedPalette.substring(4*i, 4*(i+1)), 2));
 		} else {
 			civ.flag_palette.push(parseInt(encryptedPalette.substring(4*i, 4*(i+2)), 2));

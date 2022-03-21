@@ -40,21 +40,20 @@ Game 5: Hyperrandom, <a href='https://www.ageofempires.com/mods/details/53586/'>
 Any of these can be used for speedrun competition.</div>`
 
 const leaderboardtext = `<div style='font-size:2rem'>Wonder Speedrun Competition</div><br>
-<div>&emsp;&emsp;In addition to the tournament, there will be a $20 prize awarded to each player that can complete a wonder the fastest with randomized costs (so $100 total awarded to 5 winners).
+<div style='font-size:1.3rem'>&emsp;&emsp;In addition to the tournament, there will be a $20 prize awarded to each player that can complete a wonder the fastest with randomized costs (so $100 total awarded to 5 winners).
 In order to participate in the competition, submit a replay of your game to the tournament host at kraken@krakenmeister.com or on discord at Krakenmeister#1672.
 You must use one of the 5 randomizations released on March 12th and can choose any civilization. You must play on Arena and start in the Dark Age with standard starting resources.
 No cheat codes, outside data mods, or other game modifications can be made to gain an advantage. The use of UI mods is allowed.
-<br><br>
-&emsp;&emsp;Submissions to the competition open on March 12th and close at midnight PST on March 18th. Players may send in as many entries as they want.
+Submissions to the competition open on March 12th and close at midnight PST on March 18th. Players may send in as many entries as they want.
 The winner will be announced after the finals of the tournament conclude.</div>
-<br><br>
-<div style = 'font-size:1.8rem'>Current Standings:</div><br>
+<br>
+<div style = 'font-size:1.8rem'>FINAL Standings:</div><br>
 <div style='display:flex;width:100%;justify-content:space-between;font-size:1.2rem;'>
 <div style='text-align:center'>
 	<div>Mod 1</div><br>
 	<div>1. 24:48 | RAY</div><br>
 	<div>2. 25:08 | DancePartyGirl</div><br>
-	<div>2. 26:11 | dianteforlife</div>
+	<div>3. 26:11 | dianteforlife</div>
 </div>
 <div style='text-align:center'>
 	<div>Mod 2</div><br>
@@ -64,14 +63,15 @@ The winner will be announced after the finals of the tournament conclude.</div>
 </div>
 <div style='text-align:center'>
 	<div>Mod 3</div><br>
-	<div>1. 31:31 | RAY</div><br>
-	<div>2. 32:11 | DancePartyGirl</div><br>
-	<div>3. 32:23 | dianteforlife</div>
+	<div>1. 30:13 | TaToH</div><br>
+	<div>2. 31:31 | RAY</div><br>
+	<div>3. 32:11 | DancePartyGirl</div><br>
+	<div>4. 32:23 | dianteforlife</div>
 </div>
 <div style='text-align:center'>
 	<div>Mod 4</div><br>
-	<div>1. 26:13 | RAY</div><br>
-	<div>2. 26:16 | DancePartyGirl</div><br>
+	<div>1. 25:44 | DancePartyGirl</div><br>
+	<div>2. 26:13 | RAY</div><br>
 	<div>3. 26:23 | dianteforlife</div>
 </div>
 <div style='text-align:center'>

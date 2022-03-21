@@ -670,6 +670,9 @@ if (btn7) {
 		var instructionstext = document.createElement('p')
 		instructionstext.id = 'instructionstext'
 		instructionstext.innerHTML = '' +
+			'<b>03-21-2022</b><br>' +
+			'&emsp;&emsp;• Fixed an issue causing vanilla civ files to become corrupted after editing them<br>' +
+			'&emsp;&emsp;• Updated vanilla civ files to include languages<br><br>' +
 			'<b>03-18-2022</b><br>' +
 			'&emsp;&emsp;• Removed data incompatibility restriction for Kreposts, Donjons, Anarchy, Marauders, and First Crusade<br>' +
 			'&emsp;&emsp;• Removed all UI incompatibility restrictions<br>' +

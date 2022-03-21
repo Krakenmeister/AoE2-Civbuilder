@@ -24,8 +24,8 @@ const int num_civs = 39;
 //Barracks Units, Stable Units, Archery Range Units, Siege Workshop Units, Elephant Units, Gunpowder Units, Foot Archers, Mounted Units, Camel Units, Siege Units,
 //Military Buildings, Drop-Off Buildings, All Explosive Units, Scorpion Units, Unique Units, Steppe Lancer Units, Eagle Units
 vector<vector<int>> unit_class = {
-	{74, 75, 77, 473, 567, 93, 358, 359, 751, 753, 752, 759, 761, 882},
-	{448, 546, 441, 1707, 38, 283, 569, 329, 330, 207, 1132, 1134, 1180, 1370, 1372, 1181, 886, 887},
+	{74, 75, 77, 473, 567, 93, 358, 359, 751, 753, 752, 882},
+	{448, 546, 441, 1707, 38, 283, 569, 329, 330, 207, 1132, 1134, 1180, 1370, 1372, 1181},
 	{4, 24, 492, 5, 7, 6, 1155, 39, 474, 185, 1010, 1012},
 	{35, 1258, 422, 548, 280, 550, 588, 885, 1105, 36, 279, 542, 1179, 1709},
 	{239, 558, 873, 875, 1120, 1122, 1132, 1134, 1180},
@@ -4586,6 +4586,17 @@ void assignTechs (DatFile *df, Value cfg, ofstream &logfile) {
 						}
 					}
 
+					df->Effects[333].EffectCommands.push_back(createEC(4, dupUU, -1, 8, amountTypetoD(1, 4)));
+					df->Effects[334].EffectCommands.push_back(createEC(4, dupUU, -1, 8, amountTypetoD(1, 4)));
+					df->Effects[618].EffectCommands.push_back(createEC(4, dupUU, -1, 8, amountTypetoD(1, 3)));
+					df->Effects[619].EffectCommands.push_back(createEC(4, dupUU, -1, 8, amountTypetoD(1, 3)));
+					df->Effects[620].EffectCommands.push_back(createEC(4, dupUU, -1, 8, amountTypetoD(1, 3)));
+					df->Effects[333].EffectCommands.push_back(createEC(4, dupUUe, -1, 8, amountTypetoD(1, 4)));
+					df->Effects[334].EffectCommands.push_back(createEC(4, dupUUe, -1, 8, amountTypetoD(1, 4)));
+					df->Effects[618].EffectCommands.push_back(createEC(4, dupUUe, -1, 8, amountTypetoD(1, 3)));
+					df->Effects[619].EffectCommands.push_back(createEC(4, dupUUe, -1, 8, amountTypetoD(1, 3)));
+					df->Effects[620].EffectCommands.push_back(createEC(4, dupUUe, -1, 8, amountTypetoD(1, 3)));
+
 					duplicationUnits.push_back({unique_unit, unique_elite, dupUU, dupUUe});
 					break;
 				}
@@ -4618,6 +4629,19 @@ void assignTechs (DatFile *df, Value cfg, ofstream &logfile) {
 							tech.EffectID = (int) (df->Effects.size() - 1);
 						}
 					}
+
+					df->Effects[333].EffectCommands.push_back(createEC(4, dupUU, -1, 8, amountTypetoD(1, 4)));
+					df->Effects[334].EffectCommands.push_back(createEC(4, dupUU, -1, 8, amountTypetoD(1, 4)));
+					df->Effects[560].EffectCommands.push_back(createEC(4, dupUU, -1, 8, amountTypetoD(1, 3)));
+					df->Effects[584].EffectCommands.push_back(createEC(4, dupUU, -1, 8, amountTypetoD(1, 3)));
+					df->Effects[610].EffectCommands.push_back(createEC(5, dupUU, -1, 100, 0.85));
+					df->Effects[638].EffectCommands.push_back(createEC(5, dupUU, -1, 100, 0.941176));
+					df->Effects[333].EffectCommands.push_back(createEC(4, dupUUe, -1, 8, amountTypetoD(1, 4)));
+					df->Effects[334].EffectCommands.push_back(createEC(4, dupUUe, -1, 8, amountTypetoD(1, 4)));
+					df->Effects[560].EffectCommands.push_back(createEC(4, dupUUe, -1, 8, amountTypetoD(1, 3)));
+					df->Effects[584].EffectCommands.push_back(createEC(4, dupUUe, -1, 8, amountTypetoD(1, 3)));
+					df->Effects[610].EffectCommands.push_back(createEC(5, dupUUe, -1, 100, 0.85));
+					df->Effects[638].EffectCommands.push_back(createEC(5, dupUUe, -1, 100, 0.941176));
 
 					duplicationUnits.push_back({unique_unit, unique_elite, dupUU, dupUUe});
 

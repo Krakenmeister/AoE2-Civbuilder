@@ -10,24 +10,22 @@ for i in "$@"
 do
 	for FILE in /var/www/krakenmeister.com/civbuilder/public/voicefiles/${prefixes[count]}v*.wem
 	do
-#		echo $FILE
+		echo $FILE
 		dest=${FILE#"/var/www/krakenmeister.com/civbuilder/public/voicefiles/"}
-		dest="/var/www/krakenmeister.com/civbuilder/public/voicefiles/${prefixes[i]}${dest#${prefixes[count]}}"
-#		echo $dest
-		if [ -f "$dest" ]; then
-			newdest=${FILE#"/var/www/krakenmeister.com/civbuilder/public/voicefiles/"}
-#			echo "$dest"
-#			echo "${modfolder}/${newdest}"
+		src=${FILE#"/var/www/krakenmeister.com/civbuilder/public/voicefiles/"}
+		src="/var/www/krakenmeister.com/civbuilder/public/voicefiles/${prefixes[i]}${src#${prefixes[count]}}"
+		if [ -f "$src" ]; then
+#			echo "$src"
+#			echo "${modfolder}/${dest}"
 #			echo "--------"
-			cp "$dest" "${modfolder}/${newdest}"
+			cp "$src" "${modfolder}/${dest}"
 		else
-			newdest=${FILE#"/var/www/krakenmeister.com/civbuilder/public/voicefiles/"}
-			dest="${dest//[234]/1}"
-			if [ -f "$dest" ]; then
-#				echo "$dest"
-#				echo "${modfolder}/${newdest}"
+			src="${src//[23456]/1}"
+			if [ -f "$src" ]; then
+#				echo "$src"
+#				echo "${modfolder}/${dest}"
 #				echo "----------"
-				cp "$dest" "${modfolder}/${newdest}"
+				cp "$src" "${modfolder}/${dest}"
 			fi
 		fi
 	done

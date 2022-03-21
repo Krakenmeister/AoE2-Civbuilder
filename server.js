@@ -13,6 +13,7 @@ const cookieParser = require('cookie-parser');
 const makejson = require("./random_json.js");
 const modStrings = require("./mod_strings.js");
 const modTreeJson = require("./mod_civTechTree.js");
+const makeai = require("./mod_ai.js");
 
 const hostname = 'localhost';
 const port = 3000;
@@ -517,6 +518,11 @@ const writeDatFile = (req, res, next) => {
 	});
 }
 
+const writeAIFiles = (req, res, next) => {
+	makeai.createAI(`./modding/requested_mods/${req.body.seed}/data.json`, `./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/ai`);
+	next();
+}
+
 const zipModFolder = (req, res, next) => {
 	os.execCommand(`sh zipModFolder.sh ${req.body.seed}`, function () {
 		next();
@@ -676,11 +682,11 @@ app.get('/build', function (req, res) {
 	res.sendFile(__dirname + '/public/civbuilder.html');
 });
 
-app.post('/file', createModFolder, createCivIcons, copyCivIcons, generateJson, writeNames, copyNames, addVoiceFiles, writeUUIcons, writeTechTree, writeDatFile, zipModFolder, (req, res) => {
+app.post('/file', createModFolder, createCivIcons, copyCivIcons, generateJson, writeNames, copyNames, addVoiceFiles, writeUUIcons, writeTechTree, writeDatFile, writeAIFiles, zipModFolder, (req, res) => {
 	res.download(__dirname + '/modding/requested_mods/' + (req.body.seed) + '.zip');
 });
 
-app.post('/create', createModFolder, writeIconsJson, writeNames, copyNames, addVoiceFiles, writeUUIcons, writeTechTree, writeDatFile, zipModFolder, (req, res) => {
+app.post('/create', createModFolder, writeIconsJson, writeNames, copyNames, addVoiceFiles, writeUUIcons, writeTechTree, writeDatFile, writeAIFiles, zipModFolder, (req, res) => {
 	res.download(__dirname + '/modding/requested_mods/' + (req.body.seed) + '.zip');
 });
 

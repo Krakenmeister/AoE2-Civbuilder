@@ -4211,7 +4211,6 @@ void assignCivBonuses (DatFile *df, Value cfg) {
 							enableUnit.EffectCommands.push_back(createEC(2, dupUU, 1, -1, 0));
 							df->Effects.push_back(enableUnit);
 							tech.EffectID = (int) (df->Effects.size() - 1);
-							cout << to_string(tech.Civ) + " " + to_string(unique_unit) << endl;
 							if (unique_unit == 1658) {
 								tech.RequiredTechs[0] = 101;
 							} else {

@@ -40,6 +40,7 @@ mkdir resources
 cd resources
 mkdir _common
 cd _common
+mkdir ai
 mkdir drs
 cd drs
 mkdir sounds

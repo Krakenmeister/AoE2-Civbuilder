@@ -391,6 +391,20 @@ input[type=text] {
 
 #board {
 	width: 80%;
+	/* display: flex; */
+	/* flex-direction: row; */
+	/* flex-wrap: wrap; */
+	/* justify-content: center; */
+}
+#selected {
+	width: 80%;
+	display: flex; 
+	flex-direction: row; 
+	flex-wrap: wrap; 
+	justify-content: center;
+}
+#unselected {
+	width: 80%;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;

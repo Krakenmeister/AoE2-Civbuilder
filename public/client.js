@@ -671,7 +671,7 @@ if (btn7) {
 		instructionstext.id = 'instructionstext'
 		instructionstext.innerHTML = '' +
 			'<b>04-06-2022</b><br>' +
-			'&emsp;&emsp;• Currently selected bonuses display at the top of the page (credit to Steven Jackson for the code!><br><br>' +
+			'&emsp;&emsp;• Currently selected bonuses display at the top of the page (credit to Steven Jackson for the code!)<br><br>' +
 			'<b>03-26-2022</b><br>' +
 			'&emsp;&emsp;• Added 3 new flag symbols<br><br>' +
 			'<b>03-22-2022</b><br>' +

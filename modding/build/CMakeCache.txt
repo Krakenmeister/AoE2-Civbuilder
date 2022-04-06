@@ -277,6 +277,9 @@ genieutils_LIB_DEPENDS:STATIC=general;Boost::iostreams;general;/usr/lib/x86_64-l
 //Value Computed by CMake
 genieutils_SOURCE_DIR:STATIC=/var/www/krakenmeister.com/civbuilder/modding/genieutils
 
+//The directory containing a CMake configuration file for jsoncpp.
+jsoncpp_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/jsoncpp
+
 
 ########################
 # INTERNAL cache entries

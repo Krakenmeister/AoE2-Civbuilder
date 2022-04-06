@@ -7,7 +7,7 @@
 #include <time.h>
 #include <math.h>
 #include "genie/dat/DatFile.h"
-#include "json/json.h"
+#include <jsoncpp/json/json.h>
 
 #define SLOBYTE(x) (*((int8_t*)&(x)))
 #define HIBYTE(x) (*((uint8_t*)&(x)+1))
@@ -18,6 +18,9 @@ using namespace genie;
 
 typedef ResourceUsage<int16_t, int16_t, int16_t> ResourceCost;
 typedef ResourceUsage<int16_t, int16_t, uint8_t> ResearchResourceCost;
+
+ofstream aifile;
+Value ai;
 
 const int num_civs = 39;
 //Unit Classes:
@@ -818,7 +821,8 @@ void createBlindNothing (DatFile *df) {
 	}
 }
 
-void configureCivs (DatFile *df, Value cfg) {
+void configureCivs (DatFile *df, Value cfg, string aipath) {
+	aifile.open(aipath);
 	if (cfg["random_costs"].asInt() == 69) {
 		createExplodingNothing(df);
 		return;
@@ -857,6 +861,8 @@ void configureCivs (DatFile *df, Value cfg) {
 	}
 	calculateTechDiscounts(df);
 	logfile.close();
+	aifile << ai << endl;
+	aifile.close();
 }
 
 //Algorithm for transforming one array to another when we can only copy from one index to another and have only one temp slot (gaia civ stores architectures)
@@ -1025,10 +1031,17 @@ void clearCivs (DatFile *df, Value cfg) {
 			i--;
 		}
 	}
-//	df->Effects[732].EffectCommands.erase(df->Effects[732].EffectCommands.begin() + 1);
-//	df->Effects[462].EffectCommands.clear();
-//	df->Effects[538].EffectCommands.clear();
-//	df->Effects[941].EffectCommands.clear();
+	//Set up AI config file
+	for (int i=0; i<cfg["name"].size(); i++) {
+		ai["civs"][i]["nm"] = cfg["name"][i];
+		ai["civs"][i]["id"] = (i+1);
+		Value emptyArray;
+		emptyArray.append(Value::null);
+		emptyArray.clear();
+		ai["civs"][i]["tt"] = emptyArray;
+		ai["civs"][i]["bn"] = emptyArray;
+		ai["civs"][i]["tb"] = emptyArray;
+	}
 }
 
 void createNewTechsBonuses (DatFile *df, Value cfg) {
@@ -2046,9 +2059,9 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	Effect e = Effect();
 	e.Name = "Deconstruction";
 	for (int i=0; i<unit_class[9].size(); i++) {
-		e.EffectCommands.push_back(createEC(4, unit_class[9][i], -1, 9, amountTypetoD(30, 11)));
+		e.EffectCommands.push_back(createEC(5, unit_class[9][i], -1, 10, 0.75));
 	}
-	createUT(df, e, 0, "Deconstruction", {0, 300, 0, 200}, 40, 7500);
+	createUT(df, e, 0, "Deconstruction", {0, 400, 0, 400}, 40, 7500);
 	//Obsidian Arrows
 	e.EffectCommands.clear();
 	e.Name = "Obsidian Arrows";
@@ -2202,7 +2215,7 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	giveEffectstoClass(df, 459, {hp_20}, unit_class[8]);
 	giveEffectstoClass(df, 608, {regen}, unit_class[8]);
 	//Give elephant bonuses to all elephants
-	EffectCommand hp_50 = createEC(4, -1, -1, 0, 50);
+	EffectCommand hp_50 = createEC(4, -1, -1, 0, 100);
 	EffectCommand speed_30 = createEC(5, -1, -1, 5, 1.3);
 	EffectCommand speed_10 = createEC(5, -1, -1, 5, 1.1);
 	EffectCommand cost_70 = createEC(5, -1, -1, 100, 0.7);
@@ -3505,7 +3518,7 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	for (Civ &civ : df->Civs) {
 		civ.Units[370].Creatable.TrainLocationID = 118;
 		civ.Units[370].Creatable.ButtonID = 8;
-		civ.Units[370].HitPoints = 4200;
+		civ.Units[370].HitPoints = 4800;
 		civ.Units[370].Creatable.DisplayedPierceArmour = 16;
 		civ.Units[370].Type50.DisplayedMeleeArmour = 16;
 		civ.Units[370].Type50.Armours = civ.Units[155].Type50.Armours;
@@ -3513,6 +3526,7 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 		civ.Units[370].Type50.Armours[3].Amount = 16;
 		civ.Units[370].Type50.Armours[6].Amount = 16;
 		civ.Units[370].Creatable.ResourceCosts[0].Amount = 5;
+		civ.Units[370].BlastDefenseLevel = 2;
 		for (int i=0; i<16; i++) {
 			civ.Units[i+1579].Type50.Armours[1].Amount = 30;
 			civ.Units[i+1579].Creatable.ResourceCosts[0].Amount = 30;
@@ -4126,6 +4140,7 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 void assignCivBonuses (DatFile *df, Value cfg) {
 	for (int i=0; i<cfg["civ_bonus"].size(); i++) {
 		for (int j=0; j<cfg["civ_bonus"][i].size(); j++) {
+			ai["civs"][i]["bn"].append(cfg["civ_bonus"][i][j]);
 
 			//Actually give the techs associated with that bonus
 			int civ_bonus_index = cfg["civ_bonus"][i][j].asInt();
@@ -4227,7 +4242,7 @@ void assignCivBonuses (DatFile *df, Value cfg) {
 				case 140: {
 					//Use the "ore storage" resource to cap at 1 wonder
 					Civ &civ = df->Civs[i+1];
-					civ.Resources[56] = 2.1;
+					civ.Resources[56] = 1.1;
 					civ.Units[276].ResourceStorages[0].Type = 32;
 					civ.Units[276].ResourceStorages[0].Amount = 50;
 					civ.Units[276].ResourceStorages[0].Flag = 4;
@@ -4288,9 +4303,12 @@ void assignCivBonuses (DatFile *df, Value cfg) {
 				//Refund castle stone
 				case 218: {
 					Civ &civ = df->Civs[i+1];
-					civ.Units[1430].ResourceStorages[1].Type = 2;
-					civ.Units[1430].ResourceStorages[1].Amount = 350;
-					civ.Units[1430].ResourceStorages[1].Flag = 1;
+//					civ.Units[1430].ResourceStorages[1].Type = 2;
+//					civ.Units[1430].ResourceStorages[1].Amount = 350;
+//					civ.Units[1430].ResourceStorages[1].Flag = 1;
+					civ.Units[82].ResourceStorages[1].Type = 3;
+					civ.Units[82].ResourceStorages[1].Amount = 400;
+					civ.Units[82].ResourceStorages[1].Flag = 4;
 					break;
 				}
 				//10 food on farms
@@ -4336,6 +4354,7 @@ void assignTeamBonuses (DatFile *df, Value cfg) {
 					break;
 				}
 			}
+			ai["civs"][i]["tb"].append(cfg["team_bonus"][i][0]);
 		} else {
 			//Create a new effect with multiple team bonuses
 			Effect tb_e = Effect();
@@ -4355,6 +4374,7 @@ void assignTeamBonuses (DatFile *df, Value cfg) {
 						break;
 					}
 				}
+				ai["civs"][i]["tb"].append(cfg["team_bonus"][i][j]);
 			}
 			df->Effects.push_back(tb_e);
 			df->Civs[i+1].TeamBonusID = (df->Effects.size() - 1);
@@ -4729,6 +4749,7 @@ void assignTechs (DatFile *df, Value cfg, ofstream &logfile) {
 			if (cfg["techtree"][i][j] == 0) {
 				//Disable tech
 				if (basic_techs[j] != -1) {
+					ai["civs"][i]["tt"].append(basic_techs[j]);
 					df->Effects[tech_tree_ids[i]].EffectCommands.push_back(createEC(102, -1, -1, -1, basic_techs[j]));
 				}
 			}

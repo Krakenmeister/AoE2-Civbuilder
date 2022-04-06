@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include "genie/dat/DatFile.h"
-#include "json/json.h"
+#include <jsoncpp/json/json.h>
 #include "configure_civilizations.h"
 
 #define SLOBYTE(x) (*((int8_t*)&(x)))
@@ -20,9 +20,11 @@ int main(int argc, char **argv) {
     df->load(argv[2]);
 
     Value cfg;
+    //Reader reader;
     ifstream cfgfile(argv[1]);
+    //reader.parse(cfgfile, cfg);
     cfgfile >> cfg;
-    configureCivs(df, cfg);
+    configureCivs(df, cfg, argv[4]);
 
     df->saveAs(argv[3]);
 

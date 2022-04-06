@@ -10,7 +10,7 @@ for i in "$@"
 do
 	for FILE in /var/www/krakenmeister.com/civbuilder/public/voicefiles/${prefixes[count]}v*.wem
 	do
-		echo $FILE
+#		echo $FILE
 		dest=${FILE#"/var/www/krakenmeister.com/civbuilder/public/voicefiles/"}
 		src=${FILE#"/var/www/krakenmeister.com/civbuilder/public/voicefiles/"}
 		src="/var/www/krakenmeister.com/civbuilder/public/voicefiles/${prefixes[i]}${src#${prefixes[count]}}"

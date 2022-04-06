@@ -217,7 +217,7 @@ const card_descriptions = [
 	"Rams, Siege Towers x2 garrison space",
 	"Towers (of all kinds) support 5 population",
 	"Gunpowder units move 20% faster",
-	"Completed castles refund 350 stone upon destruction",
+	"Completed castles provide 400 gold as long as they stay standing",
 	"Monk units move 20% faster",
 	"Farms immediately provide 10 food upon seeding",
 	"Long Swordsman, Two-Handed Swordsman upgrades available one age earlier",
@@ -406,7 +406,7 @@ const card_descriptions = [
 	"Chieftans (Infantry deal bonus damage to cavalry) [700F 500G]",
 	"Szlachta Privileges (Knights cost -60% gold) [500F 300G]",
 	"Wagenburg Tactics (Gunpowder units move 15% faster) [300F 300G]",
-	"Deconstruction (Siege units +30 vs. buildings) [300W 200G]",
+	"Deconstruction (Siege units fire 33% faster) [400W 400G]",
 	"Obsidian Arrows (Archer-line +6 attack vs. buildings) [300F 300G]",
 	"Tortoise Engineers (Rams train 100% faster) [100W 200G]",
 	"Panoply (Infantry +1/+1P armor, +1 attack) [300F 200G]",
@@ -648,7 +648,7 @@ const colours = [
 	[171, 207, 255]
 ]
 const categories = ['Color 1', 'Color 2', 'Color 3', 'Color 4', 'Color 5', 'Division', 'Overlay', 'Symbol']
-const palette_sizes = [15, 15, 15, 15, 15, 12, 12, 81]
+const palette_sizes = [15, 15, 15, 15, 15, 12, 12, 84]
 
 const architectures = ['Central European Architecture', 'Western European Architecture', 'East Asian Architecture', 'Middle Eastern Architecture', 'Mesoamerican Architecture', 'Mediterranean Architecture', 'Indian Architecture',
 	'Eastern European Architecture', 'African Architecture', 'Southeast Asian Architecture', 'Central Asian Architecture']

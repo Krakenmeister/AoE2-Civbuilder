@@ -38,15 +38,6 @@ CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o
  ../genieutils/include/genie/file/Compressor.h
  ../genieutils/include/genie/file/IFile.h
  ../genieutils/include/genie/file/ISerializable.h
- ../jsoncpp/include/json/allocator.h
- ../jsoncpp/include/json/config.h
- ../jsoncpp/include/json/forwards.h
- ../jsoncpp/include/json/json.h
- ../jsoncpp/include/json/json_features.h
- ../jsoncpp/include/json/reader.h
- ../jsoncpp/include/json/value.h
- ../jsoncpp/include/json/version.h
- ../jsoncpp/include/json/writer.h
  /var/www/krakenmeister.com/civbuilder/modding/configure_civilizations.cpp
  /var/www/krakenmeister.com/civbuilder/modding/configure_civilizations.h
 CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o
@@ -86,14 +77,5 @@ CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o
  ../genieutils/include/genie/file/Compressor.h
  ../genieutils/include/genie/file/IFile.h
  ../genieutils/include/genie/file/ISerializable.h
- ../jsoncpp/include/json/allocator.h
- ../jsoncpp/include/json/config.h
- ../jsoncpp/include/json/forwards.h
- ../jsoncpp/include/json/json.h
- ../jsoncpp/include/json/json_features.h
- ../jsoncpp/include/json/reader.h
- ../jsoncpp/include/json/value.h
- ../jsoncpp/include/json/version.h
- ../jsoncpp/include/json/writer.h
  /var/www/krakenmeister.com/civbuilder/modding/configure_civilizations.h
  /var/www/krakenmeister.com/civbuilder/modding/create-data-mod.cpp

@@ -2,10 +2,12 @@
 #define CONFIGURE_CIVILIZATIONS_H
 
 #include "genie/dat/DatFile.h"
-#include "json/json.h"
+#include <jsoncpp/json/json.h>
+#include <string>
 
 using namespace Json;
+using namespace std;
 
-void configureCivs(genie::DatFile *df, Value cfg);
+void configureCivs(genie::DatFile *df, Value cfg, string aipath);
 
 #endif

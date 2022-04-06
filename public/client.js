@@ -670,6 +670,10 @@ if (btn7) {
 		var instructionstext = document.createElement('p')
 		instructionstext.id = 'instructionstext'
 		instructionstext.innerHTML = '' +
+			'<b>03-26-2022</b><br>' +
+			'&emsp;&emsp;• Added 3 new flag symbols<br><br>' +
+			'<b>03-22-2022</b><br>' +
+			'&emsp;&emsp;• Updated default mod thumbnail (thanks to TWest!)<br><br>' +
 			'<b>03-21-2022</b><br>' +
 			'&emsp;&emsp;• Fixed an issue causing vanilla civ files to become corrupted after editing them<br>' +
 			'&emsp;&emsp;• Updated vanilla civ files to include languages<br>' +

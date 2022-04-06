@@ -37,15 +37,6 @@ CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o: ../genieutils/incl
 CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o: ../genieutils/include/genie/file/Compressor.h
 CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o: ../genieutils/include/genie/file/IFile.h
 CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o: ../genieutils/include/genie/file/ISerializable.h
-CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o: ../jsoncpp/include/json/allocator.h
-CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o: ../jsoncpp/include/json/config.h
-CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o: ../jsoncpp/include/json/forwards.h
-CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o: ../jsoncpp/include/json/json.h
-CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o: ../jsoncpp/include/json/json_features.h
-CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o: ../jsoncpp/include/json/reader.h
-CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o: ../jsoncpp/include/json/value.h
-CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o: ../jsoncpp/include/json/version.h
-CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o: ../jsoncpp/include/json/writer.h
 CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o: ../configure_civilizations.cpp
 CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o: ../configure_civilizations.h
 
@@ -85,15 +76,6 @@ CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o: ../genieutils/include/geni
 CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o: ../genieutils/include/genie/file/Compressor.h
 CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o: ../genieutils/include/genie/file/IFile.h
 CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o: ../genieutils/include/genie/file/ISerializable.h
-CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o: ../jsoncpp/include/json/allocator.h
-CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o: ../jsoncpp/include/json/config.h
-CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o: ../jsoncpp/include/json/forwards.h
-CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o: ../jsoncpp/include/json/json.h
-CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o: ../jsoncpp/include/json/json_features.h
-CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o: ../jsoncpp/include/json/reader.h
-CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o: ../jsoncpp/include/json/value.h
-CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o: ../jsoncpp/include/json/version.h
-CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o: ../jsoncpp/include/json/writer.h
 CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o: ../configure_civilizations.h
 CMakeFiles/create-data-mod.dir/create-data-mod.cpp.o: ../create-data-mod.cpp
 

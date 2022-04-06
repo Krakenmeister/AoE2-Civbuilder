@@ -229,7 +229,7 @@ const civBonusStrings = [
 	"Rams, Siege Towers x2 garrison space",
 	"Towers (of all kinds) support 5 population",
 	"Gunpowder units move 20% faster",
-	"Completed castles refund 350 stone upon destruction",
+	"Completed castles provide 400 gold as long as they stay standing",
 	"Monk units move 20% faster",
 	"Farms immediately provide 10 food upon seeding",
 	"Long Swordsman, Two-Handed Swordsman upgrades available one age earlier",
@@ -309,7 +309,7 @@ var uniqueCastleStrings = ["Atlatl (Skirmishers +1 attack, +1 range)", "Kasbah (
 	"Nomads (lost houses do not decrease population headroom)", "Kamandaran (Archer-line gold cost is replaced by additional wood cost)", "Carrack (Ships +1/+1 armor)", "Madrasah (Monks return 33% of their cost when killed)",
 	"this text will change", "Orthodoxy (Monk units +3/+3P armor)", "Inquisition (Monks convert faster)", "Silk Armor (Light Cavalry, Steppe Lancers and Cavalry Archers receive +1/+1P armor)",
 	"Ironclad (Siege units extra melee armor)", "Sipahi (Cavalry Archers +20 HP)", "Chatras (Elephant units +100 HP)", "Chieftans (Infantry deal bonus damage to cavalry)", "Szlachta Privileges (Knights cost -60% gold)",
-	"Wagenburg Tactics (Gunpowder units move 15% faster)", "Deconstruction (Siege units +30 vs. buildings)", "Obsidian Arrows (Archer-line +6 attack vs. buildings)", "Tortoise Engineers (Rams train 100% faster)",
+	"Wagenburg Tactics (Gunpowder units move 15% faster)", "Deconstruction (Siege units fire 33% faster)", "Obsidian Arrows (Archer-line +6 attack vs. buildings)", "Tortoise Engineers (Rams train 100% faster)",
 	"Panoply (Infantry +1/+1P armor, +1 attack)", "Clout Archery (Archery Ranges work 50% faster)"]
 
 var uniqueImpStrings = ["Garland Wars (Infantry +4 attack)", "Maghrebi Camels (Camel units regenerate)", "Warwolf (Trebuchets do blast damage)", "Bagains (Militia-line gains +5 armor)",

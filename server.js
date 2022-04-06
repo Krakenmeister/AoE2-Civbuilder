@@ -230,7 +230,9 @@ function os_func() {
 				console.error(`exec error: ${error}`);
 				return;
 			}
-			console.log(stdout);
+			if (stdout) {
+				console.log(stdout);
+			}
 			callback();
 		});
 	}
@@ -443,33 +445,39 @@ const createModFolder = (req, res, next) => {
 }
 
 const createCivIcons = (req, res, next) => {
+	console.log(`[${req.body.seed}]: Creating civ icons...`);
 	icons.generateFlags(`./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/menu/civs`, `./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons`, `./public/symbols`);
 	next();
 }
 
 const copyCivIcons = (req, res, next) => {
+	console.log(`[${req.body.seed}]: Copying civ icons...`);
 	os.execCommand(`cp -r ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/. ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/wpfg/resources/civ_techtree`, function() {
 		next();
 	});
 }
 
 const generateJson = (req, res, next) => {
+	console.log(`[${req.body.seed}]: Generating data json...`);
 	makejson.createJson(`./modding/requested_mods/${req.body.seed}/data.json`, `${req.body.costs}`);
 	next();
 }
 
 const writeNames = (req, res, next) => {
+	console.log(`[${req.body.seed}]: Writing strings...`);
 	modStrings.interperateLanguage(`./modding/requested_mods/${req.body.seed}/data.json`, `./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/en/strings/key-value/key-value-modded-strings-utf8.txt`);
 	next();
 }
 
 const copyNames = (req, res, next) => {
+	console.log(`[${req.body.seed}]: Copying strings...`);
 	os.execCommand(`sh copyLanguages.sh ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources`, function () {
 		next();
 	});
 }
 
 const addVoiceFiles = (req, res, next) => {
+	console.log(`[${req.body.seed}]: Adding voice files...`);
 	let command = `./copyVoices.sh /var/www/krakenmeister.com/civbuilder/modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/drs/sounds`;
 	let data = fs.readFileSync(`./modding/requested_mods/${req.body.seed}/data.json`);
 	let info = JSON.parse(data);
@@ -484,6 +492,7 @@ const addVoiceFiles = (req, res, next) => {
 }
 
 const writeUUIcons = (req, res, next) => {
+	console.log(`[${req.body.seed}]: Writing UU icons...`);
 	for (var i=0; i<blanks.length; i++) {
 		os.execCommand(`cp ./public/uniticons/blank.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/wpfg/resources/uniticons/${blanks[i]}_50730.png`, function () {});
 	}
@@ -508,28 +517,33 @@ const writeUUIcons = (req, res, next) => {
 }
 
 const writeTechTree = (req, res, next) => {
+	console.log(`[${req.body.seed}]: Writing tech tree...`);
 	modTreeJson.arrangeTechTree(`./modding/requested_mods/${req.body.seed}/data.json`, `./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/civTechTrees.json`);
 	next();
 }
 
 const writeDatFile = (req, res, next) => {
-	os.execCommand(`./modding/build/create-data-mod ./modding/requested_mods/${req.body.seed}/data.json ./public/empires2_x2_p1.dat ./modding/requested_mods/${req.body.seed}/${req.body.seed}-data/resources/_common/dat/empires2_x2_p1.dat`, function () {
+	console.log(`[${req.body.seed}]: Writing dat file...`);
+	os.execCommand(`./modding/build/create-data-mod ./modding/requested_mods/${req.body.seed}/data.json ./public/empires2_x2_p1.dat ./modding/requested_mods/${req.body.seed}/${req.body.seed}-data/resources/_common/dat/empires2_x2_p1.dat ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/ai/aiconfig.json`, function () {
 		next();
 	});
 }
 
 const writeAIFiles = (req, res, next) => {
+	console.log(`[${req.body.seed}]: Writing AI files...`);
 	makeai.createAI(`./modding/requested_mods/${req.body.seed}/data.json`, `./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/ai`);
 	next();
 }
 
 const zipModFolder = (req, res, next) => {
+	console.log(`[${req.body.seed}]: Zipping folder...`);
 	os.execCommand(`sh zipModFolder.sh ${req.body.seed}`, function () {
 		next();
 	});
 }
 
 const writeIconsJson = (req, res, next) => {
+	console.log(`[${req.body.seed}]: Writing icons and json...`);
 	//Parse multiple Json civ presets
 	var raw_presets = JSON.parse(req.body.presets)
 	var civs = raw_presets['presets']
@@ -683,10 +697,12 @@ app.get('/build', function (req, res) {
 });
 
 app.post('/file', createModFolder, createCivIcons, copyCivIcons, generateJson, writeNames, copyNames, addVoiceFiles, writeUUIcons, writeTechTree, writeDatFile, writeAIFiles, zipModFolder, (req, res) => {
+	console.log(`[${req.body.seed}]: Completed generation!`);
 	res.download(__dirname + '/modding/requested_mods/' + (req.body.seed) + '.zip');
 });
 
 app.post('/create', createModFolder, writeIconsJson, writeNames, copyNames, addVoiceFiles, writeUUIcons, writeTechTree, writeDatFile, writeAIFiles, zipModFolder, (req, res) => {
+	console.log(`[${req.body.seed}]: Completed generation!`);
 	res.download(__dirname + '/modding/requested_mods/' + (req.body.seed) + '.zip');
 });
 
@@ -1036,7 +1052,7 @@ io.on('connection', function(socket) {
 									//Write Tech Tree
 									modTreeJson.arrangeTechTree(`./modding/requested_mods/${draft['id']}/data.json`, `./modding/requested_mods/${draft['id']}/${draft['id']}-ui/widgetui/civTechTrees.json`);
 									//Write Dat File
-									os.execCommand(`./modding/build/create-data-mod ./modding/requested_mods/${draft['id']}/data.json ./public/empires2_x2_p1.dat ./modding/requested_mods/${draft['id']}/${draft['id']}-data/resources/_common/dat/empires2_x2_p1.dat`, function () {
+									os.execCommand(`./modding/build/create-data-mod ./modding/requested_mods/${draft['id']}/data.json ./public/empires2_x2_p1.dat ./modding/requested_mods/${draft['id']}/${draft['id']}-data/resources/_common/dat/empires2_x2_p1.dat ./modding/requested_mods/${draft['id']}/${draft['id']}-ui/resources/_common/ai/aiconfig.json`, function () {
 										//Zip Files
 										os.execCommand(`sh zipModFolder.sh ${draft['id']}`, function () {
 											draft['gamestate']['phase'] = 4;

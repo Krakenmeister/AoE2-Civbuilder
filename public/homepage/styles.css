@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
 
 .home-view {
-	width: 100%;
 	height: 100vh;
 	display: flex;
 	align-items: center;
@@ -38,6 +37,7 @@
 	grid-template-columns: repeat(2, 1fr);
 	gap: 10px;
 	grid-auto-rows: 1fr 2fr 2fr 1fr;
+	padding: 5vw;
 }
 
 #page4 {
@@ -107,6 +107,9 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	width: 40vw;
+	position: relative;
+	height: 70%;
 }
 
 #contacttitle {
@@ -122,4 +125,35 @@ body {
 .reveal {
 	font-size: 1.2rem;
 	cursor: pointer;
+}
+
+.project:hover {
+	text-shadow: 0px 0px 15px #fff, 0px 0px 15px #fff;
+	cursor: pointer;
+}
+
+.project-image {
+	position: absolute;
+	width: 8vw;
+	height: 8vw;
+	top: 1vw;
+	left: 0;
+}
+
+.project-title {
+	position: absolute;
+	top: 0;
+	left: 10vw;
+	width: 30vw;
+	font-size: 2.5vw;
+	text-align: left;
+}
+
+.project-description {
+	position: absolute;
+	top: 4vw;
+	left: 10vw;
+	width: 30vw;
+	font-size: 1.5vw;
+	text-align: left;
 }

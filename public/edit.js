@@ -7,8 +7,8 @@ var roundType = 0
 var cardSize = 6
 var marginSize = 0.6
 
-const num_cards = [287, 79, 44, 44, 75]
-const max_sizes = [6, 1, 1, 1, 1]
+const num_cards = [304, 82, 49, 47, 78]
+const max_sizes = [304, 1, 1, 1, 78]
 
 document.title = 'Civilization Builder - ' + civ['alias']
 renderPhase2()
@@ -262,6 +262,14 @@ function renderPhase2() {
 	var board = document.createElement('div')
 	board.id = 'board'
 
+	var selected = document.createElement('div')
+	selected.id = 'selected'
+	var unselected = document.createElement('div')
+	unselected.id = 'unselected'
+
+	board.appendChild(selected)
+	board.appendChild(unselected)
+
 	//Outline hovered card and display help text
 	function getFun3 (text, cardId, size, colour) {
 		return function () {
@@ -305,17 +313,24 @@ function renderPhase2() {
 				var index = civ['bonuses'][roundType].indexOf(cardId)
 				civ['bonuses'][roundType].splice(index, 1)
 				activated_card.style.outline = 'none'
+				selected.removeChild(activated_card)
+				unselected.insertBefore(activated_card, unselected.children[0])
 			} else {
 				if (civ['bonuses'][roundType].length >= max_sizes[roundType]) {
 					cleared_card = document.getElementById('card' + civ['bonuses'][roundType][0])
 					if (cleared_card) {
 						cleared_card.style.outline = 'none'
 						civ['bonuses'][roundType].shift()
+						selected.removeChild(cleared_card)
+						unselected.insertBefore(cleared_card, unselected.children[0])
 					}
 				}
 				activated_card.style.outline = (size * (22/256)) + 'rem solid rgba(0, 255, 0, 0.7)'
 				activated_card.style.outlineOffset = '-' + (size * (22/256)) + 'rem'
 				civ['bonuses'][roundType].push(cardId)
+				unselected.removeChild(activated_card)
+				selected.appendChild(activated_card)
+
 			}
 		}
 	}
@@ -360,7 +375,11 @@ function renderPhase2() {
 		card.onmouseover = getFun3(card_descriptions[roundType][i], i, cardSize, [0, 255, 0, 0.7])
 		card.onmouseout = getFun4(i)
 		card.onclick = getFun5(i, cardSize)
-		board.appendChild(card)
+		if(civ['bonuses'][roundType].includes(i)){
+			selected.appendChild(card)
+		} else {
+			unselected.appendChild(card)
+		}
 	}
 	//Add finish button
 	var boardtoolbar = document.createElement('div')

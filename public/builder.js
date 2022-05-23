@@ -17,8 +17,8 @@ var roundType = 0
 var cardSize = 6
 var marginSize = 0.6
 
-const num_cards = [287, 79, 44, 44, 75]
-const max_sizes = [6, 1, 1, 1, 1]
+const num_cards = [304, 82, 49, 47, 78]
+const max_sizes = [304, 1, 1, 1, 78]
 
 renderPhase1()
 
@@ -450,6 +450,8 @@ function renderPhase2() {
 					cleared_card = document.getElementById('card' + civ['bonuses'][roundType][0])
 					cleared_card.style.outline = 'none'
 					civ['bonuses'][roundType].shift()
+					selected.removeChild(cleared_card)
+					unselected.insertBefore(cleared_card, unselected.children[0])
 				}
 				activated_card.style.outline = (size * (22/256)) + 'rem solid rgba(0, 255, 0, 0.7)'
 				activated_card.style.outlineOffset = '-' + (size * (22/256)) + 'rem'
@@ -503,7 +505,7 @@ function renderPhase2() {
 		if(civ['bonuses'][roundType].includes(i)){
 			selected.appendChild(card)
 		} else {
-				unselected.appendChild(card)
+			unselected.appendChild(card)
 		}
 	}
 	//Add finish button

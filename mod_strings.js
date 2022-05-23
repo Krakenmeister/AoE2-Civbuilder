@@ -5,11 +5,12 @@ module.exports = {
 }
 
 const uniqueNames = ["Longbowmen", "Throwing Axemen", "Huskarls", "Teutonic Knights", "Samurai", "Chu Ko Nu", "Cataphracts", "Mamelukes", "War Elephants", "Janissaries", "Berserks", "Mangudai", "Woad Raiders",
-	"Conquistadors", "Jaguar Warriors", "Plumed Archers", "Tarkans", "War Wagons", "Genoese Crossbowmen", "Elephant Archers", "Kamayuks", "Magyar Huszars", "Boyars", "Organ Guns", "Shotel Warriors", "Gbetos",
+	"Conquistadors", "Jaguar Warriors", "Plumed Archers", "Tarkans", "War Wagons", "Genoese Crossbowmen", "Ghulam", "Kamayuks", "Magyar Huszars", "Boyars", "Organ Guns", "Shotel Warriors", "Gbetos",
 	"Camel Archers", "Ballista Elephants", "Karambit Warriors", "Arambai", "Rattan Archers", "Konniks", "Keshiks", "Kipchaks", "Leitis", "Coustilliers", "Serjeants", "Obuch", "Hussite Wagons", "Crusader Knights",
 	"Xolotl Warriors", "Saboteurs", "Ninjas", "Flamethrowers", "Photonmen", "Centurions", "Legionaries", "Monkey Boys", "Amazon Warriors", "Amazon Archers", "Iroquois Warriors", "Varangian Guards", "Gendarme",
 	"Cuahchiqueh", "Ritterbruder", "Kazaks", "Szlachcic", "Cuirassiers", "Rajput", "Seljuk Archers", "Numidian Javelinmen", "Sosso Guards", "Swiss Pikemen", "Headhunters", "Teulu", "Maillotins", "Hashashin",
-	"Zweihander", "Stradiot", "Ahosi", "Spadoni", "Clibinarii", "Silahtar", "Jaridah", "Wolf Warriors", "Warrior Monks", "Castellan", "Lightning Warriors", "Apukispay"]
+	"Zweihander", "Stradiot", "Ahosi", "Spadoni", "Clibinarii", "Silahtar", "Jaridah", "Wolf Warriors", "Warrior Monks", "Castellan", "Lightning Warriors", "Apukispay", "Urumi Swordsmen", "Rathas",
+	"Chakram Throwers"]
 const civBonusStrings = [
 	"Town Centers cost -50% wood starting in the Castle Age",
 	"Foot archers (except skirmishers) +1 range in Castle and Imperial Age (+2 total)",
@@ -46,7 +47,7 @@ const civBonusStrings = [
 	"Gold miners work 20% faster",
 	"Scout Cavalry, Light Cavalry, Hussar +1P armor",
 	"Warships cost -15% Feudal Age, -15% Castle Age, -20% Imperial Age",
-	"Infantry +10% hit points Feudal, +15% Castle, +20% Imperial Age",
+	"Infantry +20% hit points starting in Feudal Age",
 	"Cavalry archers fire 25% faster",
 	"Hunters work 40% faster",
 	"Light Cavalry, Hussars, Steppe Lancers +30% hit points",
@@ -203,7 +204,7 @@ const civBonusStrings = [
 	"Receive +500 gold upon reaching Imperial Age",
 	"+100 HP and pierce armor for monks with relics",
 	"Land explosive units 2x HP",
-	"Receive 2 free villagers upon advancing to Feudal Age",
+	"Town Centers spawn 2 villagers when the next Age is reached",
 	"All economic upgrades researched +100% faster",
 	"Castles +2000 HP",
 	"Blacksmith upgrades are free an age after they become available",
@@ -215,7 +216,7 @@ const civBonusStrings = [
 	"Military Buildings cost -50 wood",
 	"Blacksmiths and Universities cost -100 wood",
 	"Infantry +1 attack vs. villagers per age (starting in Dark Age)",
-	"Fishing ships carry +10 food",
+	"Fishermen and Fishing ships carry +15",
 	"Galleys +1 attack each age (starting in Castle Age)",
 	"Steppe Lancers +10 attack vs. villagers",
 	"Steppe Lancers attack 33% faster",
@@ -297,36 +298,55 @@ const civBonusStrings = [
 	"Chemistry and Hand Cannoneer available in Castle Age",
 	"Spearman-line deals +25% bonus damage",
 	"Fervor and Sanctity affects villagers",
-	"Can upgrade Bombard Cannons to Houfnice"
+	"Can upgrade Bombard Cannons to Houfnice",
+	"Can build Caravanseri in Imperial Age",
+	"Gunpowder units +1/+1P armor",
+	"Receive +200 wood when advancing to the next age",
+	"Barracks technologies cost -50%",
+	"Skirmishers and Elephant Archers attack 25% faster",
+	"Elephant units receive 25% less bonus damage and are more resistant to conversion",
+	"Ships regenerate 15 HP per minute",
+	"Start with 2 Forage Bushes",
+	"Can garrison Mills with livestock to produce food",
+	"Mounted units deal +50% bonus damage",
+	"Can garrison Docks with Fishing Ships",
+	"Can train Thirisadai in docks",
+	"Can recruit Shrivamsha Riders",
+	"Can recruit Camel Scouts in Feudal Age",
+	"Can recruit Armored Elephants",
+	"Can recruit Elephant Archers",
+	"Battle Elephants +1/+1P armor"
 ]
 
 var uniqueCastleStrings = ["Atlatl (Skirmishers +1 attack, +1 range)", "Kasbah (team castles work 25% faster)", "Yeomen (+1 foot archer and skirmisher range, +2 tower attack)", "Stirrups (Cavalry attack 33% faster)",
-	"Burgundian Vineyards (Farmers slowly generate gold in addition to food)", "Howdah (Elephant units +1/+2P armor)", "Greek Fire (Fire ships +1 range)",
+	"Burgundian Vineyards (Farmers slowly generate gold in addition to food)", "Howdah (Elephant units +1/+1P armor)", "Greek Fire (Fire ships +1 range)",
 	"Stronghold (Castles and towers fire 25% faster)", "Great Wall (Walls and towers +30% HP)", "Steppe Husbandry (Light Cavalry, Steppe Lancers and Cavalry Archers trained 100% faster)",
-	"this text will change", "this text will change", "this text will change", "this text will change", "Andean Sling (Skirmishers and Slingers no minimum range)", "Sultans (All gold income 10% faster)",
+	"this text will change", "this text will change", "this text will change", "this text will change", "Andean Sling (Skirmishers and Slingers no minimum range)", "Grand Trunk Road (All gold income 10% faster)",
 	"this text will change", "Yasama (Towers shoot extra arrows)", "Tusk Swords (Elephant units +3 attack)", "Eupseong (Watch Towers, Guard Towers, and Keeps +2 range)", "Hill Forts (Town Centers +3 range)",
 	"this text will change", "Thalassocracy (upgrades Docks to Harbors, which fire arrows)", "Tigui (Town Centers fire arrows when ungarrisoned)", "Hul'che Javelineers (Skirmishers throw a second projectile)",
-	"Nomads (lost houses do not decrease population headroom)", "Kamandaran (Archer-line gold cost is replaced by additional wood cost)", "Carrack (Ships +1/+1 armor)", "Madrasah (Monks return 33% of their cost when killed)",
+	"Nomads (lost houses do not decrease population headroom)", "Kamandaran (Archer-line gold cost is replaced by additional wood cost)", "Carrack (Ships +1/+1 armor)", "Madrasah (Monks return 50 gold when killed)",
 	"this text will change", "Orthodoxy (Monk units +3/+3P armor)", "Inquisition (Monks convert faster)", "Silk Armor (Light Cavalry, Steppe Lancers and Cavalry Archers receive +1/+1P armor)",
 	"Ironclad (Siege units extra melee armor)", "Sipahi (Cavalry Archers +20 HP)", "Chatras (Elephant units +100 HP)", "Chieftans (Infantry deal bonus damage to cavalry)", "Szlachta Privileges (Knights cost -60% gold)",
 	"Wagenburg Tactics (Gunpowder units move 15% faster)", "Deconstruction (Siege units fire 33% faster)", "Obsidian Arrows (Archer-line +6 attack vs. buildings)", "Tortoise Engineers (Rams train 100% faster)",
-	"Panoply (Infantry +1/+1P armor, +1 attack)", "Clout Archery (Archery Ranges work 50% faster)"]
+	"Panoply (Infantry +1/+1P armor, +1 attack)", "Clout Archery (Archery Ranges work 50% faster)", "Medical Corps (Elephants units regenerate 20 HP per minute)", "Paiks (Unique unit and elephant units attack 20% faster)",
+	"Kshatriyas (Military units cost -25% food)", "Detinets (40% of Castle, Tower, Krepost, and Donjon stone cost replaced with wood)", "Zealotry (Camel units +20 hit points)"]
 
 var uniqueImpStrings = ["Garland Wars (Infantry +4 attack)", "Maghrebi Camels (Camel units regenerate)", "Warwolf (Trebuchets do blast damage)", "Bagains (Militia-line gains +5 armor)",
 	"Flemish Revolution (Upgrades all existing Villagers to Flemish Militia; create Flemish Militia at Town Centers)", "Manipur Cavalry (Cavalry +5 attack vs. archers)", "this text will change", "Furor Celtica (Siege workshop units +40% HP)",
 	"this text will change", "this text will change", "Torsion Engines (increases blast radius of Siege Workshop units)", "Chivalry (Stables work 40% faster)", "Perfusion (Barracks work 100% faster)",
-	"Atheism (+100 years for Relic, Wonder victories; enemy relics generate -50% resources)", "this text will change", "Shatagni (Hand Cannoneers +1 range)", "Silk Road (Trade units cost -50%)",
+	"Atheism (+100 years for Relic, Wonder victories; enemy relics generate -50% resources)", "this text will change", "Shatagni (Hand Cannoneers +2 range)", "Silk Road (Trade units cost -50%)",
 	"Kataparuto (Trebuchets fire, pack faster)", "Double Crossbow (Scorpion and Ballista units fire two projectiles)", "Shinkichon (Mangonel-line +1 range)", "Tower Shields (Spearman-line and Skirmishers +2P armor)",
 	"Recurve Bow (Cavalry archers +1 range, +1 attack)", "Forced Levy (Militia-line gold cost is replaced by additional food cost)", "Farimba (Cavalry +3 attack)", "El Dorado (Eagle Warriors have +40 hit points)",
-	"Drill (Siege units move 50% faster)", "Mahouts (Elephants move 30% faster)", "Arquebus (gunpowder units more accurate)", "Zealotry (Camel units +20 hit points)",
+	"Drill (Siege units move 50% faster)", "Mahouts (Elephants move 30% faster)", "Arquebus (gunpowder units more accurate)", "Counterweights (Trebuchets and Mangonel-line +15% attack)",
 	"Hauberk (Knights +1/+2P armor)", "Druzhina (Infantry damage adjacent units)", "Supremacy (Villagers stronger in combat)", "Timurid Siegecraft (Trebuchets +2 range, enables Flaming Camels)",
-	"Crenellations (+3 range Castles garrisoned infantry fire arrows)", "Artillery (+2 range Bombard Towers, Bombard Cannons, Cannon Galleons)", "Paper Money (Each team member receives 500 gold)", "this text will change",
+	"Crenellations (+3 range Castles garrisoned infantry fire arrows)", "Artillery (+2 range Bombard Towers, Bombard Cannons, Cannon Galleons)", "Paper Money (Lumberjacks slowly generate gold in addition to wood)", "this text will change",
 	"Lechitic Legacy (Light Cavalry deals trample damage)", "Hussite Reforms (Monks and Monastery upgrades have their gold cost replaced by food)", "Lamellar Armor (Camels and Cavalry Archers +2/+1P armor)",
-	"Field Repairmen (Rams regain HP)", "Golden Age (All buildings work 10% faster)", "Villager's Revenge (Dead villagers become Halberdiers)", "Gate Crashing (Ram gold cost is replaced by additional wood cost)"]
+	"Field Repairmen (Rams regain HP)", "Golden Age (All buildings work 10% faster)", "Villager's Revenge (Dead villagers become Halberdiers)", "Gate Crashing (Ram gold cost is replaced by additional wood cost)",
+	"Wootz Steel (Infantry and cavalry attacks ignore armor)", "Mahayana (Villagers take 10% less population space)", "Frontier Guards (Camel units and Elephant Archers +4 melee armor)"]
 
 const teamBonusStrings = ["Relics generate +33% gold", "Genitour available in the Archery Range starting in the Castle Age", "Archery Ranges work 20% faster", "Blacksmiths work 80% faster", "Relics generate both Gold and Food",
 	"Relics visible on the map at the start of the game", "Monks +100% heal speed", "Siege Workshops work 20% faster", "Farms +10% food", "Palisade Walls +33% HP", "Towers and Outposts +3 LOS", "Knights +2 LOS",
-	"Barracks work 20% faster", "Stables work 20% faster", "Farms built 100% faster", "Camel units +4 attack vs. buildings", "Condottiero available in the Barracks in Imperial Age", "Galleys +50% LOS",
+	"Barracks work 20% faster", "Stables work 20% faster", "Spearmen and Skirmishers +2 line of sight", "Camel and light cavalry units +2 attack vs. buildings", "Condottiero available in the Barracks in Imperial Age", "Galleys +50% LOS",
 	"Scorpion and Ballista units +1 range", "Mangonel-line minimum range reduced", "Monasteries work 20% faster", "Foot archers +2 LOS", "Docks +100% LOS", "Universities work 80% faster", "Walls cost -50%",
 	"Scout Cavalry, Light Cavalry, Hussar +2 LOS", "Knights +2 attack vs. Archers", "Line of sight is shared with the team starting in the Dark Age", "Foot archers +2 attack vs. buildings",
 	"Transport Ships +5 LOS and cost -50%", "Military buildings provide +5 population room", "Trade units generate +25% gold", "Cavalry Archers +2 LOS", "Units resist conversion",
@@ -336,7 +356,8 @@ const teamBonusStrings = ["Relics generate +33% gold", "Genitour available in th
 	"Steppe Lancers +3 LOS", "Spearmen +3 attack vs. cavalry", "Elephant units +4 attack vs. buildings", "Eagles +2 LOS", "Docks work 20% faster", "Monasteries 3x HP", "Markets 3x HP", "Explosive units +6 LOS",
 	"Outposts constructed nearly instantly", "Siege towers don't cost gold", "Docks built 100% faster", "Infantry +2 LOS", "Trade carts 20% faster when empty", "All explosive units +40% HP", "Town Centers +4 LOS",
 	"Upgrading Unique Units to Elite costs -20%", "Can upgrade Heavy Scorpions to Imperial Scorpions", "Can upgrade Elite Battle Elephants to Royal Battle Elephants", "Can upgrade Elite Steppe Lancers to Royal Lancers",
-	"Can train spearmen from Town Centers", "Can train Canoes from docks", "Scout Cavalry, Light Cavalry, Hussar +1 attack vs. Archers"]
+	"Can train spearmen from Town Centers", "Can train Canoes from docks", "Scout Cavalry, Light Cavalry, Hussar +1 attack vs. Archers", "Docks provide +5 population room", "Trade units yield 10% food in addition to gold",
+	"Camel and elephant units created 25% faster"]
 
 function getCivType(techtree) {
 	var civTypes = ["Infantry", "Archer", "Cavalry", "Siege", "Naval", "Monk", "Cavalry Archer", "Defensive", "Gunpowder", "Economic"]
@@ -442,8 +463,8 @@ function interperateLanguage(json_path, txt_path) {
 	stringStream.write("28432 \"Research <b>Rocketry<b> (<cost>) \\n " + getUniqueName(8, 'imptech') + " have +2 attack; scorpion units have +4 piercing attack.\"\n")
 	stringStream.write("7398 \"Elite Mercenaries\"\n")
 	stringStream.write("3132 \"%s has offered the services of elite mercenaries to their allies!\"\n")
-	stringStream.write("8398 \"Research Elite Mercenaries (Team receives 10 free Elite " + getUniqueName(9, 'imptech') + " in Castle)\"\n")
-	stringStream.write("28398 \"Research <b>Elite Mercenaries<b> (<cost>) \\nTeam receives 10 free Elite " + getUniqueName(9, 'imptech') + " in Castle.\"\n")
+	stringStream.write("8398 \"Research Elite Mercenaries (Team receives 5 free Elite " + getUniqueName(9, 'imptech') + " per Castle)\"\n")
+	stringStream.write("28398 \"Research <b>Elite Mercenaries<b> (<cost>) \\nTeam receives 5 free Elite " + getUniqueName(9, 'imptech') + " per Castle.\"\n")
 	stringStream.write("8324 \"Research Bearded Axe (+2 attack for " + getUniqueName(11, 'castletech') + ")\"\n")
 	stringStream.write("28324 \"Research <b>Bearded Axe<b> (<cost>) \\n +2 attack for " + getUniqueName(11, 'castletech') + ".\"\n")
 	stringStream.write("8267 \"Research Fabric Shields (" + getUniqueName(14, 'imptech') + ", Slingers, Eagles +1 armor/+2 pierce armor.)\"\n")
@@ -462,6 +483,8 @@ function interperateLanguage(json_path, txt_path) {
 	stringStream.write("28275 \"Research <b>Corvinian Army<b> (<cost>) \\n" + getUniqueName(21, 'castletech') + " gold cost converted to additional food/wood cost.\"\n")
 	stringStream.write("8344 \"Research First Crusade (Each Town Center (maximum 5) spawns a one-time batch of 7 " + getUniqueName(29, 'castletech') + "; units more resistant to conversion)\"\n")
 	stringStream.write("28344 \"Research <b>First Crusade<b> (<cost>) \\nEach Town Center (maximum 5) spawns a one-time batch of 7 " + getUniqueName(29, 'castletech') + "; units more resistant to conversion.\"\n")
+	stringStream.write("8359 \"Research Paiks (" + getUniqueName(45, 'castletech') + " and elephant units attack 20% faster)\"\n")
+	stringStream.write("28359 \"Research <b>Paiks<b> (<cost>) \\n" + getUniqueName(45, 'castletech') + " and elephant units attack 20% faster.\"\n")
 	uniqueCastleStrings[10] = "Royal Heirs (" + getUniqueName(10, 'castletech') + " train twice as fast)"
 	uniqueCastleStrings[11] = "Bearded Axe (+2 attack for " + getUniqueName(11, 'castletech') + ")"
 	uniqueCastleStrings[12] = "Anarchy (create " + getUniqueName(12, 'castletech') + " at Barracks)"
@@ -469,10 +492,11 @@ function interperateLanguage(json_path, txt_path) {
 	uniqueCastleStrings[16] = "Pavise (Archer-line, Condottieri, and " + getUniqueName(16, 'castletech') + " +1 armor/+1 pierce armor)"
 	uniqueCastleStrings[21] = "Corvinian Army (" + getUniqueName(21, 'castletech') + " gold cost converted to additional food/wood cost)"
 	uniqueCastleStrings[29] = "First Crusade (Each Town Center (maximum 5) spawns a one-time batch of 7 " + getUniqueName(29, 'castletech') + "; units more resistant to conversion)"
+	uniqueCastleStrings[45] = "Paiks (" + getUniqueName(45, 'castletech') + " and elephant units attack 20% faster)"
 //	uniqueImpStrings[5] = "Manipur Cavalry (Cavalry and " + uniqueNames[civs.techtree[getIndexOf(civs.imptech, 5)][0]] + " +6 attack vs. buildings)"
 	uniqueImpStrings[6] = "Logistica (" + getUniqueName(6, 'imptech') + " cause trample damage)"
 	uniqueImpStrings[8] = "Rocketry (" + getUniqueName(8, 'imptech') + " +2, scorpion units +4 attack)"
-	uniqueImpStrings[9] = "Elite Mercenaries (team members can create 10 free Elite " + getUniqueName(9, 'imptech') + " in the Castle)"
+	uniqueImpStrings[9] = "Elite Mercenaries (team members can create 5 free Elite " + getUniqueName(9, 'imptech') + " per Castle)"
 	uniqueImpStrings[14] = "Fabric Shields (" + getUniqueName(14, 'imptech') + ", Slingers, Eagles +1/+2P armor)"
 	uniqueImpStrings[36] = "Berserkergang (" + getUniqueName(36, 'imptech') + " can regenerate)"
 	for (var i = 0; i < civs.techtree.length; i++) {
@@ -742,10 +766,10 @@ function interperateLanguage(json_path, txt_path) {
 	stringStream.write("28630 \"Upgrade to <b>Elite Maillotin<b> (<cost>) \\nUpgrades your Maillotin to Elite Maillotin, increasing their control over their unwieldy weapons.\"\n")
 	stringStream.write("5777 \"Hashashin\"\n")
 	stringStream.write("6777 \"Create Hashashin\"\n")
-	stringStream.write("26777 \"Create <b>Hashashin<b> (<cost>) \\nMercernary guardsmen with a reputation for assassination. Strong vs. unique units and kings. Weak vs. archers and spearmen.<i> Upgrades: attack, armor (Blacksmith); speed, hit points (Stable); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n <hp> <attack> <armor> <piercearmor> <range>\"\n")
+	stringStream.write("26777 \"Create <b>Hashashin<b> (<cost>) \\nMercenary guardsmen with a reputation for assassination. Strong vs. unique units and kings. Weak vs. archers and spearmen.<i> Upgrades: attack, armor (Blacksmith); speed, hit points (Stable); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n <hp> <attack> <armor> <piercearmor> <range>\"\n")
 	stringStream.write("5824 \"Elite Hashashin\"\n")
 	stringStream.write("6824 \"Create Elite Hashashin\"\n")
-	stringStream.write("26824 \"Create <b>Elite Hashashin<b> (<cost>) \\nMercernary guardsmen with a reputation for assassination. Strong vs. unique units and kings. Weak vs. archers and spearmen.<i> Upgrades: attack, armor (Blacksmith); speed, hit points (Stable); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n<hp> <attack> <armor> <piercearmor> <range>\"\n")
+	stringStream.write("26824 \"Create <b>Elite Hashashin<b> (<cost>) \\nMercenary guardsmen with a reputation for assassination. Strong vs. unique units and kings. Weak vs. archers and spearmen.<i> Upgrades: attack, armor (Blacksmith); speed, hit points (Stable); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n<hp> <attack> <armor> <piercearmor> <range>\"\n")
 	stringStream.write("7631 \"Elite Hashashin\"\n")
 	stringStream.write("8631 \"Upgrade to Elite Hashashin\"\n")
 	stringStream.write("28631 \"Upgrade to <b>Elite Hashashin<b> (<cost>) \\nUpgrades your Hashashin to Elite Hashashin, organizing their murderous intentions to frightening efficiency.\"\n")
@@ -760,10 +784,10 @@ function interperateLanguage(json_path, txt_path) {
 	stringStream.write("28632 \"Upgrade to <b>Elite Zweihander<b> (<cost>) \\nUpgrades your Zweihander to Elite Zweihander, giving nearly unstoppable power behind each swing of their massive sword.\"\n")
 	stringStream.write("5480 \"Stradiot\"\n")
 	stringStream.write("6480 \"Create Stradiot\"\n")
-	stringStream.write("26480 \"Create <b>Stradiot<b> (<cost>) \\nMercernary light cavalry. Strong vs. cavalry and cavalry archers. Weak vs. infantry.<i> Upgrades: attack, armor (Blacksmith); speed, hit points (Stable); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n <hp> <attack> <armor> <piercearmor> <range>\"\n")
+	stringStream.write("26480 \"Create <b>Stradiot<b> (<cost>) \\nMercenary light cavalry. Strong vs. cavalry and cavalry archers. Weak vs. infantry.<i> Upgrades: attack, armor (Blacksmith); speed, hit points (Stable); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n <hp> <attack> <armor> <piercearmor> <range>\"\n")
 	stringStream.write("5826 \"Elite Stradiot\"\n")
 	stringStream.write("6826 \"Create Elite Stradiot\"\n")
-	stringStream.write("26826 \"Create <b>Elite Stradiot<b> (<cost>) \\nMercernary light cavalry. Strong vs. cavalry and cavalry archers. Weak vs. infantry.<i> Upgrades: attack, armor (Blacksmith); speed, hit points (Stable); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n<hp> <attack> <armor> <piercearmor> <range>\"\n")
+	stringStream.write("26826 \"Create <b>Elite Stradiot<b> (<cost>) \\nMercenary light cavalry. Strong vs. cavalry and cavalry archers. Weak vs. infantry.<i> Upgrades: attack, armor (Blacksmith); speed, hit points (Stable); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n<hp> <attack> <armor> <piercearmor> <range>\"\n")
 	stringStream.write("7633 \"Elite Stradiot\"\n")
 	stringStream.write("8633 \"Upgrade to Elite Stradiot\"\n")
 	stringStream.write("28633 \"Upgrade to <b>Elite Stradiot<b> (<cost>) \\nUpgrades your Stradiot to Elite Stradiot, increasing their flexibility, coordination, and ability to pick apart even the most defensive formations through hit-and-run tactics.\"\n")

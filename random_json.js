@@ -8,12 +8,12 @@ module.exports = {
 	createJson
 }
 
-const num_civs = 39
-const num_unique_units = 79
-const num_castle_techs = 44
-const num_imp_techs = 44
-const num_civ_bonuses = 287
-const num_team_bonuses = 75
+const num_civs = 42
+const num_unique_units = 82
+const num_castle_techs = 49
+const num_imp_techs = 47
+const num_civ_bonuses = 304
+const num_team_bonuses = 78
 
 function createJson(output_path, costs) {
 	//Each array will contain 37 elements corresponding to which vanilla civ it will overwrite

@@ -40,24 +40,24 @@ app.use(express.static('public/aoe2techtree'));
 
 //0 = vanilla, 1 = allow generated bonuses
 const num_bonuses = [
-	[140, 287],	//Civ bonuses
-	[39, 79],	//Unique units
-	[39, 44],	//Castle techs
-	[39, 44],	//Imp techs
-	[37, 75]	//Team bonuses
+	[140, 304],	//Civ bonuses
+	[39, 82],	//Unique units
+	[39, 49],	//Castle techs
+	[39, 47],	//Imp techs
+	[37, 78]	//Team bonuses
 ];
 
 //Names and colours for flags
 const nameArr = ['britons', 'franks', 'goths', 'teutons', 'japanese', 'chinese', 'byzantines', 'persians', 'saracens', 'turks', 'vikings', 'mongols', 'celts', 'spanish', 'aztecs', 'mayans',
 		'huns', 'koreans', 'italians', 'indians', 'inca', 'magyars', 'slavs', 'portuguese', 'ethiopians', 'malians', 'berber', 'khmer', 'malay', 'burmese', 'vietnamese', 'bulgarians',
-		'tatars', 'cumans', 'lithuanians', 'burgundians', 'sicilians', 'poles', 'bohemians']
+		'tatars', 'cumans', 'lithuanians', 'burgundians', 'sicilians', 'poles', 'bohemians', 'dravidians', 'bengalis', 'gurjaras']
 const colours = [[0, 0, 0], [255, 255, 255], [217, 0, 0], [0, 173, 54], [249, 233, 13], [0, 0, 128], [255, 153, 51], [0, 162, 221], [84, 14, 125], [224, 58, 213],[73, 235, 173], [66, 30, 1],
 		[92, 92, 92], [255, 171, 202], [171, 207, 255]]
 
 //Maps path files for unique unit icon images to their unique units
 //Swap 043 and 037? all the mapping back and forth is quite confusing and requires more testing
-const iconids = ['041', '046', '050', '045', '044', '036', '035', '043', '037', '039', '038', '042', '047', '106', '110', '108', '105', '117', '133', '093', '097', '099', '114', '190', '195', '197', '191', '231', '233', '230', '232', '249', '251', '252', '253', '355', '356', '369', '370', '377', '351', '058', '299', '144', '300', '138', '139', '132', '166', '165', '297', '357', '260', '146', '379', '256', '376', '325', '236', '053', '207', '350', '136', '359', '368', '366', '206', '163', '361', '216', '162', '181', '259', '119', '081', '243', '375', '327', '319']
-const blanks = ['040', '079', '107', '116', '134', '143', '185', '198', '201', '229', '270', '354', '371', '372']
+const iconids = ['041', '046', '050', '045', '044', '036', '035', '043', '037', '039', '038', '042', '047', '106', '110', '108', '105', '117', '133', '093', '097', '099', '114', '190', '195', '197', '191', '231', '233', '230', '232', '249', '251', '252', '253', '355', '356', '369', '370', '377', '351', '058', '299', '144', '300', '138', '139', '132', '166', '165', '297', '357', '260', '146', '379', '256', '376', '325', '236', '053', '207', '350', '136', '359', '368', '366', '206', '163', '361', '216', '162', '181', '259', '119', '081', '243', '375', '327', '319', '386', '389', '390']
+const blanks = ['040', '079', '107', '116', '134', '143', '185', '198', '201', '229', '270', '354', '371', '372', '387', '385', '391', '392']
 
 //Maps website techtree indices to data.json techtree indices
 const indexDictionary = [
@@ -684,9 +684,15 @@ app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/public/homepage/home.html');
 });
 
+
+
 /*app.get('/civbuilder', function (req, res) {
 	res.sendFile(__dirname + '/public/updating.html');
 });*/
+
+app.get('/pointilism', function (req, res) {
+	res.sendFile(__dirname + '/public/pointilism/pointilism.html');
+});
 
 app.get('/civbuilder', function (req, res) {
 	res.sendFile(__dirname + '/public/civbuilder_home.html');
@@ -1112,5 +1118,206 @@ io.on('connection', function(socket) {
 		}
 		fs.writeFileSync('./database.json', JSON.stringify(data, null, 2));
 		io.in(roomID).emit('set gamestate', draft);
+	});
+});
+
+
+
+
+/*
+*	Arithmio Stuff Below
+*
+*
+*/
+
+const createArithmio = (req, res, next) => {
+	let isUniqueCode = false;
+	let code;
+	while (!isUniqueCode) {
+		const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		code = '';
+		for (let i=0; i<6; i++) {
+			code += characters.charAt(Math.floor(Math.random() * characters.length));
+		}
+		if (!fs.existsSync(path.join(__dirname, `/arithmiogames/${code}.json`))) {
+			isUniqueCode = true;
+		}
+	}
+	let gameState = {
+		settings: {
+			maxPlayers: parseInt(req.body.maxPlayers),
+			winPoints: parseInt(req.body.winPoints),
+			gameSpeed: parseInt(req.body.gameSpeed),
+			timeStarted: Date.now()
+		},
+		phase: 0,
+		players: [], //Each player has name, score, hand, hasjoined
+		game: {
+			total: 0,
+			turn: 0,
+			deck: [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11]
+		}
+	};
+	fs.writeFileSync(`./arithmiogames/${code}.json`, JSON.stringify(gameState, null, 2));
+	req.roomCode = code;
+	next();
+};
+
+const joinArithmio = (req, res, next) => {
+	if (!fs.existsSync(path.join(__dirname, `/arithmiogames/${req.body.joinCode}.json`))) {
+		req.access = 'dne';
+		return next();
+	}
+	let gameFile = fs.readFileSync(`./arithmiogames/${req.body.joinCode}.json`);
+	let gameState = JSON.parse(gameFile);
+	if (gameState.players.length >= gameState.settings.maxPlayers) {
+		req.access = 'full';
+		return next();
+	}
+	for (let i=0; i<gameState.players.length; i++) {
+		if (req.body.joinName == gameState.players[i].name) {
+			req.access = 'dupl';
+			return next();
+		}
+	}
+	gameState.players.push({
+		name: req.body.joinName,
+		score: 0,
+		hand: [],
+		hasJoined: false,
+		lastCard: -1
+	});
+	fs.writeFileSync(`./arithmiogames/${req.body.joinCode}.json`, JSON.stringify(gameState, null, 2));
+	req.access = 'granted';
+	req.playerID = gameState.players.length - 1;
+	next();
+};
+
+const getLastCard = (req, res, next) => {
+	let gameFile = fs.readFileSync(`./arithmiogames/${req.body.roomCode}.json`);
+	let gameState = JSON.parse(gameFile);
+	req.lastCard = gameState.players[req.body.playerID].lastCard;
+	next();
+};
+
+app.get('/arithmio', (req, res) => {
+        res.sendFile(path.join(__dirname, '/public/arithmio/home.html'));
+});
+
+app.get('/arithmio/play', (req, res) => {
+        res.sendFile(path.join(__dirname, '/public/arithmio/singleplayer.html'));
+});
+
+app.post('/arithmio/start', createArithmio, (req, res) => {
+	res.setHeader('Content-Type', 'application/json');
+	res.end(JSON.stringify({roomCode: req.roomCode}));
+});
+
+app.post('/arithmio/join', joinArithmio, (req, res) => {
+	res.setHeader('Content-Type', 'application/json');
+	res.end(JSON.stringify({access: req.access, playerID: req.playerID}));
+});
+
+app.post('/arithmio/lobby', (req, res) => {
+	res.cookie('roomCode', req.body.joinCode);
+	res.cookie('playerID', req.body.playerID);
+	res.end();
+});
+
+app.get('/arithmio/multiplay', (req, res) => {
+	res.sendFile(path.join(__dirname, '/public/arithmio/multiplayer.html'));
+});
+
+app.post('/arithmio/gameInfo', getLastCard, (req, res) => {
+	res.setHeader('Content-Type', 'application/json');
+	res.end(JSON.stringify({lastCard: req.lastCard}));
+});
+
+function gameDraw (gameState, player) {
+	let drawCard = Math.floor(Math.random() * gameState.game.deck.length);
+	gameState.players[player].hand.push(gameState.game.deck[drawCard]);
+	gameState.game.deck.splice(drawCard, 1);
+	if (gameState.game.deck.length == 0) {
+		gameState.game.deck = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11];
+	}
+	return gameState;
+}
+
+io.on('connection', (socket) => {
+	socket.on('joinArithmio', (roomID, playerID) => {
+		let gameFile = fs.readFileSync(`./arithmiogames/${roomID}.json`);
+		let gameState = JSON.parse(gameFile);
+		gameState.players[playerID].hasJoined = true;
+		let joinedCounter = 0;
+		for (let i=0; i<gameState.players.length; i++) {
+			if (gameState.players[i].hasJoined) {
+				joinedCounter++;
+			}
+		}
+		if (joinedCounter == gameState.settings.maxPlayers && gameState.phase == 0) {
+			gameState.phase = 1;
+			for (let i=0; i<gameState.players.length; i++) {
+				for (let j=0; j<7; j++) {
+					gameState = gameDraw(gameState, i);
+				}
+			}
+			gameState.game.total = 60;
+		}
+		fs.writeFileSync(`./arithmiogames/${roomID}.json`, JSON.stringify(gameState, null, 2));
+		socket.join(roomID);
+		io.in(roomID).emit('updateArithmio', gameState);
+	});
+	socket.on('playCard', (roomID, playerID, card, direction) => {
+		let gameFile = fs.readFileSync(`./arithmiogames/${roomID}.json`);
+		let gameState = JSON.parse(gameFile);
+		if (direction == 1) {
+			gameState.game.total += card;
+		} else if (direction == -1) {
+			gameState.game.total -= card;
+		}
+		gameState.players[playerID].score += card;
+		gameState.players[playerID].hand.splice(gameState.players[playerID].hand.indexOf(card), 1);
+		gameState.players[playerID].lastCard = card;
+		if (gameState.players[playerID].score >= gameState.settings.winPoints || gameState.game.total == 0) {
+			gameState.phase = 2;
+		}
+		fs.writeFileSync(`./arithmiogames/${roomID}.json`, JSON.stringify(gameState, null, 2));
+		io.in(roomID).emit('updateArithmio', gameState);
+	});
+	socket.on('endTurn', (roomID, playerID) => {
+		let gameFile = fs.readFileSync(`./arithmiogames/${roomID}.json`);
+		let gameState = JSON.parse(gameFile);
+		if (gameState.game.turn % gameState.players.length == playerID) {
+			gameState.game.turn++;
+			if (gameState.players[playerID].hand.length >= 7) {
+				gameState.players[playerID].hand.push(1);
+			}
+			while (gameState.players[playerID].hand.length < 7 && gameState.game.deck.length > 0) {
+				gameState = gameDraw(gameState, playerID);
+			}
+			gameState.players[playerID].lastCard = -1;
+			fs.writeFileSync(`./arithmiogames/${roomID}.json`, JSON.stringify(gameState, null, 2));
+			io.in(roomID).emit('updateArithmio', gameState);
+		}
+	});
+	socket.on('forceEndTurn', (roomID, playerID, turnNumber) => {
+		let gameFile = fs.readFileSync(`./arithmiogames/${roomID}.json`);
+		let gameState = JSON.parse(gameFile);
+		if (gameState.game.turn == turnNumber) {
+			gameState.game.turn++;
+			if (gameState.players[playerID].hand.length >= 7) {
+				gameState.players[playerID].hand.push(1);
+			}
+			while (gameState.players[playerID].hand.length < 7 && gameState.game.deck.length > 0) {
+				gameState = gameDraw(gameState, playerID);
+			}
+			fs.writeFileSync(`./arithmiogames/${roomID}.json`, JSON.stringify(gameState, null, 2));
+			io.in(roomID).emit('updateArithmio', gameState);
+		}
+	});
+	socket.on('sendChat', (roomID, playerID, message) => {
+		let gameFile = fs.readFileSync(`./arithmiogames/${roomID}.json`);
+		let gameState = JSON.parse(gameFile);
+		io.in(roomID).emit('sendChat', gameState.players[playerID].name, message);
 	});
 });

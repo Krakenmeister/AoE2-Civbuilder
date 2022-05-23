@@ -25,7 +25,7 @@ const UUArray = [
 	["Tarkan", 5675, 105, 5677, 2, 755, 757],
 	["War Wagon", 5727, 117, 5729, 450, 827, 829],
 	["Genoese Crossbowman", 5723, 133, 5725, 468, 866, 868],
-	["Elephant Archer", 5682, 93, 5684, 481, 873, 875],
+	["Ghulam", 14431, 385, 14432, 840, 1747, 1749],
 	["Kamayuk", 5686, 97, 5688, 509, 879, 881],
 	["Magyar Huszar", 5728, 99, 5730, 472, 869, 871],
 	["Boyar", 5447, 114, 5449, 504, 876, 878],
@@ -84,7 +84,10 @@ const UUArray = [
 	["Warrior Monk", 5239, 243, 5833, 924, 1873, 1874],
 	["Castellan", 5608, 375, 5834, 926, 1875, 1876],
 	["Lightning Warrior", 5017, 327, 5835, 928, 1877, 1878],
-	["Apukispay", 5213, 319, 5836, 930, 1879, 1880]
+	["Apukispay", 5213, 319, 5836, 930, 1879, 1880],
+	["Urumi Swordsman", 14403, 386, 14413, 826, 1735, 1737],
+	["Ratha", 14414, 389, 14420, 828, 1759, 1761],
+	["Chakram Thrower", 14421, 390, 14427, 830, 1741, 1743]
 ]
 
 //Castle Unique Techs
@@ -129,11 +132,16 @@ const UTArray1 = [
 	["Chieftans", 7312, 463],
 	["Szlachta Privileges", 7348, 782],
 	["Wagenburg Tactics", 7350, 784],
-	["Deconstruction", 7500, 931],	//Hard coded values
-	["Obsidian Arrows", 7501, 932],
-	["Tortoise Engineers", 7502, 933],
-	["Panoply", 7507, 938],
-	["Clout Archery", 7508, 939]
+	["Deconstruction", 7500, 981],	//Hard coded values
+	["Obsidian Arrows", 7501, 982],
+	["Tortoise Engineers", 7502, 983],
+	["Panoply", 7507, 988],
+	["Clout Archery", 7508, 989],
+	["Medical Corps", 17357, 831],
+	["Paiks", 17359, 833],
+	["Kshatriyas", 17361, 835],
+	["Detinets", 7448, 455],
+	["Zealotry", 7424, 9]
 ]
 
 //Imperial Unique Techs
@@ -167,8 +175,8 @@ const UTArray2 = [
 	["Drill", 7422, 6],
 	["Mahouts", 7423, 7],
 	["Arquebus", 7251, 573],
-	["Zealotry", 7424, 9],
-	["Scutage", 7345, 757],
+	["Counterweights", 7447, 454],
+	["Hauberk", 7345, 757],
 	["Druzhina", 7269, 513],
 	["Supremacy", 7325, 440],
 	["Timurid Siegecraft", 7310, 688],
@@ -182,7 +190,10 @@ const UTArray2 = [
 	["Field Repairmen", 7504, 935],
 	["Golden Age", 7505, 936],
 	["Villager's Revenge", 7506, 937],
-	["Gate Crashing", 7509, 940]
+	["Gate Crashing", 7509, 940],
+	["Wootz Steel", 17358, 832],
+	["Mahayana", 17360, 834],
+	["Frontier Guards", 17362, 836]
 ]
 
 const missionary_node = {

@@ -327,8 +327,8 @@ function startaBuild() {
 
 		;(function(){
 			function checkCompatibility (presets) {
-				if (presets.length > 39) {
-					alert('Too many civilizations (max 39). Aborting creation.')
+				if (presets.length > 42) {
+					alert('Too many civilizations (max 42). Aborting creation.')
 					return -1
 				}
 				//Krepost, Donjon, Anarchy, Marauder, First Crusade, Elite Mercenaries,
@@ -670,6 +670,9 @@ if (btn7) {
 		var instructionstext = document.createElement('p')
 		instructionstext.id = 'instructionstext'
 		instructionstext.innerHTML = '' +
+			'<b>05-15-2022</b><br>' +
+			'&emsp;&emsp;• Fixed a few minor text and graphics inconsistencies<br>' +
+			'&emsp;&emsp;• Updated mod generation to be compatible with Dynasties of India update<br><br>' +
 			'<b>04-06-2022</b><br>' +
 			'&emsp;&emsp;• Currently selected bonuses display at the top of the page (credit to Steven Jackson for the code!)<br><br>' +
 			'<b>03-26-2022</b><br>' +

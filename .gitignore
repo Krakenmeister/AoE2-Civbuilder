@@ -9,3 +9,6 @@ modding/requested_mods/*
 !modding/requested_mods/README.md
 database.json
 verifycivs
+public/pointilism
+public/arithmio
+modding/oldgenieutils

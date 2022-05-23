@@ -22,28 +22,29 @@ typedef ResourceUsage<int16_t, int16_t, uint8_t> ResearchResourceCost;
 ofstream aifile;
 Value ai;
 
-const int num_civs = 39;
+const int num_civs = 42;
 //Unit Classes:
 //Barracks Units, Stable Units, Archery Range Units, Siege Workshop Units, Elephant Units, Gunpowder Units, Foot Archers, Mounted Units, Camel Units, Siege Units,
 //Military Buildings, Drop-Off Buildings, All Explosive Units, Scorpion Units, Unique Units, Steppe Lancer Units, Eagle Units
 vector<vector<int>> unit_class = {
 	{74, 75, 77, 473, 567, 93, 358, 359, 751, 753, 752, 882},
-	{448, 546, 441, 1707, 38, 283, 569, 329, 330, 207, 1132, 1134, 1180, 1370, 1372, 1181},
+	{448, 546, 441, 1707, 38, 283, 569, 329, 330, 207, 1132, 1134, 1180, 1370, 1372, 1181, 1755, 1751, 1753},
 	{4, 24, 492, 5, 7, 6, 1155, 39, 474, 185, 1010, 1012},
-	{35, 1258, 422, 548, 280, 550, 588, 885, 1105, 36, 279, 542, 1179, 1709},
-	{239, 558, 873, 875, 1120, 1122, 1132, 1134, 1180},
+	{35, 1258, 422, 548, 280, 550, 588, 885, 1105, 36, 279, 542, 1179, 1709, 1744, 1746},
+	{239, 558, 873, 875, 1120, 1122, 1132, 1134, 1180, 1744, 1746},
 	{5, 36, 420, 691, 46, 557, 1001, 1003, 771, 773, 1709, 1704, 1706},
 	{4, 24, 492, 8, 73, 185, 530, 559, 763, 765, 866, 868, 1129, 1131, 6, 7, 1155},
 	{448, 546, 441, 1707, 38, 283, 569, 329, 330, 207, 1132, 1134, 1180, 1370, 1372, 1181, 39, 474, 40, 553, 282, 556, 11, 561, 771, 773, 755, 757, 873, 875, 869, 871, 876, 878, 1007, 1009, 1126, 1128, 1225, 1227, 1228, 1230, 1231, 1233, 1234,
-		1236, 1655, 1657, 775, 1010, 1012},
-	{329, 330, 207, 1007, 1009, 1263, 282, 556},
+		1236, 1655, 1657, 775, 1010, 1012, 1755, 1751, 1753},
+	{329, 330, 207, 1007, 1009, 1263, 282, 556, 1755},
 	{35, 1258, 422, 548, 280, 550, 588, 885, 1105, 36, 279, 542, 1179, 1001, 1003, 42, 331, 1690, 1691, 1709, 1704, 1706},
 	{12, 20, 132, 498, 10, 14, 87, 86, 101, 153, 49, 150},
 	{68, 129, 130, 131, 562, 563, 564, 565, 584, 585, 586, 587},
 	{527, 528, 1104, 440, 1263, 706},
 	{279, 542, 1179, 827, 829, 1120, 1122},
-	{8, 530, 281, 531, 41, 555, 25, 554, 291, 560, 73, 559, 40, 553, 282, 556, 239, 558, 46, 557, 692, 694, 11, 561, 232, 534, 771, 773, 725, 726, 763, 765, 755, 757, 827, 829, 866, 868, 873, 875, 879, 881, 869, 871, 876, 878,
-		1001, 1003, 1016, 1018, 1013, 1015, 1007, 1009, 1120, 1122, 1123, 1125, 1126, 1128, 1129, 1131, 1225, 1227, 1252, 1253, 1228, 1230, 1231, 1233, 1234, 1236, 1655, 1657, 1658, 1659, 1701, 1702, 1704, 1706},
+	{8, 530, 281, 531, 41, 555, 25, 554, 291, 560, 73, 559, 40, 553, 282, 556, 239, 558, 46, 557, 692, 694, 11, 561, 232, 534, 771, 773, 725, 726, 763, 765, 755, 757, 827, 829, 866, 868, 1747, 1749, 879, 881, 869, 871, 876, 878,
+		1001, 1003, 1016, 1018, 1013, 1015, 1007, 1009, 1120, 1122, 1123, 1125, 1126, 1128, 1129, 1131, 1225, 1227, 1252, 1253, 1228, 1230, 1231, 1233, 1234, 1236, 1655, 1657, 1658, 1659, 1701, 1702, 1704, 1706,
+		1735, 1737, 1738, 1740, 1741, 1743, 1759, 1761},
 	{1370, 1372, 1181},
 	{751, 752, 753}
 };
@@ -124,15 +125,15 @@ const vector<int> rams = {35, 1258, 422, 548};
 vector<vector<int>> duplicationUnits = {};
 //Most of these vectors are used as index maps from the config file to in-game IDs
 //It serves as a function x |-> f(x) where x is the index in the vector as well as the ID in the config file, and f(x) is the in-game ID
-const vector<int> tech_tree_ids = {254,258,259,262,255,257,256,260,261,263,276,277,275,446,447,449,448,504,10,1,3,5,7,31,48,42,37,646,648,650,652,706,708,710,712,782,784,801,803};
+const vector<int> tech_tree_ids = {254,258,259,262,255,257,256,260,261,263,276,277,275,446,447,449,448,504,10,1,3,5,7,31,48,42,37,646,648,650,652,706,708,710,712,782,784,801,803,838,840,842};
 const vector<int> basic_techs = {-1,-1,-1,-1,414,222,207,217,264,87,197,429,433,384,716,215,602,147,151,100,237,99,98,192,218,85,437,436,25,204,254,428,166,209,265,235,236,630,631,714,715,435,39,149,162,96,255,358,257,320,94,239,603,
 	188,211,212,219,199,200,201,67,82,80,74,76,77,604,243,246,605,242,244,-1,-1,35,37,376,65,374,375,373,50,51,194,93,140,63,380,322,54,47,64,377,608,379,321,315,316,319,441,439,231,252,45,233,230,438,8,280,213,249,55,182,278,279,
 	202,203,221,48,23,17,15,14,13,12,434,189,68,75,81,339,180,391,256,157,161,426,220,410,216,411,413,127,137,148,281,210,357,150,144,332,22,101,102,103};
 vector<vector<int>> uu_tech_ids = {{263, 360}, {275, 363}, {446, 365}, {276, 364}, {262, 366}, {268, 362}, {267, 361}, {269, 368}, {274, 367}, {271, 369}, {399, 398},
-	{273, 371}, {277, 370}, {58, 60}, {431, 432}, {26, 27}, {1, 2}, {449, 450}, {467, 468}, {480, 481}, {508, 509}, {471, 472}, {503, 504}, {562, 563}, {568, 569}, {566, 567},
+	{273, 371}, {277, 370}, {58, 60}, {431, 432}, {26, 27}, {1, 2}, {449, 450}, {467, 468}, {839, 840}, {508, 509}, {471, 472}, {503, 504}, {562, 563}, {568, 569}, {566, 567},
 	{564, 565}, {614, 615}, {616, 617}, {618, 619}, {620, 621}, {677, 678}, {679, 680}, {681, 682}, {683, 684}, {750, 751}, {752, 753}, {778, 779}, {780, 781}};
 vector<int> castle_ut_ids = {460, 578, 3, 685, 754, 626, 464, 482, 462, 689, 574, 83, 16, 483, 516, 506, 494, 484, 622, 486, 691, 514, 624, 576, 485, 487, 488, 572, 490, 756, 512, 492, 687, 489, 491, 628, 463, 782, 784};
-vector<int> imp_ut_ids = {24, 579, 461, 686, 755, 627, 61, 5, 52, 690, 575, 493, 457, 21, 517, 507, 499, 59, 623, 445, 692, 515, 625, 577, 4, 6, 7, 573, 9, 757, 513, 440, 688, 11, 10, 629, 49, 783, 785};
+vector<int> imp_ut_ids = {24, 579, 461, 686, 755, 627, 61, 5, 52, 690, 575, 493, 457, 21, 517, 507, 499, 59, 623, 445, 692, 515, 625, 577, 4, 6, 7, 573, 454, 757, 513, 440, 688, 11, 10, 629, 49, 783, 785};
 vector<vector<int>> civ_bonuses = {
 {381},
 {382, 403},
@@ -188,8 +189,8 @@ vector<vector<int>> civ_bonuses = {
 {272, 372},
 {500},
 {521},
-{518},
-{505, 552},
+{469},
+{338, 552},
 {496, 497, 498, 553},
 {730},
 {519},
@@ -872,7 +873,7 @@ void assignArchitectures (DatFile *df, Value cfg) {
 	for (int i=0; i<cfg["architecture"].size(); i++) {
 		dest.push_back(cfg["architecture"][i].asInt());
 	}
-	while (dest.size() < 39) {
+	while (dest.size() < 42) {
 		dest.push_back(1);
 	}
 	//Save the architecture of one of each type for copying
@@ -2054,6 +2055,13 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	setCombatStats(df, uuID, {{4, 10}}, {{4, 1}, {3, 0}, {19, 0}});
 	setCombatStats(df, eID, {{4, 14}}, {{4, 2}, {3, 0}, {19, 0}});
 
+	//Urumi Swordsman
+	uu_tech_ids.push_back({825, 826});
+	//Ratha
+	uu_tech_ids.push_back({827, 828});
+	//Chakram Thrower
+	uu_tech_ids.push_back({829, 830});
+
 		//Create new unique techs
 	//Deconstruction
 	Effect e = Effect();
@@ -2157,6 +2165,23 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	}
 	createUT(df, e, 1, "Gate Crashing", {0, 600, 0, 700}, 60, 7509);
 
+	//Medical Corps
+	castle_ut_ids.push_back(831);
+	//Wootz Steel
+	imp_ut_ids.push_back(832);
+	//Paiks
+	castle_ut_ids.push_back(833);
+	//Mahayana
+	imp_ut_ids.push_back(834);
+	//Kshatriyas
+	castle_ut_ids.push_back(835);
+	//Frontier Guards
+	imp_ut_ids.push_back(836);
+	//Detinets
+	castle_ut_ids.push_back(455);
+	//Zealotry
+	castle_ut_ids.push_back(9);
+
 		//Modify existing effects
 	//Give special barracks, archery range, stable, and siege workshop units the effects they deserve
 	EffectCommand melee_armor_1 = createEC(4, -1, -1, 8, amountTypetoD(1, 4));
@@ -2173,8 +2198,35 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	giveEffectstoClass(df, 618, {pierce_armor_1}, unit_class[0]);
 	giveEffectstoClass(df, 619, {pierce_armor_1}, unit_class[0]);
 	giveEffectstoClass(df, 620, {pierce_armor_1}, unit_class[0]);
-	giveEffectstoClass(df, 560, {pierce_armor_1}, unit_class[1]);
+
+		//Recreate old Indian bonus
+		Tech stable_armor_castle = Tech();
+		stable_armor_castle.Name = "Stable Units +1P armor";
+		stable_armor_castle.RequiredTechs.push_back(102);
+		stable_armor_castle.RequiredTechCount = 1;
+		stable_armor_castle.Civ = 99;
+		stable_armor_castle.EffectID = 640;
+		df->Techs[338] = stable_armor_castle;
+
+		Tech stable_armor_imp = Tech();
+		stable_armor_imp.Name = "Stable Units +2P armor";
+		stable_armor_imp.RequiredTechs.push_back(103);
+		stable_armor_imp.RequiredTechCount = 1;
+		stable_armor_imp.Civ = 99;
+		stable_armor_imp.EffectID = 584;
+		df->Techs[552] = stable_armor_imp;
+
+		Tech fishermen = Tech();
+		fishermen.Name = "Fishermen work 10% faster";
+		fishermen.Civ = 99;
+		fishermen.EffectID = 641;
+		df->Techs[469] = fishermen;
+		df->Effects[641].EffectCommands.push_back(createEC(5, 56, -1, 13, 1.1));
+		df->Effects[641].EffectCommands.push_back(createEC(5, 57, -1, 13, 1.1));
+
+	giveEffectstoClass(df, 640, {pierce_armor_1}, unit_class[1]);
 	giveEffectstoClass(df, 584, {pierce_armor_1}, unit_class[1]);
+
 	giveEffectstoClass(df, 610, {cost_85}, unit_class[1]);
 	giveEffectstoClass(df, 638, {cost_80_compound}, unit_class[1]);
 	giveEffectstoClass(df, 672, {hp_120}, unit_class[2]);
@@ -2222,13 +2274,19 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	EffectCommand cost_60_compound = createEC(5, -1, -1, 100, 0.85714);
 	giveEffectstoClass(df, 668, {hp_50}, unit_class[4]);
 	giveEffectstoClass(df, 666, {melee_armor_1}, unit_class[4]);
-	giveEffectstoClass(df, 666, {pierce_armor_2}, unit_class[4]);
+	giveEffectstoClass(df, 666, {pierce_armor_1}, unit_class[4]);
 	giveEffectstoClass(df, 458, {speed_30}, unit_class[4]);
 	giveEffectstoClass(df, 703, {speed_10}, unit_class[4]);
 	giveEffectstoClass(df, 695, {cost_70}, unit_class[4]);
 	giveEffectstoClass(df, 696, {cost_60_compound}, unit_class[4]);
 	df->Effects[662].EffectCommands.clear();
 	addAttacktoUnits(df, 662, 3, unit_class[4]);
+	giveEffectstoClass(df, 865, {createEC(0, -1, -1, 24, 0.25)}, unit_class[4]);
+	df->Effects[865].EffectCommands.push_back(createEC(1, 262, 1, -1, 1));
+	giveEffectstoClass(df, 850, {createEC(4, -1, -1, 109, 20)}, unit_class[4]);
+	custom_unit_class = unit_class[8];
+	custom_unit_class.insert(custom_unit_class.end(), unit_class[4].begin(), unit_class[4].end());
+	giveEffectstoClass(df, 843, {createEC(5, -1, -1, 101, 0.8)}, custom_unit_class);
 	//Do stuff with foot archers
 	EffectCommand reload_85 = createEC(5, -1, -1, 10, 0.85);
 	EffectCommand range_1 = createEC(4, -1, -1, 12, 1);
@@ -2268,6 +2326,8 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 		df->Effects[824].EffectCommands.push_back(createEC(5, custom_unit_class[i], -1, 9, amountTypetoD(125, 30)));
 		df->Effects[824].EffectCommands.push_back(createEC(5, custom_unit_class[i], -1, 9, amountTypetoD(125, 34)));
 		df->Effects[824].EffectCommands.push_back(createEC(5, custom_unit_class[i], -1, 9, amountTypetoD(125, 35)));
+		df->Effects[4].EffectCommands.push_back(createEC(4, custom_unit_class[i], -1, 23, 2));
+		df->Effects[4].EffectCommands.push_back(createEC(4, custom_unit_class[i], -1, 1, 2));
 	}
 	//Make ninjas get proper attack upgrades
 	df->Effects[67].EffectCommands.push_back(createEC(4, ninjaID, -1, 9, amountTypetoD(1, 31)));
@@ -2299,6 +2359,8 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	df->Effects[686].EffectCommands.push_back(createEC(4, (ahosiID + 1), -1, 9, amountTypetoD(1, 3)));
 	df->Effects[687].EffectCommands.push_back(createEC(4, (ahosiID + 1), -1, 9, amountTypetoD(1, 3)));
 	df->Effects[688].EffectCommands.push_back(createEC(4, (ninjaID + 1), -1, 9, amountTypetoD(1, 3)));
+	//Orthodoxy requires Castle Age
+	df->Techs[512].RequiredTechs[0] = 102;
 	//Make warrior monks get monk upgrades
 	for (Effect &effect : df->Effects) {
 		int initSize = effect.EffectCommands.size();
@@ -2333,6 +2395,10 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	df->Effects[547].EffectCommands.push_back(createEC(5, (warmonkID + 1), -1, 10, 0.75));
 	//Make madrasah affect missionaries
 	copyEffectstoUnits(df, {{545, 0}}, {776});
+	df->Techs[490].RequiredTechs[0] = 102;
+	for (Civ &civ : df->Civs) {
+		civ.Units[412].ResourceStorages[1].Amount = 50;
+	}
 	//Make Shatagni affect Jannissaries
 	copyEffectstoUnits(df, {{563, 0, 1, 2}}, {46, 557});
 	//Make Kamandaran and Forced Levy not give gold
@@ -2457,6 +2523,15 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 			}
 		}
 	}
+	//Paiks
+	custom_unit_class = unit_class[14];
+	custom_unit_class.insert(custom_unit_class.end(), unit_class[4].begin(), unit_class[4].end());
+	giveEffectstoClass(df, 852, {createEC(5, -1, -1, 10, 0.833333333)}, custom_unit_class);
+	//Detinets
+	df->Effects[481].EffectCommands.push_back(createEC(4, 1251, -1, 104, 140));
+	df->Effects[481].EffectCommands.push_back(createEC(4, 1251, -1, 106, -140));
+	df->Effects[481].EffectCommands.push_back(createEC(4, 1665, -1, 104, 70));
+	df->Effects[481].EffectCommands.push_back(createEC(4, 1665, -1, 106, -70));
 
 	//Copy the attack tree task from onager
 	for (int k=0; k<df->Civs.size(); k++) {
@@ -2898,11 +2973,12 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	e.EffectCommands.clear();
 	e.EffectCommands.push_back(createEC(5, -1, 35, 0, 2));
 	addEffectandTech(df, e, "C-Bonus, Explosive units 2x HP");
-	//Town Center spawns a married couple upon reaching Feudal Age
-	e.EffectCommands.clear();
-	e.EffectCommands.push_back(createEC(7, 83, 109, 1, 0));
-	e.EffectCommands.push_back(createEC(7, 293, 109, 1, 0));
-	civ_bonuses.push_back({addEffectandTech(df, e, "C-Bonus, +2 Villagers in Feudal Age", {101})});
+	//Town Center spawns a married couple every age
+		//e.EffectCommands.clear();
+		//e.EffectCommands.push_back(createEC(7, 83, 109, 1, 0));
+		//e.EffectCommands.push_back(createEC(7, 293, 109, 1, 0));
+		//civ_bonuses.push_back({addEffectandTech(df, e, "C-Bonus, +2 Villagers in Feudal Age", {101})});
+		civ_bonuses.push_back({847, 848, 849});
 	//All economic techs researched +100% faster
 	e.EffectCommands.clear();
 	const vector<vector<int>> tech_times = {{65, -23}, {213, -38}, {249, -28}, {202, -13}, {203, -25}, {221, -50}, {278, -15}, {279, -38}, {55, -15}, {182, -38},
@@ -3010,9 +3086,10 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	}
 	civ_bonuses.push_back(tech_ids);
 	//Fishing ships carry +10 food
-	e.EffectCommands.clear();
-	e.EffectCommands.push_back(createEC(4, -1, 21, 14, 10));
-	addEffectandTech(df, e, "C-Bonus, Fishing ships carry +10");
+		//e.EffectCommands.clear();
+		//e.EffectCommands.push_back(createEC(4, -1, 21, 14, 10));
+		//addEffectandTech(df, e, "C-Bonus, Fishing ships carry +10");
+		civ_bonuses.push_back({844});
 	//Galleys +1/2 attack
 	e.EffectCommands.clear();
 	tech_ids.clear();
@@ -3888,9 +3965,9 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 		civ.Units[1180].Type50.AttackGraphic = 2924;
 		civ.Units[1180].DyingGraphic = 2925;
 		civ.Units[1180].DeadFish.WalkingGraphic = 2927;
-		civ.Units[1180].HitPoints = 400;
-		civ.Units[1180].Type50.DisplayedAttack = 16;
-		civ.Units[1180].Type50.Attacks[1].Amount = 16;
+		civ.Units[1180].HitPoints = 330;
+		civ.Units[1180].Type50.DisplayedAttack = 15;
+		civ.Units[1180].Type50.Attacks[1].Amount = 15;
 		civ.Units[1180].Creatable.DisplayedPierceArmour = 4;
 		civ.Units[1180].Type50.Armours[3].Amount = 4;
 	}
@@ -3907,8 +3984,8 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	t.LanguageDLLHelp = 107601;
 	t.LanguageDLLTechTree = 157601;
 	t.RequiredTechs[1] = 631;
-	t.ResourceCosts[0].Amount = 1500;
-	t.ResourceCosts[1].Amount = 1200;
+	t.ResourceCosts[0].Amount = 1200;
+	t.ResourceCosts[1].Amount = 1000;
 	t.ResearchTime = 200;
 	t.EffectID = (df->Effects.size() - 1);
 	df->Techs.push_back(t);
@@ -4068,6 +4145,13 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	//Scouts +1 attack vs. archers
 	team_bonuses.push_back(802);
 
+	//Dravidians TB
+	team_bonuses.push_back(839);
+	//Bengalis TB
+	team_bonuses.push_back(841);
+	//Gurjaras TB
+	team_bonuses.push_back(843);
+
 	//Folwark replaces Mill
 	civ_bonuses.push_back({793, 794, 795, 796, 797, 798, 799, 818, 819, 820, 821});
 	//Stone miners generate gold
@@ -4098,6 +4182,54 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	civ_bonuses.push_back({803, 804});
 	//Houfnice
 	civ_bonuses.push_back({787});
+	//Caravanseri
+	civ_bonuses.push_back({518});
+	//Gunpowder untis +1/+1P
+	civ_bonuses.push_back({520});
+	//Receive +200 wood per age
+	civ_bonuses.push_back({851, 852, 853});
+	//Barracks techs cost -50%
+	e.EffectCommands.clear();
+	e.Name = "Barracks techs cost -50%";
+	df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Barracks techs cost -50%";
+	t.EffectID = (df->Effects.size() - 1);
+	t.Civ = 99;
+	df->Techs.push_back(t);
+	civ_bonuses.push_back({(int) (df->Techs.size() - 1)});
+
+	//Skirmishers and elephant archers attack 25% faster
+	civ_bonuses.push_back({845});
+	//Elephant units -25% bonus damage and conversion resist
+	civ_bonuses.push_back({846});
+	//Ships regenerate
+	civ_bonuses.push_back({850});
+	//Start with 2 forage bushes
+	civ_bonuses.push_back({857});
+	//Livestock garrison mills
+	civ_bonuses.push_back({856});
+	//Mounted units +50% bonus damage
+	civ_bonuses.push_back({854});
+	//Can garrison fishing ships
+	civ_bonuses.push_back({855});
+	//Thirisadai
+	civ_bonuses.push_back({841});
+	//Shrivamsha
+	civ_bonuses.push_back({842, 843});
+	//Camel Scouts
+	civ_bonuses.push_back({235, 860, 858});
+	//Armored Elephants
+	civ_bonuses.push_back({837, 838});
+	df->Techs[837].Civ = 99;
+	df->Techs[838].Civ = 99;
+	//Elephant Archers
+	civ_bonuses.push_back({480, 481});
+	df->Techs[480].Civ = 99;
+	df->Techs[481].Civ = 99;
+	//Battle Elephants +1/+1P armor
+	civ_bonuses.push_back({640});
 
 	//Explosive units can blast trees
 	//Scorpions and ballistas get ballistics (?)
@@ -4554,6 +4686,17 @@ void calculateTechDiscounts (DatFile *df) {
 					effect.EffectCommands.push_back(createEC(101, 102, df->Techs[102].ResourceCosts[i].Type, -1, -1 * (df->Techs[102].ResourceCosts[i].Amount / 4)));
 				}
 			}
+		} else if (effect.Name == "Barracks techs cost -50%") {
+			effect.EffectCommands.clear();
+			for (int i=0; i<df->Techs.size(); i++) {
+				if (df->Techs[i].ResearchLocation == 12) {
+					for (int j=0; j<3; j++) {
+						if ((df->Techs[i].ResourceCosts[j].Type >= 0) && (df->Techs[i].ResourceCosts[j].Type <= 3)) {
+							effect.EffectCommands.push_back(createEC(101, i, df->Techs[i].ResourceCosts[j].Type, -1, -1 * (df->Techs[i].ResourceCosts[j].Amount / 2)));
+						}
+					}
+				}
+			}
 		}
 	}
 }
@@ -4651,13 +4794,13 @@ void assignTechs (DatFile *df, Value cfg, ofstream &logfile) {
 
 					df->Effects[333].EffectCommands.push_back(createEC(4, dupUU, -1, 8, amountTypetoD(1, 4)));
 					df->Effects[334].EffectCommands.push_back(createEC(4, dupUU, -1, 8, amountTypetoD(1, 4)));
-					df->Effects[560].EffectCommands.push_back(createEC(4, dupUU, -1, 8, amountTypetoD(1, 3)));
+					df->Effects[640].EffectCommands.push_back(createEC(4, dupUU, -1, 8, amountTypetoD(1, 3)));
 					df->Effects[584].EffectCommands.push_back(createEC(4, dupUU, -1, 8, amountTypetoD(1, 3)));
 					df->Effects[610].EffectCommands.push_back(createEC(5, dupUU, -1, 100, 0.85));
 					df->Effects[638].EffectCommands.push_back(createEC(5, dupUU, -1, 100, 0.941176));
 					df->Effects[333].EffectCommands.push_back(createEC(4, dupUUe, -1, 8, amountTypetoD(1, 4)));
 					df->Effects[334].EffectCommands.push_back(createEC(4, dupUUe, -1, 8, amountTypetoD(1, 4)));
-					df->Effects[560].EffectCommands.push_back(createEC(4, dupUUe, -1, 8, amountTypetoD(1, 3)));
+					df->Effects[640].EffectCommands.push_back(createEC(4, dupUUe, -1, 8, amountTypetoD(1, 3)));
 					df->Effects[584].EffectCommands.push_back(createEC(4, dupUUe, -1, 8, amountTypetoD(1, 3)));
 					df->Effects[610].EffectCommands.push_back(createEC(5, dupUUe, -1, 100, 0.85));
 					df->Effects[638].EffectCommands.push_back(createEC(5, dupUUe, -1, 100, 0.941176));
@@ -4714,12 +4857,13 @@ void assignTechs (DatFile *df, Value cfg, ofstream &logfile) {
 					for (Civ &civ : df->Civs) {
 						civ.Units[1260] = civ.Units[unique_elite];
 						civ.Units[1260].Name = "MKIPCHAK";
-						civ.Units[1260].Creatable.TrainLocationID = -1;
+						//civ.Units[1260].Creatable.TrainLocationID = -1;
+						civ.Units[1260].Creatable.TrainLocationID = 82;
 						civ.Units[1260].Creatable.ButtonID = 4;
 						civ.Units[1260].Creatable.ResourceCosts[0].Type = 214;
 						civ.Units[1260].Creatable.ResourceCosts[0].Amount = 1;
-						civ.Units[1260].Creatable.ResourceCosts[1].Type = 215;
-						civ.Units[1260].Creatable.ResourceCosts[1].Amount = -1;
+						//civ.Units[1260].Creatable.ResourceCosts[1].Type = 215;
+						//civ.Units[1260].Creatable.ResourceCosts[1].Amount = -1;
 					}
 					duplicationUnits.push_back({-2, unique_elite, -1, 1260});
 					break;
@@ -4754,15 +4898,21 @@ void assignTechs (DatFile *df, Value cfg, ofstream &logfile) {
 				}
 			}
 		}
-		int eagleStart = 0;
-		for (int j=0; j<df->Effects[tech_tree_ids[i]].EffectCommands.size(); j++) {
-			if ((df->Effects[tech_tree_ids[i]].EffectCommands[j].Type == 102) && (df->Effects[tech_tree_ids[i]].EffectCommands[j].D == 25)) {
-				df->Effects[tech_tree_ids[i]].EffectCommands.push_back(createEC(3, 448, 751, 1, 0));
-				eagleStart = 1;
+		//Default: scout start
+		df->Civs[i+1].Resources[263] = 448;
+		//Eagle start
+		for (int j=0; j<cfg["techtree"][i].size(); j++) {
+			if (cfg["techtree"][i][j] == 1 && j == 12) {
+				df->Civs[i+1].Resources[263] = 751;
+				j = cfg["techtree"][i].size();
 			}
 		}
-		if (eagleStart == 0) {
-			df->Effects[tech_tree_ids[i]].EffectCommands.push_back(createEC(3, 751, 448, 1, 0));
+		//Camel start
+		for (int j=0; j<cfg["civ_bonus"][i].size(); j++) {
+			if (cfg["civ_bonus"][i][j] == 300) {
+				df->Civs[i+1].Resources[263] = 1755;
+				j = cfg["civ_bonus"][i].size();
+			}
 		}
 	}
 }

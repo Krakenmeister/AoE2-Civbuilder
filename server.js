@@ -18,6 +18,8 @@ const makeai = require("./mod_ai.js");
 const hostname = 'localhost';
 const port = 3000;
 
+const oneDayInMs = 24 * 3600 * 1000;
+
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
@@ -35,8 +37,8 @@ app.use(parser.json({limit: '20mb'}));
 app.use(zip());
 app.use(cookieParser());
 
-app.use(express.static('public'));
-app.use(express.static('public/aoe2techtree'));
+app.use(express.static('public', { maxAge: oneDayInMs }));
+app.use(express.static('public/aoe2techtree', { maxAge: oneDayInMs }));
 
 //0 = vanilla, 1 = allow generated bonuses
 const num_bonuses = [

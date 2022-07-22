@@ -452,12 +452,12 @@ function drawFlag (seed, symbol, output_path1, output_path2, output_path3, outpu
 function generateFlags (output_path1, output_path2, input_path) {
     //Array of symbols that haven't been used yet
     var symbols = []
-    for (var i = 0; i < 39; i++) {
+    for (var i = 0; i < 42; i++) {
 	symbols.push(i)
     }
 
 
-    for (var i=0; i<39; i++) {
+    for (var i=0; i<42; i++) {
 	var civName
 	//Symbol is an integer representing the flag symbol
 	var symbol = symbols[getRandomInt(symbols.length)]
@@ -470,7 +470,7 @@ function generateFlags (output_path1, output_path2, input_path) {
 	    symbols.splice(symbols.indexOf(symbol), 1)
 	}
 
-	const nameArr = ['aztecs', 'berber', 'britons', 'bulgarians', 'burgundians', 'burmese', 'byzantines', 'celts', 'chinese', 'cumans', 'ethiopians', 'franks', 'goths', 'huns', 'inca', 'indians', 'italians', 'japanese', 'khmer',
+	const nameArr = ['aztecs', 'bengalis', 'berber', 'britons', 'bulgarians', 'burgundians', 'burmese', 'byzantines', 'celts', 'chinese', 'cumans', 'dravidians', 'ethiopians', 'franks', 'goths', 'gurjaras', 'hindustanis', 'huns', 'inca', 'italians', 'japanese', 'khmer',
 			'koreans', 'lithuanians', 'magyars', 'malay', 'malians', 'mayans', 'mongols', 'persians', 'portuguese', 'saracens', 'sicilians', 'slavs', 'spanish', 'tatars', 'teutons', 'turks', 'vietnamese', 'vikings', 'poles',
 			'bohemians']
 

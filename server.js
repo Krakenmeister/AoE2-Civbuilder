@@ -690,9 +690,6 @@ app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/public/updating.html');
 });*/
 
-app.get('/pointilism', function (req, res) {
-	res.sendFile(__dirname + '/public/pointilism/pointilism.html');
-});
 
 app.get('/civbuilder', function (req, res) {
 	res.sendFile(__dirname + '/public/civbuilder_home.html');
@@ -1122,6 +1119,30 @@ io.on('connection', function(socket) {
 });
 
 
+/*
+*	Pointilism Stuff
+*
+*
+*/
+
+app.get('/pointilism', function (req, res) {
+	res.sendFile(__dirname + '/public/pointilism/pointilism.html');
+});
+
+
+/*
+*	Mazemaker Stuff
+*
+*
+*/
+
+app.get('/mazemaker', function (req, res) {
+	res.sendFile(__dirname + '/public/mazemaker/mazemaker.html');
+});
+
+app.get('/mazemaker/:maze', function (req, res) {
+	res.sendFile(__dirname + '/public/mazemaker/mazesolver.html');
+});
 
 
 /*

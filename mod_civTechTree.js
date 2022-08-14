@@ -583,8 +583,8 @@ function getUTNodes (index1, index2) {
 }
 
 function arrangeTechTree (data_json, techtree_json) {
-        var data = fs.readFileSync(data_json)
-        var civ = JSON.parse(data)
+	var data = fs.readFileSync(data_json)
+	var civ = JSON.parse(data)
 	var vanilla_data = fs.readFileSync(techtree_json)
 	var tree = JSON.parse(vanilla_data)
 	//Modify tech tree appearance for all civs

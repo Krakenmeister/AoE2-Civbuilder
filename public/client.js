@@ -670,6 +670,8 @@ if (btn7) {
 		var instructionstext = document.createElement('p')
 		instructionstext.id = 'instructionstext'
 		instructionstext.innerHTML = '' +
+			'<b>09-02-2022</b><br>' +
+			'&emsp;&emsp;• Updated website to conform to AoE2 Update 66694<br><br>' +
 			'<b>05-15-2022</b><br>' +
 			'&emsp;&emsp;• Fixed a few minor text and graphics inconsistencies<br>' +
 			'&emsp;&emsp;• Updated mod generation to be compatible with Dynasties of India update<br><br>' +

@@ -40,7 +40,7 @@ app.use(express.static('public/aoe2techtree'));
 
 //0 = vanilla, 1 = allow generated bonuses
 const num_bonuses = [
-	[140, 304],	//Civ bonuses
+	[140, 305],	//Civ bonuses
 	[39, 82],	//Unique units
 	[39, 49],	//Castle techs
 	[39, 47],	//Imp techs
@@ -1146,7 +1146,7 @@ app.get('/mazemaker/:maze', function (req, res) {
 
 
 /*
-*	Arithmio Stuff Below
+*	Arithmio Stuff
 *
 *
 */
@@ -1239,7 +1239,7 @@ app.post('/arithmio/join', joinArithmio, (req, res) => {
 	res.end(JSON.stringify({access: req.access, playerID: req.playerID}));
 });
 
-app.post('/arithmio/lobby', (req, res) => {
+app.post('/arithmio/play', (req, res) => {
 	res.cookie('roomCode', req.body.joinCode);
 	res.cookie('playerID', req.body.playerID);
 	res.end();
@@ -1341,4 +1341,123 @@ io.on('connection', (socket) => {
 		let gameState = JSON.parse(gameFile);
 		io.in(roomID).emit('sendChat', gameState.players[playerID].name, message);
 	});
+});
+
+/*
+*	Go Variant Stuff
+*
+*
+*/
+
+app.get('/michigaigo', (req, res) => {
+        res.sendFile(path.join(__dirname, '/public/michigaigo/home.html'));
+});
+
+app.get('/michigaigo/play', (req, res) => {
+	res.sendFile(path.join(__dirname, '/public/michigaigo/play.html'));
+});
+
+app.get('/michigaigo/edit', (req, res) => {
+	res.sendFile(path.join(__dirname, '/public/michigaigo/edit.html'));
+});
+
+app.post('/michigaigo/register', (req, res) => {
+	req.success = true;
+	let database = fs.readFileSync(`./michigaigo/michigaigo_users.json`);
+	let userbase = JSON.parse(database);
+	let users = userbase["users"];
+	for (const token in users) {
+		if (req.body.username == users[token]["username"]) {
+			req.success = false;
+		}
+	}
+	if (req.success) {
+		let newToken;
+		while (!newToken || users[newToken]) {
+			newToken = "";
+			for (let i=0; i<10; i++) {
+				newToken += Math.floor(Math.random() * 10).toString();
+			}
+		}
+		users[newToken] = {
+			"username": req.body.username,
+			"password": req.body.password
+		};
+		fs.writeFileSync(`./michigaigo/michigaigo_users.json`, JSON.stringify(userbase, null, 2));
+		res.clearCookie('loginToken');
+		res.cookie('loginToken', newToken);
+		res.setHeader('Content-Type', 'application/json');
+		res.end(JSON.stringify({success: true, token: newToken}));
+	} else {
+		res.setHeader('Content-Type', 'application/json');
+		res.end(JSON.stringify({success: false}));
+	}
+});
+
+app.post('/michigaigo/login', (req, res) => {
+	req.success = false;
+	let database = fs.readFileSync(`./michigaigo/michigaigo_users.json`);
+	let userbase = JSON.parse(database);
+	let users = userbase["users"];
+	if (req.body.token && req.body.token != "undefined") {
+		if (users[req.body.token]) {
+			req.success = true;
+			req.token = req.body.token;
+		}
+	}
+	if (!req.success) {
+		for (const token in users) {
+			if (req.body.username == users[token]["username"] && req.body.password == users[token]["password"]) {
+				req.success = true;
+				req.token = token;
+				break;
+			}
+		}
+	}
+	if (req.success) {
+		console.log("success");
+		res.clearCookie('loginToken');
+		res.cookie('loginToken', req.token);
+		res.setHeader('Content-Type', 'application/json');
+		res.end(JSON.stringify({success: true, token: req.token}));
+	} else {
+		res.setHeader('Content-Type', 'application/json');
+		res.end(JSON.stringify({success: false}));
+	}
+});
+
+app.post('/michigaigo/globalchat', (req, res) => {
+	let chatlogs = fs.readFileSync(`./michigaigo/michigaigo_chat.json`);
+	let chatobj = JSON.parse(chatlogs);
+	let chats = chatobj["messages"];
+	if (req.body.get) {
+		let responseChats = [];
+		for (let i=0; (i < req.body.get && chats.length - i - 1 >= 0); i++) {
+			responseChats.unshift(chats[chats.length - i - 1]);
+		}
+		res.setHeader('Content-Type', 'application/json');
+		res.end(JSON.stringify({numMessages: chats.length, messages: responseChats}));
+	} else if (req.body.chat) {
+		chats.push(req.body.chat);
+		fs.writeFileSync(`./michigaigo/michigaigo_chat.json`, JSON.stringify(chatobj, null, 2));
+		res.setHeader('Content-Type', 'application/json');
+		res.end(JSON.stringify({success: true}));
+	}
+});
+
+app.post('/michigaigo/username', (req, res) => {
+	let database = fs.readFileSync(`./michigaigo/michigaigo_users.json`);
+	let userbase = JSON.parse(database);
+	let users = userbase["users"];
+	res.setHeader('Content-Type', 'appplication/json');
+	if (users[req.body.token]) {
+		res.end(JSON.stringify({success: true, username: users[req.body.token]["username"]}));
+	} else {
+		res.end(JSON.stringify({success: false}));
+	}
+});
+
+app.post('/michigaigo/logout', (req, res) => {
+	res.clearCookie('loginToken');
+        res.redirect('https://krakenmeister.com/michigaigo');
 });

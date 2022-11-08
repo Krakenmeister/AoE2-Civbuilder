@@ -3220,9 +3220,9 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	e.EffectCommands.push_back(createEC(5, 885, -1, 101, 0.5));
 	e.EffectCommands.push_back(createEC(5, 1105, -1, 101, 0.5));
 	addEffectandTech(df, e, "C-Bonus, Siege Towers train 100% faster");
-	//Eco upgrades cost -50% food
+	//Eco upgrades cost -40% food
 	e.EffectCommands.clear();
-	addEffectandTech(df, e, "C-Bonus, Eco upgrades cost -50% food");
+	addEffectandTech(df, e, "C-Bonus, Eco upgrades cost -40% food");
 	//Cannon galleons get ballistics
 	e.EffectCommands.clear();
 	e.EffectCommands.push_back(createEC(0, 374, -1, 19, 1));
@@ -4210,8 +4210,16 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	civ_bonuses.push_back({857});
 	//Livestock garrison mills
 	civ_bonuses.push_back({856});
-	//Mounted units +50% bonus damage
+	//Mounted units +40% bonus damage
 	civ_bonuses.push_back({854});
+	df->Effects[869].EffectCommands.clear();
+	for (int i=0; i<37; i++) {
+		if (i != 3 && i != 4 && i != 31) {
+			for (int j=0; j<unit_class[7].size(); j++) {
+				df->Effects[869].EffectCommands.push_back(createEC(5, unit_class[7][j], -1, 9, amountTypetoD(140, i)));
+			}
+		}
+	}
 	//Can garrison fishing ships
 	civ_bonuses.push_back({855});
 	//Thirisadai
@@ -4230,6 +4238,8 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	df->Techs[481].Civ = 99;
 	//Battle Elephants +1/+1P armor
 	civ_bonuses.push_back({640});
+	//Monks +3/+3P armor
+	civ_bonuses.push_back({870});
 
 	//Explosive units can blast trees
 	//Scorpions and ballistas get ballistics (?)
@@ -4661,13 +4671,13 @@ void calculateTechDiscounts (DatFile *df) {
 					}
 				}
 			}
-		} else if (effect.Name == "C-Bonus, Eco upgrades cost -50% food") {
+		} else if (effect.Name == "C-Bonus, Eco upgrades cost -40% food") {
 			effect.EffectCommands.clear();
 			for (int i=0; i<df->Techs.size(); i++) {
 				if ((df->Techs[i].ResearchLocation == 562) || (df->Techs[i].ResearchLocation == 68) || (df->Techs[i].ResearchLocation == 584) || (df->Techs[i].ResearchLocation == 84) || (i == 65)) {
 					for (int j=0; j<3; j++) {
 						if (df->Techs[i].ResourceCosts[j].Type == 0) {
-							effect.EffectCommands.push_back(createEC(101, i, 0, -1, -1 * (df->Techs[i].ResourceCosts[j].Amount / 2)));
+							effect.EffectCommands.push_back(createEC(101, i, 0, -1, -0.4 * (df->Techs[i].ResourceCosts[j].Amount)));
 						}
 					}
 				}

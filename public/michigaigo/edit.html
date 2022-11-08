@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.00">
+		<link rel="stylesheet" href="/michigaigo/styles.css" />
+		<title>Michigai Go</title>
+		<link rel="shortcut icon" href="/michigaigo/img/favicon.ico">
+		<link rel="icon" sizes="16x16 32x32 64x64" href="/michigaigo/img/favicon.ico">
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+		<div class="edit" id="wrapper">
+			<div class="edit" id="navbar">
+				<div class="edit btn" id="playNav">Play</div>
+				<div class="edit btn" id="boardEditorNav">Goban Editor</div>
+				<div class="edit btn" id="archiveNav">Archive</div>
+				<div class="edit btn" id="profileNav"></div>
+			</div>
+			<canvas id="goban" width="1000" height="1000"></canvas>
+			<div id="toolbar">
+				<img class="toolBtn" src="/michigaigo/img/tool1.png">
+				<img class="toolBtn" src="/michigaigo/img/tool2.png">
+				<img class="toolBtn" src="/michigaigo/img/tool3.png">
+				<img class="toolBtn" src="/michigaigo/img/tool4.png">
+				<img class="toolBtn" src="/michigaigo/img/tool5.png">
+				<img class="toolBtn" src="/michigaigo/img/tool6.png">
+				<img class="toolBtn" src="/michigaigo/img/tool7.png">
+				<img class="toolBtn" src="/michigaigo/img/tool8.png">
+				<img class="toolBtn" src="/michigaigo/img/tool9.png">
+				<img class="toolBtn" src="/michigaigo/img/tool10.png">
+				<img class="toolBtn" src="/michigaigo/img/tool11.png">
+			</div>
+			<div id="extraToolWrapper">
+				<div id="boardGenerateWrapper" class="categoryWrapper">
+					<div id="boardTypeWrapper" class="parameterWrapper">
+						<div id="boardTypeLabel" class="parameterLabel">Board Type</div>
+						<select name="boardTypeInput" id="boardTypeInput" class="parameterInput">
+							<option value="0">Rectangular</option>
+							<option value="1">Trihexagonal</option>
+							<option value="2">Rectrihexagonal</option>
+							<option value="3">Rhombitrihexagonal</option>
+							<option value="4">Penrose</option>
+							<option value="5">Snub-Square</option>
+							<option value="6">Round</option>
+						</select>
+					</div>
+					<div id="boardSizeWrapper" class="parameterWrapper">
+						<div id="boardSizeLabel" class="parameterLabel">Board Width</div>
+						<input type="number" id="boardSizeInput" name="boardSizeInput" class="parameterInput" min="1" value="9">
+					</div>
+					<div id="boardSize2Wrapper" class="parameterWrapper">
+						<div id="boardSize2Label" class="parameterLabel">Board Height</div>
+						<input type="number" id="boardSize2Input" name="boardSize2Input" class="parameterInput" min="2" value="9">
+					</div>
+					<div id="generateBtn" class="edit btn">Generate</div>
+				</div>
+				<div id="boardRandomizeWrapper" class="categoryWrapper">
+					<div id="randomizeNumWrapper" class="parameterWrapper">
+						<div id="randomizeNumLabel" class="parameterLabel">Number of Stones</div>
+						<input type="number" id="randomizeNumInput" name="randomizeNumInput" class="parameterInput" min="1">
+					</div>
+					<div id="randomizeAdjacencyWrapper" class="parameterWrapper">
+						<div id="randomizeAdjacencyLabel" class="parameterLabel">Allow Adjacencies</div>
+						<input type="checkbox" id="randomizeAdjacencyInput" name="randomizeAdjacencyInput" value="randomizeAdjacency">
+					</div>
+					<div id="randomizeBtn" class="edit btn">Randomize</div>
+				</div>
+				<div id="miscellaneousWrapper" class="categoryWrapper">
+					<div id="teamWrapper" class="parameterWrapper">
+						<div id="teamLabel" class="parameterLabel">Selected Team</div>
+						<input type="number" id="teamNumber" name="teamNumber" class="parameterInput" value="1" min="1" max="8">
+					</div>
+					<div id="snapWrapper" class="parameterWrapper">
+						<div id="snapLabel" class="parameterLabel">Snap to Grid</div>
+						<input type="checkbox" id="snapInput" name="snapInput" value="isSnapping">
+					</div>
+				</div>
+				<div id="undoBtn" class="categoryWrapper edit btn">Undo</div>
+			</div>
+		</div>
+		<script src="/michigaigo/common.js"></script>
+		<script src="/michigaigo/bertmantiling.js"></script>
+		<script src="/michigaigo/edit.js"></script>
+	</body>
+</html>

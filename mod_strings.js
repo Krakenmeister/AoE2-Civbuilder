@@ -119,7 +119,7 @@ const civBonusStrings = [
 	"Gunpowder units +25% attack",
 	"Economic upgrades available one age earlier",
 	"Castles and Town Centers built 100% faster",
-	"Land military units (except siege weapons) receive 50% less bonus damage",
+	"Land military units (except siege weapons) receive 33% less bonus damage",
 	"Farm upgrades provide +100% additional food",
 	"Can build Donjon",
 	"Farm upgrades free (require Mill)",
@@ -238,7 +238,7 @@ const civBonusStrings = [
 	"Start with an extra horse",
 	"Siege Towers 2x HP",
 	"Siege Towers train 100% faster",
-	"Eco upgrades cost -50% food",
+	"Eco upgrades cost -40% food",
 	"Cannon Galleons benefit from Ballistics (fire faster, more accurately)",
 	"Warships +10 attack vs. villagers",
 	"Rams generate stone by ramming",
@@ -308,14 +308,15 @@ const civBonusStrings = [
 	"Ships regenerate 15 HP per minute",
 	"Start with 2 Forage Bushes",
 	"Can garrison Mills with livestock to produce food",
-	"Mounted units deal +50% bonus damage",
+	"Mounted units deal +40% bonus damage",
 	"Can garrison Docks with Fishing Ships",
 	"Can train Thirisadai in docks",
 	"Can recruit Shrivamsha Riders",
 	"Can recruit Camel Scouts in Feudal Age",
 	"Can recruit Armored Elephants",
 	"Can recruit Elephant Archers",
-	"Battle Elephants +1/+1P armor"
+	"Battle Elephants +1/+1P armor",
+	"Monks +3/+3P armor"
 ]
 
 var uniqueCastleStrings = ["Atlatl (Skirmishers +1 attack, +1 range)", "Kasbah (team castles work 25% faster)", "Yeomen (+1 foot archer and skirmisher range, +2 tower attack)", "Stirrups (Cavalry attack 33% faster)",

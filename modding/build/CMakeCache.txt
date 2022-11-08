@@ -15,7 +15,7 @@
 ########################
 
 //The directory containing a CMake configuration file for Boost.
-Boost_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0
+Boost_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0
 
 //Path to a file.
 Boost_INCLUDE_DIR:PATH=/usr/include
@@ -36,7 +36,7 @@ CMAKE_BUILD_TYPE:STRING=
 CMAKE_COLOR_MAKEFILE:BOOL=ON
 
 //CXX compiler
-CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
+CMAKE_CXX_COMPILER:STRING=/usr/bin/c++
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -62,7 +62,7 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
 //C compiler
-CMAKE_C_COMPILER:FILEPATH=/usr/bin/cc
+CMAKE_C_COMPILER:STRING=/usr/bin/cc
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -257,19 +257,25 @@ ZLIB_LIBRARY_DEBUG:FILEPATH=ZLIB_LIBRARY_DEBUG-NOTFOUND
 ZLIB_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libz.so
 
 //The directory containing a CMake configuration file for boost_headers.
-boost_headers_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.71.0
+boost_headers_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.74.0
 
 //The directory containing a CMake configuration file for boost_iostreams.
-boost_iostreams_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_iostreams-1.71.0
+boost_iostreams_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_iostreams-1.74.0
 
 //Value Computed by CMake
 create-data-mod_BINARY_DIR:STATIC=/var/www/krakenmeister.com/civbuilder/modding/build
+
+//Value Computed by CMake
+create-data-mod_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 create-data-mod_SOURCE_DIR:STATIC=/var/www/krakenmeister.com/civbuilder/modding
 
 //Value Computed by CMake
 genieutils_BINARY_DIR:STATIC=/var/www/krakenmeister.com/civbuilder/modding/build/genieutils
+
+//Value Computed by CMake
+genieutils_IS_TOP_LEVEL:STATIC=OFF
 
 //Dependencies for the target
 genieutils_LIB_DEPENDS:STATIC=general;Boost::iostreams;general;/usr/lib/x86_64-linux-gnu/libz.so;general;/usr/lib/x86_64-linux-gnu/libc.so;
@@ -296,9 +302,9 @@ CMAKE_CACHEFILE_DIR:INTERNAL=/var/www/krakenmeister.com/civbuilder/modding/build
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=16
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=22
 //Patch version of cmake used to create the current loaded cache
-CMAKE_CACHE_PATCH_VERSION:INTERNAL=3
+CMAKE_CACHE_PATCH_VERSION:INTERNAL=1
 //ADVANCED property for variable: CMAKE_COLOR_MAKEFILE
 CMAKE_COLOR_MAKEFILE-ADVANCED:INTERNAL=1
 //Path to CMake executable.
@@ -399,7 +405,7 @@ CMAKE_RANLIB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_READELF
 CMAKE_READELF-ADVANCED:INTERNAL=1
 //Path to CMake installation.
-CMAKE_ROOT:INTERNAL=/usr/share/cmake-3.16
+CMAKE_ROOT:INTERNAL=/usr/share/cmake-3.22
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS
 CMAKE_SHARED_LINKER_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_DEBUG
@@ -431,7 +437,7 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding Boost
-FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake][cfound components: iostreams ][v1.71.0(1.55)]
+FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake][cfound components: iostreams ][v1.74.0(1.55)]
 //Details about finding LZ4
 FIND_PACKAGE_MESSAGE_DETAILS_LZ4:INTERNAL=[/usr/lib/x86_64-linux-gnu/liblz4.so][/usr/include][v()]
 //Details about finding ZLIB

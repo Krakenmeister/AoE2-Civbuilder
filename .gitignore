@@ -2,7 +2,7 @@ core
 updatemods
 package-lock.json
 modding/auto-mods
-modding/genieutils
+#modding/genieutils
 node_modules
 empty.json
 modding/requested_mods/*

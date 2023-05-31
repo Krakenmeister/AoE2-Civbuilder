@@ -1,8 +1,8 @@
 genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.o: \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/src/dat/Civ.cpp \
+ /home/kraken/website/civbuilder/modding/genieutils/src/dat/Civ.cpp \
  /usr/include/stdc-predef.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/dat/Civ.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/Civ.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -149,7 +149,7 @@ genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/Types.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/Types.h \
  /usr/include/c++/11/array /usr/include/c++/11/utility \
  /usr/include/c++/11/bits/stl_relops.h /usr/include/c++/11/vector \
  /usr/include/c++/11/bits/stl_uninitialized.h \
@@ -157,17 +157,17 @@ genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.o: \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc /usr/include/string.h \
  /usr/include/strings.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/dat/Unit.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/dat/unit/DamageGraphic.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/dat/UnitCommand.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/dat/unit/AttackOrArmor.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/dat/unit/DeadFish.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/dat/unit/Bird.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/dat/unit/../UnitCommand.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/dat/unit/Type50.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/dat/unit/AttackOrArmor.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/dat/unit/Projectile.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/dat/unit/Creatable.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/dat/unit/../ResourceUsage.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/dat/unit/Building.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/dat/ResourceUsage.h
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/Unit.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/DamageGraphic.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/UnitCommand.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/AttackOrArmor.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/DeadFish.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/Bird.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/../UnitCommand.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/Type50.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/AttackOrArmor.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/Projectile.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/Creatable.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/../ResourceUsage.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/Building.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/ResourceUsage.h

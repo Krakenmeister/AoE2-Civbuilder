@@ -1,7 +1,7 @@
 genieutils/CMakeFiles/genieutils.dir/src/util/Logger.cpp.o: \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/src/util/Logger.cpp \
+ /home/kraken/website/civbuilder/modding/genieutils/src/util/Logger.cpp \
  /usr/include/stdc-predef.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/util/Logger.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/util/Logger.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

@@ -1,5 +1,5 @@
 genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.o: \
- /var/www/krakenmeister.com/civbuilder/modding/pcrio/pcrio.c \
+ /home/kraken/website/civbuilder/modding/pcrio/pcrio.c \
  /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -58,8 +58,8 @@ genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.o: \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/c++/11/bits/std_abs.h /usr/include/string.h \
  /usr/include/strings.h \
- /var/www/krakenmeister.com/civbuilder/modding/pcrio/pcrio.h \
+ /home/kraken/website/civbuilder/modding/pcrio/pcrio.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /var/www/krakenmeister.com/civbuilder/modding/pcrio/pcrdef.h
+ /home/kraken/website/civbuilder/modding/pcrio/pcrdef.h

@@ -1,0 +1,14 @@
+{
+  "civs": [
+    {
+      "civ_id": "hi",
+      "civ_techs_buildings": [],
+      "civ_techs_units": []
+    },
+    {
+      "civ_id": "there",
+      "civ_techs_buildings": [],
+      "civ_techs_units": []
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+html
+  head
+    title Civilization Drafter
+    script
+      include ../js/client.js
+    style
+      include ../css/styles.css
+  body
+    div(id='page')
+      h1(id='title') Civilization Drafter
+      div(class='bgbox')
+        p Draft Created!
+        label(for='link1') Host Link
+        input(type='text', id='link1', value=hostlink, readonly)
+        button(id='button1', onclick='copyToClipboard("link1", "button1")') Copy
+        label(for='link2') Player Link
+        input(type='text', id='link2', value=playerlink, readonly)
+        button(id='button2', onclick='copyToClipboard("link2", "button2")') Copy
+        label(for='link3') Spectator Link
+        input(type='text', id='link3', value=spectatorlink, readonly)
+        button(id='button3', onclick='copyToClipboard("link3", "button3")') Copy

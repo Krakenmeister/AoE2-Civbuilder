@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /var/www/krakenmeister.com/civbuilder/modding
+CMAKE_SOURCE_DIR = /home/kraken/website/civbuilder/modding
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /var/www/krakenmeister.com/civbuilder/modding/build
+CMAKE_BINARY_DIR = /home/kraken/website/civbuilder/modding/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -97,14 +97,14 @@ genieutils/clean: genieutils/CMakeFiles/genieutils.dir/clean
 CMakeFiles/create-data-mod.dir/all: genieutils/CMakeFiles/genieutils.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/create-data-mod.dir/build.make CMakeFiles/create-data-mod.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/create-data-mod.dir/build.make CMakeFiles/create-data-mod.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/var/www/krakenmeister.com/civbuilder/modding/build/CMakeFiles --progress-num=1,2,3 "Built target create-data-mod"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=1,2,3 "Built target create-data-mod"
 .PHONY : CMakeFiles/create-data-mod.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/create-data-mod.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /var/www/krakenmeister.com/civbuilder/modding/build/CMakeFiles 56
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kraken/website/civbuilder/modding/build/CMakeFiles 56
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/create-data-mod.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /var/www/krakenmeister.com/civbuilder/modding/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kraken/website/civbuilder/modding/build/CMakeFiles 0
 .PHONY : CMakeFiles/create-data-mod.dir/rule
 
 # Convenience name for target.
@@ -123,14 +123,14 @@ CMakeFiles/create-data-mod.dir/clean:
 genieutils/CMakeFiles/genieutils.dir/all:
 	$(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/depend
 	$(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/var/www/krakenmeister.com/civbuilder/modding/build/CMakeFiles --progress-num=4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56 "Built target genieutils"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56 "Built target genieutils"
 .PHONY : genieutils/CMakeFiles/genieutils.dir/all
 
 # Build rule for subdir invocation for target.
 genieutils/CMakeFiles/genieutils.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /var/www/krakenmeister.com/civbuilder/modding/build/CMakeFiles 53
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kraken/website/civbuilder/modding/build/CMakeFiles 53
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 genieutils/CMakeFiles/genieutils.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /var/www/krakenmeister.com/civbuilder/modding/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kraken/website/civbuilder/modding/build/CMakeFiles 0
 .PHONY : genieutils/CMakeFiles/genieutils.dir/rule
 
 # Convenience name for target.

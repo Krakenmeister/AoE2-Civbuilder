@@ -9,7 +9,7 @@ include_directories(
 add_executable(
     create-data-mod
     create-data-mod.cpp
-    configure_civilizations.cpp
+    civbuilder.cpp
 )
 set_property(TARGET create-data-mod PROPERTY CXX_STANDARD 17)
 target_link_libraries(create-data-mod genieutils jsoncpp)

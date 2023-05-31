@@ -1,7 +1,7 @@
 genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.o: \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/src/file/Compressor.cpp \
+ /home/kraken/website/civbuilder/modding/genieutils/src/file/Compressor.cpp \
  /usr/include/stdc-predef.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/file/Compressor.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/Compressor.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -168,8 +168,8 @@ genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/Types.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/Types.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc /usr/include/string.h \

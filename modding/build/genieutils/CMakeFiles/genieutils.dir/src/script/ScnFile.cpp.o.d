@@ -1,7 +1,7 @@
 genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o: \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/src/script/ScnFile.cpp \
+ /home/kraken/website/civbuilder/modding/genieutils/src/script/ScnFile.cpp \
  /usr/include/stdc-predef.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/script/ScnFile.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/script/ScnFile.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -17,8 +17,8 @@ genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/file/IFile.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/IFile.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -150,7 +150,7 @@ genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/Types.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/Types.h \
  /usr/include/c++/11/array /usr/include/c++/11/utility \
  /usr/include/c++/11/bits/stl_relops.h /usr/include/c++/11/vector \
  /usr/include/c++/11/bits/stl_uninitialized.h \
@@ -162,7 +162,7 @@ genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
  /usr/include/c++/11/bits/fstream.tcc \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/file/Compressor.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/Compressor.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
  /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
@@ -180,11 +180,11 @@ genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/script/scn/ScnPlayerData.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/script/scn/ScnResource.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/script/scn/MapDescription.h \
- /var/www/krakenmeister.com/civbuilder/modding/genieutils/include/genie/script/scn/Trigger.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/script/scn/ScnPlayerData.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/script/scn/ScnResource.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/script/scn/MapDescription.h \
+ /home/kraken/website/civbuilder/modding/genieutils/include/genie/script/scn/Trigger.h \
  /usr/include/c++/11/math.h /usr/include/c++/11/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \

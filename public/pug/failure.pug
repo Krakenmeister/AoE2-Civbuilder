@@ -1,0 +1,30 @@
+html
+  head
+    title Civilization Builder
+    style
+      include ../css/styles.css
+    script.
+      window.onload = function () {
+        function displayError (err) {
+          window.location.href = "Https://krakenmeister.com/civbuilder";
+          alert("Error: " + err);
+        }
+        let err = "#{error}";
+        displayError(err);
+      }
+  body(style='background-image: url("./img/aoe2background.jpg")')
+    div(id='page')
+      h1(id='title') Civilization Builder
+      button(id='generateButton') Random Civilizations
+      div(id='spacer')
+      button(id='startBuild') Build Civilization 
+      div(id='spacer')
+      button(id='startDraft') Create Draft
+    div(id='navigation')
+      button(id='home') Home
+      button(id='help') Help 
+      button(id='about') About 
+      button(id='events') Events 
+      button(id='updates') Updates
+
+

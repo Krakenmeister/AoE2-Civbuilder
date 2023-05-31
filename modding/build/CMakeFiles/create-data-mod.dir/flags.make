@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DBOOST_ALL_NO_LIB
 
-CXX_INCLUDES = -I/var/www/krakenmeister.com/civbuilder/modding/genieutils/include -I/var/www/krakenmeister.com/civbuilder/modding/.
+CXX_INCLUDES = -I/home/kraken/website/civbuilder/modding/genieutils/include -I/home/kraken/website/civbuilder/modding/.
 
 CXX_FLAGS =  -static-libstdc++ -ljsoncpp
 

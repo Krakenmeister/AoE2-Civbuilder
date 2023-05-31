@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /var/www/krakenmeister.com/civbuilder/modding
+CMAKE_SOURCE_DIR = /home/kraken/website/civbuilder/modding
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /var/www/krakenmeister.com/civbuilder/modding/build
+CMAKE_BINARY_DIR = /home/kraken/website/civbuilder/modding/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /var/www/krakenmeister.com/civbuilder/modding/build/CMakeFiles /var/www/krakenmeister.com/civbuilder/modding/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kraken/website/civbuilder/modding/build/CMakeFiles /home/kraken/website/civbuilder/modding/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /var/www/krakenmeister.com/civbuilder/modding/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kraken/website/civbuilder/modding/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -142,29 +142,29 @@ genieutils/fast:
 	$(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/build
 .PHONY : genieutils/fast
 
-configure_civilizations.o: configure_civilizations.cpp.o
-.PHONY : configure_civilizations.o
+civbuilder.o: civbuilder.cpp.o
+.PHONY : civbuilder.o
 
 # target to build an object file
-configure_civilizations.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/create-data-mod.dir/build.make CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.o
-.PHONY : configure_civilizations.cpp.o
+civbuilder.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/create-data-mod.dir/build.make CMakeFiles/create-data-mod.dir/civbuilder.cpp.o
+.PHONY : civbuilder.cpp.o
 
-configure_civilizations.i: configure_civilizations.cpp.i
-.PHONY : configure_civilizations.i
+civbuilder.i: civbuilder.cpp.i
+.PHONY : civbuilder.i
 
 # target to preprocess a source file
-configure_civilizations.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/create-data-mod.dir/build.make CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.i
-.PHONY : configure_civilizations.cpp.i
+civbuilder.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/create-data-mod.dir/build.make CMakeFiles/create-data-mod.dir/civbuilder.cpp.i
+.PHONY : civbuilder.cpp.i
 
-configure_civilizations.s: configure_civilizations.cpp.s
-.PHONY : configure_civilizations.s
+civbuilder.s: civbuilder.cpp.s
+.PHONY : civbuilder.s
 
 # target to generate assembly for a file
-configure_civilizations.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/create-data-mod.dir/build.make CMakeFiles/create-data-mod.dir/configure_civilizations.cpp.s
-.PHONY : configure_civilizations.cpp.s
+civbuilder.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/create-data-mod.dir/build.make CMakeFiles/create-data-mod.dir/civbuilder.cpp.s
+.PHONY : civbuilder.cpp.s
 
 create-data-mod.o: create-data-mod.cpp.o
 .PHONY : create-data-mod.o
@@ -200,9 +200,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... create-data-mod"
 	@echo "... genieutils"
-	@echo "... configure_civilizations.o"
-	@echo "... configure_civilizations.i"
-	@echo "... configure_civilizations.s"
+	@echo "... civbuilder.o"
+	@echo "... civbuilder.i"
+	@echo "... civbuilder.s"
 	@echo "... create-data-mod.o"
 	@echo "... create-data-mod.i"
 	@echo "... create-data-mod.s"

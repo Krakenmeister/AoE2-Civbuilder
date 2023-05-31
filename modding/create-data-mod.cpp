@@ -3,7 +3,7 @@
 #include <fstream>
 #include "genie/dat/DatFile.h"
 #include <jsoncpp/json/json.h>
-#include "configure_civilizations.h"
+#include "civbuilder.h"
 
 #define SLOBYTE(x) (*((int8_t*)&(x)))
 #define HIBYTE(x) (*((uint8_t*)&(x)+1))
@@ -24,7 +24,9 @@ int main(int argc, char **argv) {
     ifstream cfgfile(argv[1]);
     //reader.parse(cfgfile, cfg);
     cfgfile >> cfg;
-    configureCivs(df, cfg, argv[4]);
+    Civbuilder cb = Civbuilder(df, cfg, "logs.txt", "ai.json");
+    cb.configure();
+    // configureCivs(df, cfg, argv[4]);
 
     df->saveAs(argv[3]);
 

@@ -128,7 +128,7 @@ vector<vector<int>> duplicationUnits = {};
 const vector<int> tech_tree_ids = {254,258,259,262,255,257,256,260,261,263,276,277,275,446,447,449,448,504,10,1,3,5,7,31,48,42,37,646,648,650,652,706,708,710,712,782,784,801,803,838,840,842};
 const vector<int> basic_techs = {-1,-1,-1,-1,414,222,207,217,264,87,197,429,433,384,716,215,602,147,151,100,237,99,98,192,218,85,437,436,25,204,254,428,166,209,265,235,236,630,631,714,715,435,39,149,162,96,255,358,257,320,94,239,603,
 	188,211,212,219,199,200,201,67,82,80,74,76,77,604,243,246,605,242,244,-1,-1,35,37,376,65,374,375,373,50,51,194,93,140,63,380,322,54,47,64,377,608,379,321,315,316,319,441,439,231,252,45,233,230,438,8,280,213,249,55,182,278,279,
-	202,203,221,48,23,17,15,14,13,12,434,189,68,75,81,339,180,391,256,157,161,426,220,410,216,411,413,127,137,148,281,210,357,150,144,332,22,101,102,103};
+	202,203,221,48,23,17,15,14,13,12,434,189,68,75,81,339,180,391,256,157,161,426,220,410,216,411,413,127,137,148,281,210,357,150,144,332,22,101,102,103,875,480,481,837,838,886};
 vector<vector<int>> uu_tech_ids = {{263, 360}, {275, 363}, {446, 365}, {276, 364}, {262, 366}, {268, 362}, {267, 361}, {269, 368}, {274, 367}, {271, 369}, {399, 398},
 	{273, 371}, {277, 370}, {58, 60}, {431, 432}, {26, 27}, {1, 2}, {449, 450}, {467, 468}, {839, 840}, {508, 509}, {471, 472}, {503, 504}, {562, 563}, {568, 569}, {566, 567},
 	{564, 565}, {614, 615}, {616, 617}, {618, 619}, {620, 621}, {677, 678}, {679, 680}, {681, 682}, {683, 684}, {750, 751}, {752, 753}, {778, 779}, {780, 781}};
@@ -2475,7 +2475,7 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 //	df->Effects[667].EffectCommands.push_back(createEC(4, -1, 47, 9, amountTypetoD(6, 21)));
 	//Logistica
 	giveClassNewBonus(df, unit_class[14], 1);
-	giveEffectstoClass(df, 493, {createEC(4, -1, -1, 22, 0.5), createEC(4, -1, -1, 9, amountTypetoD(6, 1))}, unit_class[14]);
+	giveEffectstoClass(df, 493, {createEC(4, -1, -1, 22, 0.5), createEC(4, -1, -1, 9, amountTypetoD(6, 1)), createEC(0, -1, -1, 9, amountTypetoD(10, 32))}, unit_class[14]);
 	//Rocketry
 	custom_unit_class = {279, 542, 1179};
 	custom_unit_class.insert(custom_unit_class.end(), unit_class[14].begin(), unit_class[14].end());
@@ -2839,6 +2839,10 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 				e.EffectCommands.push_back(createEC(103, free_techs_2[i][j], -1, 0, 0));
 			}
 		}
+		if (i == 8) {
+			//Eagle line upgrade disables auto upgrade
+			e.EffectCommands.push_back(createEC(102, -1, -1, -1, 387));
+		}
 		addEffectandTech(df, e, "C-Bonus, Free techs (set 2) " + to_string(i));
 	}
 	//Trade units 20% faster
@@ -3137,10 +3141,10 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	civ_bonuses.push_back(tech_ids);
 	//Villagers return 25 food upon death
 	civ_bonuses.push_back({});
-	//Camel units attack 25% faster
+	//Camel units attack 20% faster
 	e.EffectCommands.clear();
 	for (int i=0; i<unit_class[8].size(); i++) {
-		e.EffectCommands.push_back(createEC(5, unit_class[8][i], -1, 10, 0.8));
+		e.EffectCommands.push_back(createEC(5, unit_class[8][i], -1, 10, 0.83333));
 	}
 	addEffectandTech(df, e, "C-Bonus, Camels +25% attack");
 	//Mangonels can cut trees
@@ -3220,9 +3224,10 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	e.EffectCommands.push_back(createEC(5, 885, -1, 101, 0.5));
 	e.EffectCommands.push_back(createEC(5, 1105, -1, 101, 0.5));
 	addEffectandTech(df, e, "C-Bonus, Siege Towers train 100% faster");
-	//Eco upgrades cost -40% food
+	//Eco upgrades cost -33% food
 	e.EffectCommands.clear();
-	addEffectandTech(df, e, "C-Bonus, Eco upgrades cost -40% food");
+	addEffectandTech(df, e, "C-Bonus, Eco upgrades cost -33% food");
+	civ_bonuses[105].push_back((int) (df->Techs.size() - 1));
 	//Cannon galleons get ballistics
 	e.EffectCommands.clear();
 	e.EffectCommands.push_back(createEC(0, 374, -1, 19, 1));
@@ -4211,12 +4216,28 @@ void createNewTechsBonuses (DatFile *df, Value cfg) {
 	//Livestock garrison mills
 	civ_bonuses.push_back({856});
 	//Mounted units +40% bonus damage
-	civ_bonuses.push_back({854});
+	civ_bonuses.push_back({854, 859, 874});
 	df->Effects[869].EffectCommands.clear();
-	for (int i=0; i<37; i++) {
+	for (int i=0; i<40; i++) {
 		if (i != 3 && i != 4 && i != 31) {
 			for (int j=0; j<unit_class[7].size(); j++) {
-				df->Effects[869].EffectCommands.push_back(createEC(5, unit_class[7][j], -1, 9, amountTypetoD(140, i)));
+				df->Effects[869].EffectCommands.push_back(createEC(5, unit_class[7][j], -1, 9, amountTypetoD(120, i)));
+			}
+		}
+	}
+	df->Effects[873].EffectCommands.clear();
+	for (int i=0; i<40; i++) {
+		if (i != 3 && i != 4 && i != 31) {
+			for (int j=0; j<unit_class[7].size(); j++) {
+				df->Effects[873].EffectCommands.push_back(createEC(5, unit_class[7][j], -1, 9, amountTypetoD(111, i)));
+			}
+		}
+	}
+	df->Effects[884].EffectCommands.clear();
+	for (int i=0; i<40; i++) {
+		if (i != 3 && i != 4 && i != 31) {
+			for (int j=0; j<unit_class[7].size(); j++) {
+				df->Effects[884].EffectCommands.push_back(createEC(5, unit_class[7][j], -1, 9, amountTypetoD(105, i)));
 			}
 		}
 	}
@@ -4454,13 +4475,13 @@ void assignCivBonuses (DatFile *df, Value cfg) {
 					break;
 				}
 				//10 food on farms
-				case 220: {
-					Civ &civ = df->Civs[i+1];
-					civ.Units[50].ResourceStorages[1].Type = 0;
-					civ.Units[50].ResourceStorages[1].Amount = 10;
-					civ.Units[50].ResourceStorages[1].Flag = 8;
-					break;
-				}
+				// case 220: {
+				// 	Civ &civ = df->Civs[i+1];
+				// 	civ.Units[50].ResourceStorages[1].Type = 0;
+				// 	civ.Units[50].ResourceStorages[1].Amount = 10;
+				// 	civ.Units[50].ResourceStorages[1].Flag = 8;
+				// 	break;
+				// }
 				//Rams generate stone
 				case 229: {
 					Civ &civ = df->Civs[i+1];
@@ -4671,13 +4692,13 @@ void calculateTechDiscounts (DatFile *df) {
 					}
 				}
 			}
-		} else if (effect.Name == "C-Bonus, Eco upgrades cost -40% food") {
+		} else if (effect.Name == "C-Bonus, Eco upgrades cost -33% food") {
 			effect.EffectCommands.clear();
 			for (int i=0; i<df->Techs.size(); i++) {
 				if ((df->Techs[i].ResearchLocation == 562) || (df->Techs[i].ResearchLocation == 68) || (df->Techs[i].ResearchLocation == 584) || (df->Techs[i].ResearchLocation == 84) || (i == 65)) {
 					for (int j=0; j<3; j++) {
 						if (df->Techs[i].ResourceCosts[j].Type == 0) {
-							effect.EffectCommands.push_back(createEC(101, i, 0, -1, -0.4 * (df->Techs[i].ResourceCosts[j].Amount)));
+							effect.EffectCommands.push_back(createEC(101, i, 0, -1, -0.333 * (df->Techs[i].ResourceCosts[j].Amount)));
 						}
 					}
 				}
@@ -4836,7 +4857,7 @@ void assignTechs (DatFile *df, Value cfg, ofstream &logfile) {
 							Effect crusadeUnit = Effect();
 							crusadeUnit.Name = "Enable crusade unit";
 							crusadeUnit.EffectCommands.push_back(createEC(1, 234, 0, -1, 5));
-							crusadeUnit.EffectCommands.push_back(createEC(7, unique_unit, 109, 7, 0));
+							crusadeUnit.EffectCommands.push_back(createEC(7, unique_unit, 109, 5, 0));
 							crusadeUnit.EffectCommands.push_back(createEC(1, 77, 1, -1, 3));
 							crusadeUnit.EffectCommands.push_back(createEC(1, 178, 1, -1, 2));
 							crusadeUnit.EffectCommands.push_back(createEC(1, 179, 1, -1, 4));

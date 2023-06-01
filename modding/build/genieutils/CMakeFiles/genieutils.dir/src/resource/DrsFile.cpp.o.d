@@ -1,7 +1,7 @@
 genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o: \
- /home/kraken/website/civbuilder/modding/genieutils/src/resource/DrsFile.cpp \
+ /home/kraken/development/civbuilder/modding/genieutils/src/resource/DrsFile.cpp \
  /usr/include/stdc-predef.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/resource/DrsFile.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/resource/DrsFile.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -67,8 +67,8 @@ genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/IFile.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/file/IFile.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/iosfwd \
  /usr/include/c++/11/bits/stringfwd.h /usr/include/c++/11/bits/postypes.h \
@@ -166,15 +166,15 @@ genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/Types.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/Types.h \
  /usr/include/string.h /usr/include/strings.h /usr/include/c++/11/fstream \
  /usr/include/c++/11/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
  /usr/include/c++/11/bits/fstream.tcc \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/resource/SlpFile.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/util/Logger.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/resource/PalFile.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/resource/SlpFile.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/util/Logger.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/resource/PalFile.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
  /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
@@ -188,10 +188,10 @@ genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/resource/SlpFrame.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/resource/SlpFrame.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
  /usr/include/c++/11/set /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/bits/stl_set.h \
  /usr/include/c++/11/bits/stl_multiset.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/resource/SpriteFile.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/resource/BinaFile.h
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/resource/SpriteFile.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/resource/BinaFile.h

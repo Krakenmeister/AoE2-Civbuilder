@@ -1,8 +1,8 @@
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.o: \
- /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/Creatable.cpp \
+ /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/Creatable.cpp \
  /usr/include/stdc-predef.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/Creatable.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/unit/Creatable.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -149,7 +149,7 @@ genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/Types.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/Types.h \
  /usr/include/c++/11/array /usr/include/c++/11/utility \
  /usr/include/c++/11/bits/stl_relops.h /usr/include/c++/11/vector \
  /usr/include/c++/11/bits/stl_uninitialized.h \
@@ -157,4 +157,4 @@ genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.o: \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc /usr/include/string.h \
  /usr/include/strings.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/../ResourceUsage.h
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/unit/../ResourceUsage.h

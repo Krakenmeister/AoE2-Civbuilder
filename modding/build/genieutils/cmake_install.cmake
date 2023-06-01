@@ -1,4 +1,4 @@
-# Install script for directory: /home/kraken/website/civbuilder/modding/genieutils
+# Install script for directory: /home/kraken/development/civbuilder/modding/genieutils
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

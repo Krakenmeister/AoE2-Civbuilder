@@ -2,6 +2,7 @@
 
 #arg1 = mod folder path
 #arg2 = mod folder name
+#arg3 = app directory
 
 cd $1
 mkdir $2
@@ -14,7 +15,7 @@ cat > ./info.json << EOF
 {"Author":"Krakenmeister","Description":"Created at www.krakenmeister.com/civdrafter. Replaces existing civilizations with entirely overhauled ones, created randomly or through a multiplayer drafting process","Title":"Custom Civilizations Mod [ID]=$2"}
 EOF
 
-cp /home/kraken/website/civbuilder/public/img/thumbnail.jpg ./
+cp "$3/public/img/thumbnail.jpg" ./
 
 mkdir resources
 cd resources
@@ -31,7 +32,7 @@ cd ..
 cd ..
 mkdir dat
 cd dat
-cp /home/kraken/website/civbuilder/public/vanillaFiles/empires2_x2_p1.dat ./
+cp "$3/public/vanillaFiles/empires2_x2_p1.dat" ./
 
 cd ..
 cd ..
@@ -43,7 +44,7 @@ cat > ./info.json << EOF
 {"Author":"Krakenmeister","Description":"Text and images mod to accompany data mod of the same ID","Title":"Custom Civilizations UI [ID]=$2"}
 EOF
 
-cp /home/kraken/website/civbuilder/public/img/thumbnail.jpg ./
+cp "$3/public/img/thumbnail.jpg" ./
 
 mkdir resources
 cd resources
@@ -60,7 +61,7 @@ mkdir resources
 cd resources
 mkdir civ_emblems
 cd civ_emblems
-cp -r /home/kraken/website/civbuilder/public/img/civ_emblems/. ./
+cp -r "$3/public/img/civ_emblems/." ./
 cd ..
 mkdir uniticons
 mkdir civ_techtree
@@ -185,7 +186,7 @@ cd ..
 cd ..
 mkdir widgetui
 cd widgetui
-cp /home/kraken/website/civbuilder/public/vanillaFiles/civTechTrees.json ./
+cp "$3/public/vanillaFiles/civTechTrees.json" ./
 mkdir textures
 cd textures
 mkdir ingame

@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kraken/website/civbuilder/modding
+CMAKE_SOURCE_DIR = /home/kraken/development/civbuilder/modding
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kraken/website/civbuilder/modding/build
+CMAKE_BINARY_DIR = /home/kraken/development/civbuilder/modding/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/kraken/website/civbuilder/modding/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/kraken/website/civbuilder/modding/build/CMakeFiles /home/kraken/website/civbuilder/modding/build/genieutils//CMakeFiles/progress.marks
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 genieutils/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kraken/website/civbuilder/modding/build/CMakeFiles 0
+	cd /home/kraken/development/civbuilder/modding/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/kraken/development/civbuilder/modding/build/CMakeFiles /home/kraken/development/civbuilder/modding/build/genieutils//CMakeFiles/progress.marks
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 genieutils/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kraken/development/civbuilder/modding/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 genieutils/clean
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 genieutils/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 genieutils/preinstall
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 genieutils/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 genieutils/preinstall
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 genieutils/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/kraken/website/civbuilder/modding/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/kraken/development/civbuilder/modding/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 genieutils/CMakeFiles/genieutils.dir/rule:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 genieutils/CMakeFiles/genieutils.dir/rule
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 genieutils/CMakeFiles/genieutils.dir/rule
 .PHONY : genieutils/CMakeFiles/genieutils.dir/rule
 
 # Convenience name for target.
@@ -127,7 +127,7 @@ genieutils: genieutils/CMakeFiles/genieutils.dir/rule
 
 # fast build rule for target.
 genieutils/fast:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/build
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/build
 .PHONY : genieutils/fast
 
 __/pcrio/pcrio.o: __/pcrio/pcrio.c.o
@@ -135,7 +135,7 @@ __/pcrio/pcrio.o: __/pcrio/pcrio.c.o
 
 # target to build an object file
 __/pcrio/pcrio.c.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.o
 .PHONY : __/pcrio/pcrio.c.o
 
 __/pcrio/pcrio.i: __/pcrio/pcrio.c.i
@@ -143,7 +143,7 @@ __/pcrio/pcrio.i: __/pcrio/pcrio.c.i
 
 # target to preprocess a source file
 __/pcrio/pcrio.c.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.i
 .PHONY : __/pcrio/pcrio.c.i
 
 __/pcrio/pcrio.s: __/pcrio/pcrio.c.s
@@ -151,7 +151,7 @@ __/pcrio/pcrio.s: __/pcrio/pcrio.c.s
 
 # target to generate assembly for a file
 __/pcrio/pcrio.c.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.s
 .PHONY : __/pcrio/pcrio.c.s
 
 src/dat/Civ.o: src/dat/Civ.cpp.o
@@ -159,7 +159,7 @@ src/dat/Civ.o: src/dat/Civ.cpp.o
 
 # target to build an object file
 src/dat/Civ.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.o
 .PHONY : src/dat/Civ.cpp.o
 
 src/dat/Civ.i: src/dat/Civ.cpp.i
@@ -167,7 +167,7 @@ src/dat/Civ.i: src/dat/Civ.cpp.i
 
 # target to preprocess a source file
 src/dat/Civ.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.i
 .PHONY : src/dat/Civ.cpp.i
 
 src/dat/Civ.s: src/dat/Civ.cpp.s
@@ -175,7 +175,7 @@ src/dat/Civ.s: src/dat/Civ.cpp.s
 
 # target to generate assembly for a file
 src/dat/Civ.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.s
 .PHONY : src/dat/Civ.cpp.s
 
 src/dat/DatFile.o: src/dat/DatFile.cpp.o
@@ -183,7 +183,7 @@ src/dat/DatFile.o: src/dat/DatFile.cpp.o
 
 # target to build an object file
 src/dat/DatFile.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o
 .PHONY : src/dat/DatFile.cpp.o
 
 src/dat/DatFile.i: src/dat/DatFile.cpp.i
@@ -191,7 +191,7 @@ src/dat/DatFile.i: src/dat/DatFile.cpp.i
 
 # target to preprocess a source file
 src/dat/DatFile.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.i
 .PHONY : src/dat/DatFile.cpp.i
 
 src/dat/DatFile.s: src/dat/DatFile.cpp.s
@@ -199,7 +199,7 @@ src/dat/DatFile.s: src/dat/DatFile.cpp.s
 
 # target to generate assembly for a file
 src/dat/DatFile.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.s
 .PHONY : src/dat/DatFile.cpp.s
 
 src/dat/Graphic.o: src/dat/Graphic.cpp.o
@@ -207,7 +207,7 @@ src/dat/Graphic.o: src/dat/Graphic.cpp.o
 
 # target to build an object file
 src/dat/Graphic.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.o
 .PHONY : src/dat/Graphic.cpp.o
 
 src/dat/Graphic.i: src/dat/Graphic.cpp.i
@@ -215,7 +215,7 @@ src/dat/Graphic.i: src/dat/Graphic.cpp.i
 
 # target to preprocess a source file
 src/dat/Graphic.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.i
 .PHONY : src/dat/Graphic.cpp.i
 
 src/dat/Graphic.s: src/dat/Graphic.cpp.s
@@ -223,7 +223,7 @@ src/dat/Graphic.s: src/dat/Graphic.cpp.s
 
 # target to generate assembly for a file
 src/dat/Graphic.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.s
 .PHONY : src/dat/Graphic.cpp.s
 
 src/dat/GraphicAttackSound.o: src/dat/GraphicAttackSound.cpp.o
@@ -231,7 +231,7 @@ src/dat/GraphicAttackSound.o: src/dat/GraphicAttackSound.cpp.o
 
 # target to build an object file
 src/dat/GraphicAttackSound.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.o
 .PHONY : src/dat/GraphicAttackSound.cpp.o
 
 src/dat/GraphicAttackSound.i: src/dat/GraphicAttackSound.cpp.i
@@ -239,7 +239,7 @@ src/dat/GraphicAttackSound.i: src/dat/GraphicAttackSound.cpp.i
 
 # target to preprocess a source file
 src/dat/GraphicAttackSound.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.i
 .PHONY : src/dat/GraphicAttackSound.cpp.i
 
 src/dat/GraphicAttackSound.s: src/dat/GraphicAttackSound.cpp.s
@@ -247,7 +247,7 @@ src/dat/GraphicAttackSound.s: src/dat/GraphicAttackSound.cpp.s
 
 # target to generate assembly for a file
 src/dat/GraphicAttackSound.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.s
 .PHONY : src/dat/GraphicAttackSound.cpp.s
 
 src/dat/GraphicDelta.o: src/dat/GraphicDelta.cpp.o
@@ -255,7 +255,7 @@ src/dat/GraphicDelta.o: src/dat/GraphicDelta.cpp.o
 
 # target to build an object file
 src/dat/GraphicDelta.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.o
 .PHONY : src/dat/GraphicDelta.cpp.o
 
 src/dat/GraphicDelta.i: src/dat/GraphicDelta.cpp.i
@@ -263,7 +263,7 @@ src/dat/GraphicDelta.i: src/dat/GraphicDelta.cpp.i
 
 # target to preprocess a source file
 src/dat/GraphicDelta.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.i
 .PHONY : src/dat/GraphicDelta.cpp.i
 
 src/dat/GraphicDelta.s: src/dat/GraphicDelta.cpp.s
@@ -271,7 +271,7 @@ src/dat/GraphicDelta.s: src/dat/GraphicDelta.cpp.s
 
 # target to generate assembly for a file
 src/dat/GraphicDelta.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.s
 .PHONY : src/dat/GraphicDelta.cpp.s
 
 src/dat/PlayerColour.o: src/dat/PlayerColour.cpp.o
@@ -279,7 +279,7 @@ src/dat/PlayerColour.o: src/dat/PlayerColour.cpp.o
 
 # target to build an object file
 src/dat/PlayerColour.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.o
 .PHONY : src/dat/PlayerColour.cpp.o
 
 src/dat/PlayerColour.i: src/dat/PlayerColour.cpp.i
@@ -287,7 +287,7 @@ src/dat/PlayerColour.i: src/dat/PlayerColour.cpp.i
 
 # target to preprocess a source file
 src/dat/PlayerColour.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.i
 .PHONY : src/dat/PlayerColour.cpp.i
 
 src/dat/PlayerColour.s: src/dat/PlayerColour.cpp.s
@@ -295,7 +295,7 @@ src/dat/PlayerColour.s: src/dat/PlayerColour.cpp.s
 
 # target to generate assembly for a file
 src/dat/PlayerColour.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.s
 .PHONY : src/dat/PlayerColour.cpp.s
 
 src/dat/RandomMap.o: src/dat/RandomMap.cpp.o
@@ -303,7 +303,7 @@ src/dat/RandomMap.o: src/dat/RandomMap.cpp.o
 
 # target to build an object file
 src/dat/RandomMap.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.o
 .PHONY : src/dat/RandomMap.cpp.o
 
 src/dat/RandomMap.i: src/dat/RandomMap.cpp.i
@@ -311,7 +311,7 @@ src/dat/RandomMap.i: src/dat/RandomMap.cpp.i
 
 # target to preprocess a source file
 src/dat/RandomMap.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.i
 .PHONY : src/dat/RandomMap.cpp.i
 
 src/dat/RandomMap.s: src/dat/RandomMap.cpp.s
@@ -319,7 +319,7 @@ src/dat/RandomMap.s: src/dat/RandomMap.cpp.s
 
 # target to generate assembly for a file
 src/dat/RandomMap.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.s
 .PHONY : src/dat/RandomMap.cpp.s
 
 src/dat/Research.o: src/dat/Research.cpp.o
@@ -327,7 +327,7 @@ src/dat/Research.o: src/dat/Research.cpp.o
 
 # target to build an object file
 src/dat/Research.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Research.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Research.cpp.o
 .PHONY : src/dat/Research.cpp.o
 
 src/dat/Research.i: src/dat/Research.cpp.i
@@ -335,7 +335,7 @@ src/dat/Research.i: src/dat/Research.cpp.i
 
 # target to preprocess a source file
 src/dat/Research.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Research.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Research.cpp.i
 .PHONY : src/dat/Research.cpp.i
 
 src/dat/Research.s: src/dat/Research.cpp.s
@@ -343,7 +343,7 @@ src/dat/Research.s: src/dat/Research.cpp.s
 
 # target to generate assembly for a file
 src/dat/Research.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Research.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Research.cpp.s
 .PHONY : src/dat/Research.cpp.s
 
 src/dat/Sound.o: src/dat/Sound.cpp.o
@@ -351,7 +351,7 @@ src/dat/Sound.o: src/dat/Sound.cpp.o
 
 # target to build an object file
 src/dat/Sound.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Sound.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Sound.cpp.o
 .PHONY : src/dat/Sound.cpp.o
 
 src/dat/Sound.i: src/dat/Sound.cpp.i
@@ -359,7 +359,7 @@ src/dat/Sound.i: src/dat/Sound.cpp.i
 
 # target to preprocess a source file
 src/dat/Sound.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Sound.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Sound.cpp.i
 .PHONY : src/dat/Sound.cpp.i
 
 src/dat/Sound.s: src/dat/Sound.cpp.s
@@ -367,7 +367,7 @@ src/dat/Sound.s: src/dat/Sound.cpp.s
 
 # target to generate assembly for a file
 src/dat/Sound.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Sound.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Sound.cpp.s
 .PHONY : src/dat/Sound.cpp.s
 
 src/dat/SoundItem.o: src/dat/SoundItem.cpp.o
@@ -375,7 +375,7 @@ src/dat/SoundItem.o: src/dat/SoundItem.cpp.o
 
 # target to build an object file
 src/dat/SoundItem.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.o
 .PHONY : src/dat/SoundItem.cpp.o
 
 src/dat/SoundItem.i: src/dat/SoundItem.cpp.i
@@ -383,7 +383,7 @@ src/dat/SoundItem.i: src/dat/SoundItem.cpp.i
 
 # target to preprocess a source file
 src/dat/SoundItem.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.i
 .PHONY : src/dat/SoundItem.cpp.i
 
 src/dat/SoundItem.s: src/dat/SoundItem.cpp.s
@@ -391,7 +391,7 @@ src/dat/SoundItem.s: src/dat/SoundItem.cpp.s
 
 # target to generate assembly for a file
 src/dat/SoundItem.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.s
 .PHONY : src/dat/SoundItem.cpp.s
 
 src/dat/TechTree.o: src/dat/TechTree.cpp.o
@@ -399,7 +399,7 @@ src/dat/TechTree.o: src/dat/TechTree.cpp.o
 
 # target to build an object file
 src/dat/TechTree.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.o
 .PHONY : src/dat/TechTree.cpp.o
 
 src/dat/TechTree.i: src/dat/TechTree.cpp.i
@@ -407,7 +407,7 @@ src/dat/TechTree.i: src/dat/TechTree.cpp.i
 
 # target to preprocess a source file
 src/dat/TechTree.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.i
 .PHONY : src/dat/TechTree.cpp.i
 
 src/dat/TechTree.s: src/dat/TechTree.cpp.s
@@ -415,7 +415,7 @@ src/dat/TechTree.s: src/dat/TechTree.cpp.s
 
 # target to generate assembly for a file
 src/dat/TechTree.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.s
 .PHONY : src/dat/TechTree.cpp.s
 
 src/dat/Techage.o: src/dat/Techage.cpp.o
@@ -423,7 +423,7 @@ src/dat/Techage.o: src/dat/Techage.cpp.o
 
 # target to build an object file
 src/dat/Techage.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Techage.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Techage.cpp.o
 .PHONY : src/dat/Techage.cpp.o
 
 src/dat/Techage.i: src/dat/Techage.cpp.i
@@ -431,7 +431,7 @@ src/dat/Techage.i: src/dat/Techage.cpp.i
 
 # target to preprocess a source file
 src/dat/Techage.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Techage.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Techage.cpp.i
 .PHONY : src/dat/Techage.cpp.i
 
 src/dat/Techage.s: src/dat/Techage.cpp.s
@@ -439,7 +439,7 @@ src/dat/Techage.s: src/dat/Techage.cpp.s
 
 # target to generate assembly for a file
 src/dat/Techage.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Techage.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Techage.cpp.s
 .PHONY : src/dat/Techage.cpp.s
 
 src/dat/TechageEffect.o: src/dat/TechageEffect.cpp.o
@@ -447,7 +447,7 @@ src/dat/TechageEffect.o: src/dat/TechageEffect.cpp.o
 
 # target to build an object file
 src/dat/TechageEffect.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.o
 .PHONY : src/dat/TechageEffect.cpp.o
 
 src/dat/TechageEffect.i: src/dat/TechageEffect.cpp.i
@@ -455,7 +455,7 @@ src/dat/TechageEffect.i: src/dat/TechageEffect.cpp.i
 
 # target to preprocess a source file
 src/dat/TechageEffect.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.i
 .PHONY : src/dat/TechageEffect.cpp.i
 
 src/dat/TechageEffect.s: src/dat/TechageEffect.cpp.s
@@ -463,7 +463,7 @@ src/dat/TechageEffect.s: src/dat/TechageEffect.cpp.s
 
 # target to generate assembly for a file
 src/dat/TechageEffect.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.s
 .PHONY : src/dat/TechageEffect.cpp.s
 
 src/dat/Terrain.o: src/dat/Terrain.cpp.o
@@ -471,7 +471,7 @@ src/dat/Terrain.o: src/dat/Terrain.cpp.o
 
 # target to build an object file
 src/dat/Terrain.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.o
 .PHONY : src/dat/Terrain.cpp.o
 
 src/dat/Terrain.i: src/dat/Terrain.cpp.i
@@ -479,7 +479,7 @@ src/dat/Terrain.i: src/dat/Terrain.cpp.i
 
 # target to preprocess a source file
 src/dat/Terrain.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.i
 .PHONY : src/dat/Terrain.cpp.i
 
 src/dat/Terrain.s: src/dat/Terrain.cpp.s
@@ -487,7 +487,7 @@ src/dat/Terrain.s: src/dat/Terrain.cpp.s
 
 # target to generate assembly for a file
 src/dat/Terrain.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.s
 .PHONY : src/dat/Terrain.cpp.s
 
 src/dat/TerrainBlock.o: src/dat/TerrainBlock.cpp.o
@@ -495,7 +495,7 @@ src/dat/TerrainBlock.o: src/dat/TerrainBlock.cpp.o
 
 # target to build an object file
 src/dat/TerrainBlock.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.o
 .PHONY : src/dat/TerrainBlock.cpp.o
 
 src/dat/TerrainBlock.i: src/dat/TerrainBlock.cpp.i
@@ -503,7 +503,7 @@ src/dat/TerrainBlock.i: src/dat/TerrainBlock.cpp.i
 
 # target to preprocess a source file
 src/dat/TerrainBlock.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.i
 .PHONY : src/dat/TerrainBlock.cpp.i
 
 src/dat/TerrainBlock.s: src/dat/TerrainBlock.cpp.s
@@ -511,7 +511,7 @@ src/dat/TerrainBlock.s: src/dat/TerrainBlock.cpp.s
 
 # target to generate assembly for a file
 src/dat/TerrainBlock.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.s
 .PHONY : src/dat/TerrainBlock.cpp.s
 
 src/dat/TerrainBorder.o: src/dat/TerrainBorder.cpp.o
@@ -519,7 +519,7 @@ src/dat/TerrainBorder.o: src/dat/TerrainBorder.cpp.o
 
 # target to build an object file
 src/dat/TerrainBorder.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.o
 .PHONY : src/dat/TerrainBorder.cpp.o
 
 src/dat/TerrainBorder.i: src/dat/TerrainBorder.cpp.i
@@ -527,7 +527,7 @@ src/dat/TerrainBorder.i: src/dat/TerrainBorder.cpp.i
 
 # target to preprocess a source file
 src/dat/TerrainBorder.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.i
 .PHONY : src/dat/TerrainBorder.cpp.i
 
 src/dat/TerrainBorder.s: src/dat/TerrainBorder.cpp.s
@@ -535,7 +535,7 @@ src/dat/TerrainBorder.s: src/dat/TerrainBorder.cpp.s
 
 # target to generate assembly for a file
 src/dat/TerrainBorder.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.s
 .PHONY : src/dat/TerrainBorder.cpp.s
 
 src/dat/TerrainCommon.o: src/dat/TerrainCommon.cpp.o
@@ -543,7 +543,7 @@ src/dat/TerrainCommon.o: src/dat/TerrainCommon.cpp.o
 
 # target to build an object file
 src/dat/TerrainCommon.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.o
 .PHONY : src/dat/TerrainCommon.cpp.o
 
 src/dat/TerrainCommon.i: src/dat/TerrainCommon.cpp.i
@@ -551,7 +551,7 @@ src/dat/TerrainCommon.i: src/dat/TerrainCommon.cpp.i
 
 # target to preprocess a source file
 src/dat/TerrainCommon.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.i
 .PHONY : src/dat/TerrainCommon.cpp.i
 
 src/dat/TerrainCommon.s: src/dat/TerrainCommon.cpp.s
@@ -559,7 +559,7 @@ src/dat/TerrainCommon.s: src/dat/TerrainCommon.cpp.s
 
 # target to generate assembly for a file
 src/dat/TerrainCommon.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.s
 .PHONY : src/dat/TerrainCommon.cpp.s
 
 src/dat/TerrainPassGraphic.o: src/dat/TerrainPassGraphic.cpp.o
@@ -567,7 +567,7 @@ src/dat/TerrainPassGraphic.o: src/dat/TerrainPassGraphic.cpp.o
 
 # target to build an object file
 src/dat/TerrainPassGraphic.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.o
 .PHONY : src/dat/TerrainPassGraphic.cpp.o
 
 src/dat/TerrainPassGraphic.i: src/dat/TerrainPassGraphic.cpp.i
@@ -575,7 +575,7 @@ src/dat/TerrainPassGraphic.i: src/dat/TerrainPassGraphic.cpp.i
 
 # target to preprocess a source file
 src/dat/TerrainPassGraphic.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.i
 .PHONY : src/dat/TerrainPassGraphic.cpp.i
 
 src/dat/TerrainPassGraphic.s: src/dat/TerrainPassGraphic.cpp.s
@@ -583,7 +583,7 @@ src/dat/TerrainPassGraphic.s: src/dat/TerrainPassGraphic.cpp.s
 
 # target to generate assembly for a file
 src/dat/TerrainPassGraphic.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.s
 .PHONY : src/dat/TerrainPassGraphic.cpp.s
 
 src/dat/TerrainRestriction.o: src/dat/TerrainRestriction.cpp.o
@@ -591,7 +591,7 @@ src/dat/TerrainRestriction.o: src/dat/TerrainRestriction.cpp.o
 
 # target to build an object file
 src/dat/TerrainRestriction.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.o
 .PHONY : src/dat/TerrainRestriction.cpp.o
 
 src/dat/TerrainRestriction.i: src/dat/TerrainRestriction.cpp.i
@@ -599,7 +599,7 @@ src/dat/TerrainRestriction.i: src/dat/TerrainRestriction.cpp.i
 
 # target to preprocess a source file
 src/dat/TerrainRestriction.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.i
 .PHONY : src/dat/TerrainRestriction.cpp.i
 
 src/dat/TerrainRestriction.s: src/dat/TerrainRestriction.cpp.s
@@ -607,7 +607,7 @@ src/dat/TerrainRestriction.s: src/dat/TerrainRestriction.cpp.s
 
 # target to generate assembly for a file
 src/dat/TerrainRestriction.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.s
 .PHONY : src/dat/TerrainRestriction.cpp.s
 
 src/dat/Unit.o: src/dat/Unit.cpp.o
@@ -615,7 +615,7 @@ src/dat/Unit.o: src/dat/Unit.cpp.o
 
 # target to build an object file
 src/dat/Unit.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Unit.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Unit.cpp.o
 .PHONY : src/dat/Unit.cpp.o
 
 src/dat/Unit.i: src/dat/Unit.cpp.i
@@ -623,7 +623,7 @@ src/dat/Unit.i: src/dat/Unit.cpp.i
 
 # target to preprocess a source file
 src/dat/Unit.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Unit.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Unit.cpp.i
 .PHONY : src/dat/Unit.cpp.i
 
 src/dat/Unit.s: src/dat/Unit.cpp.s
@@ -631,7 +631,7 @@ src/dat/Unit.s: src/dat/Unit.cpp.s
 
 # target to generate assembly for a file
 src/dat/Unit.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Unit.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/Unit.cpp.s
 .PHONY : src/dat/Unit.cpp.s
 
 src/dat/UnitCommand.o: src/dat/UnitCommand.cpp.o
@@ -639,7 +639,7 @@ src/dat/UnitCommand.o: src/dat/UnitCommand.cpp.o
 
 # target to build an object file
 src/dat/UnitCommand.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.o
 .PHONY : src/dat/UnitCommand.cpp.o
 
 src/dat/UnitCommand.i: src/dat/UnitCommand.cpp.i
@@ -647,7 +647,7 @@ src/dat/UnitCommand.i: src/dat/UnitCommand.cpp.i
 
 # target to preprocess a source file
 src/dat/UnitCommand.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.i
 .PHONY : src/dat/UnitCommand.cpp.i
 
 src/dat/UnitCommand.s: src/dat/UnitCommand.cpp.s
@@ -655,7 +655,7 @@ src/dat/UnitCommand.s: src/dat/UnitCommand.cpp.s
 
 # target to generate assembly for a file
 src/dat/UnitCommand.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.s
 .PHONY : src/dat/UnitCommand.cpp.s
 
 src/dat/UnitHeader.o: src/dat/UnitHeader.cpp.o
@@ -663,7 +663,7 @@ src/dat/UnitHeader.o: src/dat/UnitHeader.cpp.o
 
 # target to build an object file
 src/dat/UnitHeader.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.o
 .PHONY : src/dat/UnitHeader.cpp.o
 
 src/dat/UnitHeader.i: src/dat/UnitHeader.cpp.i
@@ -671,7 +671,7 @@ src/dat/UnitHeader.i: src/dat/UnitHeader.cpp.i
 
 # target to preprocess a source file
 src/dat/UnitHeader.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.i
 .PHONY : src/dat/UnitHeader.cpp.i
 
 src/dat/UnitHeader.s: src/dat/UnitHeader.cpp.s
@@ -679,7 +679,7 @@ src/dat/UnitHeader.s: src/dat/UnitHeader.cpp.s
 
 # target to generate assembly for a file
 src/dat/UnitHeader.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.s
 .PHONY : src/dat/UnitHeader.cpp.s
 
 src/dat/UnitLine.o: src/dat/UnitLine.cpp.o
@@ -687,7 +687,7 @@ src/dat/UnitLine.o: src/dat/UnitLine.cpp.o
 
 # target to build an object file
 src/dat/UnitLine.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.o
 .PHONY : src/dat/UnitLine.cpp.o
 
 src/dat/UnitLine.i: src/dat/UnitLine.cpp.i
@@ -695,7 +695,7 @@ src/dat/UnitLine.i: src/dat/UnitLine.cpp.i
 
 # target to preprocess a source file
 src/dat/UnitLine.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.i
 .PHONY : src/dat/UnitLine.cpp.i
 
 src/dat/UnitLine.s: src/dat/UnitLine.cpp.s
@@ -703,7 +703,7 @@ src/dat/UnitLine.s: src/dat/UnitLine.cpp.s
 
 # target to generate assembly for a file
 src/dat/UnitLine.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.s
 .PHONY : src/dat/UnitLine.cpp.s
 
 src/dat/unit/AttackOrArmor.o: src/dat/unit/AttackOrArmor.cpp.o
@@ -711,7 +711,7 @@ src/dat/unit/AttackOrArmor.o: src/dat/unit/AttackOrArmor.cpp.o
 
 # target to build an object file
 src/dat/unit/AttackOrArmor.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.o
 .PHONY : src/dat/unit/AttackOrArmor.cpp.o
 
 src/dat/unit/AttackOrArmor.i: src/dat/unit/AttackOrArmor.cpp.i
@@ -719,7 +719,7 @@ src/dat/unit/AttackOrArmor.i: src/dat/unit/AttackOrArmor.cpp.i
 
 # target to preprocess a source file
 src/dat/unit/AttackOrArmor.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.i
 .PHONY : src/dat/unit/AttackOrArmor.cpp.i
 
 src/dat/unit/AttackOrArmor.s: src/dat/unit/AttackOrArmor.cpp.s
@@ -727,7 +727,7 @@ src/dat/unit/AttackOrArmor.s: src/dat/unit/AttackOrArmor.cpp.s
 
 # target to generate assembly for a file
 src/dat/unit/AttackOrArmor.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.s
 .PHONY : src/dat/unit/AttackOrArmor.cpp.s
 
 src/dat/unit/Bird.o: src/dat/unit/Bird.cpp.o
@@ -735,7 +735,7 @@ src/dat/unit/Bird.o: src/dat/unit/Bird.cpp.o
 
 # target to build an object file
 src/dat/unit/Bird.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.o
 .PHONY : src/dat/unit/Bird.cpp.o
 
 src/dat/unit/Bird.i: src/dat/unit/Bird.cpp.i
@@ -743,7 +743,7 @@ src/dat/unit/Bird.i: src/dat/unit/Bird.cpp.i
 
 # target to preprocess a source file
 src/dat/unit/Bird.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.i
 .PHONY : src/dat/unit/Bird.cpp.i
 
 src/dat/unit/Bird.s: src/dat/unit/Bird.cpp.s
@@ -751,7 +751,7 @@ src/dat/unit/Bird.s: src/dat/unit/Bird.cpp.s
 
 # target to generate assembly for a file
 src/dat/unit/Bird.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.s
 .PHONY : src/dat/unit/Bird.cpp.s
 
 src/dat/unit/Building.o: src/dat/unit/Building.cpp.o
@@ -759,7 +759,7 @@ src/dat/unit/Building.o: src/dat/unit/Building.cpp.o
 
 # target to build an object file
 src/dat/unit/Building.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.o
 .PHONY : src/dat/unit/Building.cpp.o
 
 src/dat/unit/Building.i: src/dat/unit/Building.cpp.i
@@ -767,7 +767,7 @@ src/dat/unit/Building.i: src/dat/unit/Building.cpp.i
 
 # target to preprocess a source file
 src/dat/unit/Building.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.i
 .PHONY : src/dat/unit/Building.cpp.i
 
 src/dat/unit/Building.s: src/dat/unit/Building.cpp.s
@@ -775,7 +775,7 @@ src/dat/unit/Building.s: src/dat/unit/Building.cpp.s
 
 # target to generate assembly for a file
 src/dat/unit/Building.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.s
 .PHONY : src/dat/unit/Building.cpp.s
 
 src/dat/unit/Creatable.o: src/dat/unit/Creatable.cpp.o
@@ -783,7 +783,7 @@ src/dat/unit/Creatable.o: src/dat/unit/Creatable.cpp.o
 
 # target to build an object file
 src/dat/unit/Creatable.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.o
 .PHONY : src/dat/unit/Creatable.cpp.o
 
 src/dat/unit/Creatable.i: src/dat/unit/Creatable.cpp.i
@@ -791,7 +791,7 @@ src/dat/unit/Creatable.i: src/dat/unit/Creatable.cpp.i
 
 # target to preprocess a source file
 src/dat/unit/Creatable.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.i
 .PHONY : src/dat/unit/Creatable.cpp.i
 
 src/dat/unit/Creatable.s: src/dat/unit/Creatable.cpp.s
@@ -799,7 +799,7 @@ src/dat/unit/Creatable.s: src/dat/unit/Creatable.cpp.s
 
 # target to generate assembly for a file
 src/dat/unit/Creatable.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.s
 .PHONY : src/dat/unit/Creatable.cpp.s
 
 src/dat/unit/DamageGraphic.o: src/dat/unit/DamageGraphic.cpp.o
@@ -807,7 +807,7 @@ src/dat/unit/DamageGraphic.o: src/dat/unit/DamageGraphic.cpp.o
 
 # target to build an object file
 src/dat/unit/DamageGraphic.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.o
 .PHONY : src/dat/unit/DamageGraphic.cpp.o
 
 src/dat/unit/DamageGraphic.i: src/dat/unit/DamageGraphic.cpp.i
@@ -815,7 +815,7 @@ src/dat/unit/DamageGraphic.i: src/dat/unit/DamageGraphic.cpp.i
 
 # target to preprocess a source file
 src/dat/unit/DamageGraphic.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.i
 .PHONY : src/dat/unit/DamageGraphic.cpp.i
 
 src/dat/unit/DamageGraphic.s: src/dat/unit/DamageGraphic.cpp.s
@@ -823,7 +823,7 @@ src/dat/unit/DamageGraphic.s: src/dat/unit/DamageGraphic.cpp.s
 
 # target to generate assembly for a file
 src/dat/unit/DamageGraphic.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.s
 .PHONY : src/dat/unit/DamageGraphic.cpp.s
 
 src/dat/unit/DeadFish.o: src/dat/unit/DeadFish.cpp.o
@@ -831,7 +831,7 @@ src/dat/unit/DeadFish.o: src/dat/unit/DeadFish.cpp.o
 
 # target to build an object file
 src/dat/unit/DeadFish.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.o
 .PHONY : src/dat/unit/DeadFish.cpp.o
 
 src/dat/unit/DeadFish.i: src/dat/unit/DeadFish.cpp.i
@@ -839,7 +839,7 @@ src/dat/unit/DeadFish.i: src/dat/unit/DeadFish.cpp.i
 
 # target to preprocess a source file
 src/dat/unit/DeadFish.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.i
 .PHONY : src/dat/unit/DeadFish.cpp.i
 
 src/dat/unit/DeadFish.s: src/dat/unit/DeadFish.cpp.s
@@ -847,7 +847,7 @@ src/dat/unit/DeadFish.s: src/dat/unit/DeadFish.cpp.s
 
 # target to generate assembly for a file
 src/dat/unit/DeadFish.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.s
 .PHONY : src/dat/unit/DeadFish.cpp.s
 
 src/dat/unit/Projectile.o: src/dat/unit/Projectile.cpp.o
@@ -855,7 +855,7 @@ src/dat/unit/Projectile.o: src/dat/unit/Projectile.cpp.o
 
 # target to build an object file
 src/dat/unit/Projectile.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.o
 .PHONY : src/dat/unit/Projectile.cpp.o
 
 src/dat/unit/Projectile.i: src/dat/unit/Projectile.cpp.i
@@ -863,7 +863,7 @@ src/dat/unit/Projectile.i: src/dat/unit/Projectile.cpp.i
 
 # target to preprocess a source file
 src/dat/unit/Projectile.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.i
 .PHONY : src/dat/unit/Projectile.cpp.i
 
 src/dat/unit/Projectile.s: src/dat/unit/Projectile.cpp.s
@@ -871,7 +871,7 @@ src/dat/unit/Projectile.s: src/dat/unit/Projectile.cpp.s
 
 # target to generate assembly for a file
 src/dat/unit/Projectile.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.s
 .PHONY : src/dat/unit/Projectile.cpp.s
 
 src/dat/unit/Type50.o: src/dat/unit/Type50.cpp.o
@@ -879,7 +879,7 @@ src/dat/unit/Type50.o: src/dat/unit/Type50.cpp.o
 
 # target to build an object file
 src/dat/unit/Type50.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.o
 .PHONY : src/dat/unit/Type50.cpp.o
 
 src/dat/unit/Type50.i: src/dat/unit/Type50.cpp.i
@@ -887,7 +887,7 @@ src/dat/unit/Type50.i: src/dat/unit/Type50.cpp.i
 
 # target to preprocess a source file
 src/dat/unit/Type50.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.i
 .PHONY : src/dat/unit/Type50.cpp.i
 
 src/dat/unit/Type50.s: src/dat/unit/Type50.cpp.s
@@ -895,7 +895,7 @@ src/dat/unit/Type50.s: src/dat/unit/Type50.cpp.s
 
 # target to generate assembly for a file
 src/dat/unit/Type50.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.s
 .PHONY : src/dat/unit/Type50.cpp.s
 
 src/file/Compressor.o: src/file/Compressor.cpp.o
@@ -903,7 +903,7 @@ src/file/Compressor.o: src/file/Compressor.cpp.o
 
 # target to build an object file
 src/file/Compressor.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.o
 .PHONY : src/file/Compressor.cpp.o
 
 src/file/Compressor.i: src/file/Compressor.cpp.i
@@ -911,7 +911,7 @@ src/file/Compressor.i: src/file/Compressor.cpp.i
 
 # target to preprocess a source file
 src/file/Compressor.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.i
 .PHONY : src/file/Compressor.cpp.i
 
 src/file/Compressor.s: src/file/Compressor.cpp.s
@@ -919,7 +919,7 @@ src/file/Compressor.s: src/file/Compressor.cpp.s
 
 # target to generate assembly for a file
 src/file/Compressor.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.s
 .PHONY : src/file/Compressor.cpp.s
 
 src/file/IFile.o: src/file/IFile.cpp.o
@@ -927,7 +927,7 @@ src/file/IFile.o: src/file/IFile.cpp.o
 
 # target to build an object file
 src/file/IFile.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/IFile.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/IFile.cpp.o
 .PHONY : src/file/IFile.cpp.o
 
 src/file/IFile.i: src/file/IFile.cpp.i
@@ -935,7 +935,7 @@ src/file/IFile.i: src/file/IFile.cpp.i
 
 # target to preprocess a source file
 src/file/IFile.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/IFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/IFile.cpp.i
 .PHONY : src/file/IFile.cpp.i
 
 src/file/IFile.s: src/file/IFile.cpp.s
@@ -943,7 +943,7 @@ src/file/IFile.s: src/file/IFile.cpp.s
 
 # target to generate assembly for a file
 src/file/IFile.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/IFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/IFile.cpp.s
 .PHONY : src/file/IFile.cpp.s
 
 src/file/ISerializable.o: src/file/ISerializable.cpp.o
@@ -951,7 +951,7 @@ src/file/ISerializable.o: src/file/ISerializable.cpp.o
 
 # target to build an object file
 src/file/ISerializable.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.o
 .PHONY : src/file/ISerializable.cpp.o
 
 src/file/ISerializable.i: src/file/ISerializable.cpp.i
@@ -959,7 +959,7 @@ src/file/ISerializable.i: src/file/ISerializable.cpp.i
 
 # target to preprocess a source file
 src/file/ISerializable.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.i
 .PHONY : src/file/ISerializable.cpp.i
 
 src/file/ISerializable.s: src/file/ISerializable.cpp.s
@@ -967,7 +967,7 @@ src/file/ISerializable.s: src/file/ISerializable.cpp.s
 
 # target to generate assembly for a file
 src/file/ISerializable.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.s
 .PHONY : src/file/ISerializable.cpp.s
 
 src/lang/LangFile.o: src/lang/LangFile.cpp.o
@@ -975,7 +975,7 @@ src/lang/LangFile.o: src/lang/LangFile.cpp.o
 
 # target to build an object file
 src/lang/LangFile.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.o
 .PHONY : src/lang/LangFile.cpp.o
 
 src/lang/LangFile.i: src/lang/LangFile.cpp.i
@@ -983,7 +983,7 @@ src/lang/LangFile.i: src/lang/LangFile.cpp.i
 
 # target to preprocess a source file
 src/lang/LangFile.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.i
 .PHONY : src/lang/LangFile.cpp.i
 
 src/lang/LangFile.s: src/lang/LangFile.cpp.s
@@ -991,7 +991,7 @@ src/lang/LangFile.s: src/lang/LangFile.cpp.s
 
 # target to generate assembly for a file
 src/lang/LangFile.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.s
 .PHONY : src/lang/LangFile.cpp.s
 
 src/resource/BinaFile.o: src/resource/BinaFile.cpp.o
@@ -999,7 +999,7 @@ src/resource/BinaFile.o: src/resource/BinaFile.cpp.o
 
 # target to build an object file
 src/resource/BinaFile.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.o
 .PHONY : src/resource/BinaFile.cpp.o
 
 src/resource/BinaFile.i: src/resource/BinaFile.cpp.i
@@ -1007,7 +1007,7 @@ src/resource/BinaFile.i: src/resource/BinaFile.cpp.i
 
 # target to preprocess a source file
 src/resource/BinaFile.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.i
 .PHONY : src/resource/BinaFile.cpp.i
 
 src/resource/BinaFile.s: src/resource/BinaFile.cpp.s
@@ -1015,7 +1015,7 @@ src/resource/BinaFile.s: src/resource/BinaFile.cpp.s
 
 # target to generate assembly for a file
 src/resource/BinaFile.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.s
 .PHONY : src/resource/BinaFile.cpp.s
 
 src/resource/Color.o: src/resource/Color.cpp.o
@@ -1023,7 +1023,7 @@ src/resource/Color.o: src/resource/Color.cpp.o
 
 # target to build an object file
 src/resource/Color.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/Color.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/Color.cpp.o
 .PHONY : src/resource/Color.cpp.o
 
 src/resource/Color.i: src/resource/Color.cpp.i
@@ -1031,7 +1031,7 @@ src/resource/Color.i: src/resource/Color.cpp.i
 
 # target to preprocess a source file
 src/resource/Color.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/Color.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/Color.cpp.i
 .PHONY : src/resource/Color.cpp.i
 
 src/resource/Color.s: src/resource/Color.cpp.s
@@ -1039,7 +1039,7 @@ src/resource/Color.s: src/resource/Color.cpp.s
 
 # target to generate assembly for a file
 src/resource/Color.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/Color.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/Color.cpp.s
 .PHONY : src/resource/Color.cpp.s
 
 src/resource/DrsFile.o: src/resource/DrsFile.cpp.o
@@ -1047,7 +1047,7 @@ src/resource/DrsFile.o: src/resource/DrsFile.cpp.o
 
 # target to build an object file
 src/resource/DrsFile.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o
 .PHONY : src/resource/DrsFile.cpp.o
 
 src/resource/DrsFile.i: src/resource/DrsFile.cpp.i
@@ -1055,7 +1055,7 @@ src/resource/DrsFile.i: src/resource/DrsFile.cpp.i
 
 # target to preprocess a source file
 src/resource/DrsFile.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.i
 .PHONY : src/resource/DrsFile.cpp.i
 
 src/resource/DrsFile.s: src/resource/DrsFile.cpp.s
@@ -1063,7 +1063,7 @@ src/resource/DrsFile.s: src/resource/DrsFile.cpp.s
 
 # target to generate assembly for a file
 src/resource/DrsFile.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.s
 .PHONY : src/resource/DrsFile.cpp.s
 
 src/resource/PalFile.o: src/resource/PalFile.cpp.o
@@ -1071,7 +1071,7 @@ src/resource/PalFile.o: src/resource/PalFile.cpp.o
 
 # target to build an object file
 src/resource/PalFile.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.o
 .PHONY : src/resource/PalFile.cpp.o
 
 src/resource/PalFile.i: src/resource/PalFile.cpp.i
@@ -1079,7 +1079,7 @@ src/resource/PalFile.i: src/resource/PalFile.cpp.i
 
 # target to preprocess a source file
 src/resource/PalFile.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.i
 .PHONY : src/resource/PalFile.cpp.i
 
 src/resource/PalFile.s: src/resource/PalFile.cpp.s
@@ -1087,7 +1087,7 @@ src/resource/PalFile.s: src/resource/PalFile.cpp.s
 
 # target to generate assembly for a file
 src/resource/PalFile.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.s
 .PHONY : src/resource/PalFile.cpp.s
 
 src/resource/SlpFile.o: src/resource/SlpFile.cpp.o
@@ -1095,7 +1095,7 @@ src/resource/SlpFile.o: src/resource/SlpFile.cpp.o
 
 # target to build an object file
 src/resource/SlpFile.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.o
 .PHONY : src/resource/SlpFile.cpp.o
 
 src/resource/SlpFile.i: src/resource/SlpFile.cpp.i
@@ -1103,7 +1103,7 @@ src/resource/SlpFile.i: src/resource/SlpFile.cpp.i
 
 # target to preprocess a source file
 src/resource/SlpFile.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.i
 .PHONY : src/resource/SlpFile.cpp.i
 
 src/resource/SlpFile.s: src/resource/SlpFile.cpp.s
@@ -1111,7 +1111,7 @@ src/resource/SlpFile.s: src/resource/SlpFile.cpp.s
 
 # target to generate assembly for a file
 src/resource/SlpFile.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.s
 .PHONY : src/resource/SlpFile.cpp.s
 
 src/resource/SlpFrame.o: src/resource/SlpFrame.cpp.o
@@ -1119,7 +1119,7 @@ src/resource/SlpFrame.o: src/resource/SlpFrame.cpp.o
 
 # target to build an object file
 src/resource/SlpFrame.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.o
 .PHONY : src/resource/SlpFrame.cpp.o
 
 src/resource/SlpFrame.i: src/resource/SlpFrame.cpp.i
@@ -1127,7 +1127,7 @@ src/resource/SlpFrame.i: src/resource/SlpFrame.cpp.i
 
 # target to preprocess a source file
 src/resource/SlpFrame.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.i
 .PHONY : src/resource/SlpFrame.cpp.i
 
 src/resource/SlpFrame.s: src/resource/SlpFrame.cpp.s
@@ -1135,7 +1135,7 @@ src/resource/SlpFrame.s: src/resource/SlpFrame.cpp.s
 
 # target to generate assembly for a file
 src/resource/SlpFrame.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.s
 .PHONY : src/resource/SlpFrame.cpp.s
 
 src/resource/SmpFile.o: src/resource/SmpFile.cpp.o
@@ -1143,7 +1143,7 @@ src/resource/SmpFile.o: src/resource/SmpFile.cpp.o
 
 # target to build an object file
 src/resource/SmpFile.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.o
 .PHONY : src/resource/SmpFile.cpp.o
 
 src/resource/SmpFile.i: src/resource/SmpFile.cpp.i
@@ -1151,7 +1151,7 @@ src/resource/SmpFile.i: src/resource/SmpFile.cpp.i
 
 # target to preprocess a source file
 src/resource/SmpFile.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.i
 .PHONY : src/resource/SmpFile.cpp.i
 
 src/resource/SmpFile.s: src/resource/SmpFile.cpp.s
@@ -1159,7 +1159,7 @@ src/resource/SmpFile.s: src/resource/SmpFile.cpp.s
 
 # target to generate assembly for a file
 src/resource/SmpFile.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.s
 .PHONY : src/resource/SmpFile.cpp.s
 
 src/resource/SmpFrame.o: src/resource/SmpFrame.cpp.o
@@ -1167,7 +1167,7 @@ src/resource/SmpFrame.o: src/resource/SmpFrame.cpp.o
 
 # target to build an object file
 src/resource/SmpFrame.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o
 .PHONY : src/resource/SmpFrame.cpp.o
 
 src/resource/SmpFrame.i: src/resource/SmpFrame.cpp.i
@@ -1175,7 +1175,7 @@ src/resource/SmpFrame.i: src/resource/SmpFrame.cpp.i
 
 # target to preprocess a source file
 src/resource/SmpFrame.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.i
 .PHONY : src/resource/SmpFrame.cpp.i
 
 src/resource/SmpFrame.s: src/resource/SmpFrame.cpp.s
@@ -1183,7 +1183,7 @@ src/resource/SmpFrame.s: src/resource/SmpFrame.cpp.s
 
 # target to generate assembly for a file
 src/resource/SmpFrame.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.s
 .PHONY : src/resource/SmpFrame.cpp.s
 
 src/resource/SmxFile.o: src/resource/SmxFile.cpp.o
@@ -1191,7 +1191,7 @@ src/resource/SmxFile.o: src/resource/SmxFile.cpp.o
 
 # target to build an object file
 src/resource/SmxFile.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.o
 .PHONY : src/resource/SmxFile.cpp.o
 
 src/resource/SmxFile.i: src/resource/SmxFile.cpp.i
@@ -1199,7 +1199,7 @@ src/resource/SmxFile.i: src/resource/SmxFile.cpp.i
 
 # target to preprocess a source file
 src/resource/SmxFile.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.i
 .PHONY : src/resource/SmxFile.cpp.i
 
 src/resource/SmxFile.s: src/resource/SmxFile.cpp.s
@@ -1207,7 +1207,7 @@ src/resource/SmxFile.s: src/resource/SmxFile.cpp.s
 
 # target to generate assembly for a file
 src/resource/SmxFile.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.s
 .PHONY : src/resource/SmxFile.cpp.s
 
 src/resource/SmxFrame.o: src/resource/SmxFrame.cpp.o
@@ -1215,7 +1215,7 @@ src/resource/SmxFrame.o: src/resource/SmxFrame.cpp.o
 
 # target to build an object file
 src/resource/SmxFrame.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.o
 .PHONY : src/resource/SmxFrame.cpp.o
 
 src/resource/SmxFrame.i: src/resource/SmxFrame.cpp.i
@@ -1223,7 +1223,7 @@ src/resource/SmxFrame.i: src/resource/SmxFrame.cpp.i
 
 # target to preprocess a source file
 src/resource/SmxFrame.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.i
 .PHONY : src/resource/SmxFrame.cpp.i
 
 src/resource/SmxFrame.s: src/resource/SmxFrame.cpp.s
@@ -1231,7 +1231,7 @@ src/resource/SmxFrame.s: src/resource/SmxFrame.cpp.s
 
 # target to generate assembly for a file
 src/resource/SmxFrame.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.s
 .PHONY : src/resource/SmxFrame.cpp.s
 
 src/script/ScnFile.o: src/script/ScnFile.cpp.o
@@ -1239,7 +1239,7 @@ src/script/ScnFile.o: src/script/ScnFile.cpp.o
 
 # target to build an object file
 src/script/ScnFile.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o
 .PHONY : src/script/ScnFile.cpp.o
 
 src/script/ScnFile.i: src/script/ScnFile.cpp.i
@@ -1247,7 +1247,7 @@ src/script/ScnFile.i: src/script/ScnFile.cpp.i
 
 # target to preprocess a source file
 src/script/ScnFile.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.i
 .PHONY : src/script/ScnFile.cpp.i
 
 src/script/ScnFile.s: src/script/ScnFile.cpp.s
@@ -1255,7 +1255,7 @@ src/script/ScnFile.s: src/script/ScnFile.cpp.s
 
 # target to generate assembly for a file
 src/script/ScnFile.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.s
 .PHONY : src/script/ScnFile.cpp.s
 
 src/script/scn/MapDescription.o: src/script/scn/MapDescription.cpp.o
@@ -1263,7 +1263,7 @@ src/script/scn/MapDescription.o: src/script/scn/MapDescription.cpp.o
 
 # target to build an object file
 src/script/scn/MapDescription.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.o
 .PHONY : src/script/scn/MapDescription.cpp.o
 
 src/script/scn/MapDescription.i: src/script/scn/MapDescription.cpp.i
@@ -1271,7 +1271,7 @@ src/script/scn/MapDescription.i: src/script/scn/MapDescription.cpp.i
 
 # target to preprocess a source file
 src/script/scn/MapDescription.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.i
 .PHONY : src/script/scn/MapDescription.cpp.i
 
 src/script/scn/MapDescription.s: src/script/scn/MapDescription.cpp.s
@@ -1279,7 +1279,7 @@ src/script/scn/MapDescription.s: src/script/scn/MapDescription.cpp.s
 
 # target to generate assembly for a file
 src/script/scn/MapDescription.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.s
 .PHONY : src/script/scn/MapDescription.cpp.s
 
 src/script/scn/ScnPlayerData.o: src/script/scn/ScnPlayerData.cpp.o
@@ -1287,7 +1287,7 @@ src/script/scn/ScnPlayerData.o: src/script/scn/ScnPlayerData.cpp.o
 
 # target to build an object file
 src/script/scn/ScnPlayerData.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.o
 .PHONY : src/script/scn/ScnPlayerData.cpp.o
 
 src/script/scn/ScnPlayerData.i: src/script/scn/ScnPlayerData.cpp.i
@@ -1295,7 +1295,7 @@ src/script/scn/ScnPlayerData.i: src/script/scn/ScnPlayerData.cpp.i
 
 # target to preprocess a source file
 src/script/scn/ScnPlayerData.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.i
 .PHONY : src/script/scn/ScnPlayerData.cpp.i
 
 src/script/scn/ScnPlayerData.s: src/script/scn/ScnPlayerData.cpp.s
@@ -1303,7 +1303,7 @@ src/script/scn/ScnPlayerData.s: src/script/scn/ScnPlayerData.cpp.s
 
 # target to generate assembly for a file
 src/script/scn/ScnPlayerData.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.s
 .PHONY : src/script/scn/ScnPlayerData.cpp.s
 
 src/script/scn/ScnResource.o: src/script/scn/ScnResource.cpp.o
@@ -1311,7 +1311,7 @@ src/script/scn/ScnResource.o: src/script/scn/ScnResource.cpp.o
 
 # target to build an object file
 src/script/scn/ScnResource.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.o
 .PHONY : src/script/scn/ScnResource.cpp.o
 
 src/script/scn/ScnResource.i: src/script/scn/ScnResource.cpp.i
@@ -1319,7 +1319,7 @@ src/script/scn/ScnResource.i: src/script/scn/ScnResource.cpp.i
 
 # target to preprocess a source file
 src/script/scn/ScnResource.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.i
 .PHONY : src/script/scn/ScnResource.cpp.i
 
 src/script/scn/ScnResource.s: src/script/scn/ScnResource.cpp.s
@@ -1327,7 +1327,7 @@ src/script/scn/ScnResource.s: src/script/scn/ScnResource.cpp.s
 
 # target to generate assembly for a file
 src/script/scn/ScnResource.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.s
 .PHONY : src/script/scn/ScnResource.cpp.s
 
 src/script/scn/Trigger.o: src/script/scn/Trigger.cpp.o
@@ -1335,7 +1335,7 @@ src/script/scn/Trigger.o: src/script/scn/Trigger.cpp.o
 
 # target to build an object file
 src/script/scn/Trigger.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.o
 .PHONY : src/script/scn/Trigger.cpp.o
 
 src/script/scn/Trigger.i: src/script/scn/Trigger.cpp.i
@@ -1343,7 +1343,7 @@ src/script/scn/Trigger.i: src/script/scn/Trigger.cpp.i
 
 # target to preprocess a source file
 src/script/scn/Trigger.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.i
 .PHONY : src/script/scn/Trigger.cpp.i
 
 src/script/scn/Trigger.s: src/script/scn/Trigger.cpp.s
@@ -1351,7 +1351,7 @@ src/script/scn/Trigger.s: src/script/scn/Trigger.cpp.s
 
 # target to generate assembly for a file
 src/script/scn/Trigger.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.s
 .PHONY : src/script/scn/Trigger.cpp.s
 
 src/util/Logger.o: src/util/Logger.cpp.o
@@ -1359,7 +1359,7 @@ src/util/Logger.o: src/util/Logger.cpp.o
 
 # target to build an object file
 src/util/Logger.cpp.o:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/util/Logger.cpp.o
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/util/Logger.cpp.o
 .PHONY : src/util/Logger.cpp.o
 
 src/util/Logger.i: src/util/Logger.cpp.i
@@ -1367,7 +1367,7 @@ src/util/Logger.i: src/util/Logger.cpp.i
 
 # target to preprocess a source file
 src/util/Logger.cpp.i:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/util/Logger.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/util/Logger.cpp.i
 .PHONY : src/util/Logger.cpp.i
 
 src/util/Logger.s: src/util/Logger.cpp.s
@@ -1375,7 +1375,7 @@ src/util/Logger.s: src/util/Logger.cpp.s
 
 # target to generate assembly for a file
 src/util/Logger.cpp.s:
-	cd /home/kraken/website/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/util/Logger.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build && $(MAKE) $(MAKESILENT) -f genieutils/CMakeFiles/genieutils.dir/build.make genieutils/CMakeFiles/genieutils.dir/src/util/Logger.cpp.s
 .PHONY : src/util/Logger.cpp.s
 
 # Help Target
@@ -1554,6 +1554,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/kraken/website/civbuilder/modding/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/kraken/development/civbuilder/modding/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

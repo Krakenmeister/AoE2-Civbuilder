@@ -1,7 +1,7 @@
 genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.o: \
- /home/kraken/website/civbuilder/modding/genieutils/src/resource/PalFile.cpp \
+ /home/kraken/development/civbuilder/modding/genieutils/src/resource/PalFile.cpp \
  /usr/include/stdc-predef.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/resource/PalFile.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/resource/PalFile.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -156,8 +156,8 @@ genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/IFile.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/file/IFile.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/bits/ios_base.h \
  /usr/include/c++/11/bits/locale_classes.h \
@@ -176,12 +176,12 @@ genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/Types.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/Types.h \
  /usr/include/string.h /usr/include/strings.h /usr/include/c++/11/fstream \
  /usr/include/c++/11/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
  /usr/include/c++/11/bits/fstream.tcc /usr/include/c++/11/sstream \
  /usr/include/c++/11/bits/sstream.tcc \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/util/Logger.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/resource/Color.h
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/util/Logger.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/resource/Color.h

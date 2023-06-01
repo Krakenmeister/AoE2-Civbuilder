@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kraken/website/civbuilder/modding
+CMAKE_SOURCE_DIR = /home/kraken/development/civbuilder/modding
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kraken/website/civbuilder/modding/build
+CMAKE_BINARY_DIR = /home/kraken/development/civbuilder/modding/build
 
 # Include any dependencies generated for this target.
 include genieutils/CMakeFiles/genieutils.dir/depend.make
@@ -72,730 +72,730 @@ include genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.o: ../genieutils/src/file/ISerializable.cpp
 genieutils/CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.o -MF CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.o.d -o CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/file/ISerializable.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.o -MF CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.o.d -o CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/file/ISerializable.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/file/ISerializable.cpp > CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/file/ISerializable.cpp > CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/file/ISerializable.cpp -o CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/file/ISerializable.cpp -o CMakeFiles/genieutils.dir/src/file/ISerializable.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/file/IFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/file/IFile.cpp.o: ../genieutils/src/file/IFile.cpp
 genieutils/CMakeFiles/genieutils.dir/src/file/IFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/file/IFile.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/file/IFile.cpp.o -MF CMakeFiles/genieutils.dir/src/file/IFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/file/IFile.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/file/IFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/file/IFile.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/file/IFile.cpp.o -MF CMakeFiles/genieutils.dir/src/file/IFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/file/IFile.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/file/IFile.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/file/IFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/file/IFile.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/file/IFile.cpp > CMakeFiles/genieutils.dir/src/file/IFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/file/IFile.cpp > CMakeFiles/genieutils.dir/src/file/IFile.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/file/IFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/file/IFile.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/file/IFile.cpp -o CMakeFiles/genieutils.dir/src/file/IFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/file/IFile.cpp -o CMakeFiles/genieutils.dir/src/file/IFile.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.o: ../genieutils/src/file/Compressor.cpp
 genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.o -MF CMakeFiles/genieutils.dir/src/file/Compressor.cpp.o.d -o CMakeFiles/genieutils.dir/src/file/Compressor.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/file/Compressor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.o -MF CMakeFiles/genieutils.dir/src/file/Compressor.cpp.o.d -o CMakeFiles/genieutils.dir/src/file/Compressor.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/file/Compressor.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/file/Compressor.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/file/Compressor.cpp > CMakeFiles/genieutils.dir/src/file/Compressor.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/file/Compressor.cpp > CMakeFiles/genieutils.dir/src/file/Compressor.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/file/Compressor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/file/Compressor.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/file/Compressor.cpp -o CMakeFiles/genieutils.dir/src/file/Compressor.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/file/Compressor.cpp -o CMakeFiles/genieutils.dir/src/file/Compressor.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.o: ../pcrio/pcrio.c
 genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.o -MF CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.o.d -o CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.o -c /home/kraken/website/civbuilder/modding/pcrio/pcrio.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.o -MF CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.o.d -o CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.o -c /home/kraken/development/civbuilder/modding/pcrio/pcrio.c
 
 genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/pcrio/pcrio.c > CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/pcrio/pcrio.c > CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.i
 
 genieutils/CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/pcrio/pcrio.c -o CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/pcrio/pcrio.c -o CMakeFiles/genieutils.dir/__/pcrio/pcrio.c.s
 
 genieutils/CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.o: ../genieutils/src/lang/LangFile.cpp
 genieutils/CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.o -MF CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/lang/LangFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.o -MF CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/lang/LangFile.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/lang/LangFile.cpp > CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/lang/LangFile.cpp > CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/lang/LangFile.cpp -o CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/lang/LangFile.cpp -o CMakeFiles/genieutils.dir/src/lang/LangFile.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Research.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/Research.cpp.o: ../genieutils/src/dat/Research.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/Research.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/Research.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/Research.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/Research.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/Research.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/Research.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/Research.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/Research.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/Research.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/Research.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/Research.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Research.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/Research.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/Research.cpp > CMakeFiles/genieutils.dir/src/dat/Research.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/Research.cpp > CMakeFiles/genieutils.dir/src/dat/Research.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Research.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/Research.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/Research.cpp -o CMakeFiles/genieutils.dir/src/dat/Research.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/Research.cpp -o CMakeFiles/genieutils.dir/src/dat/Research.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.o: ../genieutils/src/dat/Civ.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/Civ.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/Civ.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/Civ.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/Civ.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/Civ.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/Civ.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/Civ.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/Civ.cpp > CMakeFiles/genieutils.dir/src/dat/Civ.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/Civ.cpp > CMakeFiles/genieutils.dir/src/dat/Civ.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Civ.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/Civ.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/Civ.cpp -o CMakeFiles/genieutils.dir/src/dat/Civ.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/Civ.cpp -o CMakeFiles/genieutils.dir/src/dat/Civ.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.o: ../genieutils/src/dat/TechageEffect.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/TechageEffect.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/TechageEffect.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/TechageEffect.cpp > CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/TechageEffect.cpp > CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/TechageEffect.cpp -o CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/TechageEffect.cpp -o CMakeFiles/genieutils.dir/src/dat/TechageEffect.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Techage.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/Techage.cpp.o: ../genieutils/src/dat/Techage.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/Techage.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/Techage.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/Techage.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/Techage.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/Techage.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/Techage.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/Techage.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/Techage.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/Techage.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/Techage.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/Techage.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Techage.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/Techage.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/Techage.cpp > CMakeFiles/genieutils.dir/src/dat/Techage.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/Techage.cpp > CMakeFiles/genieutils.dir/src/dat/Techage.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Techage.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/Techage.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/Techage.cpp -o CMakeFiles/genieutils.dir/src/dat/Techage.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/Techage.cpp -o CMakeFiles/genieutils.dir/src/dat/Techage.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.o: ../genieutils/src/dat/TechTree.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/TechTree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/TechTree.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/TechTree.cpp > CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/TechTree.cpp > CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/TechTree.cpp -o CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/TechTree.cpp -o CMakeFiles/genieutils.dir/src/dat/TechTree.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.o: ../genieutils/src/dat/TerrainCommon.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/TerrainCommon.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/TerrainCommon.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/TerrainCommon.cpp > CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/TerrainCommon.cpp > CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/TerrainCommon.cpp -o CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/TerrainCommon.cpp -o CMakeFiles/genieutils.dir/src/dat/TerrainCommon.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.o: ../genieutils/src/dat/Terrain.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/Terrain.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/Terrain.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/Terrain.cpp > CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/Terrain.cpp > CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/Terrain.cpp -o CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/Terrain.cpp -o CMakeFiles/genieutils.dir/src/dat/Terrain.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.o: ../genieutils/src/dat/TerrainBlock.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/TerrainBlock.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/TerrainBlock.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/TerrainBlock.cpp > CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/TerrainBlock.cpp > CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/TerrainBlock.cpp -o CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/TerrainBlock.cpp -o CMakeFiles/genieutils.dir/src/dat/TerrainBlock.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.o: ../genieutils/src/dat/TerrainBorder.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/TerrainBorder.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/TerrainBorder.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/TerrainBorder.cpp > CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/TerrainBorder.cpp > CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/TerrainBorder.cpp -o CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/TerrainBorder.cpp -o CMakeFiles/genieutils.dir/src/dat/TerrainBorder.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.o: ../genieutils/src/dat/GraphicAttackSound.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/GraphicAttackSound.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/GraphicAttackSound.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/GraphicAttackSound.cpp > CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/GraphicAttackSound.cpp > CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/GraphicAttackSound.cpp -o CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/GraphicAttackSound.cpp -o CMakeFiles/genieutils.dir/src/dat/GraphicAttackSound.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.o: ../genieutils/src/dat/GraphicDelta.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/GraphicDelta.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/GraphicDelta.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/GraphicDelta.cpp > CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/GraphicDelta.cpp > CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/GraphicDelta.cpp -o CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/GraphicDelta.cpp -o CMakeFiles/genieutils.dir/src/dat/GraphicDelta.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.o: ../genieutils/src/dat/Graphic.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/Graphic.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/Graphic.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/Graphic.cpp > CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/Graphic.cpp > CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/Graphic.cpp -o CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/Graphic.cpp -o CMakeFiles/genieutils.dir/src/dat/Graphic.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.o: ../genieutils/src/dat/SoundItem.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/SoundItem.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/SoundItem.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/SoundItem.cpp > CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/SoundItem.cpp > CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/SoundItem.cpp -o CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/SoundItem.cpp -o CMakeFiles/genieutils.dir/src/dat/SoundItem.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Sound.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/Sound.cpp.o: ../genieutils/src/dat/Sound.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/Sound.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/Sound.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/Sound.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/Sound.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/Sound.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/Sound.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/Sound.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/Sound.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/Sound.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/Sound.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/Sound.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Sound.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/Sound.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/Sound.cpp > CMakeFiles/genieutils.dir/src/dat/Sound.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/Sound.cpp > CMakeFiles/genieutils.dir/src/dat/Sound.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Sound.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/Sound.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/Sound.cpp -o CMakeFiles/genieutils.dir/src/dat/Sound.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/Sound.cpp -o CMakeFiles/genieutils.dir/src/dat/Sound.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.o: ../genieutils/src/dat/PlayerColour.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/PlayerColour.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/PlayerColour.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/PlayerColour.cpp > CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/PlayerColour.cpp > CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/PlayerColour.cpp -o CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/PlayerColour.cpp -o CMakeFiles/genieutils.dir/src/dat/PlayerColour.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o: ../genieutils/src/dat/DatFile.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/DatFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/DatFile.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/DatFile.cpp > CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/DatFile.cpp > CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/DatFile.cpp -o CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/DatFile.cpp -o CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.o: ../genieutils/src/dat/TerrainPassGraphic.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/TerrainPassGraphic.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/TerrainPassGraphic.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/TerrainPassGraphic.cpp > CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/TerrainPassGraphic.cpp > CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/TerrainPassGraphic.cpp -o CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/TerrainPassGraphic.cpp -o CMakeFiles/genieutils.dir/src/dat/TerrainPassGraphic.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.o: ../genieutils/src/dat/TerrainRestriction.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/TerrainRestriction.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/TerrainRestriction.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/TerrainRestriction.cpp > CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/TerrainRestriction.cpp > CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/TerrainRestriction.cpp -o CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/TerrainRestriction.cpp -o CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Unit.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/Unit.cpp.o: ../genieutils/src/dat/Unit.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/Unit.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/Unit.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/Unit.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/Unit.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/Unit.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/Unit.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/Unit.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/Unit.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/Unit.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/Unit.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/Unit.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Unit.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/Unit.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/Unit.cpp > CMakeFiles/genieutils.dir/src/dat/Unit.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/Unit.cpp > CMakeFiles/genieutils.dir/src/dat/Unit.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/Unit.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/Unit.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/Unit.cpp -o CMakeFiles/genieutils.dir/src/dat/Unit.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/Unit.cpp -o CMakeFiles/genieutils.dir/src/dat/Unit.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.o: ../genieutils/src/dat/UnitCommand.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/UnitCommand.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/UnitCommand.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/UnitCommand.cpp > CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/UnitCommand.cpp > CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/UnitCommand.cpp -o CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/UnitCommand.cpp -o CMakeFiles/genieutils.dir/src/dat/UnitCommand.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.o: ../genieutils/src/dat/UnitHeader.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/UnitHeader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/UnitHeader.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/UnitHeader.cpp > CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/UnitHeader.cpp > CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/UnitHeader.cpp -o CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/UnitHeader.cpp -o CMakeFiles/genieutils.dir/src/dat/UnitHeader.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.o: ../genieutils/src/dat/UnitLine.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/UnitLine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/UnitLine.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/UnitLine.cpp > CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/UnitLine.cpp > CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/UnitLine.cpp -o CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/UnitLine.cpp -o CMakeFiles/genieutils.dir/src/dat/UnitLine.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.o: ../genieutils/src/dat/RandomMap.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/RandomMap.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/RandomMap.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/RandomMap.cpp > CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/RandomMap.cpp > CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/RandomMap.cpp -o CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/RandomMap.cpp -o CMakeFiles/genieutils.dir/src/dat/RandomMap.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.o: ../genieutils/src/dat/unit/AttackOrArmor.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/AttackOrArmor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/AttackOrArmor.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/AttackOrArmor.cpp > CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/AttackOrArmor.cpp > CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/AttackOrArmor.cpp -o CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/AttackOrArmor.cpp -o CMakeFiles/genieutils.dir/src/dat/unit/AttackOrArmor.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.o: ../genieutils/src/dat/unit/DamageGraphic.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/DamageGraphic.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/DamageGraphic.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/DamageGraphic.cpp > CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/DamageGraphic.cpp > CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/DamageGraphic.cpp -o CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/DamageGraphic.cpp -o CMakeFiles/genieutils.dir/src/dat/unit/DamageGraphic.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.o: ../genieutils/src/dat/unit/DeadFish.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/DeadFish.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/DeadFish.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/DeadFish.cpp > CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/DeadFish.cpp > CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/DeadFish.cpp -o CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/DeadFish.cpp -o CMakeFiles/genieutils.dir/src/dat/unit/DeadFish.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.o: ../genieutils/src/dat/unit/Bird.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/Bird.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/Bird.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/Bird.cpp > CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/Bird.cpp > CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/Bird.cpp -o CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/Bird.cpp -o CMakeFiles/genieutils.dir/src/dat/unit/Bird.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.o: ../genieutils/src/dat/unit/Type50.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/Type50.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/Type50.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/Type50.cpp > CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/Type50.cpp > CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/Type50.cpp -o CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/Type50.cpp -o CMakeFiles/genieutils.dir/src/dat/unit/Type50.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.o: ../genieutils/src/dat/unit/Projectile.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/Projectile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/Projectile.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/Projectile.cpp > CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/Projectile.cpp > CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/Projectile.cpp -o CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/Projectile.cpp -o CMakeFiles/genieutils.dir/src/dat/unit/Projectile.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.o: ../genieutils/src/dat/unit/Creatable.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/Creatable.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/Creatable.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/Creatable.cpp > CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/Creatable.cpp > CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/Creatable.cpp -o CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/Creatable.cpp -o CMakeFiles/genieutils.dir/src/dat/unit/Creatable.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.o: ../genieutils/src/dat/unit/Building.cpp
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/Building.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.o -MF CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.o.d -o CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/Building.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/Building.cpp > CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/Building.cpp > CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/dat/unit/Building.cpp -o CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/dat/unit/Building.cpp -o CMakeFiles/genieutils.dir/src/dat/unit/Building.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.o: ../genieutils/src/resource/PalFile.cpp
 genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/resource/PalFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/resource/PalFile.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/resource/PalFile.cpp > CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/resource/PalFile.cpp > CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/resource/PalFile.cpp -o CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/resource/PalFile.cpp -o CMakeFiles/genieutils.dir/src/resource/PalFile.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.o: ../genieutils/src/resource/SlpFile.cpp
 genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/resource/SlpFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/resource/SlpFile.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/resource/SlpFile.cpp > CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/resource/SlpFile.cpp > CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/resource/SlpFile.cpp -o CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/resource/SlpFile.cpp -o CMakeFiles/genieutils.dir/src/resource/SlpFile.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.o: ../genieutils/src/resource/SlpFrame.cpp
 genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/resource/SlpFrame.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/resource/SlpFrame.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/resource/SlpFrame.cpp > CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/resource/SlpFrame.cpp > CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/resource/SlpFrame.cpp -o CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/resource/SlpFrame.cpp -o CMakeFiles/genieutils.dir/src/resource/SlpFrame.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.o: ../genieutils/src/resource/SmpFile.cpp
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/resource/SmpFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/resource/SmpFile.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/resource/SmpFile.cpp > CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/resource/SmpFile.cpp > CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/resource/SmpFile.cpp -o CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/resource/SmpFile.cpp -o CMakeFiles/genieutils.dir/src/resource/SmpFile.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o: ../genieutils/src/resource/SmpFrame.cpp
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/resource/SmpFrame.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/resource/SmpFrame.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/resource/SmpFrame.cpp > CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/resource/SmpFrame.cpp > CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/resource/SmpFrame.cpp -o CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/resource/SmpFrame.cpp -o CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.o: ../genieutils/src/resource/SmxFile.cpp
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/resource/SmxFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/resource/SmxFile.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/resource/SmxFile.cpp > CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/resource/SmxFile.cpp > CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/resource/SmxFile.cpp -o CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/resource/SmxFile.cpp -o CMakeFiles/genieutils.dir/src/resource/SmxFile.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.o: ../genieutils/src/resource/SmxFrame.cpp
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/resource/SmxFrame.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/resource/SmxFrame.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/resource/SmxFrame.cpp > CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/resource/SmxFrame.cpp > CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/resource/SmxFrame.cpp -o CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/resource/SmxFrame.cpp -o CMakeFiles/genieutils.dir/src/resource/SmxFrame.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o: ../genieutils/src/resource/DrsFile.cpp
 genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/resource/DrsFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/resource/DrsFile.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/resource/DrsFile.cpp > CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/resource/DrsFile.cpp > CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/resource/DrsFile.cpp -o CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/resource/DrsFile.cpp -o CMakeFiles/genieutils.dir/src/resource/DrsFile.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/Color.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/resource/Color.cpp.o: ../genieutils/src/resource/Color.cpp
 genieutils/CMakeFiles/genieutils.dir/src/resource/Color.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/Color.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/Color.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/Color.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/Color.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/resource/Color.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/Color.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/Color.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/Color.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/Color.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/resource/Color.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/Color.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/resource/Color.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/resource/Color.cpp > CMakeFiles/genieutils.dir/src/resource/Color.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/resource/Color.cpp > CMakeFiles/genieutils.dir/src/resource/Color.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/Color.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/resource/Color.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/resource/Color.cpp -o CMakeFiles/genieutils.dir/src/resource/Color.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/resource/Color.cpp -o CMakeFiles/genieutils.dir/src/resource/Color.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.o: ../genieutils/src/resource/BinaFile.cpp
 genieutils/CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/resource/BinaFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.o -MF CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/resource/BinaFile.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/resource/BinaFile.cpp > CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/resource/BinaFile.cpp > CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/resource/BinaFile.cpp -o CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/resource/BinaFile.cpp -o CMakeFiles/genieutils.dir/src/resource/BinaFile.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/util/Logger.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/util/Logger.cpp.o: ../genieutils/src/util/Logger.cpp
 genieutils/CMakeFiles/genieutils.dir/src/util/Logger.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/util/Logger.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/util/Logger.cpp.o -MF CMakeFiles/genieutils.dir/src/util/Logger.cpp.o.d -o CMakeFiles/genieutils.dir/src/util/Logger.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/util/Logger.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/util/Logger.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/util/Logger.cpp.o -MF CMakeFiles/genieutils.dir/src/util/Logger.cpp.o.d -o CMakeFiles/genieutils.dir/src/util/Logger.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/util/Logger.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/util/Logger.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/util/Logger.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/util/Logger.cpp > CMakeFiles/genieutils.dir/src/util/Logger.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/util/Logger.cpp > CMakeFiles/genieutils.dir/src/util/Logger.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/util/Logger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/util/Logger.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/util/Logger.cpp -o CMakeFiles/genieutils.dir/src/util/Logger.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/util/Logger.cpp -o CMakeFiles/genieutils.dir/src/util/Logger.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o: ../genieutils/src/script/ScnFile.cpp
 genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o -MF CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/script/ScnFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o -MF CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o.d -o CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/script/ScnFile.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/script/ScnFile.cpp > CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/script/ScnFile.cpp > CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/script/ScnFile.cpp -o CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/script/ScnFile.cpp -o CMakeFiles/genieutils.dir/src/script/ScnFile.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.o: ../genieutils/src/script/scn/ScnResource.cpp
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.o -MF CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.o.d -o CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/script/scn/ScnResource.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.o -MF CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.o.d -o CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/script/scn/ScnResource.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/script/scn/ScnResource.cpp > CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/script/scn/ScnResource.cpp > CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/script/scn/ScnResource.cpp -o CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/script/scn/ScnResource.cpp -o CMakeFiles/genieutils.dir/src/script/scn/ScnResource.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.o: ../genieutils/src/script/scn/ScnPlayerData.cpp
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.o -MF CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.o.d -o CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/script/scn/ScnPlayerData.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.o -MF CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.o.d -o CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/script/scn/ScnPlayerData.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/script/scn/ScnPlayerData.cpp > CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/script/scn/ScnPlayerData.cpp > CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/script/scn/ScnPlayerData.cpp -o CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/script/scn/ScnPlayerData.cpp -o CMakeFiles/genieutils.dir/src/script/scn/ScnPlayerData.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.o: ../genieutils/src/script/scn/MapDescription.cpp
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.o -MF CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.o.d -o CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/script/scn/MapDescription.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.o -MF CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.o.d -o CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/script/scn/MapDescription.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/script/scn/MapDescription.cpp > CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/script/scn/MapDescription.cpp > CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/script/scn/MapDescription.cpp -o CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/script/scn/MapDescription.cpp -o CMakeFiles/genieutils.dir/src/script/scn/MapDescription.cpp.s
 
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.o: genieutils/CMakeFiles/genieutils.dir/flags.make
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.o: ../genieutils/src/script/scn/Trigger.cpp
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.o: genieutils/CMakeFiles/genieutils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.o"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.o -MF CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.o.d -o CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.o -c /home/kraken/website/civbuilder/modding/genieutils/src/script/scn/Trigger.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object genieutils/CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.o"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT genieutils/CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.o -MF CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.o.d -o CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.o -c /home/kraken/development/civbuilder/modding/genieutils/src/script/scn/Trigger.cpp
 
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.i"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/website/civbuilder/modding/genieutils/src/script/scn/Trigger.cpp > CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.i
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kraken/development/civbuilder/modding/genieutils/src/script/scn/Trigger.cpp > CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.i
 
 genieutils/CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.s"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/website/civbuilder/modding/genieutils/src/script/scn/Trigger.cpp -o CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.s
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kraken/development/civbuilder/modding/genieutils/src/script/scn/Trigger.cpp -o CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.s
 
 # Object files for target genieutils
 genieutils_OBJECTS = \
@@ -909,19 +909,19 @@ genieutils/libgenieutils.a: genieutils/CMakeFiles/genieutils.dir/src/script/scn/
 genieutils/libgenieutils.a: genieutils/CMakeFiles/genieutils.dir/src/script/scn/Trigger.cpp.o
 genieutils/libgenieutils.a: genieutils/CMakeFiles/genieutils.dir/build.make
 genieutils/libgenieutils.a: genieutils/CMakeFiles/genieutils.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kraken/website/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Linking CXX static library libgenieutils.a"
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && $(CMAKE_COMMAND) -P CMakeFiles/genieutils.dir/cmake_clean_target.cmake
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/genieutils.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kraken/development/civbuilder/modding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Linking CXX static library libgenieutils.a"
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && $(CMAKE_COMMAND) -P CMakeFiles/genieutils.dir/cmake_clean_target.cmake
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/genieutils.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 genieutils/CMakeFiles/genieutils.dir/build: genieutils/libgenieutils.a
 .PHONY : genieutils/CMakeFiles/genieutils.dir/build
 
 genieutils/CMakeFiles/genieutils.dir/clean:
-	cd /home/kraken/website/civbuilder/modding/build/genieutils && $(CMAKE_COMMAND) -P CMakeFiles/genieutils.dir/cmake_clean.cmake
+	cd /home/kraken/development/civbuilder/modding/build/genieutils && $(CMAKE_COMMAND) -P CMakeFiles/genieutils.dir/cmake_clean.cmake
 .PHONY : genieutils/CMakeFiles/genieutils.dir/clean
 
 genieutils/CMakeFiles/genieutils.dir/depend:
-	cd /home/kraken/website/civbuilder/modding/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/kraken/website/civbuilder/modding /home/kraken/website/civbuilder/modding/genieutils /home/kraken/website/civbuilder/modding/build /home/kraken/website/civbuilder/modding/build/genieutils /home/kraken/website/civbuilder/modding/build/genieutils/CMakeFiles/genieutils.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/kraken/development/civbuilder/modding/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/kraken/development/civbuilder/modding /home/kraken/development/civbuilder/modding/genieutils /home/kraken/development/civbuilder/modding/build /home/kraken/development/civbuilder/modding/build/genieutils /home/kraken/development/civbuilder/modding/build/genieutils/CMakeFiles/genieutils.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : genieutils/CMakeFiles/genieutils.dir/depend
 

@@ -1,8 +1,8 @@
 genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o: \
- /home/kraken/website/civbuilder/modding/genieutils/src/resource/SmpFrame.cpp \
+ /home/kraken/development/civbuilder/modding/genieutils/src/resource/SmpFrame.cpp \
  /usr/include/stdc-predef.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/resource/SmpFrame.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/resource/SmpFrame.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -149,7 +149,7 @@ genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/Types.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/Types.h \
  /usr/include/c++/11/array /usr/include/c++/11/utility \
  /usr/include/c++/11/bits/stl_relops.h /usr/include/c++/11/vector \
  /usr/include/c++/11/bits/stl_uninitialized.h \
@@ -157,14 +157,14 @@ genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o: \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc /usr/include/string.h \
  /usr/include/strings.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/util/Logger.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/util/Logger.h \
  /usr/include/c++/11/set /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/ext/aligned_buffer.h \
  /usr/include/c++/11/bits/node_handle.h \
  /usr/include/c++/11/bits/stl_set.h \
  /usr/include/c++/11/bits/stl_multiset.h \
  /usr/include/c++/11/bits/erase_if.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/resource/PalFile.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/resource/PalFile.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
  /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
@@ -180,8 +180,8 @@ genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/IFile.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/file/IFile.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
  /usr/include/c++/11/fstream /usr/include/c++/11/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
@@ -189,4 +189,4 @@ genieutils/CMakeFiles/genieutils.dir/src/resource/SmpFrame.cpp.o: \
  /usr/include/assert.h /usr/include/c++/11/chrono \
  /usr/include/c++/11/ratio /usr/include/c++/11/limits \
  /usr/include/c++/11/ctime /usr/include/c++/11/bits/parse_numbers.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/resource/Color.h
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/resource/Color.h

@@ -1,23 +1,23 @@
 Performing C++ SOURCE FILE Test ICONV_SECOND_ARGUMENT_IS_CONST failed with the following output:
-Change Dir: /home/kraken/website/civbuilder/modding/build/CMakeFiles/CMakeTmp
+Change Dir: /home/kraken/development/civbuilder/modding/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_f1c22/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_f1c22.dir/build.make CMakeFiles/cmTC_f1c22.dir/build
-gmake[1]: Entering directory '/home/kraken/website/civbuilder/modding/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_f1c22.dir/src.cxx.o
-/usr/bin/c++ -DICONV_SECOND_ARGUMENT_IS_CONST  -static-libstdc++ -ljsoncpp  -o CMakeFiles/cmTC_f1c22.dir/src.cxx.o -c /home/kraken/website/civbuilder/modding/build/CMakeFiles/CMakeTmp/src.cxx
-/home/kraken/website/civbuilder/modding/build/CMakeFiles/CMakeTmp/src.cxx: In function ‘int main()’:
-/home/kraken/website/civbuilder/modding/build/CMakeFiles/CMakeTmp/src.cxx:9:17: error: invalid conversion from ‘const char**’ to ‘char**’ [-fpermissive]
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_ea128/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_ea128.dir/build.make CMakeFiles/cmTC_ea128.dir/build
+gmake[1]: Entering directory '/home/kraken/development/civbuilder/modding/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_ea128.dir/src.cxx.o
+/usr/bin/c++ -DICONV_SECOND_ARGUMENT_IS_CONST  -static-libstdc++ -ljsoncpp  -o CMakeFiles/cmTC_ea128.dir/src.cxx.o -c /home/kraken/development/civbuilder/modding/build/CMakeFiles/CMakeTmp/src.cxx
+/home/kraken/development/civbuilder/modding/build/CMakeFiles/CMakeTmp/src.cxx: In function ‘int main()’:
+/home/kraken/development/civbuilder/modding/build/CMakeFiles/CMakeTmp/src.cxx:9:17: error: invalid conversion from ‘const char**’ to ‘char**’ [-fpermissive]
     9 |     iconv(conv, &in, &ilen, &out, &olen);
       |                 ^~~
       |                 |
       |                 const char**
-In file included from /home/kraken/website/civbuilder/modding/build/CMakeFiles/CMakeTmp/src.cxx:2:
+In file included from /home/kraken/development/civbuilder/modding/build/CMakeFiles/CMakeTmp/src.cxx:2:
 /usr/include/iconv.h:42:54: note:   initializing argument 2 of ‘size_t iconv(iconv_t, char**, size_t*, char**, size_t*)’
    42 | extern size_t iconv (iconv_t __cd, char **__restrict __inbuf,
       |                                    ~~~~~~~~~~~~~~~~~~^~~~~~~
-gmake[1]: *** [CMakeFiles/cmTC_f1c22.dir/build.make:78: CMakeFiles/cmTC_f1c22.dir/src.cxx.o] Error 1
-gmake[1]: Leaving directory '/home/kraken/website/civbuilder/modding/build/CMakeFiles/CMakeTmp'
-gmake: *** [Makefile:127: cmTC_f1c22/fast] Error 2
+gmake[1]: *** [CMakeFiles/cmTC_ea128.dir/build.make:78: CMakeFiles/cmTC_ea128.dir/src.cxx.o] Error 1
+gmake[1]: Leaving directory '/home/kraken/development/civbuilder/modding/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_ea128/fast] Error 2
 
 
 Source file was:

@@ -1,7 +1,7 @@
 genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o: \
- /home/kraken/website/civbuilder/modding/genieutils/src/dat/DatFile.cpp \
+ /home/kraken/development/civbuilder/modding/genieutils/src/dat/DatFile.cpp \
  /usr/include/stdc-predef.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/DatFile.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/DatFile.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -151,9 +151,9 @@ genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/Types.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/IFile.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/Types.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/file/IFile.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
  /usr/include/c++/11/array /usr/include/c++/11/utility \
  /usr/include/c++/11/bits/stl_relops.h /usr/include/c++/11/vector \
  /usr/include/c++/11/bits/stl_uninitialized.h \
@@ -165,7 +165,7 @@ genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
  /usr/include/c++/11/bits/fstream.tcc \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/Compressor.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/file/Compressor.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
  /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
@@ -183,40 +183,40 @@ genieutils/CMakeFiles/genieutils.dir/src/dat/DatFile.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/TerrainRestriction.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/TerrainPassGraphic.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/PlayerColour.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/Sound.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/SoundItem.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/Graphic.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/GraphicDelta.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/GraphicAttackSound.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/TerrainBlock.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/TerrainCommon.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/Terrain.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/TerrainBorder.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/Terrain.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/Techage.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/TechageEffect.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/UnitHeader.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/UnitCommand.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/Civ.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/Unit.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/DamageGraphic.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/AttackOrArmor.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/DeadFish.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/Bird.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/../UnitCommand.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/Type50.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/AttackOrArmor.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/Projectile.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/Creatable.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/../ResourceUsage.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/unit/Building.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/ResourceUsage.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/Research.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/TerrainBorder.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/UnitLine.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/TechTree.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/RandomMap.h
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/TerrainRestriction.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/TerrainPassGraphic.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/PlayerColour.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/Sound.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/SoundItem.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/Graphic.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/GraphicDelta.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/GraphicAttackSound.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/TerrainBlock.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/TerrainCommon.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/Terrain.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/TerrainBorder.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/Terrain.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/Techage.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/TechageEffect.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/UnitHeader.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/UnitCommand.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/Civ.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/Unit.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/unit/DamageGraphic.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/unit/AttackOrArmor.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/unit/DeadFish.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/unit/Bird.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/unit/../UnitCommand.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/unit/Type50.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/unit/AttackOrArmor.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/unit/Projectile.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/unit/Creatable.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/unit/../ResourceUsage.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/unit/Building.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/ResourceUsage.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/Research.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/TerrainBorder.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/UnitLine.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/TechTree.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/RandomMap.h

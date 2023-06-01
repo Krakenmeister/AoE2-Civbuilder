@@ -1,7 +1,7 @@
 genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.o: \
- /home/kraken/website/civbuilder/modding/genieutils/src/dat/TerrainRestriction.cpp \
+ /home/kraken/development/civbuilder/modding/genieutils/src/dat/TerrainRestriction.cpp \
  /usr/include/stdc-predef.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/TerrainRestriction.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/TerrainRestriction.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -44,7 +44,7 @@ genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.o: \
  /usr/include/c++/11/bits/hash_bytes.h \
  /usr/include/c++/11/bits/range_access.h \
  /usr/include/c++/11/bits/vector.tcc \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/file/ISerializable.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/iosfwd \
  /usr/include/c++/11/bits/stringfwd.h /usr/include/c++/11/bits/postypes.h \
@@ -152,8 +152,8 @@ genieutils/CMakeFiles/genieutils.dir/src/dat/TerrainRestriction.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/Types.h \
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/Types.h \
  /usr/include/c++/11/array /usr/include/c++/11/utility \
  /usr/include/c++/11/bits/stl_relops.h /usr/include/string.h \
  /usr/include/strings.h \
- /home/kraken/website/civbuilder/modding/genieutils/include/genie/dat/TerrainPassGraphic.h
+ /home/kraken/development/civbuilder/modding/genieutils/include/genie/dat/TerrainPassGraphic.h

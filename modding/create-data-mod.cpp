@@ -24,9 +24,8 @@ int main(int argc, char **argv) {
     ifstream cfgfile(argv[1]);
     //reader.parse(cfgfile, cfg);
     cfgfile >> cfg;
-    Civbuilder cb = Civbuilder(df, cfg, "logs.txt", "ai.json");
+    Civbuilder cb = Civbuilder(df, cfg, "logs.txt", argv[4]);
     cb.configure();
-    // configureCivs(df, cfg, argv[4]);
 
     df->saveAs(argv[3]);
 

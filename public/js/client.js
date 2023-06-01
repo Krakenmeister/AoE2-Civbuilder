@@ -2,6 +2,8 @@
 
 var dataSeed = -1;
 
+console.log("development test");
+
 function copyToClipboard(textid, buttonid) {
   const buttons = ["button1", "button2", "button3"];
   var copyText = document.getElementById(textid);

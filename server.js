@@ -21,7 +21,7 @@ const { num_bonuses, num_basic_techs, nameArr, colours, iconids, blanks, indexDi
 const { createCivilizationsJson } = require("./process_mod/createCivilizationsJson.js");
 
 const hostname = "localhost";
-const port = 3000;
+const port = 4000;
 
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
@@ -1048,4 +1048,4 @@ module.exports = {
   router: router,
 };
 
-// server.listen(port);
+server.listen(port);

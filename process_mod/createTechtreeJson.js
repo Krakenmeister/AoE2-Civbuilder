@@ -996,7 +996,7 @@ const UUArray = [
   ["Seljuk Archer", 5312, 53, 5817, numVanillaTechs + 42, numVanillaUnits + 41, numVanillaUnits + 42],
   ["Numidian Javelinman", 5775, 207, 5818, numVanillaTechs + 44, numVanillaUnits + 43, numVanillaUnits + 44],
   ["Sosso Guard", 5042, 350, 5819, numVanillaTechs + 46, numVanillaUnits + 45, numVanillaUnits + 46],
-  ["Swiss Pikeman", 5410, 136, 5820, numVanillaTechs + 48, numVanillaUnits + 47, numVanillaUnits + 48],
+  ["Swiss Pikeman", 5410, 136, 5856, numVanillaTechs + 48, numVanillaUnits + 47, numVanillaUnits + 48],
   ["Headhunter", 5478, 359, 5821, numVanillaTechs + 50, numVanillaUnits + 49, numVanillaUnits + 50],
   ["Teulu", 5550, 368, 5822, numVanillaTechs + 52, numVanillaUnits + 51, numVanillaUnits + 52],
   ["Maillotin", 5551, 366, 5823, numVanillaTechs + 54, numVanillaUnits + 53, numVanillaUnits + 54],

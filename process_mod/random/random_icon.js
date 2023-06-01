@@ -1,18 +1,6 @@
 //Create canvas with black background
 const fs = require("fs-js");
 const { createCanvas, loadImage, Image } = require("canvas");
-const width = 256;
-const height = 256;
-const canvas = createCanvas(width, height);
-const ctx = canvas.getContext("2d");
-ctx.fillStyle = "rgba(0,0,0,255)";
-ctx.fillRect(0, 0, width, height);
-
-//Create separate canvas for symbol
-const canvas2 = createCanvas(width, height);
-const ctx2 = canvas2.getContext("2d");
-
-var buffer;
 
 module.exports = {
   getRandomInt,
@@ -111,6 +99,17 @@ async function drawFlag(seed, symbol, output_paths, input_path) {
   var tertiary_division_colour = "rgb(" + colour_palette[2][0] + ", " + colour_palette[2][1] + ", " + colour_palette[2][2] + ")";
   var overlay_colour = "rgb(" + colour_palette[3][0] + ", " + colour_palette[3][1] + ", " + colour_palette[3][2] + ")";
   var image_path = input_path + "/symbol_" + symbol + ".png";
+
+  const width = 256;
+  const height = 256;
+  const canvas = createCanvas(width, height);
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "rgba(0,0,0,255)";
+  ctx.fillRect(0, 0, width, height);
+
+  //Create separate canvas for symbol
+  const canvas2 = createCanvas(width, height);
+  const ctx2 = canvas2.getContext("2d");
 
   //Draw background
   //0 = solid color background
@@ -434,7 +433,7 @@ async function drawFlag(seed, symbol, output_paths, input_path) {
 
     //Write canvas to png file
     ctx.putImageData(imageData1, 0, 0);
-    buffer = canvas.toBuffer("image/png");
+    let buffer = canvas.toBuffer("image/png");
 
     for (let output_path of output_paths) {
       fs.writeFileSync(output_path, buffer);
@@ -444,7 +443,7 @@ async function drawFlag(seed, symbol, output_paths, input_path) {
     ctx2.clearRect(0, 0, width, height);
   } else {
     //Don't bother with symbol and draw what we have to png file
-    buffer = canvas.toBuffer("image/png");
+    let buffer = canvas.toBuffer("image/png");
 
     for (let output_path of output_paths) {
       fs.writeFileSync(output_path, buffer);

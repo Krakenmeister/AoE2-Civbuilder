@@ -1,4 +1,7 @@
-const dir = "/home/kraken/website/civbuilder";
+const dir = "/home/kraken/development/civbuilder";
+
+const hostname = "localhost";
+const port = 4000;
 
 const http = require("http");
 const express = require("express");
@@ -19,9 +22,6 @@ const createTechtreeJson = require("./process_mod/createTechtreeJson.js");
 const makeai = require("./process_mod/modAI.js");
 const { num_bonuses, num_basic_techs, nameArr, colours, iconids, blanks, indexDictionary } = require("./process_mod/constants.js");
 const { createCivilizationsJson } = require("./process_mod/createCivilizationsJson.js");
-
-const hostname = "localhost";
-const port = 4000;
 
 const server = require("http").Server(app);
 const io = require("socket.io")(server);

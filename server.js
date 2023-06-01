@@ -1,4 +1,4 @@
-const dir = "/home/kraken/development/civbuilder";
+const dir = "/home/kraken/website/civbuilder";
 
 const http = require("http");
 const express = require("express");

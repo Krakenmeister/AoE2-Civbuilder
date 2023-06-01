@@ -4,6 +4,7 @@ package-lock.json
 node_modules
 empty.json
 modding/build
+modding/vcpkg
 modding/requested_mods/*
 !modding/requested_mods/README.md
 !modding/requested_mods/cleanup.sh

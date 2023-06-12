@@ -1,4 +1,4 @@
-const dir = "/home/kraken/development/civbuilder";
+const dir = "/home/kraken/website/civbuilder";
 
 const hostname = "localhost";
 const port = 4000;
@@ -1105,4 +1105,4 @@ module.exports = {
   router: router,
 };
 
-server.listen(port);
+// server.listen(port);

@@ -451,7 +451,7 @@ async function drawFlag(seed, symbol, output_paths, input_path) {
   }
 }
 
-function generateFlags(output_path1, output_path2, input_path) {
+async function generateFlags(output_path1, output_path2, input_path) {
   //Array of symbols that haven't been used yet
   var symbols = [];
   for (var i = 0; i < 39; i++) {
@@ -518,23 +518,27 @@ function generateFlags(output_path1, output_path2, input_path) {
     var seed = generateSeed();
 
     if (civName == "berber" || civName == "inca") {
-      drawFlag(
+      await drawFlag(
         seed,
         symbol,
-        output_path1 + "/" + civName + "s.png",
-        output_path2 + "/menu_techtree_" + civName + ".png",
-        output_path2 + "/menu_techtree_" + civName + "_hover.png",
-        output_path2 + "/menu_techtree_" + civName + "_pressed.png",
+        [
+          output_path1 + "/" + civName + "s.png",
+          output_path2 + "/menu_techtree_" + civName + ".png",
+          output_path2 + "/menu_techtree_" + civName + "_hover.png",
+          output_path2 + "/menu_techtree_" + civName + "_pressed.png",
+        ],
         input_path
       );
     } else {
-      drawFlag(
+      await drawFlag(
         seed,
         symbol,
-        output_path1 + "/" + civName + ".png",
-        output_path2 + "/menu_techtree_" + civName + ".png",
-        output_path2 + "/menu_techtree_" + civName + "_hover.png",
-        output_path2 + "/menu_techtree_" + civName + "_pressed.png",
+        [
+          output_path1 + "/" + civName + ".png",
+          output_path2 + "/menu_techtree_" + civName + ".png",
+          output_path2 + "/menu_techtree_" + civName + "_hover.png",
+          output_path2 + "/menu_techtree_" + civName + "_pressed.png",
+        ],
         input_path
       );
     }

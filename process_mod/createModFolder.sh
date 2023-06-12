@@ -3,12 +3,16 @@
 #arg1 = mod folder path
 #arg2 = mod folder name
 #arg3 = app directory
+#arg4 = create ui mod
 
 cd $1
 mkdir $2
 cd $2
 mkdir $2-data
-mkdir $2-ui
+if [[ $4 -eq 1 ]]
+then
+    mkdir $2-ui
+fi
 cd $2-data
 
 cat > ./info.json << EOF
@@ -21,15 +25,18 @@ mkdir resources
 cd resources
 mkdir _common
 cd _common
-mkdir wpfg
-cd wpfg
-mkdir resources
-cd resources
-mkdir civ_techtree
-mkdir civ_emblems
-mkdir uniticons
-cd ..
-cd ..
+if [[ $4 -eq 1 ]]
+then
+    mkdir wpfg
+    cd wpfg
+    mkdir resources
+    cd resources
+    mkdir civ_techtree
+    mkdir civ_emblems
+    mkdir uniticons
+    cd ..
+    cd ..
+fi
 mkdir dat
 cd dat
 cp "$3/public/vanillaFiles/empires2_x2_p1.dat" ./
@@ -38,6 +45,12 @@ cd ..
 cd ..
 cd ..
 cd ..
+
+if [[ $4 -eq 0 ]]
+then
+    exit
+fi
+
 cd $2-ui
 
 cat > ./info.json << EOF

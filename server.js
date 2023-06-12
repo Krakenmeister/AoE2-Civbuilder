@@ -20,7 +20,7 @@ const makejson = require("./process_mod/random/random_json.js");
 const modStrings = require("./process_mod/modStrings.js");
 const createTechtreeJson = require("./process_mod/createTechtreeJson.js");
 const makeai = require("./process_mod/modAI.js");
-const { num_bonuses, num_basic_techs, nameArr, colours, iconids, blanks, indexDictionary } = require("./process_mod/constants.js");
+const { numBonuses, numBasicTechs, nameArr, colours, iconids, blanks, indexDictionary } = require("./process_mod/constants.js");
 const { createCivilizationsJson } = require("./process_mod/createCivilizationsJson.js");
 
 const server = require("http").Server(app);
@@ -122,9 +122,9 @@ const createDraft = (req, res, next) => {
     var available_bonuses = [];
     var numBonus;
     if (req.body.new_bonuses === "on") {
-      numBonus = num_bonuses[i][1];
+      numBonus = numBonuses[i][1];
     } else {
-      numBonus = num_bonuses[i][0];
+      numBonus = numBonuses[i][0];
     }
     for (var j = 0; j < numBonus; j++) {
       available_bonuses.push(j);
@@ -238,9 +238,9 @@ function reshuffleCards(draft) {
   var numBonus;
 
   if (draft["preset"]["modded"] === "on") {
-    numBonus = num_bonuses[roundType][1];
+    numBonus = numBonuses[roundType][1];
   } else {
-    numBonus = num_bonuses[roundType][0];
+    numBonus = numBonuses[roundType][0];
   }
   for (var i = 0; i < numBonus; i++) {
     var discarded = 1;
@@ -265,21 +265,35 @@ const chDir = (req, res, next) => {
 };
 
 const createModFolder = (req, res, next) => {
-  execSync(`sh ./process_mod/createModFolder.sh ./modding/requested_mods ${req.body.seed} ${dir}`);
+  if (req.body.civs === "false") {
+    execSync(`bash ./process_mod/createModFolder.sh ./modding/requested_mods ${req.body.seed} ${dir} 0`);
+  } else {
+    execSync(`bash ./process_mod/createModFolder.sh ./modding/requested_mods ${req.body.seed} ${dir} 1`);
+  }
   next();
 };
 
 const createCivIcons = (req, res, next) => {
+  if (req.body.civs === "false") {
+    next();
+    return;
+  }
+
   console.log(`[${req.body.seed}]: Creating civ icons...`);
   icons.generateFlags(
     `./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/menu/civs`,
     `./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons`,
-    `./img/public/symbols`
+    `./public/img/symbols`
   );
   next();
 };
 
 const copyCivIcons = (req, res, next) => {
+  if (req.body.civs === "false") {
+    next();
+    return;
+  }
+
   console.log(`[${req.body.seed}]: Copying civ icons...`);
   os.execCommand(
     `cp -r ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/. ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/wpfg/resources/civ_techtree`,
@@ -291,11 +305,16 @@ const copyCivIcons = (req, res, next) => {
 
 const generateJson = (req, res, next) => {
   console.log(`[${req.body.seed}]: Generating data json...`);
-  makejson.createJson(`./modding/requested_mods/${req.body.seed}/data.json`, `${req.body.costs}`);
+  makejson.createJson(`./modding/requested_mods/${req.body.seed}/data.json`, req.body.costs, req.body.civs);
   next();
 };
 
 const writeNames = (req, res, next) => {
+  if (req.body.civs === "false") {
+    next();
+    return;
+  }
+
   console.log(`[${req.body.seed}]: Writing strings...`);
   modStrings.interperateLanguage(
     `./modding/requested_mods/${req.body.seed}/data.json`,
@@ -305,6 +324,11 @@ const writeNames = (req, res, next) => {
 };
 
 const copyNames = (req, res, next) => {
+  if (req.body.civs === "false") {
+    next();
+    return;
+  }
+
   console.log(`[${req.body.seed}]: Copying strings...`);
   os.execCommand(`sh ./process_mod/copyLanguages.sh ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources`, function () {
     next();
@@ -312,6 +336,11 @@ const copyNames = (req, res, next) => {
 };
 
 const addVoiceFiles = (req, res, next) => {
+  if (req.body.civs === "false") {
+    next();
+    return;
+  }
+
   console.log(`[${req.body.seed}]: Adding voice files...`);
   let command = `./process_mod/copyVoices.sh /var/www/krakenmeister.com/civbuilder/modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/drs/sounds`;
   let data = fs.readFileSync(path.join(__dirname, `/modding/requested_mods/${req.body.seed}/data.json`));
@@ -327,6 +356,11 @@ const addVoiceFiles = (req, res, next) => {
 };
 
 const writeUUIcons = (req, res, next) => {
+  if (req.body.civs === "false") {
+    next();
+    return;
+  }
+
   console.log(`[${req.body.seed}]: Writing UU icons...`);
   for (var i = 0; i < blanks.length; i++) {
     os.execCommand(
@@ -361,12 +395,22 @@ const writeUUIcons = (req, res, next) => {
 };
 
 const writeCivilizations = (req, res, next) => {
+  if (req.body.civs === "false") {
+    next();
+    return;
+  }
+
   console.log(`[${req.body.seed}]: Writing civilizations json...`);
   createCivilizationsJson(`./modding/requested_mods/${req.body.seed}/data.json`, `./modding/requested_mods/${req.body.seed}/${req.body.seed}-data/resources/_common/dat/civilizations.json`);
   next();
 };
 
 const writeTechTree = (req, res, next) => {
+  if (req.body.civs === "false") {
+    next();
+    return;
+  }
+
   console.log(`[${req.body.seed}]: Writing tech tree...`);
   // modTreeJson.arrangeTechTree(`./modding/requested_mods/${req.body.seed}/data.json`, `./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/civTechTrees.json`);
   createTechtreeJson.createTechtreeJson(
@@ -390,6 +434,11 @@ const writeDatFile = async (req, res, next) => {
 };
 
 const writeAIFiles = (req, res, next) => {
+  if (req.body.civs === "false") {
+    next();
+    return;
+  }
+
   console.log(`[${req.body.seed}]: Writing AI files...`);
   makeai.createAI(`./modding/requested_mods/${req.body.seed}/data.json`, `./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/ai`);
   next();
@@ -397,9 +446,15 @@ const writeAIFiles = (req, res, next) => {
 
 const zipModFolder = (req, res, next) => {
   console.log(`[${req.body.seed}]: Zipping folder...`);
-  os.execCommand(`sh ./process_mod/zipModFolder.sh ${req.body.seed}`, function () {
-    next();
-  });
+  if (req.body.civs === "false") {
+    os.execCommand(`bash ./process_mod/zipModFolder.sh ${req.body.seed} 0`, function () {
+      next();
+    });
+  } else {
+    os.execCommand(`bash ./process_mod/zipModFolder.sh ${req.body.seed} 1`, function () {
+      next();
+    });
+  }
 };
 
 const writeIconsJson = (req, res, next) => {
@@ -507,11 +562,12 @@ const writeIconsJson = (req, res, next) => {
       mod_data.team_bonus = [];
       mod_data.architecture = [];
       mod_data.language = [];
-      mod_data.random_costs = 0;
+      mod_data.randomCosts = "false";
+      mod_data.modifyDat = "true";
       for (var i = 0; i < civs.length; i++) {
         mod_data.name.push(civs[i]["alias"]);
         var player_techtree = [];
-        for (var j = 0; j < num_basic_techs; j++) {
+        for (var j = 0; j < numBasicTechs; j++) {
           player_techtree.push(0);
         }
         //Unique Unit
@@ -584,7 +640,7 @@ router.get("/build", function (req, res) {
 });
 
 router.post(
-  "/file",
+  "/random",
   chDir,
   createModFolder,
   createCivIcons,
@@ -630,7 +686,7 @@ router.post("/draft", createDraft, (req, res) => {
 });
 
 router.post("/vanilla", (req, res) => {
-  res.download(__dirname + "/public/VanillaCivs/VanillaJson.zip");
+  res.download(__dirname + "/public/vanillaFiles/vanillaCivs/VanillaJson.zip");
 });
 
 router.get("/view", function (req, res) {
@@ -858,7 +914,7 @@ io.on("connection", function (socket) {
     //Welcome to callback hell because I wasted $1800 on a web-dev class where the professor was seemingly incapable of answering a single question
     if (draft["gamestate"]["phase"] == 3) {
       //Create Mod Folder
-      os.execCommand(`sh createModFolder.sh ./modding/requested_mods ${draft["id"]} ${dir}`, function () {
+      os.execCommand(`bash createModFolder.sh ./modding/requested_mods ${draft["id"]} ${dir}`, function () {
         //Create Civ Icons
         for (var i = 0; i < numPlayers; i++) {
           var civName = nameArr[i];
@@ -911,7 +967,8 @@ io.on("connection", function (socket) {
             mod_data.team_bonus = [];
             mod_data.architecture = [];
             mod_data.language = [];
-            mod_data.random_costs = 0;
+            mod_data.randomCosts = false;
+            mod_data.modifyDat = true;
             for (var i = 0; i < numPlayers; i++) {
               mod_data.name.push(draft["players"][i]["alias"]);
               var player_techtree = [];

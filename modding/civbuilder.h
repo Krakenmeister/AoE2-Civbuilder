@@ -11,13 +11,11 @@
 #include <math.h>
 #include "genie/dat/DatFile.h"
 #include <jsoncpp/json/json.h>
+#include "helpers.h"
 
 using namespace std;
 using namespace genie;
 using namespace Json;
-
-typedef ResourceUsage<int16_t, int16_t, int16_t> ResourceCost;
-typedef ResourceUsage<int16_t, int16_t, uint8_t> ResearchResourceCost;
 
 class Civbuilder {
     private:
@@ -61,6 +59,7 @@ class Civbuilder {
         void assignCivBonuses();
         void assignTeamBonuses();
         void duplicateUnitEffects();
+        void cleanup();
 };
 
 #endif

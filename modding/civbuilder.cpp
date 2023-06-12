@@ -1,5 +1,4 @@
 #include "civbuilder.h"
-#include "helpers.h"
 
 Civbuilder::Civbuilder(DatFile* df, Value config, string logpath, string aipath) {
     this->df = df;
@@ -333,8 +332,10 @@ void Civbuilder::configure() {
     this->createData();
 	cout << "[C++]: Assigning data" << endl;
     this->assignData();
-	cout << "[C++]: Cleaning up" << endl;
+	cout << "[C++]: Reconfiguring" << endl;
     this->reconfigureEffects();
+	cout << "[C++]: Cleaning up" << endl;
+	this->cleanup();
 }
 
 void Civbuilder::createData() {
@@ -639,6 +640,21 @@ void Civbuilder::setupData() {
     Effect e = Effect();
 	this->createCivBonus(105, e, "C-Bonus, Eco upgrades cost -33% food");
 
+	//Krepost heal task incase stronghold
+	for (Civ &civ : df->Civs) {
+		Task healTask = Task();
+		healTask.ActionType = 155;
+		healTask.TaskType = 1;
+		healTask.ClassID = 6;
+		healTask.WorkValue1 = 30;
+		healTask.WorkValue2 = 1;
+		healTask.WorkRange = 7;
+		healTask.SearchWaitTime = 109;
+		healTask.CombatLevelFlag = 4;
+		healTask.TargetDiplomacy = 4;
+		civ.Units[1251].Bird.TaskList.push_back(healTask);
+	}
+
     //Add berry, hunter, fish productivity resources
 	//Villager unit, task action type, productivity resource
 	const vector<vector<int>> villagerTasks = {{120, 5, 198}, {354, 5, 198}, {122, 110, 199}, {216, 110, 199}, {56, 5, 200}, {57, 5, 200}, {13, 5, 200}};
@@ -671,6 +687,13 @@ void Civbuilder::setupData() {
         }
     }
 
+	//Copy the attack tree task from onager
+	for (int k=0; k<df->Civs.size(); k++) {
+		this->df->Civs[k].Units[280].Bird.TaskList.push_back(this->df->Civs[k].Units[550].Bird.TaskList[4]);
+		//Disable attacking trees unless it's the civ with the bonus
+		this->df->Civs[k].Units[280].Bird.TaskList[5].ClassID = -1;
+	}
+
     //Give villagers their own armor class
     for (Civ &civ : df->Civs) {
 		for (Unit &unit : civ.Units) {
@@ -680,6 +703,16 @@ void Civbuilder::setupData() {
 				civilian_armor.Amount = 0;
 				unit.Type50.Armours.push_back(civilian_armor);
 			}
+		}
+	}
+
+	//Create generate stone task (copied from keshiks)
+	for (Civ &civ : this->df->Civs) {
+		for (int i=0; i<this->unitClasses["ram"].size(); i++) {
+			civ.Units[this->unitClasses["ram"][i]].Bird.TaskList.push_back(civ.Units[1228].Bird.TaskList[5]);
+			civ.Units[this->unitClasses["ram"][i]].Bird.TaskList[5].ClassID = -1;
+			civ.Units[this->unitClasses["ram"][i]].Bird.TaskList[5].ResourceOut = 2;
+			civ.Units[this->unitClasses["ram"][i]].Bird.TaskList[5].WorkValue1 = 0.01;
 		}
 	}
 
@@ -2407,7 +2440,7 @@ void Civbuilder::createCivBonuses() {
 		this->createCivBonus(203, e, "C-Bonus, Infantry +attack vs vils in Age " + to_string(101 + i), {101 + i});
 	}
 
-	//Fishing ships carry +10 food
+	//Fishermen and fishing ships carry +15 food
 	this->civBonuses[204] = {844};
 
 	//Galleys +1 attack
@@ -2656,13 +2689,14 @@ void Civbuilder::createCivBonuses() {
     t.ResourceCosts[0].Flag = 1;
     t.ResourceCosts[1].Type = 1;
     t.ResourceCosts[1].Amount = 400;
-    t.ResourceCosts[2].Flag = 1;
+    t.ResourceCosts[1].Flag = 1;
     t.ResearchTime = 200;
     t.ResearchLocation = 209;
     t.IconID = 46;
     t.ButtonID = 8;
     t.Civ = 99;
     t.EffectID = (this->df->Effects.size() - 1);
+	this->df->Techs.push_back(t);
     this->civBonuses[239] = {(int) (df->Techs.size() - 1)};
 
 	//Fish +35% more food
@@ -3435,23 +3469,6 @@ void Civbuilder::reconfigureEffects() {
 	giveClassNewBonus(this->df, this->unitClasses["unique"], 32);
 	giveClassNewBonus(this->df, this->unitClasses["unique"], 1);
 
-    //Create generate stone task (copied from keshiks)
-	for (Civ &civ : this->df->Civs) {
-		for (int i=0; i<this->unitClasses["ram"].size(); i++) {
-			civ.Units[this->unitClasses["ram"][i]].Bird.TaskList.push_back(civ.Units[1228].Bird.TaskList[5]);
-			civ.Units[this->unitClasses["ram"][i]].Bird.TaskList[5].ClassID = -1;
-			civ.Units[this->unitClasses["ram"][i]].Bird.TaskList[5].ResourceOut = 2;
-			civ.Units[this->unitClasses["ram"][i]].Bird.TaskList[5].WorkValue1 = 0.01;
-		}
-	}
-
-    //Copy the attack tree task from onager
-	for (int k=0; k<df->Civs.size(); k++) {
-		this->df->Civs[k].Units[280].Bird.TaskList.push_back(this->df->Civs[k].Units[550].Bird.TaskList[4]);
-		//Disable attacking trees unless it's the civ with the bonus
-		this->df->Civs[k].Units[280].Bird.TaskList[5].ClassID = -1;
-	}
-
 	//Recompile units list
 	vector<int> barracksUnits = {};
 	for (int i=0; i<this->df->Civs[0].Units.size(); i++) {
@@ -3870,18 +3887,15 @@ void Civbuilder::reconfigureEffects() {
 	this->df->Effects[537].EffectCommands.push_back(createEC(5, 1251, -1, 10, 0.75));
 	this->df->Effects[537].EffectCommands.push_back(createEC(0, 82, -1, 63, 34));
 	this->df->Effects[537].EffectCommands.push_back(createEC(0, 1251, -1, 63, 34));
-	for (Civ &civ : df->Civs) {
-		Task healTask = Task();
-		healTask.ActionType = 155;
-		healTask.TaskType = 1;
-		healTask.ClassID = 6;
-		healTask.WorkValue1 = 30;
-		healTask.WorkValue2 = 1;
-		healTask.WorkRange = 7;
-		healTask.SearchWaitTime = 109;
-		healTask.CombatLevelFlag = 4;
-		healTask.TargetDiplomacy = 4;
-		civ.Units[1251].Bird.TaskList.push_back(healTask);
+}
+
+void Civbuilder::cleanup() {
+	if (this->config["randomCosts"] == "true") {
+		unitSets[40].push_back(royalElephant);
+		unitSets[41].push_back(royalLancer);
+		unitSets[44].push_back(impScorpion);
+		uniqueUnits = this->unitClasses["unique"];
+		randomizeCosts(this->df);
 	}
 
 	//Give effects that apply to a unique unit to their copies

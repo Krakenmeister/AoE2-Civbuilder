@@ -32,24 +32,45 @@ function generateRandom() {
   var randomForm = document.createElement("div");
   randomForm.id = "buildForm";
 
-  var randomCivs = document.createElement("button");
-  randomCivs.id = "randomCivs";
-  randomCivs.innerHTML = "Generate Randomized Civilizations";
-  randomCivs.onclick = function () {
+  let input1 = document.createElement("input");
+  input1.type = "checkbox";
+  input1.name = "randomCivs";
+  input1.id = "randomCivs";
+  input1.checked = true;
+  let label1 = document.createElement("label");
+  label1.setAttribute("for", "randomCivs");
+  label1.innerHTML = "Random Civilizations: ";
+
+  let input2 = document.createElement("input");
+  input2.type = "checkbox";
+  input2.name = "randomCosts";
+  input2.id = "randomCosts";
+  input2.checked = true;
+  let label2 = document.createElement("label");
+  label2.setAttribute("for", "randomCosts");
+  label2.innerHTML = "Random Costs: ";
+
+  var randomSubmit = document.createElement("button");
+  randomSubmit.id = "randomSubmit";
+  randomSubmit.innerHTML = "Generate Mod";
+  randomSubmit.onclick = function () {
     dataSeed = getSeed();
-    post("/file", { seed: dataSeed, costs: "normal" });
+    post(`${route}/random`, { seed: dataSeed, civs: document.getElementById("randomCivs").checked, costs: document.getElementById("randomCosts").checked });
   };
 
-  var randomCosts = document.createElement("button");
-  randomCosts.id = "randomCosts";
-  randomCosts.innerHTML = "Generate Random Civs and Costs";
-  randomCosts.onclick = function () {
-    dataSeed = getSeed();
-    post("/file", { seed: dataSeed, costs: "random" });
-  };
+  let div1 = document.createElement("div");
+  div1.className = "input_field";
+  let div2 = document.createElement("div");
+  div2.className = "input_field";
 
-  randomForm.appendChild(randomCivs);
-  randomForm.appendChild(randomCosts);
+  div1.appendChild(label1);
+  div1.appendChild(input1);
+  div2.appendChild(label2);
+  div2.appendChild(input2);
+
+  randomForm.appendChild(div1);
+  randomForm.appendChild(div2);
+  randomForm.appendChild(randomSubmit);
 
   document.getElementsByTagName("body")[0].appendChild(randomForm);
 }
@@ -309,7 +330,7 @@ function startaBuild() {
     vanillaDownload.id = "vanillaDownload";
     vanillaDownload.innerHTML = "Get Vanilla Civs";
     vanillaDownload.onclick = function () {
-      post("/vanilla", {});
+      post(`${route}/vanilla`, {});
     };
 
     var vanillaText = document.createElement("p");
@@ -324,8 +345,8 @@ function startaBuild() {
     document.getElementById("buildForm").appendChild(vanillaText);
     (function () {
       function checkCompatibility(presets) {
-        if (presets.length > 42) {
-          alert("Too many civilizations (max 42). Aborting creation.");
+        if (presets.length > numCivs) {
+          alert(`Too many civilizations (max ${numCivs}). Aborting creation.`);
           return -1;
         }
         //Krepost, Donjon, Anarchy, Marauder, First Crusade, Elite Mercenaries,

@@ -1,5 +1,5 @@
 //0 = vanilla, 1 = allow generated bonuses
-const num_bonuses = [
+const numBonuses = [
   [140, 311], //Civ bonuses
   [39, 81], //Unique units
   [39, 50], //Castle techs
@@ -7,7 +7,9 @@ const num_bonuses = [
   [37, 74], //Team bonuses
 ];
 
-const num_basic_techs = 161;
+const numCivs = 43;
+
+const numBasicTechs = 161;
 
 //Names and colours for flags
 const nameArr = [
@@ -329,11 +331,12 @@ const indexDictionary = [
 ];
 
 module.exports = {
-  num_bonuses,
-  num_basic_techs,
+  numBonuses,
+  numBasicTechs,
   nameArr,
   colours,
   iconids,
   blanks,
   indexDictionary,
+  numCivs,
 };

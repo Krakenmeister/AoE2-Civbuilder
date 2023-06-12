@@ -1,6 +1,7 @@
 const fs = require("fs");
 const names = require("./random_name.js");
 const techtrees = require("./random_techtree.js");
+const { numBonuses, numCivs } = require("../constants.js");
 
 //const writeFile = (filename, content) => {fs.writeFile(filename, content, () => {})}
 
@@ -8,14 +9,7 @@ module.exports = {
   createJson,
 };
 
-const num_civs = 42;
-const num_unique_units = 82;
-const num_castle_techs = 49;
-const num_imp_techs = 47;
-const num_civ_bonuses = 304;
-const num_team_bonuses = 78;
-
-function createJson(output_path, costs) {
+function createJson(output_path, randomCosts, randomCivs) {
   //Each array will contain 37 elements corresponding to which vanilla civ it will overwrite
   var random_data = {};
 
@@ -46,19 +40,16 @@ function createJson(output_path, costs) {
   random_data.language = [];
 
   //0 = don't give random costs, 1 = do give random costs
-  if (costs == "random") {
-    random_data.random_costs = 1;
-  } else {
-    random_data.random_costs = 0;
-  }
+  random_data.randomCosts = randomCosts;
+  random_data.modifyDat = randomCivs;
 
-  random_data.name = names.generateNames(num_civs).sort();
-  for (var i = 0; i < num_civs; i++) {
+  random_data.name = names.generateNames(numCivs).sort();
+  for (var i = 0; i < numCivs; i++) {
     random_data.techtree.push(techtrees.generateTechTree());
   }
 
   var uniqueUnits = [];
-  for (var i = 0; i < num_unique_units; i++) {
+  for (var i = 0; i < numBonuses[1][1]; i++) {
     uniqueUnits.push(i);
   }
   for (var i = 0; i < random_data.techtree.length; i++) {
@@ -68,7 +59,7 @@ function createJson(output_path, costs) {
   }
 
   var uniqueCastleTechs = [];
-  for (var i = 0; i < num_castle_techs; i++) {
+  for (var i = 0; i < numBonuses[2][1]; i++) {
     uniqueCastleTechs.push(i);
   }
   for (var i = 0; i < random_data.techtree.length; i++) {
@@ -80,7 +71,7 @@ function createJson(output_path, costs) {
   }
 
   var uniqueImpTechs = [];
-  for (var i = 0; i < num_imp_techs; i++) {
+  for (var i = 0; i < numBonuses[3][1]; i++) {
     uniqueImpTechs.push(i);
   }
   for (var i = 0; i < random_data.techtree.length; i++) {
@@ -92,13 +83,13 @@ function createJson(output_path, costs) {
   }
 
   var civBonuses = [];
-  for (var i = /*(num_civ_bonuses - (5*37))*/ 0; i < num_civ_bonuses; i++) {
+  for (var i = /*(num_civ_bonuses - (5*37))*/ 0; i < numBonuses[0][1]; i++) {
     civBonuses.push(i);
   }
   for (var i = 0; i < random_data.techtree.length; i++) {
     var bonus_arr = [];
-    var num_bonuses = 5;
-    for (var j = 0; j < num_bonuses; j++) {
+    var bonusesPerCiv = 5;
+    for (var j = 0; j < bonusesPerCiv; j++) {
       var rand_civ_bonus = Math.floor(Math.random() * civBonuses.length);
       bonus_arr.push(civBonuses[rand_civ_bonus]);
       civBonuses.splice(rand_civ_bonus, 1);
@@ -107,7 +98,7 @@ function createJson(output_path, costs) {
   }
 
   var teamBonuses = [];
-  for (var i = /*(num_team_bonuses - 37)*/ 0; i < num_team_bonuses; i++) {
+  for (var i = /*(num_team_bonuses - 37)*/ 0; i < numBonuses[4][1]; i++) {
     teamBonuses.push(i);
   }
   for (var i = 0; i < random_data.techtree.length; i++) {
@@ -124,7 +115,7 @@ function createJson(output_path, costs) {
   }
 
   for (var i = 0; i < random_data.techtree.length; i++) {
-    var rand_language = Math.floor(Math.random() * num_civs);
+    var rand_language = Math.floor(Math.random() * numCivs);
     random_data.language.push(rand_language);
   }
 

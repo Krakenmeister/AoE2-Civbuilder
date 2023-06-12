@@ -25,7 +25,15 @@ int main(int argc, char **argv) {
     //reader.parse(cfgfile, cfg);
     cfgfile >> cfg;
     Civbuilder cb = Civbuilder(df, cfg, "logs.txt", argv[4]);
-    cb.configure();
+    
+    cout << "Random costs: " << cfg["randomCosts"] << endl;
+    cout << "Modify dat: " << cfg["modifyDat"] << endl;
+
+    if (cfg["modifyDat"] == "true") {
+        cb.configure();
+    } else if (cfg["randomCosts"] == "true") {
+        randomizeCosts(df);
+    }
 
     df->saveAs(argv[3]);
 

@@ -32,7 +32,7 @@ void Civbuilder::initialize() {
     this->unitClasses["scorpion"] = {279, 541};
     this->unitClasses["unique"] = {8, 530, 281, 531, 41, 555, 25, 554, 291, 560, 73, 559, 40, 553, 282, 556, 239, 558, 46, 557, 692, 694, 11, 561, 232, 534, 771, 773, 725, 726, 763, 765, 755, 757, 827, 829, 866, 868, 1747, 1749, 879, 881, 869, 871, 876, 878,
 		1001, 1003, 1016, 1018, 1013, 1015, 1007, 1009, 1120, 1122, 1123, 1125, 1126, 1128, 1129, 1131, 1225, 1227, 1252, 1253, 1228, 1230, 1231, 1233, 1234, 1236, 1655, 1657, 1658, 1659, 1701, 1702, 1704, 1706,
-		1735, 1737, 1738, 1740, 1741, 1743, 1759, 1761};
+		1735, 1737, 1738, 1740, 1741, 1743, 1759, 1761, 1790, 1792};
     this->unitClasses["steppe"] = {1370, 1372};
     this->unitClasses["eagle"] = {751, 752, 753};
     this->unitClasses["ram"] = {35, 1258, 422, 548};
@@ -347,11 +347,51 @@ void Civbuilder::createData() {
 
 void Civbuilder::assignData() {
     this->assignArchitectures();
+	this->assignLanguages();
     this->assignUniqueUnits();
     this->assignBasicTechs();
     this->assignUniqueTechs();
     this->assignCivBonuses();
     this->assignTeamBonuses();
+}
+
+//Give civilizations the appropriate sfx files
+void Civbuilder::assignLanguages () {
+	int civOffset = 100;
+
+	//Copy language sound items of the civilization we want
+	for (int i=0; i<this->config["language"].size(); i++) {
+		for (int j=0; j<this->df->Sounds.size(); j++) {
+			int soundSize = this->df->Sounds[j].Items.size();
+			for (int k=0; k<soundSize; k++) {
+				if (this->df->Sounds[j].Items[k].Civilization == (this->config["language"][i].asInt() + 1)) {
+					//Make a copy, but change its civilization so that it doesn't get re-copied
+					SoundItem copySound = this->df->Sounds[j].Items[k];
+					copySound.Civilization = i+1+civOffset;
+					this->df->Sounds[j].Items.push_back(copySound);
+				}
+			}
+		}
+	}
+
+	//Remove all the old sound items
+	for (int i=0; i<this->df->Sounds.size(); i++) {
+		for (int j=0; j<this->df->Sounds[i].Items.size(); j++) {
+			if (this->df->Sounds[i].Items[j].Civilization < civOffset && this->df->Sounds[i].Items[j].Civilization > 0) {
+				this->df->Sounds[i].Items.erase(this->df->Sounds[i].Items.begin() + j);
+				j--;
+			}
+		}
+	}
+
+	//Change all new sound items so that they are readable
+	for (int i=0; i<this->df->Sounds.size(); i++) {
+		for (int j=0; j<this->df->Sounds[i].Items.size(); j++) {
+			if (this->df->Sounds[i].Items[j].Civilization >= civOffset) {
+				this->df->Sounds[i].Items[j].Civilization -= civOffset;
+			}
+		}
+	}
 }
 
 //Algorithm for transforming one array to another when we can only copy from one index to another and have only one temp slot (gaia civ stores architectures)

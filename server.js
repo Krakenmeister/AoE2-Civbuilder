@@ -342,12 +342,17 @@ const addVoiceFiles = (req, res, next) => {
   }
 
   console.log(`[${req.body.seed}]: Adding voice files...`);
-  let command = `./process_mod/copyVoices.sh /var/www/krakenmeister.com/civbuilder/modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/drs/sounds`;
+  let command = `sh ./process_mod/copyVoices.sh ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/drs/sounds ${dir}/public/vanillaFiles/voiceFiles`;
   let data = fs.readFileSync(path.join(__dirname, `/modding/requested_mods/${req.body.seed}/data.json`));
   let info = JSON.parse(data);
 
+  let uniqueLanguages = [];
+
   for (var i = 0; i < info.language.length; i++) {
-    command += ` ${info.language[i]}`;
+    if (uniqueLanguages.indexOf(info.language[i]) == -1) {
+      uniqueLanguages.push(info.language[i]);
+      command += ` ${info.language[i]}`;
+    }
   }
 
   os.execCommand(command, function () {
@@ -529,25 +534,25 @@ const writeIconsJson = (req, res, next) => {
       }
     }
   }
-  if (blankOthers) {
-    //If there was a vanilla civ amongst the bunch, blank out all others to make it clearer
-    for (var i = civs.length; i < 39; i++) {
-      if (nameArr[i] == "berber" || nameArr[i] == "inca") {
-        execSync(`cp ./public/vanillaFiles/vanillaCivs/blank.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/menu/civs/${nameArr[i]}s.png`);
-      } else {
-        execSync(`cp ./public/vanillaFiles/vanillaCivs/blank.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/menu/civs/${nameArr[i]}.png`);
-      }
-      execSync(
-        `cp ./public/vanillaFiles/vanillaCivs/blank.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${nameArr[i]}.png`
-      );
-      execSync(
-        `cp ./public/vanillaFiles/vanillaCivs/blank.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${nameArr[i]}_hover.png`
-      );
-      execSync(
-        `cp ./public/vanillaFiles/vanillaCivs/blank.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${nameArr[i]}_pressed.png`
-      );
-    }
-  }
+  // if (blankOthers) {
+  //   //If there was a vanilla civ amongst the bunch, blank out all others to make it clearer
+  //   for (var i = civs.length; i < 39; i++) {
+  //     if (nameArr[i] == "berber" || nameArr[i] == "inca") {
+  //       execSync(`cp ./public/vanillaFiles/vanillaCivs/blank.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/menu/civs/${nameArr[i]}s.png`);
+  //     } else {
+  //       execSync(`cp ./public/vanillaFiles/vanillaCivs/blank.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/menu/civs/${nameArr[i]}.png`);
+  //     }
+  //     execSync(
+  //       `cp ./public/vanillaFiles/vanillaCivs/blank.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${nameArr[i]}.png`
+  //     );
+  //     execSync(
+  //       `cp ./public/vanillaFiles/vanillaCivs/blank.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${nameArr[i]}_hover.png`
+  //     );
+  //     execSync(
+  //       `cp ./public/vanillaFiles/vanillaCivs/blank.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${nameArr[i]}_pressed.png`
+  //     );
+  //   }
+  // }
   //Copy Civ Icons
   os.execCommand(
     `cp -r ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/. ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/wpfg/resources/civ_techtree`,

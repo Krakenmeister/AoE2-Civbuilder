@@ -53,6 +53,7 @@ class Civbuilder {
         void createTeamBonuses();
         void reconfigureEffects();
         void assignArchitectures();
+        void assignLanguages();
         void assignUniqueUnits();
         void assignBasicTechs();
         void assignUniqueTechs();

@@ -1,4 +1,4 @@
-const hostname = "https://krakenmeister.com";
+const hostname = "http://krakenmeister.com:4000";
 const route = "/civbuilder";
 
 const card_descriptions = [
@@ -701,6 +701,8 @@ const palette_sizes = [15, 15, 15, 15, 15, 12, 12, 84];
 const num_cards = [311, 81, 50, 48, 74];
 const max_sizes = [311, 1, 1, 1, 74];
 
+const numCivs = 43;
+
 const architectures = [
   "Central European Architecture",
   "Western European Architecture",
@@ -750,7 +752,14 @@ const languages = [
   "Tatar Language",
   "Cuman Language",
   "Lithuanian Language",
-  /*, 'Burgundian', 'Sicilian', 'Polish', 'Bohemian'*/
+  "Burgundian Language",
+  "Sicilian Language",
+  "Polish Language",
+  "Bohemian Language",
+  "Dravidian Language",
+  "Bengali Language",
+  "Gurjaran Language",
+  "Roman Language",
 ];
 
 //Draw flag to canvas given a seed

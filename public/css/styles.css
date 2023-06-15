@@ -694,27 +694,27 @@ upload:focus {
 
 #archbox {
   display: flex;
-  height: 4rem;
+  height: 127px;
   margin-bottom: 1rem;
   margin-top: 1rem;
+  margin-right: 20px;
 }
 
 #langbox {
   display: flex;
-  height: 43m;
   margin-bottom: 1rem;
   margin-top: 1rem;
 }
 
-#architecturetext {
-  font-size: 1.6rem;
-  width: 18rem;
-  text-align: center;
+#architectureicon {
+  width: 171px;
+  height: 127px;
 }
 
 #languagetext {
-  font-size: 1.6rem;
-  width: 21rem;
+  font-size: 26px;
+  width: 170px;
+  padding: 10px;
   text-align: center;
 }
 

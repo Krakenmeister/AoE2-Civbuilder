@@ -3,7 +3,7 @@
 #arg1 = draft id
 #arg2 = make ui mod
 
-if [[ $4 -eq 0 ]]
+if [[ $2 -eq 0 ]]
 then
     rm -f ./modding/requested_mods/$1.zip
     cd ./modding/requested_mods/$1/$1-data

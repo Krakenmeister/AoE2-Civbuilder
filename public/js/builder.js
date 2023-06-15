@@ -113,16 +113,16 @@ function renderPhase1() {
   var archbox = document.createElement("div");
   archbox.id = "archbox";
 
-  var architecturetext = document.createElement("div");
-  architecturetext.id = "architecturetext";
-  architecturetext.innerHTML = architectures[civ["architecture"] - 1];
+  var architectureIcon = document.createElement("img");
+  architectureIcon.id = "architectureicon";
+  architectureIcon.src = `./img/architectures/tc_${civ["architecture"]}.png`;
 
   var iconback = document.createElement("button");
   iconback.className = "backbutton";
   iconback.innerHTML = "<";
   iconback.onclick = function () {
     civ["architecture"] = ((civ["architecture"] - 1 + 10) % 11) + 1;
-    document.getElementById("architecturetext").innerHTML = architectures[civ["architecture"] - 1];
+    document.getElementById("architectureicon").src = `./img/architectures/tc_${civ["architecture"]}.png`;
   };
 
   var iconforward = document.createElement("button");
@@ -130,11 +130,11 @@ function renderPhase1() {
   iconforward.innerHTML = ">";
   iconforward.onclick = function () {
     civ["architecture"] = ((civ["architecture"] - 1 + 1) % 11) + 1;
-    document.getElementById("architecturetext").innerHTML = architectures[civ["architecture"] - 1];
+    document.getElementById("architectureicon").src = `./img/architectures/tc_${civ["architecture"]}.png`;
   };
 
   archbox.appendChild(iconback);
-  archbox.appendChild(architecturetext);
+  archbox.appendChild(architectureIcon);
   archbox.appendChild(iconforward);
 
   var langbox = document.createElement("div");

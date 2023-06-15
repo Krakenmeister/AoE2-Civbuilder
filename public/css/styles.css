@@ -504,6 +504,48 @@ input[type="text"] {
   outline-offset: -0.51vw;
 }
 
+#finish {
+  margin: 0.5vw;
+  color: white;
+  font-size: 1.2vw;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  width: 9vw;
+  height: 6vw;
+  line-height: 6vw;
+  background-image: url("../img/helpbackground.png");
+  background-size: 9vw 6vw;
+  background-repeat: no-repeat;
+  outline: none;
+}
+
+#finish:hover {
+  outline: 0.51vw solid rgba(255, 255, 255, 1);
+  outline-offset: -0.51vw;
+}
+
+#homeBtn {
+  margin: 0.5vw;
+  color: white;
+  font-size: 2.5vw;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  width: 9vw;
+  height: 6vw;
+  line-height: 6vw;
+  background-image: url("../img/helpbackground.png");
+  background-size: 9vw 6vw;
+  background-repeat: no-repeat;
+  outline: none;
+}
+
+#homeBtn:hover {
+  outline: 0.51vw solid rgba(255, 255, 255, 1);
+  outline-offset: -0.51vw;
+}
+
 #clear {
   margin: 0.5vw;
   color: white;

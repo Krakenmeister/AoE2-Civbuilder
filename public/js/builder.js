@@ -27,6 +27,8 @@ function setTechTree(tree) {
 function renderPhase1() {
   $("body").contents().not("script").remove();
 
+  document.body.style.backgroundImage = "url('./img/aoe2background.jpg')";
+
   var wrapping = document.createElement("div");
   wrapping.id = "wrapping";
 
@@ -62,6 +64,9 @@ function renderPhase1() {
   input.type = "text";
   input.id = "alias";
   input.name = "civname";
+  if (civ["alias"]) {
+    input.setAttribute("value", civ["alias"]);
+  }
 
   var next = document.createElement("button");
   next.className = "readybutton";
@@ -72,7 +77,40 @@ function renderPhase1() {
       civ["alias"] = inputbox.value;
       document.title = "Civilization Builder - " + civ["alias"];
       renderPhase2();
-      showTechtree(civ["tree"], -1, 3, 0, "");
+      if (civ["bonuses"][0].length == 0 && civ["bonuses"][1].length == 0 && civ["bonuses"][2].length == 0 && civ["bonuses"][3].length == 0 && civ["bonuses"][4].length == 0) {
+        showTechtree(civ["tree"], -1, 3, 0, "");
+      } else {
+        var description = `<span><b>${civ["alias"]}</b></span><br><br>`;
+        for (var a = 0; a < civ["bonuses"][0].length; a++) {
+          description += "•";
+          description += card_descriptions[0][civ["bonuses"][0][a]];
+          description += "<br>";
+        }
+        description += "<br><span><b>Unique Unit:</b></span><br>";
+        if (civ["bonuses"][1].length != 0) {
+          description += card_descriptions[1][civ["bonuses"][1][0]];
+          description += "<br>";
+        }
+        description += "<br><span><b>Unique Techs:</b></span><br>";
+        if (civ["bonuses"][2].length != 0) {
+          description += "•";
+          description += card_descriptions[2][civ["bonuses"][2][0]];
+          description += "<br>";
+        }
+        if (civ["bonuses"][3].length != 0) {
+          description += "•";
+          description += card_descriptions[3][civ["bonuses"][3][0]];
+          description += "<br>";
+        }
+        description += "<br><span><b>Team Bonus:</b></span><br>";
+        if (civ["bonuses"][4].length != 0) {
+          for (var j = 0; j < civ["bonuses"][4].length; j++) {
+            description += card_descriptions[4][civ["bonuses"][4][j]];
+            description += "<br>";
+          }
+        }
+        showTechtree(civ["tree"], -1, 3, 0, description);
+      }
     }
   };
 
@@ -318,38 +356,9 @@ function renderPhase2() {
   player.style.top = "200px";
   player.style.width = "18vw";
   player.style.marginLeft = "2vw";
+  player.style.paddingRight = "25px";
   player.onclick = function () {
-    //Show tech tree
-    var description = `<span><b>${civ["alias"]}</b></span><br><br>`;
-    for (var a = 0; a < civ["bonuses"][0].length; a++) {
-      description += "•";
-      description += card_descriptions[0][civ["bonuses"][0][a]];
-      description += "<br>";
-    }
-    description += "<br><span><b>Unique Unit:</b></span><br>";
-    if (civ["bonuses"][1].length != 0) {
-      description += card_descriptions[1][civ["bonuses"][1][0]];
-      description += "<br>";
-    }
-    description += "<br><span><b>Unique Techs:</b></span><br>";
-    if (civ["bonuses"][2].length != 0) {
-      description += "•";
-      description += card_descriptions[2][civ["bonuses"][2][0]];
-      description += "<br>";
-    }
-    if (civ["bonuses"][3].length != 0) {
-      description += "•";
-      description += card_descriptions[3][civ["bonuses"][3][0]];
-      description += "<br>";
-    }
-    description += "<br><span><b>Team Bonus:</b></span><br>";
-    if (civ["bonuses"][4].length != 0) {
-      for (var j = 0; j < civ["bonuses"][4].length; j++) {
-        description += card_descriptions[4][civ["bonuses"][4][j]];
-        description += "<br>";
-      }
-    }
-    showTechtree(civ["tree"], -1, 3, 0, description);
+    renderPhase1();
   };
 
   var image = document.createElement("div");
@@ -363,6 +372,19 @@ function renderPhase2() {
   canvas.width = "85";
   canvas.height = "85";
   canvas.className = "flag";
+
+  var edit = document.createElement("div");
+  edit.id = "editIcon";
+  edit.style.position = "absolute";
+  edit.style.top = "30px";
+  edit.style.right = "20px";
+
+  var editImg = document.createElement("img");
+  editImg.src = "./img/edit.png";
+  editImg.style.width = "35px";
+  editImg.style.height = "35px";
+
+  edit.appendChild(editImg);
 
   var alias = document.createElement("div");
   alias.className = "alias";
@@ -378,6 +400,7 @@ function renderPhase2() {
 
   player.appendChild(image);
   player.appendChild(text);
+  player.appendChild(edit);
 
   sliderbox.appendChild(slidertext);
   sliderbox.appendChild(sliderslider);
@@ -408,10 +431,12 @@ function renderPhase2() {
       helptext.style.fontSize = "80px";
       helptext.innerHTML = text;
       fitText("helpboxtext");
-      var finish_button = document.getElementById("refill");
+      var finish_button = document.getElementById("finish");
       finish_button.style.visibility = "hidden";
       var share_button = document.getElementById("clear");
       share_button.style.visibility = "hidden";
+      var home_button = document.getElementById("homeBtn");
+      home_button.style.visibility = "hidden";
     };
   }
 
@@ -424,10 +449,12 @@ function renderPhase2() {
       }
       var help = document.getElementById("helpboxcontainer");
       help.style.visibility = "hidden";
-      var finish_button = document.getElementById("refill");
+      var finish_button = document.getElementById("finish");
       finish_button.style.visibility = "visible";
       var share_button = document.getElementById("clear");
       share_button.style.visibility = "visible";
+      var home_button = document.getElementById("homeBtn");
+      home_button.style.visibility = "visible";
     };
   }
 
@@ -515,8 +542,8 @@ function renderPhase2() {
   boardtoolbar.style.alignItems = "flex-start";
 
   var finish = document.createElement("div");
-  finish.id = "refill";
-  finish.innerHTML = "Finish";
+  finish.id = "finish";
+  finish.innerHTML = "Download";
   finish.style.margin = "0";
   finish.onclick = function () {
     downloadTextFile(JSON.stringify(civ), civ["alias"] + ".json");
@@ -595,8 +622,19 @@ function renderPhase2() {
     document.body.appendChild(sharebox);
   };
 
+  var home = document.createElement("div");
+  home.id = "homeBtn";
+  home.innerHTML = "Home";
+  home.style.margin = "0";
+  home.onclick = function () {
+    if (confirm("Return home? Changes will not be saved.")) {
+      window.location.href = `${hostname}${route}`;
+    }
+  };
+
   boardtoolbar.appendChild(finish);
   boardtoolbar.appendChild(share);
+  boardtoolbar.appendChild(home);
   players.appendChild(boardtoolbar);
 
   //Add card description box

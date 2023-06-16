@@ -1,6 +1,6 @@
 const dir = "/home/kraken/website/civbuilder";
 
-const hostname = "localhost";
+const hostname = "http://krakenmeister.com:4000/civbuilder";
 const port = 4000;
 
 const http = require("http");
@@ -61,40 +61,42 @@ function os_func() {
 
 var os = new os_func();
 
+function retrieveCookies(header) {
+  let pairs = header.split(";");
+  let cookies = {};
+  for (let i = 0; i < pairs.length; i++) {
+    let nameValue = pairs[i].split("=");
+    cookies[nameValue[0].trim()] = nameValue[1];
+  }
+  return cookies;
+}
+
 const createDraft = (req, res, next) => {
-  var raw_data = fs.readFileSync("./database.json");
-  var data = JSON.parse(raw_data);
-  var drafts = data["drafts"];
-  var uniqueID = false;
-  var id;
+  let uniqueID = false;
+  let id;
   while (uniqueID == false) {
     id = "";
-    for (var i = 0; i < 15; i++) {
-      var rand = Math.floor(Math.random() * 10);
+    for (let i = 0; i < 15; i++) {
+      let rand = Math.floor(Math.random() * 10);
       id += rand;
     }
     uniqueID = true;
-    for (var i = 0; i < drafts.length; i++) {
-      if (drafts[i]["id"] == id) {
-        uniqueID = false;
-      }
-    }
+    uniqueID = !fs.existsSync(`./drafts/${id}.json`);
   }
 
-  var draft = {};
+  let draft = {};
   draft["id"] = id;
   draft["timestamp"] = Date.now();
 
-  var preset = {};
+  let preset = {};
   preset["slots"] = parseInt(req.body.num_players, 10);
-  preset["modded"] = req.body.new_bonuses;
   preset["points"] = parseInt(req.body.techtree_currency, 10);
   preset["rounds"] = parseInt(req.body.rounds, 10);
   draft["preset"] = preset;
 
-  var players = [];
-  for (var i = 0; i < parseInt(req.body.num_players, 10); i++) {
-    var player = {};
+  let players = [];
+  for (let i = 0; i < parseInt(req.body.num_players, 10); i++) {
+    let player = {};
     player["ready"] = 0;
     player["name"] = "";
     player["alias"] = "";
@@ -135,17 +137,19 @@ const createDraft = (req, res, next) => {
   gamestate["order"] = [];
   gamestate["highlighted"] = [];
   draft["gamestate"] = gamestate;
-  drafts.push(draft);
-  fs.writeFileSync("./database.json", JSON.stringify(data, null, 2));
-  req.playerlink = "https://krakenmeister.com/draft/player/" + id;
-  req.hostlink = "https://krakenmeister.com/draft/host/" + id;
-  req.spectatorlink = "https://krakenmeister.com/draft/" + id;
+  fs.writeFileSync(`./drafts/${id}.json`, JSON.stringify(draft, null, 2));
+  req.playerlink = `${hostname}/draft/player/${id}`;
+  req.hostlink = `${hostname}/draft/host/${id}`;
+  req.spectatorlink = `${hostname}/draft/${id}`;
   next();
 };
 
 const checkCookies = (req, res, next) => {
-  if (req.cookies["draftID"] && req.cookies["draftID"] == parseInt(req.params.id, 10) && req.cookies["playerNumber"] && req.cookies["playerNumber"] >= 0) {
-    req.authenticated = -1;
+  if (req.headers.cookie) {
+    let cookies = retrieveCookies(req.headers.cookie);
+    if (cookies["draftID"] && cookies["draftID"] == parseInt(req.params.id, 10) && cookies["playerNumber"] && cookies["playerNumber"] >= 0) {
+      req.authenticated = -1;
+    }
   }
   next();
 };
@@ -154,33 +158,20 @@ const authenticateDraft = (req, res, next) => {
   if (req.authenticated == -1) {
     return next();
   }
-  var raw_data = fs.readFileSync("./database.json");
-  var data = JSON.parse(raw_data);
-  var drafts = data["drafts"];
   req.authenticated = 0;
-  for (var i = 0; i < drafts.length; i++) {
-    if (drafts[i]["id"] == req.params.id) {
-      req.authenticated = 1;
-    }
+  if (fs.existsSync(`./drafts/${req.params.id}.json`)) {
+    req.authenticated = 1;
   }
   next();
 };
 
 function getDraft(id) {
-  var raw_data = fs.readFileSync("./database.json");
-  var data = JSON.parse(raw_data);
-  var drafts = data["drafts"];
-  var index = -1;
-  for (var i = 0; i < drafts.length; i++) {
-    if (drafts[i]["id"] == id) {
-      index = i;
-    }
-  }
-  if (index == -1) {
-    console.log("draft doesn't exist");
+  if (!fs.existsSync(`./drafts/${id}.json`)) {
     return -1;
   }
-  return [data, index];
+  let data = fs.readFileSync(`./drafts/${id}.json`);
+  let draft = JSON.parse(data);
+  return draft;
 }
 
 const setID = (req, res, next) => {
@@ -193,34 +184,30 @@ const checkSpace = (req, res, next) => {
   if (req.authenticated == -1) {
     return next();
   }
-  var raw_data = fs.readFileSync("./database.json");
-  var data = JSON.parse(raw_data);
-  var drafts = data["drafts"];
-  var index = -1;
-  for (var i = 0; i < drafts.length; i++) {
-    if (drafts[i]["id"] == req.body.draftID) {
-      index = i;
-    }
-  }
-  if (index == -1) {
+  if (!fs.existsSync(`./drafts/${req.body.draftID}.json`)) {
     console.log("Draft authentication failed");
     return next();
   }
+
+  let data = fs.readFileSync(`./drafts/${req.body.draftID}.json`);
+  let draft = JSON.parse(data);
   if (req.body.joinType == 0) {
-    if (drafts[index]["players"][0]["name"] == "") {
-      drafts[index]["players"][0]["name"] = req.body.civ_name;
-      fs.writeFileSync("./database.json", JSON.stringify(data, null, 2));
+    //Joining as a host
+    if (draft["players"][0]["name"] == "") {
+      draft["players"][0]["name"] = req.body.civ_name;
+      fs.writeFileSync(`./drafts/${req.body.draftID}.json`, JSON.stringify(draft, null, 2));
       req.playerNumber = 0;
     } else {
       req.authenticated = 2;
     }
     next();
   } else {
-    for (var i = 1; i < drafts[index]["preset"]["slots"]; i++) {
-      if (drafts[index]["players"][i]["name"] == "") {
-        drafts[index]["players"][i]["name"] = req.body.civ_name;
+    //Joining as a player
+    for (var i = 1; i < draft["preset"]["slots"]; i++) {
+      if (draft["players"][i]["name"] == "") {
+        draft["players"][i]["name"] = req.body.civ_name;
         req.playerNumber = i;
-        fs.writeFileSync("./database.json", JSON.stringify(data, null, 2));
+        fs.writeFileSync(`./drafts/${req.body.draftID}.json`, JSON.stringify(draft, null, 2));
         return next();
       }
     }
@@ -237,11 +224,7 @@ function reshuffleCards(draft) {
   var available_bonuses = [];
   var numBonus;
 
-  if (draft["preset"]["modded"] === "on") {
-    numBonus = numBonuses[roundType][1];
-  } else {
-    numBonus = numBonuses[roundType][0];
-  }
+  numBonus = numBonuses[roundType][0];
   for (var i = 0; i < numBonus; i++) {
     var discarded = 1;
     for (var j = 0; j < numPlayers; j++) {
@@ -417,7 +400,6 @@ const writeTechTree = (req, res, next) => {
   }
 
   console.log(`[${req.body.seed}]: Writing tech tree...`);
-  // modTreeJson.arrangeTechTree(`./modding/requested_mods/${req.body.seed}/data.json`, `./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/civTechTrees.json`);
   createTechtreeJson.createTechtreeJson(
     `./modding/requested_mods/${req.body.seed}/data.json`,
     `./modding/requested_mods/${req.body.seed}/${req.body.seed}-data/resources/_common/dat/civTechTrees.json`
@@ -687,7 +669,7 @@ router.post(
 );
 
 router.post("/draft", createDraft, (req, res) => {
-  res.render(__dirname + "/public/draft_links", { playerlink: req.playerlink, hostlink: req.hostlink, spectatorlink: req.spectatorlink });
+  res.render(__dirname + "/public/pug/draft_links", { playerlink: req.playerlink, hostlink: req.hostlink, spectatorlink: req.spectatorlink });
 });
 
 router.post("/vanilla", (req, res) => {
@@ -704,49 +686,49 @@ router.get("/edit", function (req, res) {
 
 router.get("/draft/host/:id", checkCookies, authenticateDraft, function (req, res) {
   if (req.authenticated == -1) {
-    res.redirect("/draft/" + req.params.id);
+    res.redirect("/civbuilder/draft/" + req.params.id);
   } else if (req.authenticated == 0) {
-    res.render(__dirname + "/public/error", { error: "Draft does not exist" });
+    res.render(__dirname + "/public/pug/error", { error: "Draft does not exist" });
   } else if (req.authenticated == 1) {
-    res.sendFile(__dirname + "/public/join.html");
+    res.sendFile(__dirname + "/public/html/join.html");
   }
 });
 
 router.get("/draft/player/:id", checkCookies, authenticateDraft, function (req, res) {
   if (req.authenticated == -1) {
-    res.redirect("/draft/" + req.params.id);
+    res.redirect("/civbuilder/draft/" + req.params.id);
   } else if (req.authenticated == 0) {
-    res.render(__dirname + "/public/error", { error: "Draft does not exist" });
+    res.render(__dirname + "/public/pug/error", { error: "Draft does not exist" });
   } else if (req.authenticated == 1) {
-    res.sendFile(__dirname + "/public/join.html");
+    res.sendFile(__dirname + "/public/html/join.html");
   }
 });
 
 router.post("/join", setID, checkCookies, authenticateDraft, checkSpace, (req, res) => {
   if (req.authenticated == -1) {
-    res.redirect("/draft/" + req.body.draftID);
+    res.redirect("/civbuilder/draft/" + req.body.draftID);
   } else if (req.authenticated == 0) {
-    res.render(__dirname + "/public/error", { error: "Draft does not exist" });
+    res.render(__dirname + "/public/pug/error", { error: "Draft does not exist" });
   } else if (req.authenticated == 1) {
     res.cookie("playerNumber", req.playerNumber);
     res.cookie("draftID", req.body.draftID);
-    res.redirect("/draft/" + req.body.draftID);
+    res.redirect("/civbuilder/draft/" + req.body.draftID);
   } else if (req.authenticated == 2) {
-    res.render(__dirname + "/public/error", { error: "Host already joined" });
+    res.render(__dirname + "/public/pug/error", { error: "Host already joined" });
   } else if (req.authenticated == 3) {
-    res.render(__dirname + "/public/error", { error: "Lobby full" });
+    res.render(__dirname + "/public/pug/error", { error: "Lobby full" });
   }
 });
 
 router.get("/draft/:id", checkCookies, authenticateDraft, function (req, res) {
   if (req.authenticated == -1) {
-    res.sendFile(__dirname + "/public/draft.html");
+    res.sendFile(__dirname + "/public/html/draft.html");
   } else if (req.authenticated == 0) {
-    res.render(__dirname + "/public/error", { error: "Draft does not exist" });
+    res.render(__dirname + "/public/pug/error", { error: "Draft does not exist" });
   } else if (req.authenticated == 1) {
     res.cookie("playerNumber", -1);
     res.cookie("draftID", req.params.id);
-    res.sendFile(__dirname + "/public/draft.html");
+    res.sendFile(__dirname + "/public/html/draft.html");
   }
 });
 
@@ -759,8 +741,7 @@ io.on("connection", function (socket) {
     socket.join(roomID);
   });
   socket.on("get gamestate", (roomID, playerNumber) => {
-    var datadraft = getDraft(roomID);
-    var draft = datadraft[0]["drafts"][datadraft[1]];
+    let draft = getDraft(roomID);
 
     if (playerNumber >= 0) {
       io.in(roomID).emit("set gamestate", draft);
@@ -769,38 +750,31 @@ io.on("connection", function (socket) {
     }
   });
   socket.on("get private gamestate", (roomID) => {
-    var datadraft = getDraft(roomID);
-    var draft = datadraft[0]["drafts"][datadraft[1]];
+    var draft = getDraft(roomID);
     io.to(socket.id).emit("set gamestate", draft);
   });
   socket.on("toggle ready", (roomID, playerNumber) => {
-    var datadraft = getDraft(roomID);
-    var data = datadraft[0];
-    var draft = datadraft[0]["drafts"][datadraft[1]];
+    let draft = getDraft(roomID);
 
     if (playerNumber < 0) {
       console.log("spectator can't be ready");
     }
     draft["players"][playerNumber]["ready"] = (draft["players"][playerNumber]["ready"] + 1) % 2;
-    fs.writeFileSync("./database.json", JSON.stringify(data, null, 2));
+    fs.writeFileSync(`./drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
     io.in(roomID).emit("set gamestate", draft);
   });
   socket.on("start draft", (roomID) => {
-    var datadraft = getDraft(roomID);
-    var data = datadraft[0];
-    var draft = datadraft[0]["drafts"][datadraft[1]];
+    let draft = getDraft(roomID);
 
     draft["gamestate"]["phase"] = 1;
     for (var i = 0; i < draft["preset"]["slots"]; i++) {
       draft["players"][i]["ready"] = 0;
     }
-    fs.writeFileSync("./database.json", JSON.stringify(data, null, 2));
+    fs.writeFileSync(`./drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
     io.in(roomID).emit("set gamestate", draft);
   });
   socket.on("update tree", (roomID, playerNumber, tree, techtree_points, civ_name, flag_palette, architecture, language) => {
-    var datadraft = getDraft(roomID);
-    var data = datadraft[0];
-    var draft = datadraft[0]["drafts"][datadraft[1]];
+    let draft = getDraft(roomID);
     var numPlayers = draft["preset"]["slots"];
 
     draft["players"][playerNumber]["tree"] = tree;
@@ -852,16 +826,14 @@ io.on("connection", function (socket) {
         draft["gamestate"]["order"].push(maxIndex);
         priorities[maxIndex] = -1;
       }
-      fs.writeFileSync("./database.json", JSON.stringify(data, null, 2));
+      fs.writeFileSync(`./drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
       io.in(roomID).emit("set gamestate", draft);
     } else {
-      fs.writeFileSync("./database.json", JSON.stringify(data, null, 2));
+      fs.writeFileSync(`./drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
     }
   });
   socket.on("end turn", (roomID, pick, client_turn) => {
-    var datadraft = getDraft(roomID);
-    var data = datadraft[0];
-    var draft = datadraft[0]["drafts"][datadraft[1]];
+    let draft = getDraft(roomID);
     var numPlayers = draft["preset"]["slots"];
 
     //Determine which round we're in and who's turn it is
@@ -905,7 +877,7 @@ io.on("connection", function (socket) {
 
       //Increment the turn and save the gamestate
       draft["gamestate"]["turn"]++;
-      fs.writeFileSync("./database.json", JSON.stringify(data, null, 2));
+      fs.writeFileSync(`./drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
       io.in(roomID).emit("set gamestate", draft);
     } else {
       console.log("Duplicate socket messages, THE BUG avoided");
@@ -919,7 +891,7 @@ io.on("connection", function (socket) {
     //Welcome to callback hell because I wasted $1800 on a web-dev class where the professor was seemingly incapable of answering a single question
     if (draft["gamestate"]["phase"] == 3) {
       //Create Mod Folder
-      os.execCommand(`bash createModFolder.sh ./modding/requested_mods ${draft["id"]} ${dir}`, function () {
+      os.execCommand(`bash ./process_mod/createModFolder.sh ./modding/requested_mods ${draft["id"]} ${dir} 1`, function () {
         //Create Civ Icons
         for (var i = 0; i < numPlayers; i++) {
           var civName = nameArr[i];
@@ -940,21 +912,31 @@ io.on("connection", function (socket) {
             icons.drawFlag(
               seed,
               symbol,
-              `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/menu/civs/${civName}s.png`,
-              `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}.png`,
-              `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_hover.png`,
-              `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_pressed.png`,
-              `./public/symbols`
+              [
+                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/menu/civs/${civName}s.png`,
+                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}.png`,
+                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_hover.png`,
+                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_pressed.png`,
+                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}.png`,
+                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}_hover.png`,
+                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}_pressed.png`,
+              ],
+              `./public/img/symbols`
             );
           } else {
             icons.drawFlag(
               seed,
               symbol,
-              `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/menu/civs/${civName}.png`,
-              `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}.png`,
-              `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_hover.png`,
-              `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_pressed.png`,
-              `./public/symbols`
+              [
+                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/menu/civs/${civName}s.png`,
+                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}.png`,
+                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_hover.png`,
+                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_pressed.png`,
+                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}.png`,
+                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}_hover.png`,
+                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}_pressed.png`,
+              ],
+              `./public/img/symbols`
             );
           }
         }
@@ -1013,11 +995,11 @@ io.on("connection", function (socket) {
               `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/en/strings/key-value/key-value-modded-strings-utf8.txt`
             );
             //Copy Names
-            os.execCommand(`sh copyLanguages.sh ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources`, function () {
+            os.execCommand(`sh ./process_mod/copyLanguages.sh ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources`, function () {
               //Write UUIcons
               for (var i = 0; i < blanks.length; i++) {
                 os.execCommand(
-                  `cp ./public/uniticons/blank.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${blanks[i]}_50730.png`,
+                  `cp ./public/img/uniticons/blank.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${blanks[i]}_50730.png`,
                   function () {}
                 );
               }
@@ -1030,27 +1012,47 @@ io.on("connection", function (socket) {
                 }
                 if (i == mod_data.techtree.length - 1) {
                   os.execCommand(
-                    `cp ./public/uniticons/${iconsrc}_50730.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${iconids[i]}_50730.png`,
+                    `cp ./public/img/uniticons/${iconsrc}_50730.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${iconids[i]}_50730.png`,
                     function () {
                       //Write Tech Tree
-                      modTreeJson.arrangeTechTree(`./modding/requested_mods/${draft["id"]}/data.json`, `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/civTechTrees.json`);
-                      //Write Dat File
-                      os.execCommand(
-                        `./modding/build/create-data-mod ./modding/requested_mods/${draft["id"]}/data.json ./public/empires2_x2_p1.dat ./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/dat/empires2_x2_p1.dat ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/ai/aiconfig.json`,
-                        function () {
-                          //Zip Files
-                          os.execCommand(`sh zipModFolder.sh ${draft["id"]}`, function () {
-                            draft["gamestate"]["phase"] = 4;
-                            fs.writeFileSync("./database.json", JSON.stringify(data, null, 2));
-                            io.in(roomID).emit("set gamestate", draft);
-                          });
-                        }
+                      createTechtreeJson.createTechtreeJson(
+                        `./modding/requested_mods/${draft["id"]}/data.json`,
+                        `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/dat/civTechTrees.json`
                       );
+                      createCivilizationsJson(
+                        `./modding/requested_mods/${draft["id"]}/data.json`,
+                        `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/dat/civilizations.json`
+                      );
+
+                      //Add voices
+                      let command = `sh ./process_mod/copyVoices.sh ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/drs/sounds ${dir}/public/vanillaFiles/voiceFiles`;
+                      let uniqueLanguages = [];
+
+                      for (var i = 0; i < mod_data.language.length; i++) {
+                        if (uniqueLanguages.indexOf(mod_data.language[i]) == -1) {
+                          uniqueLanguages.push(mod_data.language[i]);
+                          command += ` ${mod_data.language[i]}`;
+                        }
+                      }
+                      os.execCommand(command, function () {
+                        //Write Dat File
+                        os.execCommand(
+                          `./modding/build/create-data-mod ./modding/requested_mods/${draft["id"]}/data.json ./public/vanillaFiles/empires2_x2_p1.dat ./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/dat/empires2_x2_p1.dat ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/ai/aiconfig.json`,
+                          function () {
+                            //Zip Files
+                            os.execCommand(`bash ./process_mod/zipModFolder.sh ${draft["id"]} 1`, function () {
+                              draft["gamestate"]["phase"] = 4;
+                              fs.writeFileSync(`./drafts/${draft["id"]}.json`, JSON.stringify(draft, null, 2));
+                              io.in(roomID).emit("set gamestate", draft);
+                            });
+                          }
+                        );
+                      });
                     }
                   );
                 } else {
                   os.execCommand(
-                    `cp ./public/uniticons/${iconsrc}_50730.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${iconids[i]}_50730.png`,
+                    `cp ./public/img/uniticons/${iconsrc}_50730.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${iconids[i]}_50730.png`,
                     function () {}
                   );
                 }
@@ -1062,9 +1064,7 @@ io.on("connection", function (socket) {
     }
   });
   socket.on("refill", (roomID) => {
-    var datadraft = getDraft(roomID);
-    var data = datadraft[0];
-    var draft = datadraft[0]["drafts"][datadraft[1]];
+    let draft = getDraft(roomID);
     var numPlayers = draft["preset"]["slots"];
 
     //Repopulate empty card slots and keep track of the indices of refilled cards in highlighted array
@@ -1081,13 +1081,11 @@ io.on("connection", function (socket) {
         draft["gamestate"]["highlighted"].push(i);
       }
     }
-    fs.writeFileSync("./database.json", JSON.stringify(data, null, 2));
+    fs.writeFileSync(`./drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
     io.in(roomID).emit("set gamestate", draft);
   });
   socket.on("clear", (roomID) => {
-    var datadraft = getDraft(roomID);
-    var data = datadraft[0];
-    var draft = datadraft[0]["drafts"][datadraft[1]];
+    let draft = getDraft(roomID);
     var numPlayers = draft["preset"]["slots"];
 
     //Clear out cards and highlight the first three
@@ -1101,7 +1099,7 @@ io.on("connection", function (socket) {
       draft["gamestate"]["cards"][i] = draft["gamestate"]["available_cards"][roundType][rand];
       draft["gamestate"]["available_cards"][roundType].splice(rand, 1);
     }
-    fs.writeFileSync("./database.json", JSON.stringify(data, null, 2));
+    fs.writeFileSync(`./drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
     io.in(roomID).emit("set gamestate", draft);
   });
 });

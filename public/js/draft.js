@@ -153,7 +153,7 @@ function renderFlagTech(draft) {
         client_architecture = architecture;
         client_language = language;
 
-        showTechtree(draft["players"][playerNumber]["tree"], playerNumber, 1, draft["preset"]["points"], "");
+        showTechtree(draft["players"][playerNumber]["tree"], playerNumber, 1, draft["preset"]["points"], "", "..");
       }
     };
 
@@ -164,14 +164,14 @@ function renderFlagTech(draft) {
     function getFun1(val) {
       return function () {
         flag_palette[val] = (flag_palette[val] - 1 + palette_sizes[val]) % palette_sizes[val];
-        clientFlag(flag_palette, "flag", 1);
+        clientFlag(flag_palette, "flag", 1, "..");
       };
     }
 
     function getFun2(val) {
       return function () {
         flag_palette[val] = (flag_palette[val] + 1 + palette_sizes[val]) % palette_sizes[val];
-        clientFlag(flag_palette, "flag", 1);
+        clientFlag(flag_palette, "flag", 1, "..");
       };
     }
 
@@ -198,16 +198,33 @@ function renderFlagTech(draft) {
     var archbox = document.createElement("div");
     archbox.id = "archbox";
 
-    var architecturetext = document.createElement("div");
-    architecturetext.id = "architecturetext";
-    architecturetext.innerHTML = architectures[architecture - 1];
+    var architectureIconBox = document.createElement("div");
+    architectureIconBox.style.display = "flex";
+    architectureIconBox.style.flexDirection = "column";
+    architectureIconBox.style.alignItems = "center";
+    architectureIconBox.style.justifyContent = "center";
+
+    var architectureIcon = document.createElement("img");
+    architectureIcon.id = "architectureicon";
+    architectureIcon.src = `../img/architectures/tc_${architecture}.png`;
+
+    var architectureText = document.createElement("div");
+    architectureText.id = "architecturetext";
+    architectureText.style.fontSize = "20px";
+    architectureText.style.width = "200px";
+    architectureText.style.textAlign = "center";
+    architectureText.innerHTML = `${architectures[architecture - 1]}`;
+
+    architectureIconBox.appendChild(architectureIcon);
+    architectureIconBox.appendChild(architectureText);
 
     var iconback = document.createElement("button");
     iconback.className = "backbutton";
     iconback.innerHTML = "<";
     iconback.onclick = function () {
       architecture = ((architecture - 1 + 10) % 11) + 1;
-      document.getElementById("architecturetext").innerHTML = architectures[architecture - 1];
+      document.getElementById("architectureicon").src = `../img/architectures/tc_${architecture}.png`;
+      document.getElementById("architecturetext").innerHTML = `${architectures[architecture - 1]}`;
     };
 
     var iconforward = document.createElement("button");
@@ -215,11 +232,12 @@ function renderFlagTech(draft) {
     iconforward.innerHTML = ">";
     iconforward.onclick = function () {
       architecture = ((architecture - 1 + 1) % 11) + 1;
-      document.getElementById("architecturetext").innerHTML = architectures[architecture - 1];
+      document.getElementById("architectureicon").src = `../img/architectures/tc_${architecture}.png`;
+      document.getElementById("architecturetext").innerHTML = `${architectures[architecture - 1]}`;
     };
 
     archbox.appendChild(iconback);
-    archbox.appendChild(architecturetext);
+    archbox.appendChild(architectureIconBox);
     archbox.appendChild(iconforward);
 
     var langbox = document.createElement("div");
@@ -263,7 +281,7 @@ function renderFlagTech(draft) {
     wrapping.appendChild(flagbox);
 
     document.getElementsByTagName("body")[0].appendChild(wrapping);
-    clientFlag(flag_palette, "flag", 1);
+    clientFlag(flag_palette, "flag", 1, "..");
   } else {
     $("body").contents().not("script").remove();
     var waiting = document.createElement("div");
@@ -295,7 +313,7 @@ function renderDraftTable(draft) {
       techtreestyles.remove();
     }
 
-    document.body.style.backgroundImage = "url('./img/draftbackground.jpg')";
+    document.body.style.backgroundImage = "url('../img/draftbackground.jpg')";
 
     var header = document.createElement("div");
     header.id = "phaseheader";
@@ -358,7 +376,7 @@ function renderDraftTable(draft) {
         if (draft["players"][val]["bonuses"][4].length != 0) {
           description += card_descriptions[4][draft["players"][val]["bonuses"][4][0]];
         }
-        showTechtree(draft["players"][val]["tree"], val, 0, 1, description);
+        showTechtree(draft["players"][val]["tree"], val, 0, 1, description, "..");
       };
     }
 
@@ -513,7 +531,7 @@ function renderDraftTable(draft) {
         var path = `${prefix}_${draft["gamestate"]["cards"][i]}.png`;
         var image = document.createElement("img");
         image.className = "cardimage";
-        image.src = "/cards/" + path;
+        image.src = `../img/cards/${path}`;
         card.appendChild(image);
 
         //Let the active player pick a card
@@ -579,7 +597,7 @@ function renderDraftTable(draft) {
 
     var helpboximage = document.createElement("img");
     helpboximage.id = "helpboximage";
-    helpboximage.src = "/helpbackground.png";
+    helpboximage.src = "../img/helpbackground.png";
 
     var helpboxtext = document.createElement("div");
     helpboxtext.id = "helpboxtext";
@@ -597,14 +615,14 @@ function renderDraftTable(draft) {
 
     //Render flags
     for (var i = 0; i < draft["preset"]["slots"]; i++) {
-      clientFlag(draft["players"][i]["flag_palette"], "flag" + i, 85 / 256);
+      clientFlag(draft["players"][i]["flag_palette"], "flag" + i, 85 / 256, "..");
     }
   }
 }
 
 function renderHelp() {
   $("body").contents().not("script").remove();
-  document.body.style.backgroundImage = "url('/aoe2background.jpg')";
+  document.body.style.backgroundImage = "url('../img/aoe2background.jpg')";
 
   var title = document.createElement("h1");
   title.id = "title";
@@ -615,7 +633,7 @@ function renderHelp() {
 
 function renderDownload() {
   $("body").contents().not("script").remove();
-  document.body.style.backgroundImage = "url('/aoe2background.jpg')";
+  document.body.style.backgroundImage = "url('../img/aoe2background.jpg')";
 
   var title = document.createElement("h1");
   title.id = "title";
@@ -623,7 +641,7 @@ function renderDownload() {
 
   function getFun(val) {
     return function () {
-      post("/download", { draftID: val });
+      post(`${route}/download`, { draftID: val });
     };
   }
 

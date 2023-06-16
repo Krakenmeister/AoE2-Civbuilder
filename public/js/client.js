@@ -85,7 +85,7 @@ function startaDraft() {
   let draftForm = document.createElement("form");
   draftForm.className = "draft_form";
   draftForm.method = "post";
-  draftForm.action = "/draft";
+  draftForm.action = `${route}/draft`;
 
   let input1 = document.createElement("input");
   input1.type = "number";
@@ -122,14 +122,6 @@ function startaDraft() {
   label2.setAttribute("for", "rounds");
   label2.innerHTML = "Bonuses per Player: ";
 
-  let input3 = document.createElement("input");
-  input3.type = "checkbox";
-  input3.name = "new_bonuses";
-  input3.checked = true;
-  let label3 = document.createElement("label");
-  label3.setAttribute("for", "new_bonuses");
-  label3.innerHTML = "Allow New Bonuses: ";
-
   let input4 = document.createElement("input");
   input4.type = "number";
   input4.name = "techtree_currency";
@@ -146,23 +138,18 @@ function startaDraft() {
 
   let div1 = document.createElement("div");
   let div2 = document.createElement("div");
-  let div3 = document.createElement("div");
   let div4 = document.createElement("div");
   div1.className = "input_field";
   div2.className = "input_field";
-  div3.className = "input_field";
   div4.className = "input_field";
   div1.appendChild(label1);
   div1.appendChild(input1);
   div2.appendChild(label2);
   div2.appendChild(input2);
-  div3.appendChild(label3);
-  div3.appendChild(input3);
   div4.appendChild(label4);
   div4.appendChild(input4);
   draftForm.appendChild(div1);
   draftForm.appendChild(div2);
-  draftForm.appendChild(div3);
   draftForm.appendChild(div4);
   draftForm.appendChild(input5);
 
@@ -874,9 +861,11 @@ if (btn7) {
 
 var invitebutton = document.getElementById("discordinvite");
 
-invitebutton.onclick = function () {
-  location.href = "https://discord.gg/vQxck6JDwf";
-};
+if (invitebutton) {
+  invitebutton.onclick = function () {
+    location.href = "https://discord.gg/vQxck6JDwf";
+  };
+}
 
 var btn8 = document.getElementById("events");
 if (btn8) {

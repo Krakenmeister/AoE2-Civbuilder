@@ -704,17 +704,17 @@ const max_sizes = [311, 1, 1, 1, 74];
 const numCivs = 43;
 
 const architectures = [
-  "Central European Architecture",
-  "Western European Architecture",
-  "East Asian Architecture",
-  "Middle Eastern Architecture",
-  "Mesoamerican Architecture",
-  "Mediterranean Architecture",
-  "Indian Architecture",
-  "Eastern European Architecture",
-  "African Architecture",
-  "Southeast Asian Architecture",
-  "Central Asian Architecture",
+  "Central European",
+  "Western European",
+  "East Asian",
+  "Middle Eastern",
+  "Mesoamerican",
+  "Mediterranean",
+  "Indian",
+  "Eastern European",
+  "African",
+  "Southeast Asian",
+  "Central Asian",
 ];
 const languages = [
   "British Language",
@@ -763,14 +763,14 @@ const languages = [
 ];
 
 //Draw flag to canvas given a seed
-function clientFlag(flag_palette, flag_id, scale) {
+function clientFlag(flag_palette, flag_id, scale, relative_path = ".") {
   var colour_palette = [[], [], []];
   var c = document.getElementById(flag_id);
   var ctx = c.getContext("2d");
   ctx.scale(scale, scale);
   if (flag_palette[0] == -1) {
     const img = document.createElement("img");
-    img.src = "/VanillaCivs/flag_" + flag_palette[7] + ".png";
+    img.src = `${relative_path}/vanillaFiles/vanillaCivs/flag_${flag_palette[7]}.png`;
     const s = scale * 256 * (256 / 104);
     ctx.drawImage(img, 0, 0, s, s);
     return;
@@ -788,7 +788,7 @@ function clientFlag(flag_palette, flag_id, scale) {
   var secondary_division_colour = "rgb(" + colour_palette[1][0] + ", " + colour_palette[1][1] + ", " + colour_palette[1][2] + ")";
   var tertiary_division_colour = "rgb(" + colour_palette[2][0] + ", " + colour_palette[2][1] + ", " + colour_palette[2][2] + ")";
   var overlay_colour = "rgb(" + colour_palette[3][0] + ", " + colour_palette[3][1] + ", " + colour_palette[3][2] + ")";
-  var image_path = "./img/symbols/symbol_" + (symbol - 1) + ".png";
+  var image_path = `${relative_path}/img/symbols/symbol_${symbol - 1}.png`;
 
   //Draw background
   //0 = solid color background

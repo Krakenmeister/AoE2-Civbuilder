@@ -151,9 +151,25 @@ function renderPhase1() {
   var archbox = document.createElement("div");
   archbox.id = "archbox";
 
+  var architectureIconBox = document.createElement("div");
+  architectureIconBox.style.display = "flex";
+  architectureIconBox.style.flexDirection = "column";
+  architectureIconBox.style.alignItems = "center";
+  architectureIconBox.style.justifyContent = "center";
+
   var architectureIcon = document.createElement("img");
   architectureIcon.id = "architectureicon";
   architectureIcon.src = `./img/architectures/tc_${civ["architecture"]}.png`;
+
+  var architectureText = document.createElement("div");
+  architectureText.id = "architecturetext";
+  architectureText.style.fontSize = "20px";
+  architectureText.style.width = "200px";
+  architectureText.style.textAlign = "center";
+  architectureText.innerHTML = `${architectures[civ["architecture"] - 1]}`;
+
+  architectureIconBox.appendChild(architectureIcon);
+  architectureIconBox.appendChild(architectureText);
 
   var iconback = document.createElement("button");
   iconback.className = "backbutton";
@@ -161,6 +177,7 @@ function renderPhase1() {
   iconback.onclick = function () {
     civ["architecture"] = ((civ["architecture"] - 1 + 10) % 11) + 1;
     document.getElementById("architectureicon").src = `./img/architectures/tc_${civ["architecture"]}.png`;
+    document.getElementById("architecturetext").innerHTML = `${architectures[civ["architecture"] - 1]}`;
   };
 
   var iconforward = document.createElement("button");
@@ -169,10 +186,11 @@ function renderPhase1() {
   iconforward.onclick = function () {
     civ["architecture"] = ((civ["architecture"] - 1 + 1) % 11) + 1;
     document.getElementById("architectureicon").src = `./img/architectures/tc_${civ["architecture"]}.png`;
+    document.getElementById("architecturetext").innerHTML = `${architectures[civ["architecture"] - 1]}`;
   };
 
   archbox.appendChild(iconback);
-  archbox.appendChild(architectureIcon);
+  archbox.appendChild(architectureIconBox);
   archbox.appendChild(iconforward);
 
   var langbox = document.createElement("div");

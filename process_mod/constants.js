@@ -1,10 +1,10 @@
 //0 = vanilla, 1 = allow generated bonuses
 const numBonuses = [
-  [140, 311], //Civ bonuses
-  [39, 81], //Unique units
-  [39, 50], //Castle techs
-  [39, 48], //Imp techs
-  [37, 74], //Team bonuses
+  [311, 311], //Civ bonuses
+  [81, 81], //Unique units
+  [50, 50], //Castle techs
+  [48, 48], //Imp techs
+  [74, 74], //Team bonuses
 ];
 
 const numCivs = 43;

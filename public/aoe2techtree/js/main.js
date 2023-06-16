@@ -77,13 +77,13 @@ const locales = {
 };
 const defaultLocale = "en";
 
-function loadLocale(localeCode) {
+function loadLocale(localeCode, relativepath = ".") {
   if (!Object.keys(locales).includes(localeCode)) {
     localeCode = defaultLocale;
   }
-  loadJson("./aoe2techtree/data/locales/" + localeCode + "/strings.json", function (strings) {
+  loadJson(`${relativepath}/aoe2techtree/data/locales/${localeCode}/strings.json`, function (strings) {
     data.strings = strings;
-    displayData();
+    displayData(relativepath);
     document.documentElement.setAttribute("lang", localeCode);
   });
   if (canEdit == 2 || canEdit == 3 || canEdit == 4) {
@@ -96,7 +96,7 @@ function loadLocale(localeCode) {
   }
 }
 
-function displayData() {
+function displayData(relativepath = ".") {
   // Reset containers
   const root = document.getElementById("root");
   if (root) {
@@ -142,7 +142,7 @@ function displayData() {
   for (let i = 0; i < image_urls.length; i++) {
     let age_image_group = draw.group().mouseover(hideHelp);
     let age_image = age_image_group
-      .image("./aoe2techtree/img/Ages/" + image_urls[i], icon_width, icon_height)
+      .image(`${relativepath}/aoe2techtree/img/Ages/${image_urls[i]}`, icon_width, icon_height)
       .y(row_height * i + vertical_spacing)
       .x(margin_left);
     age_image_group
@@ -220,7 +220,7 @@ function displayData() {
           .rect(caret.width * 0.6, caret.height * 0.6)
           .attr({ fill: "#000000", opacity: 0.5, id: caret.id + "_imgph" })
           .move(caret.x + caret.width * 0.2, caret.y);
-        let prefix = "./aoe2techtree/img/";
+        let prefix = `${relativepath}/aoe2techtree/img/`;
         var image = item
           .image(prefix + imagePrefix(caret.id) + ".png", caret.width * 0.6, caret.height * 0.6)
           .attr({ id: caret.id + "_img" })
@@ -263,7 +263,7 @@ function displayData() {
             if (canEdit == 1 || canEdit == 3) {
               if (!unclickableCarets.includes(caret.id)) {
                 console.log(caret.id);
-                toggleCaret(caret.id);
+                toggleCaret(caret.id, relativepath);
               }
             }
           });
@@ -289,7 +289,7 @@ function displayData() {
         [22, 101, 102, 103, 408],
       ];
       techtree_points = 100;
-      displayData();
+      displayData(relativepath);
     };
   } else if (canEdit == 3) {
     document.getElementById("reset").onclick = function () {
@@ -299,7 +299,7 @@ function displayData() {
         [22, 101, 102, 103, 408],
       ];
       techtree_points = 0;
-      displayData();
+      displayData(relativepath);
     };
   }
 
@@ -511,7 +511,7 @@ function disableCaret(caretId) {
   }
 }
 
-function toggleCaret(caretId) {
+function toggleCaret(caretId, relativepath = ".") {
   var id = idID(caretId);
   var type = idType(caretId);
   if (localtree[type].includes(id)) {
@@ -519,7 +519,7 @@ function toggleCaret(caretId) {
   } else {
     enableCaret(caretId);
   }
-  displayData();
+  displayData(relativepath);
 }
 
 function displayHelp(caretId) {
@@ -867,7 +867,7 @@ function getInitialLocale() {
 //editable: 0 = view in draft, 1 = edit in draft, 2 = view in builder, 3 = edit in builder
 //points: starting techtree points
 //civdescription: html shown in left-hand side bar
-function showTechtree(tree, playerNumber, editable, points, civdescription) {
+function showTechtree(tree, playerNumber, editable, points, civdescription, relativepath = ".") {
   localtree = tree;
   player = playerNumber;
 
@@ -876,7 +876,7 @@ function showTechtree(tree, playerNumber, editable, points, civdescription) {
 
   var stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
-  stylesheet.href = "./aoe2techtree/style.css";
+  stylesheet.href = `${relativepath}/aoe2techtree/style.css`;
   stylesheet.id = "tech_styles";
 
   document.head.appendChild(stylesheet);
@@ -963,10 +963,10 @@ function showTechtree(tree, playerNumber, editable, points, civdescription) {
 
   let storedLocale = getInitialLocale();
 
-  loadJson("./aoe2techtree/data/data.json", function (response) {
+  loadJson(`${relativepath}/aoe2techtree/data/data.json`, function (response) {
     data = response;
     civs = data.techtrees;
-    loadLocale(storedLocale);
+    loadLocale(storedLocale, relativepath);
   });
 
   let doVerticalScroll = true;

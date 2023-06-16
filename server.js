@@ -1,6 +1,6 @@
 const dir = "/home/kraken/website/civbuilder";
 
-const hostname = "http://krakenmeister.com:4000/civbuilder";
+const hostname = "https://krakenmeister.com/civbuilder";
 const port = 4000;
 
 const http = require("http");
@@ -81,7 +81,7 @@ const createDraft = (req, res, next) => {
       id += rand;
     }
     uniqueID = true;
-    uniqueID = !fs.existsSync(`./drafts/${id}.json`);
+    uniqueID = !fs.existsSync(`${dir}/drafts/${id}.json`);
   }
 
   let draft = {};
@@ -137,7 +137,7 @@ const createDraft = (req, res, next) => {
   gamestate["order"] = [];
   gamestate["highlighted"] = [];
   draft["gamestate"] = gamestate;
-  fs.writeFileSync(`./drafts/${id}.json`, JSON.stringify(draft, null, 2));
+  fs.writeFileSync(`${dir}/drafts/${id}.json`, JSON.stringify(draft, null, 2));
   req.playerlink = `${hostname}/draft/player/${id}`;
   req.hostlink = `${hostname}/draft/host/${id}`;
   req.spectatorlink = `${hostname}/draft/${id}`;
@@ -159,17 +159,17 @@ const authenticateDraft = (req, res, next) => {
     return next();
   }
   req.authenticated = 0;
-  if (fs.existsSync(`./drafts/${req.params.id}.json`)) {
+  if (fs.existsSync(`${dir}/drafts/${req.params.id}.json`)) {
     req.authenticated = 1;
   }
   next();
 };
 
 function getDraft(id) {
-  if (!fs.existsSync(`./drafts/${id}.json`)) {
+  if (!fs.existsSync(`${dir}/drafts/${id}.json`)) {
     return -1;
   }
-  let data = fs.readFileSync(`./drafts/${id}.json`);
+  let data = fs.readFileSync(`${dir}/drafts/${id}.json`);
   let draft = JSON.parse(data);
   return draft;
 }
@@ -184,18 +184,18 @@ const checkSpace = (req, res, next) => {
   if (req.authenticated == -1) {
     return next();
   }
-  if (!fs.existsSync(`./drafts/${req.body.draftID}.json`)) {
+  if (!fs.existsSync(`${dir}/drafts/${req.body.draftID}.json`)) {
     console.log("Draft authentication failed");
     return next();
   }
 
-  let data = fs.readFileSync(`./drafts/${req.body.draftID}.json`);
+  let data = fs.readFileSync(`${dir}/drafts/${req.body.draftID}.json`);
   let draft = JSON.parse(data);
   if (req.body.joinType == 0) {
     //Joining as a host
     if (draft["players"][0]["name"] == "") {
       draft["players"][0]["name"] = req.body.civ_name;
-      fs.writeFileSync(`./drafts/${req.body.draftID}.json`, JSON.stringify(draft, null, 2));
+      fs.writeFileSync(`${dir}/drafts/${req.body.draftID}.json`, JSON.stringify(draft, null, 2));
       req.playerNumber = 0;
     } else {
       req.authenticated = 2;
@@ -207,7 +207,7 @@ const checkSpace = (req, res, next) => {
       if (draft["players"][i]["name"] == "") {
         draft["players"][i]["name"] = req.body.civ_name;
         req.playerNumber = i;
-        fs.writeFileSync(`./drafts/${req.body.draftID}.json`, JSON.stringify(draft, null, 2));
+        fs.writeFileSync(`${dir}/drafts/${req.body.draftID}.json`, JSON.stringify(draft, null, 2));
         return next();
       }
     }
@@ -736,375 +736,380 @@ router.post("/download", (req, res) => {
   res.download(__dirname + "/modding/requested_mods/" + req.body.draftID + ".zip");
 });
 
-io.on("connection", function (socket) {
-  socket.on("join room", (roomID) => {
-    socket.join(roomID);
-  });
-  socket.on("get gamestate", (roomID, playerNumber) => {
-    let draft = getDraft(roomID);
+function draftIO(io) {
+  io.on("connection", function (socket) {
+    socket.on("join room", (roomID) => {
+      socket.join(roomID);
+    });
+    socket.on("get gamestate", (roomID, playerNumber) => {
+      let draft = getDraft(roomID);
 
-    if (playerNumber >= 0) {
-      io.in(roomID).emit("set gamestate", draft);
-    } else {
-      io.to(socket.id).emit("set gamestate", draft);
-    }
-  });
-  socket.on("get private gamestate", (roomID) => {
-    var draft = getDraft(roomID);
-    io.to(socket.id).emit("set gamestate", draft);
-  });
-  socket.on("toggle ready", (roomID, playerNumber) => {
-    let draft = getDraft(roomID);
-
-    if (playerNumber < 0) {
-      console.log("spectator can't be ready");
-    }
-    draft["players"][playerNumber]["ready"] = (draft["players"][playerNumber]["ready"] + 1) % 2;
-    fs.writeFileSync(`./drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
-    io.in(roomID).emit("set gamestate", draft);
-  });
-  socket.on("start draft", (roomID) => {
-    let draft = getDraft(roomID);
-
-    draft["gamestate"]["phase"] = 1;
-    for (var i = 0; i < draft["preset"]["slots"]; i++) {
-      draft["players"][i]["ready"] = 0;
-    }
-    fs.writeFileSync(`./drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
-    io.in(roomID).emit("set gamestate", draft);
-  });
-  socket.on("update tree", (roomID, playerNumber, tree, techtree_points, civ_name, flag_palette, architecture, language) => {
-    let draft = getDraft(roomID);
-    var numPlayers = draft["preset"]["slots"];
-
-    draft["players"][playerNumber]["tree"] = tree;
-    draft["players"][playerNumber]["ready"] = 1;
-    draft["players"][playerNumber]["alias"] = civ_name;
-    draft["players"][playerNumber]["flag_palette"] = flag_palette;
-    draft["players"][playerNumber]["priority"] = techtree_points;
-    draft["players"][playerNumber]["architecture"] = architecture;
-    draft["players"][playerNumber]["language"] = language;
-    var nextPhase = 1;
-    for (var i = 0; i < numPlayers; i++) {
-      if (draft["players"][i]["ready"] != 1) {
-        nextPhase = 0;
+      if (playerNumber >= 0) {
+        io.in(roomID).emit("set gamestate", draft);
+      } else {
+        io.to(socket.id).emit("set gamestate", draft);
       }
-    }
+    });
+    socket.on("get private gamestate", (roomID) => {
+      var draft = getDraft(roomID);
+      io.to(socket.id).emit("set gamestate", draft);
+    });
+    socket.on("toggle ready", (roomID, playerNumber) => {
+      let draft = getDraft(roomID);
 
-    if (nextPhase == 1) {
-      draft["gamestate"]["phase"] = 2;
-      for (var i = 0; i < numPlayers; i++) {
+      if (playerNumber < 0) {
+        console.log("spectator can't be ready");
+      }
+      draft["players"][playerNumber]["ready"] = (draft["players"][playerNumber]["ready"] + 1) % 2;
+      fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+      io.in(roomID).emit("set gamestate", draft);
+    });
+    socket.on("start draft", (roomID) => {
+      let draft = getDraft(roomID);
+
+      draft["gamestate"]["phase"] = 1;
+      for (var i = 0; i < draft["preset"]["slots"]; i++) {
         draft["players"][i]["ready"] = 0;
       }
-
-      //Distribute the first set of civ bonus cards
-      for (var i = 0; i < (draft["preset"]["rounds"] - 1) * numPlayers + 20; i++) {
-        var rand = Math.floor(Math.random() * draft["gamestate"]["available_cards"][0].length);
-        draft["gamestate"]["cards"].push(draft["gamestate"]["available_cards"][0][rand]);
-        draft["gamestate"]["available_cards"][0].splice(rand, 1);
-      }
-
-      //Give each player a ranking based off how many techtree points they spent
-      var priorities = [];
-      for (var i = 0; i < numPlayers; i++) {
-        priorities.push(draft["players"][i]["priority"]);
-      }
-      for (var i = 0; i < numPlayers; i++) {
-        var maxIndex = 0;
-        for (var j = 0; j < numPlayers; j++) {
-          if (priorities[j] > priorities[maxIndex]) {
-            maxIndex = j;
-          } else if (priorities[j] == priorities[maxIndex]) {
-            //50/50 switching in ties is good enough *cries in perfectionist*
-            //In the long run it advantages players that join the later
-            var rand = Math.floor(Math.random() * 2);
-            if (rand == 0) {
-              maxIndex = j;
-            }
-          }
-        }
-        draft["gamestate"]["order"].push(maxIndex);
-        priorities[maxIndex] = -1;
-      }
-      fs.writeFileSync(`./drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+      fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
       io.in(roomID).emit("set gamestate", draft);
-    } else {
-      fs.writeFileSync(`./drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
-    }
-  });
-  socket.on("end turn", (roomID, pick, client_turn) => {
-    let draft = getDraft(roomID);
-    var numPlayers = draft["preset"]["slots"];
+    });
+    socket.on("update tree", (roomID, playerNumber, tree, techtree_points, civ_name, flag_palette, architecture, language) => {
+      let draft = getDraft(roomID);
+      var numPlayers = draft["preset"]["slots"];
 
-    //Determine which round we're in and who's turn it is
-    draft["gamestate"]["highlighted"] = [];
-    var roundType = Math.max(Math.floor(draft["gamestate"]["turn"] / numPlayers) - (draft["preset"]["rounds"] - 1), 0);
-    var player = draft["gamestate"]["order"][draft["gamestate"]["turn"] % numPlayers];
-    if (roundType == 2 || roundType == 4) {
-      player = draft["gamestate"]["order"][numPlayers - 1 - (draft["gamestate"]["turn"] % numPlayers)];
-    }
-
-    var bug = 0;
-    if (client_turn == draft["gamestate"]["turn"]) {
-      //Give the player the card they chose
-      draft["players"][player]["bonuses"][roundType].push(pick);
-
-      //If it's the last turn of a round, distribute new cards, otherwise make the card unavailable to others
-      if ((roundType > 0 || Math.floor(draft["gamestate"]["turn"] / numPlayers) == draft["preset"]["rounds"] - 1) && draft["gamestate"]["turn"] % numPlayers == numPlayers - 1) {
-        if (roundType == 4) {
-          //Last turn of the game
-          draft["gamestate"]["phase"] = 3;
-        } else {
-          draft["gamestate"]["cards"] = [];
-          for (var i = 0; i < 2 * numPlayers + 20; i++) {
-            var rand = Math.floor(Math.random() * draft["gamestate"]["available_cards"][roundType + 1].length);
-            draft["gamestate"]["cards"].push(draft["gamestate"]["available_cards"][roundType + 1][rand]);
-            draft["gamestate"]["available_cards"][roundType + 1].splice(rand, 1);
-          }
-        }
-      } else {
-        var pickIndex = draft["gamestate"]["cards"].indexOf(pick);
-        if (pickIndex != -1) {
-          draft["gamestate"]["cards"][pickIndex] = -1;
-        } else {
-          bug = 1;
-          console.log("THE BUG HAPPENED");
-          console.log("RoomID: " + roomID);
-          console.log("Pick: " + pick);
-          console.log("Draft State: ", draft["gamestate"]);
+      draft["players"][playerNumber]["tree"] = tree;
+      draft["players"][playerNumber]["ready"] = 1;
+      draft["players"][playerNumber]["alias"] = civ_name;
+      draft["players"][playerNumber]["flag_palette"] = flag_palette;
+      draft["players"][playerNumber]["priority"] = techtree_points;
+      draft["players"][playerNumber]["architecture"] = architecture;
+      draft["players"][playerNumber]["language"] = language;
+      var nextPhase = 1;
+      for (var i = 0; i < numPlayers; i++) {
+        if (draft["players"][i]["ready"] != 1) {
+          nextPhase = 0;
         }
       }
 
-      //Increment the turn and save the gamestate
-      draft["gamestate"]["turn"]++;
-      fs.writeFileSync(`./drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
-      io.in(roomID).emit("set gamestate", draft);
-    } else {
-      console.log("Duplicate socket messages, THE BUG avoided");
-    }
-
-    if (bug == 1) {
-      io.in(roomID).emit("bug");
-    }
-
-    //Create the mod
-    //Welcome to callback hell because I wasted $1800 on a web-dev class where the professor was seemingly incapable of answering a single question
-    if (draft["gamestate"]["phase"] == 3) {
-      //Create Mod Folder
-      os.execCommand(`bash ./process_mod/createModFolder.sh ./modding/requested_mods ${draft["id"]} ${dir} 1`, function () {
-        //Create Civ Icons
+      if (nextPhase == 1) {
+        draft["gamestate"]["phase"] = 2;
         for (var i = 0; i < numPlayers; i++) {
-          var civName = nameArr[i];
-          var seed = [
-            [
-              colours[draft["players"][i]["flag_palette"][0]],
-              colours[draft["players"][i]["flag_palette"][1]],
-              colours[draft["players"][i]["flag_palette"][2]],
-              colours[draft["players"][i]["flag_palette"][3]],
-              colours[draft["players"][i]["flag_palette"][4]],
-            ],
-            draft["players"][i]["flag_palette"][5],
-            draft["players"][i]["flag_palette"][6],
-          ];
-          var symbol = draft["players"][i]["flag_palette"][7] - 1;
+          draft["players"][i]["ready"] = 0;
+        }
 
-          if (civName == "berber" || civName == "inca") {
-            icons.drawFlag(
-              seed,
-              symbol,
-              [
-                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/menu/civs/${civName}s.png`,
-                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}.png`,
-                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_hover.png`,
-                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_pressed.png`,
-                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}.png`,
-                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}_hover.png`,
-                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}_pressed.png`,
-              ],
-              `./public/img/symbols`
-            );
+        //Distribute the first set of civ bonus cards
+        for (var i = 0; i < (draft["preset"]["rounds"] - 1) * numPlayers + 20; i++) {
+          var rand = Math.floor(Math.random() * draft["gamestate"]["available_cards"][0].length);
+          draft["gamestate"]["cards"].push(draft["gamestate"]["available_cards"][0][rand]);
+          draft["gamestate"]["available_cards"][0].splice(rand, 1);
+        }
+
+        //Give each player a ranking based off how many techtree points they spent
+        var priorities = [];
+        for (var i = 0; i < numPlayers; i++) {
+          priorities.push(draft["players"][i]["priority"]);
+        }
+        for (var i = 0; i < numPlayers; i++) {
+          var maxIndex = 0;
+          for (var j = 0; j < numPlayers; j++) {
+            if (priorities[j] > priorities[maxIndex]) {
+              maxIndex = j;
+            } else if (priorities[j] == priorities[maxIndex]) {
+              //50/50 switching in ties is good enough *cries in perfectionist*
+              //In the long run it advantages players that join the later
+              var rand = Math.floor(Math.random() * 2);
+              if (rand == 0) {
+                maxIndex = j;
+              }
+            }
+          }
+          draft["gamestate"]["order"].push(maxIndex);
+          priorities[maxIndex] = -1;
+        }
+        fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+        io.in(roomID).emit("set gamestate", draft);
+      } else {
+        fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+      }
+    });
+    socket.on("end turn", (roomID, pick, client_turn) => {
+      let draft = getDraft(roomID);
+      var numPlayers = draft["preset"]["slots"];
+
+      //Determine which round we're in and who's turn it is
+      draft["gamestate"]["highlighted"] = [];
+      var roundType = Math.max(Math.floor(draft["gamestate"]["turn"] / numPlayers) - (draft["preset"]["rounds"] - 1), 0);
+      var player = draft["gamestate"]["order"][draft["gamestate"]["turn"] % numPlayers];
+      if (roundType == 2 || roundType == 4) {
+        player = draft["gamestate"]["order"][numPlayers - 1 - (draft["gamestate"]["turn"] % numPlayers)];
+      }
+
+      var bug = 0;
+      if (client_turn == draft["gamestate"]["turn"]) {
+        //Give the player the card they chose
+        draft["players"][player]["bonuses"][roundType].push(pick);
+
+        //If it's the last turn of a round, distribute new cards, otherwise make the card unavailable to others
+        if ((roundType > 0 || Math.floor(draft["gamestate"]["turn"] / numPlayers) == draft["preset"]["rounds"] - 1) && draft["gamestate"]["turn"] % numPlayers == numPlayers - 1) {
+          if (roundType == 4) {
+            //Last turn of the game
+            draft["gamestate"]["phase"] = 3;
           } else {
-            icons.drawFlag(
-              seed,
-              symbol,
-              [
-                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/menu/civs/${civName}s.png`,
-                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}.png`,
-                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_hover.png`,
-                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_pressed.png`,
-                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}.png`,
-                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}_hover.png`,
-                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}_pressed.png`,
-              ],
-              `./public/img/symbols`
-            );
+            draft["gamestate"]["cards"] = [];
+            for (var i = 0; i < 2 * numPlayers + 20; i++) {
+              var rand = Math.floor(Math.random() * draft["gamestate"]["available_cards"][roundType + 1].length);
+              draft["gamestate"]["cards"].push(draft["gamestate"]["available_cards"][roundType + 1][rand]);
+              draft["gamestate"]["available_cards"][roundType + 1].splice(rand, 1);
+            }
+          }
+        } else {
+          var pickIndex = draft["gamestate"]["cards"].indexOf(pick);
+          if (pickIndex != -1) {
+            draft["gamestate"]["cards"][pickIndex] = -1;
+          } else {
+            bug = 1;
+            console.log("THE BUG HAPPENED");
+            console.log("RoomID: " + roomID);
+            console.log("Pick: " + pick);
+            console.log("Draft State: ", draft["gamestate"]);
           }
         }
-        //Copy Civ Icons
-        os.execCommand(
-          `cp -r ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/. ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/civ_techtree`,
-          function () {
-            //Generate Json
-            var mod_data = {};
-            mod_data.name = [];
-            mod_data.techtree = [];
-            mod_data.castletech = [];
-            mod_data.imptech = [];
-            mod_data.civ_bonus = [];
-            mod_data.team_bonus = [];
-            mod_data.architecture = [];
-            mod_data.language = [];
-            mod_data.randomCosts = false;
-            mod_data.modifyDat = true;
-            for (var i = 0; i < numPlayers; i++) {
-              mod_data.name.push(draft["players"][i]["alias"]);
-              var player_techtree = [];
-              for (var j = 0; j < 130; j++) {
-                player_techtree.push(0);
-              }
-              //Unique Unit
-              player_techtree[0] = draft["players"][i]["bonuses"][1][0];
-              //Castle Tech
-              var castletechs = [];
-              castletechs.push(draft["players"][i]["bonuses"][2][0]);
-              mod_data.castletech.push(castletechs);
-              //Imp Tech
-              var imptechs = [];
-              imptechs.push(draft["players"][i]["bonuses"][3][0]);
-              mod_data.imptech.push(imptechs);
-              //Tech Tree
-              for (var j = 0; j < draft["players"][i]["tree"].length; j++) {
-                for (var k = 0; k < draft["players"][i]["tree"][j].length; k++) {
-                  player_techtree[indexDictionary[j][draft["players"][i]["tree"][j][k].toString()]] = 1;
-                }
-              }
-              mod_data.techtree.push(player_techtree);
 
-              mod_data.civ_bonus.push(draft["players"][i]["bonuses"][0]);
-              mod_data.architecture.push(draft["players"][i]["architecture"]);
-              mod_data.language.push(draft["players"][i]["language"]);
+        //Increment the turn and save the gamestate
+        draft["gamestate"]["turn"]++;
+        fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+        io.in(roomID).emit("set gamestate", draft);
+      } else {
+        console.log("Duplicate socket messages, THE BUG avoided");
+      }
 
-              var team_bonuses = [];
-              team_bonuses.push(draft["players"][i]["bonuses"][4][0]);
-              mod_data.team_bonus.push(team_bonuses);
+      if (bug == 1) {
+        io.in(roomID).emit("bug");
+      }
+
+      //Create the mod
+      //Welcome to callback hell because I wasted $1800 on a web-dev class where the professor was seemingly incapable of answering a single question
+      if (draft["gamestate"]["phase"] == 3) {
+        process.chdir(dir);
+        //Create Mod Folder
+        os.execCommand(`bash ${dir}/process_mod/createModFolder.sh ./modding/requested_mods ${draft["id"]} ${dir} 1`, function () {
+          //Create Civ Icons
+          for (var i = 0; i < numPlayers; i++) {
+            var civName = nameArr[i];
+            var seed = [
+              [
+                colours[draft["players"][i]["flag_palette"][0]],
+                colours[draft["players"][i]["flag_palette"][1]],
+                colours[draft["players"][i]["flag_palette"][2]],
+                colours[draft["players"][i]["flag_palette"][3]],
+                colours[draft["players"][i]["flag_palette"][4]],
+              ],
+              draft["players"][i]["flag_palette"][5],
+              draft["players"][i]["flag_palette"][6],
+            ];
+            var symbol = draft["players"][i]["flag_palette"][7] - 1;
+
+            if (civName == "berber" || civName == "inca") {
+              icons.drawFlag(
+                seed,
+                symbol,
+                [
+                  `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/menu/civs/${civName}s.png`,
+                  `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}.png`,
+                  `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_hover.png`,
+                  `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_pressed.png`,
+                  `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}.png`,
+                  `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}_hover.png`,
+                  `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}_pressed.png`,
+                ],
+                `./public/img/symbols`
+              );
+            } else {
+              icons.drawFlag(
+                seed,
+                symbol,
+                [
+                  `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/menu/civs/${civName}s.png`,
+                  `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}.png`,
+                  `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_hover.png`,
+                  `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/menu_techtree_${civName}_pressed.png`,
+                  `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}.png`,
+                  `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}_hover.png`,
+                  `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/wpfg/resources/civ_techtree/menu_techtree_${draft["players"][i]["alias"]}_pressed.png`,
+                ],
+                `./public/img/symbols`
+              );
             }
-            fs.writeFileSync(`./modding/requested_mods/${draft["id"]}/data.json`, JSON.stringify(mod_data, null, 2));
-            //Write Names
-            modStrings.interperateLanguage(
-              `./modding/requested_mods/${draft["id"]}/data.json`,
-              `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/en/strings/key-value/key-value-modded-strings-utf8.txt`
-            );
-            //Copy Names
-            os.execCommand(`sh ./process_mod/copyLanguages.sh ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources`, function () {
-              //Write UUIcons
-              for (var i = 0; i < blanks.length; i++) {
-                os.execCommand(
-                  `cp ./public/img/uniticons/blank.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${blanks[i]}_50730.png`,
-                  function () {}
-                );
-              }
-              for (var i = 0; i < mod_data.techtree.length; i++) {
-                var iconsrc = iconids[mod_data.techtree[i][0]];
-                if (mod_data.techtree[i][0] == 7) {
-                  iconsrc = iconids[8];
-                } else if (mod_data.techtree[i][0] == 8) {
-                  iconsrc = iconids[7];
+          }
+          //Copy Civ Icons
+          os.execCommand(
+            `cp -r ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/. ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/civ_techtree`,
+            function () {
+              //Generate Json
+              var mod_data = {};
+              mod_data.name = [];
+              mod_data.techtree = [];
+              mod_data.castletech = [];
+              mod_data.imptech = [];
+              mod_data.civ_bonus = [];
+              mod_data.team_bonus = [];
+              mod_data.architecture = [];
+              mod_data.language = [];
+              mod_data.randomCosts = false;
+              mod_data.modifyDat = true;
+              for (var i = 0; i < numPlayers; i++) {
+                mod_data.name.push(draft["players"][i]["alias"]);
+                var player_techtree = [];
+                for (var j = 0; j < 130; j++) {
+                  player_techtree.push(0);
                 }
-                if (i == mod_data.techtree.length - 1) {
-                  os.execCommand(
-                    `cp ./public/img/uniticons/${iconsrc}_50730.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${iconids[i]}_50730.png`,
-                    function () {
-                      //Write Tech Tree
-                      createTechtreeJson.createTechtreeJson(
-                        `./modding/requested_mods/${draft["id"]}/data.json`,
-                        `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/dat/civTechTrees.json`
-                      );
-                      createCivilizationsJson(
-                        `./modding/requested_mods/${draft["id"]}/data.json`,
-                        `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/dat/civilizations.json`
-                      );
+                //Unique Unit
+                player_techtree[0] = draft["players"][i]["bonuses"][1][0];
+                //Castle Tech
+                var castletechs = [];
+                castletechs.push(draft["players"][i]["bonuses"][2][0]);
+                mod_data.castletech.push(castletechs);
+                //Imp Tech
+                var imptechs = [];
+                imptechs.push(draft["players"][i]["bonuses"][3][0]);
+                mod_data.imptech.push(imptechs);
+                //Tech Tree
+                for (var j = 0; j < draft["players"][i]["tree"].length; j++) {
+                  for (var k = 0; k < draft["players"][i]["tree"][j].length; k++) {
+                    player_techtree[indexDictionary[j][draft["players"][i]["tree"][j][k].toString()]] = 1;
+                  }
+                }
+                mod_data.techtree.push(player_techtree);
 
-                      //Add voices
-                      let command = `sh ./process_mod/copyVoices.sh ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/drs/sounds ${dir}/public/vanillaFiles/voiceFiles`;
-                      let uniqueLanguages = [];
+                mod_data.civ_bonus.push(draft["players"][i]["bonuses"][0]);
+                mod_data.architecture.push(draft["players"][i]["architecture"]);
+                mod_data.language.push(draft["players"][i]["language"]);
 
-                      for (var i = 0; i < mod_data.language.length; i++) {
-                        if (uniqueLanguages.indexOf(mod_data.language[i]) == -1) {
-                          uniqueLanguages.push(mod_data.language[i]);
-                          command += ` ${mod_data.language[i]}`;
-                        }
-                      }
-                      os.execCommand(command, function () {
-                        //Write Dat File
-                        os.execCommand(
-                          `./modding/build/create-data-mod ./modding/requested_mods/${draft["id"]}/data.json ./public/vanillaFiles/empires2_x2_p1.dat ./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/dat/empires2_x2_p1.dat ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/ai/aiconfig.json`,
-                          function () {
-                            //Zip Files
-                            os.execCommand(`bash ./process_mod/zipModFolder.sh ${draft["id"]} 1`, function () {
-                              draft["gamestate"]["phase"] = 4;
-                              fs.writeFileSync(`./drafts/${draft["id"]}.json`, JSON.stringify(draft, null, 2));
-                              io.in(roomID).emit("set gamestate", draft);
-                            });
-                          }
-                        );
-                      });
-                    }
-                  );
-                } else {
+                var team_bonuses = [];
+                team_bonuses.push(draft["players"][i]["bonuses"][4][0]);
+                mod_data.team_bonus.push(team_bonuses);
+              }
+              fs.writeFileSync(`./modding/requested_mods/${draft["id"]}/data.json`, JSON.stringify(mod_data, null, 2));
+              //Write Names
+              modStrings.interperateLanguage(
+                `./modding/requested_mods/${draft["id"]}/data.json`,
+                `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/en/strings/key-value/key-value-modded-strings-utf8.txt`
+              );
+              //Copy Names
+              os.execCommand(`sh ./process_mod/copyLanguages.sh ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources`, function () {
+                //Write UUIcons
+                for (var i = 0; i < blanks.length; i++) {
                   os.execCommand(
-                    `cp ./public/img/uniticons/${iconsrc}_50730.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${iconids[i]}_50730.png`,
+                    `cp ./public/img/uniticons/blank.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${blanks[i]}_50730.png`,
                     function () {}
                   );
                 }
-              }
-            });
-          }
-        );
-      });
-    }
-  });
-  socket.on("refill", (roomID) => {
-    let draft = getDraft(roomID);
-    var numPlayers = draft["preset"]["slots"];
+                for (var i = 0; i < mod_data.techtree.length; i++) {
+                  var iconsrc = iconids[mod_data.techtree[i][0]];
+                  if (mod_data.techtree[i][0] == 7) {
+                    iconsrc = iconids[8];
+                  } else if (mod_data.techtree[i][0] == 8) {
+                    iconsrc = iconids[7];
+                  }
+                  if (i == mod_data.techtree.length - 1) {
+                    os.execCommand(
+                      `cp ./public/img/uniticons/${iconsrc}_50730.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${iconids[i]}_50730.png`,
+                      function () {
+                        //Write Tech Tree
+                        createTechtreeJson.createTechtreeJson(
+                          `./modding/requested_mods/${draft["id"]}/data.json`,
+                          `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/dat/civTechTrees.json`
+                        );
+                        createCivilizationsJson(
+                          `./modding/requested_mods/${draft["id"]}/data.json`,
+                          `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/dat/civilizations.json`
+                        );
 
-    //Repopulate empty card slots and keep track of the indices of refilled cards in highlighted array
-    draft["gamestate"]["highlighted"] = [];
-    var roundType = Math.max(Math.floor(draft["gamestate"]["turn"] / numPlayers) - (draft["preset"]["rounds"] - 1), 0);
-    for (var i = 0; i < draft["gamestate"]["cards"].length; i++) {
-      if (draft["gamestate"]["cards"][i] == -1) {
+                        //Add voices
+                        let command = `sh ./process_mod/copyVoices.sh ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/drs/sounds ${dir}/public/vanillaFiles/voiceFiles`;
+                        let uniqueLanguages = [];
+
+                        for (var i = 0; i < mod_data.language.length; i++) {
+                          if (uniqueLanguages.indexOf(mod_data.language[i]) == -1) {
+                            uniqueLanguages.push(mod_data.language[i]);
+                            command += ` ${mod_data.language[i]}`;
+                          }
+                        }
+                        os.execCommand(command, function () {
+                          //Write Dat File
+                          os.execCommand(
+                            `./modding/build/create-data-mod ./modding/requested_mods/${draft["id"]}/data.json ./public/vanillaFiles/empires2_x2_p1.dat ./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/dat/empires2_x2_p1.dat ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/ai/aiconfig.json`,
+                            function () {
+                              //Zip Files
+                              os.execCommand(`bash ./process_mod/zipModFolder.sh ${draft["id"]} 1`, function () {
+                                draft["gamestate"]["phase"] = 4;
+                                fs.writeFileSync(`${dir}/drafts/${draft["id"]}.json`, JSON.stringify(draft, null, 2));
+                                io.in(roomID).emit("set gamestate", draft);
+                              });
+                            }
+                          );
+                        });
+                      }
+                    );
+                  } else {
+                    os.execCommand(
+                      `cp ./public/img/uniticons/${iconsrc}_50730.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${iconids[i]}_50730.png`,
+                      function () {}
+                    );
+                  }
+                }
+              });
+            }
+          );
+        });
+      }
+    });
+    socket.on("refill", (roomID) => {
+      let draft = getDraft(roomID);
+      var numPlayers = draft["preset"]["slots"];
+
+      //Repopulate empty card slots and keep track of the indices of refilled cards in highlighted array
+      draft["gamestate"]["highlighted"] = [];
+      var roundType = Math.max(Math.floor(draft["gamestate"]["turn"] / numPlayers) - (draft["preset"]["rounds"] - 1), 0);
+      for (var i = 0; i < draft["gamestate"]["cards"].length; i++) {
+        if (draft["gamestate"]["cards"][i] == -1) {
+          if (draft["gamestate"]["available_cards"][roundType].length <= 0) {
+            draft["gamestate"]["available_cards"][roundType] = reshuffleCards(draft);
+          }
+          var rand = Math.floor(Math.random() * draft["gamestate"]["available_cards"][roundType].length);
+          draft["gamestate"]["cards"][i] = draft["gamestate"]["available_cards"][roundType][rand];
+          draft["gamestate"]["available_cards"][roundType].splice(rand, 1);
+          draft["gamestate"]["highlighted"].push(i);
+        }
+      }
+      fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+      io.in(roomID).emit("set gamestate", draft);
+    });
+    socket.on("clear", (roomID) => {
+      let draft = getDraft(roomID);
+      var numPlayers = draft["preset"]["slots"];
+
+      //Clear out cards and highlight the first three
+      draft["gamestate"]["highlighted"] = [0, 1, 2];
+      var roundType = Math.max(Math.floor(draft["gamestate"]["turn"] / numPlayers) - (draft["preset"]["rounds"] - 1), 0);
+      for (var i = 0; i < draft["gamestate"]["cards"].length; i++) {
         if (draft["gamestate"]["available_cards"][roundType].length <= 0) {
           draft["gamestate"]["available_cards"][roundType] = reshuffleCards(draft);
         }
         var rand = Math.floor(Math.random() * draft["gamestate"]["available_cards"][roundType].length);
         draft["gamestate"]["cards"][i] = draft["gamestate"]["available_cards"][roundType][rand];
         draft["gamestate"]["available_cards"][roundType].splice(rand, 1);
-        draft["gamestate"]["highlighted"].push(i);
       }
-    }
-    fs.writeFileSync(`./drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
-    io.in(roomID).emit("set gamestate", draft);
+      fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+      io.in(roomID).emit("set gamestate", draft);
+    });
   });
-  socket.on("clear", (roomID) => {
-    let draft = getDraft(roomID);
-    var numPlayers = draft["preset"]["slots"];
-
-    //Clear out cards and highlight the first three
-    draft["gamestate"]["highlighted"] = [0, 1, 2];
-    var roundType = Math.max(Math.floor(draft["gamestate"]["turn"] / numPlayers) - (draft["preset"]["rounds"] - 1), 0);
-    for (var i = 0; i < draft["gamestate"]["cards"].length; i++) {
-      if (draft["gamestate"]["available_cards"][roundType].length <= 0) {
-        draft["gamestate"]["available_cards"][roundType] = reshuffleCards(draft);
-      }
-      var rand = Math.floor(Math.random() * draft["gamestate"]["available_cards"][roundType].length);
-      draft["gamestate"]["cards"][i] = draft["gamestate"]["available_cards"][roundType][rand];
-      draft["gamestate"]["available_cards"][roundType].splice(rand, 1);
-    }
-    fs.writeFileSync(`./drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
-    io.in(roomID).emit("set gamestate", draft);
-  });
-});
+}
+draftIO(io);
 
 module.exports = {
+  io: draftIO,
   router: router,
 };
 

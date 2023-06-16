@@ -1,4 +1,4 @@
-const hostname = "http://krakenmeister.com";
+const hostname = "https://krakenmeister.com";
 const route = "/civbuilder";
 
 const card_descriptions = [

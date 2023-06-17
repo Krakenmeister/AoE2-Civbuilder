@@ -129,13 +129,7 @@ function createCivilizationsJson(data_json, civilizations_json) {
     civilization.tech_tree_image_path = `/resources/civ_techtree/menu_techtree_${civ.name[i]}.png`;
 
     civilization.unique_unit_image_paths = [];
-    let uuIcon = iconids[civ.techtree[i][0]];
-    if (civ.techtree[i][0] == 7) {
-      uuIcon = iconids[8];
-    } else if (civ.techtree[i][0] == 8) {
-      uuIcon = iconids[7];
-    }
-    civilization.unique_unit_image_paths.push(`/resources/uniticons/${uuIcon}_50730.png`);
+    civilization.unique_unit_image_paths.push(`/resources/uniticons/${iconids[i]}_50730.png`);
 
     civilizations["civilization_list"].push(civilization);
   }

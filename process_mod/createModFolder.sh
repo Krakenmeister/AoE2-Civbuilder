@@ -199,7 +199,6 @@ cd ..
 cd ..
 mkdir widgetui
 cd widgetui
-cp "$3/public/vanillaFiles/civTechTrees.json" ./
 mkdir textures
 cd textures
 mkdir ingame

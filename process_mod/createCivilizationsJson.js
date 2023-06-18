@@ -5,7 +5,7 @@ module.exports = {
   createCivilizationsJson,
 };
 
-const jingle_names = [
+const internal_names = [
   "Britons",
   "Franks",
   "Goths",
@@ -120,7 +120,7 @@ function createCivilizationsJson(data_json, civilizations_json) {
   for (let i = 0; i < civ.techtree.length; i++) {
     let civilization = {};
 
-    civilization.internal_name = jingle_names[civ.language[i]];
+    civilization.internal_name = internal_names[i];
     civilization.tech_tree_name = civ.name[i];
     civilization.data_name = data_names[i];
     civilization.hud_style = hud_styles[civ.architecture[i]];

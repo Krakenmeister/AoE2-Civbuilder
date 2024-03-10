@@ -19,11 +19,11 @@ a {
 }
 
 #title {
-  font-size: 7rem;
+  font-size: 12vh;
   color: var(--primary);
   text-shadow: 3px 3px 5px black;
   text-align: center;
-  margin: 4rem auto;
+  margin: 5vh auto;
 }
 
 #update {
@@ -48,8 +48,21 @@ a {
   margin: 0;
 }
 
+#generateButton {
+  margin-top: 15vh;
+  font-size: 6vh;
+}
+
+#startBuild {
+  font-size: 6vh;
+}
+
+#startDraft {
+  font-size: 6vh;
+}
+
 #spacer {
-  height: 6rem;
+  height: 10vh;
 }
 
 #or {

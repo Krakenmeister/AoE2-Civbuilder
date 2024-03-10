@@ -56,8 +56,11 @@ const OUTPOST = 598;
 const TOWN_CENTER_2 = 621;
 const PALISADE_GATE = 792;
 const FEITORIA = 1021;
+const HARBOR = 1189;
 const KREPOST = 1251;
 const DONJON = 1665;
+const FORTIFIED_CHURCH = 1806;
+const MULE_CART = 1808;
 const ARCHER = 4;
 const HAND_CANNONEER = 5;
 const ELITE_SKIRMISHER = 6;
@@ -214,6 +217,27 @@ const ELITE_SERJEANT = 1659;
 const DSERJEANT = 1660;
 const ELITE_DSERJEANT = 1661;
 const FLEMISHPIKEMAN = 1699;
+const OBUCH = 1701;
+const ELITE_OBUCH = 1703;
+const HUSSITE_WAGON = 1704;
+const ELITE_HUSSITE_WAGON = 1706;
+const WINGED_HUSSAR = 1707;
+const HOUFNICE = 1709;
+const FOLWARK = 1734;
+const ARMORED_ELEPHANT = 1744;
+const SIEGE_ELEPHANT = 1746;
+const THIRISADAI = 1750;
+const SHRIVAMSHA_RIDER = 1751;
+const ELITE_SHRIVAMSHA_RIDER = 1753;
+const CARAVANSERAI = 1754;
+const CAMEL_SCOUT = 1755;
+const DSPEARMAN = 1786;
+const DPIKEMAN = 1787;
+const DHALBERDIER = 1788;
+const LEGIONARY = 1793;
+const DROMON = 1795;
+const WARRIOR_PRIEST = 1811;
+const SAVAR = 1813;
 const YEOMEN = 3;
 const EL_DORADO = 4;
 const FUROR_CELTICA = 5;
@@ -235,6 +259,7 @@ const COINAGE = 23;
 const GARLAND_WARS = 24;
 const HUSBANDRY = 39;
 const FAITH = 45;
+const DEVOTION = 46;
 const CHEMISTRY = 47;
 const CARAVAN = 48;
 const BERSERKERGANG = 49;
@@ -364,9 +389,6 @@ const FLEMISH_REVOLUTION = 755;
 const FIRST_CRUSADE = 756;
 const SCUTAGE = 757;
 const GAMBESONS = 875;
-const ARMORED_ELEPHANT = 1744;
-const SIEGE_ELEPHANT = 1746;
-const DROMON = 1795;
 
 class Tree {
   constructor() {
@@ -641,6 +663,9 @@ function getName(id, itemtype) {
   if (id.toString().startsWith("UNIQUE")) {
     return id;
   }
+  console.log(id);
+  console.log(itemtype);
+  console.log(data["data"][itemtype][id]);
   const languageNameId = data["data"][itemtype][id]["LanguageNameId"];
   return data["strings"][languageNameId];
 }
@@ -858,14 +883,15 @@ function getDefaultTree() {
   monasterylane.rows.castle_2.push(unit(MONK));
   //    monasterylane.rows.castle_2.push(uniqueunit(MISSIONARY));
   monasterylane.rows.castle_2.push(tech(REDEMPTION));
+  monasterylane.rows.castle_2.push(tech(DEVOTION));
   monasterylane.rows.castle_2.push(tech(ATONEMENT));
   monasterylane.rows.castle_2.push(tech(HERBAL_MEDICINE));
   monasterylane.rows.castle_2.push(tech(HERESY));
   monasterylane.rows.castle_2.push(tech(SANCTITY));
   monasterylane.rows.castle_2.push(tech(FERVOR));
-  monasterylane.rows.imperial_1.push(tech(FAITH));
   monasterylane.rows.imperial_1.push(tech(ILLUMINATION));
   monasterylane.rows.imperial_1.push(tech(BLOCK_PRINTING));
+  monasterylane.rows.imperial_1.push(tech(FAITH));
   monasterylane.rows.imperial_1.push(tech(THEOCRACY));
   tree.lanes.push(monasterylane);
 
@@ -1105,7 +1131,8 @@ function getConnections() {
     [b(UNIVERSITY), t(SIEGE_ENGINEERS)],
     [b(UNIVERSITY), t(ARROWSLITS)],
     [b(CASTLE), u(TREBUCHET)],
-    [b(MONASTERY), t(FAITH)],
+    [b(MONASTERY), t(DEVOTION)],
+    [t(DEVOTION), t(FAITH)],
     [b(MONASTERY), t(ILLUMINATION)],
     [b(MONASTERY), t(BLOCK_PRINTING)],
     [b(MONASTERY), t(THEOCRACY)],

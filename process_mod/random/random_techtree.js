@@ -286,7 +286,7 @@ function generateTechTree() {
     [0, -1],
     [0, -1],
     [0, -1],
-    [0, -1],
+    [0, 161],
     [0, -1],
     [0, -1],
     [0, -1],
@@ -344,6 +344,7 @@ function generateTechTree() {
     [0, 43],
     [0, 158],
     [0, -1],
+    [0, 146],
   ];
 
   var numTechs = getRandomInt(88, 102);

@@ -6,9 +6,9 @@ const card_descriptions = [
     "Town Centers cost -50% wood starting in the Castle Age",
     "Foot archers (except skirmishers) +1 range in Castle and Imperial Age (+2 total)",
     "Shepherds work 25% faster",
-    "Castles cost -25%",
+    "Castles cost -15% in Castle, -25% in Imperial Age",
     "Mounted units +20% hit points starting in Feudal Age",
-    "Foragers work 15% faster",
+    "Foragers work 10% faster",
     "Loom can be researched instantly",
     "Villagers +5 attack vs. wild boar; hunters carry +15 meat; hunt contains +20% meat",
     "+10 population in Imperial Age",
@@ -18,22 +18,22 @@ const card_descriptions = [
     "Towers garrison 2x units; Town Centers garrison +10",
     "Farms cost -40%",
     "Barracks and Stable units +1 armor in Castle and Imperial Age (+2 total)",
-    "Mill, Lumber, Mining Camps cost -50%",
+    "Economic drop-off buildings cost -50%",
     "Fishing Ships 2x hit points; +2P armor; work rate +5% Dark, +10% Feudal, +15% Castle, +20% Imperial Age",
     "Infantry attack 33% faster starting in Feudal Age",
-    "Start with +3 villagers, -50 wood, -200 food; Town Centers support 10 population and +5 LOS",
+    "Start with +3 villagers, -50 wood, -200 food; Town Centers support 15 population and +7 LOS",
     "Demolition ships +50% hit points",
-    "Technologies cost -10% Feudal, -15% Castle, -20% Imperial Age",
+    "Technologies cost -5% Feudal, -10% Castle, -15% Imperial Age",
     "Buildings +10% HP Dark, +20% Feudal, +30% Castle, +40% Imperial Age",
     "Fire ships attack 25% faster",
     "Camel Riders, Skirmishers, Pikemen, Halberdiers cost -25%",
     "Start with +50 wood, food",
     "Town Center, Dock 2x hit points",
-    "Town Center, Dock work rate +10% Feudal, +15% Castle, +20% Imperial Age",
+    "Town Center, Dock work rate +5% Dark, +10% Feudal, +15% Castle, +20% Imperial Age",
     "Market costs -100 wood; market trade cost only 5%",
     "Transport Ships 2x hit points, 2x carry capacity",
     "Galleys attack 25% faster",
-    "Camel units +10 hit points",
+    "Camel units +25% hit points",
     "Gunpowder units +25% hit points",
     "Gold miners work 20% faster",
     "Scout Cavalry, Light Cavalry, Hussar +1 pierce armor",
@@ -51,7 +51,7 @@ const card_descriptions = [
     "+5 Monk hit points for each Monastery technology",
     "Start with +1 villager, but -50 food",
     "Cavalry Archers cost -10% Castle, -20% Imperial Age",
-    "Military units (except siege weapons) cost -20% wood",
+    "Archers and Infantry cost -50% wood, Warships cost -20% wood",
     "Archer armor upgrades free",
     "Can train Turtle Ships in docks",
     "Can recruit Longboats from docks",
@@ -59,8 +59,8 @@ const card_descriptions = [
     "Can upgrade Heavy Camel Riders to Imperial Camel Riders",
     "Fishermen work 10% faster",
     "Stable units +1P armor in Castle and Imperial Age (+2 total)",
-    "Villagers cost -5% Dark, -10% Feudal, -15% Castle, -20% Imperial Age",
-    "Military units cost -15/20/25/30% food in Dark/Feudal/Castle/Imperial",
+    "Villagers cost -8% Dark, -13% Feudal, -18% Castle, -23% Imperial Age",
+    "Military units cost -10/15/20/25% food in Dark/Feudal/Castle/Imperial",
     "Buildings cost -15% stone",
     "Houses support 10 population",
     "Villagers affected by Blacksmith upgrades (starting in Feudal Age)",
@@ -78,7 +78,7 @@ const card_descriptions = [
     "Pikeman upgrade free",
     "Buildings cost -15% wood",
     "Barracks units +1 pierce armor per age (starting from Feudal Age)",
-    "Villagers drop off 15% more gold",
+    "Villagers drop off 10% more gold",
     "Villagers move 5% faster in Dark Age, 10% faster in Feudal Age",
     "Ships move 10% faster",
     "Stable units cost -15% in Castle, -20% in Imperial Age",
@@ -123,7 +123,7 @@ const card_descriptions = [
     "Wheelbarrow, Hand Cart free",
     "Tower upgrades free (Bombard Tower requires Chemistry)",
     "Conscription free",
-    "Farmers work 10% faster",
+    "Farmers work 15% faster",
     "Advancing to the next age costs -15%",
     "Fishing Ships cost -15%",
     "Dock and University technologies cost -33%",
@@ -224,7 +224,7 @@ const card_descriptions = [
     "Completed castles provide 400 gold as long as they stay standing",
     "Monk units move 20% faster",
     "Melee Cavalry gain +2 bonus damage vs Skirmishers",
-    "Long Swordsman, Two-Handed Swordsman upgrades available one age earlier",
+    "Non-unique Barracks units (except Men-at-Arms) available one age earlier",
     "Can buy cows in mills",
     "Start with an extra horse",
     "Siege Towers 2x HP",
@@ -305,7 +305,7 @@ const card_descriptions = [
     "Can recruit Shrivamsha Riders",
     "Can recruit Camel Scouts in Feudal Age",
     "Gain 20 gold for each technology researched",
-    "War Galleys +1/+1P armor, Galleons and Dromons +2/+2P armor",
+    "Galley-line and Dromons +1/+1 armor",
     "Battle Elephants +1/+1P armor",
     "Monks +3/+3P armor",
     "Infantry receives double effect from Blacksmith armor upgrades",
@@ -314,6 +314,17 @@ const card_descriptions = [
     "Can upgrade Heavy Scorpions to Imperial Scorpions",
     "Can upgrade Elite Battle Elephants to Royal Battle Elephants",
     "Can upgrade Elite Steppe Lancers to Royal Lancers",
+    "Cavalry Archers +2 attack vs. Archers (except skirmishers)",
+    "Wood and mining upgrades are 40% more effective, economic drop-off buildings cost -25%",
+    "First religious building receives a free relic",
+    "Savar replaces Paladin",
+    "Galley-line and Dromons fire an additional projectile",
+    "Fortified church replaces monastery, can recruit Warrior Priests",
+    "Mule Carts replace Lumber Camps and Mining Camps",
+    "Start with a Mule Cart but -50 food",
+    "Religious buildings provide Villagers in an 8 tile radius with +10% work rate",
+    "Units and buildings receive -15% damage when fighting from higher elevation",
+    "Cavalry regenerates 5 HP per minute in Feudal, 10 in Castle, 15 in Imperial Age",
   ],
 
   [
@@ -398,6 +409,8 @@ const card_descriptions = [
     "Chakram Throwers (infantry)",
     "Urumi Swordsmen (infantry)",
     "Rathas (cavalry archer/cavalry)",
+    "Composite Bowmen (anti-armor archer)",
+    "Monaspa (synergistic cavalry)",
   ],
 
   [
@@ -406,8 +419,8 @@ const card_descriptions = [
     "Yeomen (+1 foot archer and skirmisher range, +2 tower attack) [750W 450G]",
     "Stirrups (Cavalry attack 33% faster) [400F 200G]",
     "Burgundian Vineyards (Farmers slowly generate gold in addition to food) [400F 300G]",
-    "Howdah (Elephant units +1/+1P armor) [400F 300W]",
-    "Greek Fire (Fire ships +1 range, Bombard Towers +5 splash damage) [250F 300G]",
+    "Manipur Cavalry (Cavalry +4 attack vs. archers) [300F 300G]",
+    "Greek Fire (Fire ships +1 range, Bombard Towers and Dromons increased blast radius) [250F 300G]",
     "Stronghold (Castles, Kreposts and Towers fire 33% faster, Castles and Kreposts heal allied infantry in a 7 tile radius) [250F 200G]",
     "Great Wall (Walls and towers +30% HP) [400W 200S]",
     "Steppe Husbandry (Light Cavalry, Steppe Lancers and Cavalry Archers trained 100% faster) [200F 300W]",
@@ -416,8 +429,8 @@ const card_descriptions = [
     "Anarchy (create Unique Unit at barracks) [450F 250G]",
     "Marauders (create Unique Unit at stables) [300W 200G]",
     "Andean Sling (Skirmishers and Slingers no minimum range, Slingers +1 attack) [200F 300G]",
-    "Grand Trunk Road (All gold income 10% faster) [400F 400W]",
-    "Pavise (Archer-line, Condottiero, and Unique Unit +1/+1 armor) [300F 150G]",
+    "Grand Trunk Road (All gold income 10% faster) [250F 200W]",
+    "Pavise (Archer-line, Condottiero, and Unique Unit +1/+1 armor) [200W 150G]",
     "Yasama (Towers shoot extra arrows) [300F 300W]",
     "Tusk Swords (Elephant units +3 attack) [300W 450G]",
     "Eupseong (Watch Towers, Guard Towers, and Keeps +2 range) [300F 300W]",
@@ -450,7 +463,10 @@ const card_descriptions = [
     "Kshatriyas (Military units cost -25% food) [500F 450G]",
     "Detinets (40% of Castle, Tower, Krepost, and Donjon stone cost replaced with wood) [400W 200G]",
     "Zealotry (Camel units +20 hit points) [400F 400G]",
-    "Ballistas (Scorpions, Ballista Elephants, and Galley-line fire 33% faster) [400W 300G]",
+    "Ballistas (Scorpions and Ballista Elephants fire 33% faster, Galleys +2 attack) [400W 300G]",
+    "Bimaristan (Monk units automatically heal multiple nearby units) [300W 200G]",
+    "Cilician Fleet (Demolition Ships +20% blast radius; Galley-line and Dromons +1 range) [350W 300G]",
+    "Svan Towers (Defensive buildings +2 attack; towers fire arrows that pierce multiple units) [300F 200G]",
   ],
 
   [
@@ -459,7 +475,7 @@ const card_descriptions = [
     "Warwolf (Trebuchets do blast damage) [800W 400G]",
     "Bagains (Militia-line gains +5 armor) [900F 450G]",
     "Flemish Revolution (Upgrades all existing Villagers to Flemish Militia; create Flemish Militia at Town Centers) [200F 150G + 10F 5G per villager]",
-    "Manipur Cavalry (Cavalry +5 attack vs. archers) [400F 400G]",
+    "Howdah (Elephant units +1/+1P armor) [400F 300W]",
     "Logistica (Unique Unit causes trample damage) [800F 600G]",
     "Furor Celtica (Siege Workshop units +40% HP) [750F 450G]",
     "Rocketry (Unique Unit +2, Scorpions +4 attack) [750W 750G]",
@@ -480,7 +496,7 @@ const card_descriptions = [
     "Farimba (Cavalry +3 attack) [650F 400G]",
     "El Dorado (Eagle Warriors have +40 hit points) [750F 450G]",
     "Drill (Siege units move 50% faster) [500W 450G]",
-    "Mahouts (Elephants move 30% faster) [300F 300G]",
+    "Citadels (Castles and Kreposts fire Bullets [+4 attack, +3 vs Rams, +3 vs Infantry], receive -25% bonus damage) [600W 300G]",
     "Arquebus (gunpowder units more accurate) [700F 400G]",
     "Counterweights (Trebuchets and Mangonel-line +15% attack) [650F 500G]",
     "Hauberk (Knights +1/+2P armor) [700F 600G]",
@@ -502,6 +518,8 @@ const card_descriptions = [
     "Mahayana (Villagers and monk units take 10% less population space) [800W 650G]",
     "Frontier Guards (Camel units and Elephant Archers +4 melee armor) [800F 700G]",
     "Comitatenses (Militia-line, Knight-line, and Unique Unit train 50% faster and receive a 5 damage charge attack) [700F 800G]",
+    "Fereters (Infantry (except Spearman-line) +30 HP, Warrior Priests +100% heal speed) [550F 400G]",
+    "Aznauri Cavalry (Cavalry units take 15% less population space) [750F 250G]",
   ],
 
   [
@@ -526,7 +544,7 @@ const card_descriptions = [
     "Scorpion and Ballista units +1 range",
     "Mangonel-line minimum range reduced",
     "Monasteries work 20% faster",
-    "Foot archers +2 LOS",
+    "Cavalry Archers trained 25% faster",
     "Docks +100% LOS",
     "Universities work 80% faster",
     "Walls cost -50%",
@@ -579,6 +597,7 @@ const card_descriptions = [
     "Camel and elephant units created 25% faster",
     "Can train spearmen from Town Centers",
     "Can train Canoes from docks",
+    "Buildings cost 25% fewer resources to repair",
   ],
 ];
 
@@ -698,10 +717,10 @@ const colours = [
 const categories = ["Color 1", "Color 2", "Color 3", "Color 4", "Color 5", "Division", "Overlay", "Symbol"];
 const palette_sizes = [15, 15, 15, 15, 15, 12, 12, 84];
 
-const num_cards = [311, 81, 50, 48, 74];
-const max_sizes = [311, 1, 1, 1, 74];
+const num_cards = [322, 83, 53, 50, 75];
+const max_sizes = [322, 1, 1, 1, 75];
 
-const numCivs = 43;
+const numCivs = 45;
 
 const architectures = [
   "Central European",
@@ -1308,6 +1327,7 @@ const treeMap = [
   [0, 1744],
   [0, 1746],
   [0, 1795],
+  [2, 46],
 ];
 
 function zeroFill(string, size) {

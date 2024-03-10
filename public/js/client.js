@@ -461,7 +461,10 @@ function startaBuild() {
   buildForm.appendChild(editButton);
   buildForm.appendChild(combineButton);
 
+  // document.getElementById("page").appendChild(buildForm);
   document.getElementsByTagName("body")[0].appendChild(buildForm);
+
+  buildForm.style.transform = `scale(${(0.6 * window.innerHeight) / buildForm.getBoundingClientRect().height})`;
 }
 
 var btn1 = document.getElementById("generateButton");
@@ -702,6 +705,8 @@ if (btn7) {
     instructionstext.id = "instructionstext";
     instructionstext.innerHTML =
       "" +
+      "<b>03-10-2024</b><br>" +
+      "&emsp;&emsp;• Updated website to work with The Mountain Royals<br><br>" +
       "<b>05-31-2023</b><br>" +
       "&emsp;&emsp;• Updated website to work with Return of Rome<br><br>" +
       "<b>11-26-2022</b><br>" +

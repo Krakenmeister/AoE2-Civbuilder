@@ -163,7 +163,6 @@ function displayData(relativepath = ".") {
     "tech_377",
     "tech_608",
     "unit_331",
-    "tech_45",
     "tech_233",
     "tech_230",
     "tech_438",

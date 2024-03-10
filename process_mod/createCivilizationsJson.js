@@ -49,6 +49,8 @@ const internal_names = [
   "Bengalis",
   "Gurjaras",
   "Romans",
+  "Armenians",
+  "Georgians",
 ];
 const data_names = [
   "BRITON-CIV",
@@ -94,11 +96,13 @@ const data_names = [
   "BENGALIS-CIV",
   "GURJARAS-CIV",
   "ROMANS-CIV",
+  "ARMENIANS-CIV",
+  "GEORGIANS-CIV",
 ];
 const hud_styles = ["CivWest", "CivWest", "CivAsia", "CivOrie", "CivMeso", "CivMedi", "CivOrie", "CivSlav", "CivAfri", "CivSeas", "CivNomad"];
 const computer_name_string_table_offsets = [
   4400, 4420, 4440, 4460, 4480, 4500, 4520, 4540, 4560, 4580, 4600, 4620, 4640, 5800, 5820, 5840, 5860, 5880, 5900, 5920, 5940, 5960, 5980, 106000, 106020, 106040, 106060, 106080, 106100, 106120,
-  106140, 106160, 106180, 106200, 106220, 106240, 106260, 106280, 106300, 106320, 106340, 106360, 106380,
+  106140, 106160, 106180, 106200, 106220, 106240, 106260, 106280, 106300, 106320, 106340, 106360, 106380, 106400, 106420,
 ];
 
 function createCivilizationsJson(data_json, civilizations_json) {

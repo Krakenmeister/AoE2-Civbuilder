@@ -17,13 +17,13 @@ Civbuilder::~Civbuilder() {
 }
 
 void Civbuilder::initialize() {
-    this->numCivs = 43;
+    this->numCivs = 45;
 
     this->duplicationUnits = {};
 
     this->unitClasses["barracks"] = {74, 75, 77, 473, 567, 93, 358, 359, 751, 753, 752, 882};
     this->unitClasses["stable"] = {448, 546, 441, 1707, 38, 283, 569, 329, 330, 207, 1132, 1134, 1370, 1372, 1181, 1755, 1751, 1753};
-    this->unitClasses["archery"] = {4, 24, 492, 5, 7, 6, 1155, 39, 474, 185, 1010, 1012};
+    this->unitClasses["archery"] = {4, 24, 492, 5, 7, 6, 1155, 39, 474, 185, 1010, 1012, 1800, 1802};
     this->unitClasses["workshop"] = {35, 1258, 422, 548, 280, 550, 588, 885, 1105, 36, 279, 542, 1709, 1744, 1746};
     this->unitClasses["elephant"] = {239, 558, 873, 875, 1120, 1122, 1132, 1134, 1744, 1746};
     this->unitClasses["gunpowder"] = {5, 36, 420, 691, 46, 557, 1001, 1003, 771, 773, 1709, 1704, 1706};
@@ -32,11 +32,11 @@ void Civbuilder::initialize() {
     this->unitClasses["scorpion"] = {279, 541};
     this->unitClasses["unique"] = {8, 530, 281, 531, 41, 555, 25, 554, 291, 560, 73, 559, 40, 553, 282, 556, 239, 558, 46, 557, 692, 694, 11, 561, 232, 534, 771, 773, 725, 726, 763, 765, 755, 757, 827, 829, 866, 868, 1747, 1749, 879, 881, 869, 871, 876, 878,
 		1001, 1003, 1016, 1018, 1013, 1015, 1007, 1009, 1120, 1122, 1123, 1125, 1126, 1128, 1129, 1131, 1225, 1227, 1252, 1253, 1228, 1230, 1231, 1233, 1234, 1236, 1655, 1657, 1658, 1659, 1701, 1702, 1704, 1706,
-		1735, 1737, 1738, 1740, 1741, 1743, 1759, 1761, 1790, 1792};
+		1735, 1737, 1738, 1740, 1741, 1743, 1759, 1761, 1790, 1792, 1800, 1802, 1803, 1805};
     this->unitClasses["steppe"] = {1370, 1372};
     this->unitClasses["eagle"] = {751, 752, 753};
     this->unitClasses["ram"] = {35, 1258, 422, 548};
-    this->unitClasses["footArcher"] = {4, 8, 24, 73, 185, 492, 530, 559, 763, 765, 866, 868, 1129, 1131};
+    this->unitClasses["footArcher"] = {4, 8, 24, 73, 185, 492, 530, 559, 763, 765, 866, 868, 1129, 1131, 1800, 1802};
     this->unitClasses["spear"] = {93, 358, 359, 1786, 1787, 1788};
     this->unitClasses["skirmisher"] = {6, 7, 1155, 583, 596, 1010, 1012};
     this->unitClasses["lightCav"] = {448, 546, 441, 1707};
@@ -236,6 +236,9 @@ void Civbuilder::initialize() {
     this->castleUniqueTechIDs[47] = 455;
     this->castleUniqueTechIDs[48] = 9;
     this->castleUniqueTechIDs[49] = 883;
+	this->castleUniqueTechIDs[50] = 28;
+	this->castleUniqueTechIDs[51] = 922;
+	this->castleUniqueTechIDs[52] = 923;
 
     this->impUniqueTechIDs[0] = 24;
     this->impUniqueTechIDs[1] = 579;
@@ -280,6 +283,8 @@ void Civbuilder::initialize() {
     this->impUniqueTechIDs[45] = 834;
     this->impUniqueTechIDs[46] = 836;
     this->impUniqueTechIDs[47] = 884;
+	this->impUniqueTechIDs[48] = 921;
+	this->impUniqueTechIDs[49] = 924;
 
     this->uuTechIDs[0] = {263, 360};
     this->uuTechIDs[1] = {275, 363};
@@ -323,6 +328,8 @@ void Civbuilder::initialize() {
 	this->uuTechIDs[78] = {829, 830};
     this->uuTechIDs[79] = {825, 826};
     this->uuTechIDs[80] = {827, 828};
+	this->uuTechIDs[81] = {917, 918};
+	this->uuTechIDs[82] = {919, 920};
 }
 
 void Civbuilder::configure() {
@@ -352,7 +359,6 @@ void Civbuilder::assignData() {
     this->assignBasicTechs();
     this->assignUniqueTechs();
     this->assignCivBonuses();
-    this->assignTeamBonuses();
 }
 
 //Give civilizations the appropriate sfx files
@@ -2055,13 +2061,13 @@ void Civbuilder::createCivBonuses() {
         this->createCivBonus(110 + i, e, "C-Bonus, Free techs (set 1)" + to_string(i));
 	}
 
-    //Farmers work 10% faster
+    //Farmers work 15% faster
 	e.EffectCommands.clear();
-	e.EffectCommands.push_back(createEC(5, 214, -1, 13, 1.18));
-	e.EffectCommands.push_back(createEC(5, 259, -1, 13, 1.18));
-	e.EffectCommands.push_back(createEC(5, 50, -1, 13, 1.1));
-	e.EffectCommands.push_back(createEC(5, 1187, -1, 13, 1.1));
-    this->createCivBonus(120, e, "C-Bonus, farmers work 10% faster");
+	e.EffectCommands.push_back(createEC(5, 214, -1, 13, 1.23));
+	e.EffectCommands.push_back(createEC(5, 259, -1, 13, 1.23));
+	e.EffectCommands.push_back(createEC(5, 50, -1, 13, 1.15));
+	e.EffectCommands.push_back(createEC(5, 1187, -1, 13, 1.15));
+    this->createCivBonus(120, e, "C-Bonus, farmers work 15% faster");
 
 	//-15% age up cost
 	e.EffectCommands.clear();
@@ -2305,6 +2311,7 @@ void Civbuilder::createCivBonuses() {
 	//Monk units train 66% faster
 	e.EffectCommands.clear();
 	e.EffectCommands.push_back(createEC(5, -1, 18, 101, 0.6));
+	e.EffectCommands.push_back(createEC(5, 1811, -1, 101, 0.6));
 	this->createCivBonus(178, e, "C-Bonus, Monks train 66% faster");
 
     //Trebuchets train 50% faster
@@ -2576,31 +2583,35 @@ void Civbuilder::createCivBonuses() {
 	e.EffectCommands.clear();
 	e.EffectCommands.push_back(createEC(5, -1, 18, 5, 1.2));
 	e.EffectCommands.push_back(createEC(5, -1, 43, 5, 1.2));
+	e.EffectCommands.push_back(createEC(5, 1811, -1, 5, 1.2));
 	this->createCivBonus(219, e, "C-Bonus, Monks +20% speed");
 
 	//Melee cavalry +2 vs skirmishers
 	this->civBonuses[220] = {877};
     
-	//Long Swordsman, Two-Handed Swordsman upgrades available one age earlier
-    vector<int> techIDs = {};
+	//Barracks upgrades earlier
+	vector<int> techIDs = {950, 951, 952, 953, 954, 955, 956};
+
 	t = Tech();
-	t.Name = "C-Bonus, Long Swords in Feudal";
+	t.Name = "C-Bonus, Eagle Warriors in Feudal";
 	t.Civ = 99;
 	t.RequiredTechs.push_back(101);
-	t.RequiredTechs.push_back(222);
+	t.RequiredTechs.push_back(433);
 	t.RequiredTechCount = 2;
 	this->df->Techs.push_back(t);
-	this->df->Techs[207].RequiredTechs[2] = (int) (this->df->Techs.size() - 1);
+	this->df->Techs[384].RequiredTechs[2] = (int) (this->df->Techs.size() - 1);
 	techIDs.push_back((int) (this->df->Techs.size() - 1));
+
 	t = Tech();
-	t.Name = "C-Bonus, 2HS in Castle";
+	t.Name = "C-Bonus, Elite Eagles in Castle";
 	t.Civ = 99;
 	t.RequiredTechs.push_back(102);
-	t.RequiredTechs.push_back(207);
+	t.RequiredTechs.push_back(384);
 	t.RequiredTechCount = 2;
 	this->df->Techs.push_back(t);
-	this->df->Techs[217].RequiredTechs[2] = (int) (this->df->Techs.size() - 1);
+	this->df->Techs[434].RequiredTechs[2] = (int) (this->df->Techs.size() - 1);
 	techIDs.push_back((int) (this->df->Techs.size() - 1));
+
 	this->civBonuses[221] = techIDs;
     
 	//Cows from mills
@@ -3093,6 +3104,7 @@ void Civbuilder::createCivBonuses() {
 	e.EffectCommands.clear();
 	e.EffectCommands.push_back(createEC(1, 234, 0, -1, 1));
 	e.EffectCommands.push_back(createEC(7, 125, 104, 1, 0));
+	e.EffectCommands.push_back(createEC(7, 125, 1806, 1, 0));
     for (int i=0; i<this->df->Techs.size(); i++) {
         if (this->df->Techs[i].ResearchLocation == 104) {
             this->createCivBonus(279, e, "Monk for church tech " + to_string(i), {i});
@@ -3104,22 +3116,7 @@ void Civbuilder::createCivBonuses() {
     this->civBonuses[280] = {793, 794, 795, 796, 797, 798, 799, 818, 819, 820, 821};
 
     //Stone miners generate gold
-    techIDs = {805, 806, 807};
-    e.EffectCommands.clear();
-	e.Name = "Stone mining C-Bonus gold generation increase";
-	e.EffectCommands.push_back(createEC(6, 241, -1, -1, 1.2));
-	this->df->Effects.push_back(e);
-
-	t = Tech();
-	t.Name = "Stone mining C-Bonus gold generation increase";
-	t.RequiredTechs.push_back(805);
-    t.RequiredTechs.push_back(this->civBonuses[135][0]);
-	t.RequiredTechCount = 2;
-	t.EffectID = (this->df->Effects.size() - 1);
-	t.Civ = 99;
-	this->df->Techs.push_back(t);
-	techIDs.push_back((int) (this->df->Techs.size() - 1));
-    this->civBonuses[281] = techIDs;
+	this->civBonuses[281] = {805, 806, 807};
 
     //Winged Hussar replaces Hussar
     this->civBonuses[282] = {789, 791};
@@ -3214,6 +3211,226 @@ void Civbuilder::createCivBonuses() {
 
     //Legionary
     this->civBonuses[307] = {885, 895};
+
+	//Cavalry Archers +2 attack vs archers
+	this->civBonuses[311] = {190};
+
+	//Eco buildings cheaper + effectiveness
+	this->civBonuses[312] = {958, 960, 961, 962, 963, 964, 965, 966};
+	this->df->Effects[953].EffectCommands.clear();
+	for (int i=0; i<ecoBuildings.size(); i++) {
+		this->df->Effects[953].EffectCommands.push_back(createEC(5, ecoBuildings[i], -1, 100, 0.75));
+	}
+
+	//Free relic
+	this->civBonuses[313] = {949, 957};
+
+	//Savar
+	this->civBonuses[314] = {526, 527};
+
+	//Extra warship missile
+	this->civBonuses[315] = {959};
+
+	//Fortified church
+	this->civBonuses[316] = {930, 948};
+
+	//Mule carts
+	this->civBonuses[317] = {932};
+
+	//Start with mule cart
+	this->civBonuses[318] = {229, 925};
+
+	//Church work bonus area
+	this->civBonuses[319] = {934};
+
+	//Less bonus damage from higher elevation
+	this->civBonuses[320] = {926};
+
+	//Cavalry regen
+	this->civBonuses[321] = {937, 938, 939};
+	
+	//Make all the trickle bonuses work with each other
+	//Stone to gold + roman villagers
+	e.EffectCommands.clear();
+	e.Name = "Roman workers stone to gold trickle";
+	e.EffectCommands.push_back(createEC(6, 241, -1, -1, 1.05));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Roman workers stone to gold trickle";
+	t.RequiredTechs.push_back(887);
+	t.RequiredTechs.push_back(805);
+	t.RequiredTechCount = 2;
+	t.EffectID = (this->df->Effects.size() - 1);
+	t.Civ = -1;
+	this->df->Techs.push_back(t);
+
+	//Stone to gold + stone mining bonus
+    e.EffectCommands.clear();
+	e.Name = "Stone mining C-Bonus gold generation increase";
+	e.EffectCommands.push_back(createEC(6, 241, -1, -1, 1.2));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Stone mining C-Bonus gold generation increase";
+	t.RequiredTechs.push_back(805);
+    t.RequiredTechs.push_back(this->civBonuses[135][0]);
+	t.RequiredTechCount = 2;
+	t.EffectID = (this->df->Effects.size() - 1);
+	t.Civ = -1;
+	this->df->Techs.push_back(t);
+
+	//Stone to gold + mule cart effectiveness
+    e.EffectCommands.clear();
+	e.Name = "Mule cart effectiveness gold generation increase (stone to gold)";
+	e.EffectCommands.push_back(createEC(6, 241, -1, -1, 1.05217));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Mule cart effectiveness gold generation increase (stone mining)";
+	t.RequiredTechs.push_back(805);
+    t.RequiredTechs.push_back(965);
+	t.RequiredTechCount = 2;
+	t.EffectID = (this->df->Effects.size() - 1);
+	t.Civ = -1;
+	this->df->Techs.push_back(t);
+
+	t = Tech();
+	t.Name = "Mule cart effectiveness gold generation increase (stone shaft mining)";
+	t.RequiredTechs.push_back(805);
+    t.RequiredTechs.push_back(966);
+	t.RequiredTechCount = 2;
+	t.EffectID = (this->df->Effects.size() - 1);
+	t.Civ = -1;
+	this->df->Techs.push_back(t);
+
+	//Wood to gold + Roman workers
+	e.EffectCommands.clear();
+	e.Name = "Roman workers wood to gold trickle";
+	e.EffectCommands.push_back(createEC(6, 266, -1, -1, 1.05));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Roman workers wood to gold trickle";
+	t.RequiredTechs.push_back(887);
+	t.RequiredTechs.push_back(629);
+	t.RequiredTechCount = 2;
+	t.EffectID = (this->df->Effects.size() - 1);
+	t.Civ = -1;
+	this->df->Techs.push_back(t);
+
+	//Wood to gold + mule cart effectiveness
+	e.EffectCommands.clear();
+	e.Name = "Mule cart effectiveness gold generation increase (wood to gold 1)";
+	e.EffectCommands.push_back(createEC(6, 266, -1, -1, 1.06667));
+	this->df->Effects.push_back(e);
+
+	e.EffectCommands.clear();
+	e.Name = "Mule cart effectiveness gold generation increase (wood to gold 2)";
+	e.EffectCommands.push_back(createEC(6, 266, -1, -1, 1.03636));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Mule cart effectiveness gold generation increase (double-bit axe)";
+	t.RequiredTechs.push_back(629);
+	t.RequiredTechs.push_back(960);
+	t.RequiredTechCount = 2;
+	t.EffectID = (this->df->Effects.size() - 2);
+	t.Civ = -1;
+	this->df->Techs.push_back(t);
+
+	t = Tech();
+	t.Name = "Mule cart effectiveness gold generation increase (bow saw)";
+	t.RequiredTechs.push_back(629);
+	t.RequiredTechs.push_back(961);
+	t.RequiredTechCount = 2;
+	t.EffectID = (this->df->Effects.size() - 2);
+	t.Civ = -1;
+	this->df->Techs.push_back(t);
+
+	t = Tech();
+	t.Name = "Mule cart effectiveness gold generation increase (two-man saw)";
+	t.RequiredTechs.push_back(629);
+	t.RequiredTechs.push_back(962);
+	t.RequiredTechCount = 2;
+	t.EffectID = (this->df->Effects.size() - 1);
+	t.Civ = -1;
+	this->df->Techs.push_back(t);
+
+	//Wood to gold + wood chopping bonus
+	e.EffectCommands.clear();
+	e.Name = "Wood chopping bonus gold generation increase";
+	e.EffectCommands.push_back(createEC(6, 266, -1, -1, 1.15));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Wood chopping bonus gold generation increase";
+	t.RequiredTechs.push_back(629);
+	t.RequiredTechs.push_back(385);
+	t.RequiredTechCount = 2;
+	t.EffectID = (this->df->Effects.size() - 1);
+	t.Civ = -1;
+	this->df->Techs.push_back(t);
+
+	//Berries to wood + Roman workers
+	e.EffectCommands.clear();
+	e.Name = "Roman workers berries to wood trickle";
+	e.EffectCommands.push_back(createEC(6, 267, -1, -1, 1.05));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Roman workers berries to wood trickle";
+	t.RequiredTechs.push_back(887);
+	t.RequiredTechs.push_back(453);
+	t.RequiredTechCount = 2;
+	t.EffectID = (this->df->Effects.size() - 1);
+	t.Civ = -1;
+	this->df->Techs.push_back(t);
+
+	//Berries to gold + foraging bonus
+	e.EffectCommands.clear();
+	e.Name = "Foraging bonus wood generation increase";
+	e.EffectCommands.push_back(createEC(6, 267, -1, -1, 1.1));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Foraging bonus wood generation increase";
+	t.RequiredTechs.push_back(453);
+	t.RequiredTechs.push_back(524);
+	t.RequiredTechCount = 2;
+	t.EffectID = (this->df->Effects.size() - 1);
+	t.Civ = -1;
+	this->df->Techs.push_back(t);
+
+	//Farms to gold + Roman workers
+	e.EffectCommands.clear();
+	e.Name = "Roman workers farms to gold trickle";
+	e.EffectCommands.push_back(createEC(6, 236, -1, -1, 1.05));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Roman workers farms to gold trickle";
+	t.RequiredTechs.push_back(887);
+	t.RequiredTechs.push_back(754);
+	t.RequiredTechCount = 2;
+	t.EffectID = (this->df->Effects.size() - 1);
+	t.Civ = -1;
+	this->df->Techs.push_back(t);
+
+	//Farms to gold + farming bonus
+	e.EffectCommands.clear();
+	e.Name = "Farming bonus gold generation increase";
+	e.EffectCommands.push_back(createEC(6, 236, -1, -1, 1.15));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Farming bonus gold generation increase";
+	t.RequiredTechs.push_back(754);
+	t.RequiredTechs.push_back(this->civBonuses[120][0]);
+	t.RequiredTechCount = 2;
+	t.EffectID = (this->df->Effects.size() - 1);
+	t.Civ = -1;
+	this->df->Techs.push_back(t);
 }
 
 void Civbuilder::createTeamBonuses() {
@@ -3239,6 +3456,7 @@ void Civbuilder::createTeamBonuses() {
 	e.EffectCommands.clear();
 	e.EffectCommands.push_back(createEC(4, -1, 18, 1, 2));
 	e.EffectCommands.push_back(createEC(4, -1, 43, 1, 2));
+	e.EffectCommands.push_back(createEC(4, 1811, -1, 1, 2));
 	this->createTeamBonus(41, e, "Monks +2 LOS");
 
 	//Herdables +2 LOS
@@ -3474,7 +3692,7 @@ void Civbuilder::createTeamBonuses() {
 	this->teamBonuses[73] = (int) (this->df->Effects.size() - 1);
 
 	//Scouts +1 attack vs. archers
-	this->teamBonuses[38] = 802;
+	this->teamBonuses[37] = 802;
 
 	//Dravidians TB
 	this->teamBonuses[69] = 839;
@@ -3484,6 +3702,9 @@ void Civbuilder::createTeamBonuses() {
 
 	//Gurjaras TB
     this->teamBonuses[71] = 843;
+
+	//Georgians TB
+	this->teamBonuses[74] = 928;
 }
 
 void Civbuilder::reconfigureEffects() {
@@ -3624,7 +3845,7 @@ void Civbuilder::reconfigureEffects() {
 	this->df->Effects[843].EffectCommands.clear();
 	for (int i=0; i<this->unitClasses["camel"].size(); i++) {
 		//Saracen HP
-		this->df->Effects[312].EffectCommands.push_back(createEC(4, this->unitClasses["camel"][i], -1, 0, 10));
+		this->df->Effects[312].EffectCommands.push_back(createEC(5, this->unitClasses["camel"][i], -1, 0, 1.25));
 		//Zealotry
 		this->df->Effects[459].EffectCommands.push_back(createEC(4, this->unitClasses["camel"][i], -1, 0, 20));
 		//Maghrabi
@@ -3632,6 +3853,9 @@ void Civbuilder::reconfigureEffects() {
 		//Gurjaras team bonus (camels)
 		this->df->Effects[843].EffectCommands.push_back(createEC(5, this->unitClasses["camel"][i], -1, 101, 0.8));
 	}
+
+	//Make zealotry work again
+	this->df->Techs[9].RequiredTechs[0] = 102;
 
 	//Gunpowder bonuses to all gunpowder
 	this->df->Effects[296].EffectCommands.clear();
@@ -3658,10 +3882,15 @@ void Civbuilder::reconfigureEffects() {
 	this->df->Effects[563].EffectCommands.push_back(createEC(4, -1, 44, 23, 2));
 	this->df->Effects[563].EffectCommands.push_back(createEC(4, -1, 44, 12, 2));
 
+	//Japanese discount affects mule carts and folwarks
+	this->df->Effects[338].EffectCommands.push_back(createEC(5, 1711, -1, 100, 0.5));
+	this->df->Effects[338].EffectCommands.push_back(createEC(5, 1720, -1, 100, 0.5));
+	this->df->Effects[338].EffectCommands.push_back(createEC(5, 1734, -1, 100, 0.5));
+	this->df->Effects[338].EffectCommands.push_back(createEC(5, 1808, -1, 100, 0.5));
+
 	//Elephant bonuses to all elephants
 	this->df->Effects[668].EffectCommands.clear();
 	this->df->Effects[666].EffectCommands.clear();
-	this->df->Effects[458].EffectCommands.clear();
 	this->df->Effects[703].EffectCommands.clear();
 	this->df->Effects[662].EffectCommands.clear();
 	this->df->Effects[695].EffectCommands.clear();
@@ -3674,9 +3903,7 @@ void Civbuilder::reconfigureEffects() {
 		this->df->Effects[668].EffectCommands.push_back(createEC(4, this->unitClasses["elephant"][i], -1, 0, 100));
 		//Howdah
 		this->df->Effects[666].EffectCommands.push_back(createEC(4, this->unitClasses["elephant"][i], -1, 8, amountTypetoD(1, 3)));
-		this->df->Effects[666].EffectCommands.push_back(createEC(4, this->unitClasses["elephant"][i], -1, 8, amountTypetoD(1, 4)));
-		//Mahouts
-		this->df->Effects[458].EffectCommands.push_back(createEC(5, this->unitClasses["elephant"][i], -1, 5, 1.3));		
+		this->df->Effects[666].EffectCommands.push_back(createEC(4, this->unitClasses["elephant"][i], -1, 8, amountTypetoD(1, 4)));	
 		if (this->df->Civs[0].Units[this->unitClasses["elephant"][i]].Type50.MaxRange > 0) {
 			//Khmer speed
 			this->df->Effects[703].EffectCommands.push_back(createEC(5, this->unitClasses["elephant"][i], -1, 5, 1.1));
@@ -3759,7 +3986,7 @@ void Civbuilder::reconfigureEffects() {
 	this->df->Effects[894].EffectCommands.push_back(createEC(5, impScorpion, -1, 10, 0.75));
 	this->df->Effects[891].EffectCommands.push_back(createEC(0, impScorpion, -1, 20, 1));
 
-	//Madrasah affects missionaries
+	//Make monk techs affect monk units
 	this->df->Techs[490].RequiredTechs[0] = 102;
 	for (Civ &civ : this->df->Civs) {
 		civ.Units[134].ResourceStorages[1].Type = 3;
@@ -3772,6 +3999,13 @@ void Civbuilder::reconfigureEffects() {
 	this->df->Effects[545].EffectCommands.clear();
 	this->df->Effects[545].EffectCommands.push_back(createEC(4, 134, -1, 26, 50));
 	this->df->Effects[545].EffectCommands.push_back(createEC(4, 776, -1, 26, 50));
+	this->df->Effects[28].EffectCommands.clear();
+	this->df->Effects[28].EffectCommands.push_back(createEC(0, 125, -1, 63, 32));
+	this->df->Effects[28].EffectCommands.push_back(createEC(0, 286, -1, 63, 32));
+	this->df->Effects[28].EffectCommands.push_back(createEC(0, 1811, -1, 63, 32));
+	this->df->Effects[28].EffectCommands.push_back(createEC(0, 1831, -1, 63, 32));
+	this->df->Effects[28].EffectCommands.push_back(createEC(0, 775, -1, 63, 32));
+	this->df->Effects[853].EffectCommands.push_back(createEC(0, 1811, -1, 110, -0.9));
 
 	//Orthodoxy requires Castle Age
 	this->df->Techs[512].RequiredTechs[0] = 102;
@@ -3889,11 +4123,26 @@ void Civbuilder::reconfigureEffects() {
 	this->df->Effects[481].EffectCommands.push_back(createEC(4, 1665, -1, 104, 70));
 	this->df->Effects[481].EffectCommands.push_back(createEC(4, 1665, -1, 106, -70));
 
+	//Svan Towers and Citadels affects Kreposts
+	this->df->Effects[935].EffectCommands.push_back(createEC(4, 1251, -1, 9, amountTypetoD(2, 3)));
+	this->df->Effects[935].EffectCommands.push_back(createEC(4, 786, -1, 9, amountTypetoD(2, 3)));
+	this->df->Effects[935].EffectCommands.push_back(createEC(4, 787, -1, 9, amountTypetoD(2, 3)));
+	this->df->Effects[458].EffectCommands.push_back(createEC(4, 1251, -1, 9, amountTypetoD(4, 3)));
+	this->df->Effects[458].EffectCommands.push_back(createEC(4, 1251, -1, 9, amountTypetoD(3, 1)));
+	this->df->Effects[458].EffectCommands.push_back(createEC(4, 1251, -1, 9, amountTypetoD(3, 17)));
+	this->df->Effects[458].EffectCommands.push_back(createEC(4, 786, -1, 9, amountTypetoD(4, 3)));
+	this->df->Effects[458].EffectCommands.push_back(createEC(4, 787, -1, 9, amountTypetoD(4, 3)));
+	this->df->Effects[458].EffectCommands.push_back(createEC(0, 1251, -1, 24, 0.25));
+	this->df->Effects[458].EffectCommands.push_back(createEC(3, 786, 1830, -1, 0));
+	this->df->Effects[593].EffectCommands.push_back(createEC(3, 786, 1830, -1, 0));
+	this->df->Effects[593].EffectCommands.push_back(createEC(3, 787, 1830, -1, 0));
+
 	//Mounted affects missionaries
 	this->df->Effects[285].EffectCommands.push_back(createEC(5, 775, -1, 0, 1.2));
 	this->df->Effects[748].EffectCommands.push_back(createEC(5, 775, -1, 5, 1.05));
 	this->df->Effects[762].EffectCommands.push_back(createEC(5, 775, -1, 5, 1.05));
 	this->df->Effects[763].EffectCommands.push_back(createEC(5, 775, -1, 5, 1.05));
+	this->df->Effects[936].EffectCommands.push_back(createEC(0, 775, -1, 110, -0.85));
 
 	//Make Kamandaran and Forced Levy not give gold
 	this->df->Effects[543].EffectCommands[0].Type = 0;
@@ -3927,6 +4176,9 @@ void Civbuilder::reconfigureEffects() {
 	this->df->Effects[537].EffectCommands.push_back(createEC(5, 1251, -1, 10, 0.75));
 	this->df->Effects[537].EffectCommands.push_back(createEC(0, 82, -1, 63, 34));
 	this->df->Effects[537].EffectCommands.push_back(createEC(0, 1251, -1, 63, 34));
+
+	//This has to happen after effects are reconfigured because it uses effects directly
+	this->assignTeamBonuses();
 }
 
 void Civbuilder::cleanup() {

@@ -1,15 +1,15 @@
 //0 = vanilla, 1 = allow generated bonuses
 const numBonuses = [
-  [311, 311], //Civ bonuses
-  [81, 81], //Unique units
-  [50, 50], //Castle techs
-  [48, 48], //Imp techs
-  [74, 74], //Team bonuses
+  [322, 322], //Civ bonuses
+  [83, 83], //Unique units
+  [53, 53], //Castle techs
+  [50, 50], //Imp techs
+  [75, 75], //Team bonuses
 ];
 
-const numCivs = 43;
+const numCivs = 45;
 
-const numBasicTechs = 161;
+const numBasicTechs = 162;
 
 //Names and colours for flags
 const nameArr = [
@@ -55,6 +55,8 @@ const nameArr = [
   "dravidians",
   "bengalis",
   "gurjaras",
+  "armenians",
+  "georgians",
 ];
 const colours = [
   [0, 0, 0],
@@ -327,6 +329,7 @@ const indexDictionary = [
     608: 93,
     716: 14,
     875: 155,
+    46: 161,
   },
 ];
 

@@ -235,6 +235,8 @@ function renderPhase1() {
 
   document.getElementsByTagName("body")[0].appendChild(wrapping);
   clientFlag(civ["flag_palette"], "flag", 1);
+
+  document.getElementsByClassName("flagbox")[0].style.transform = `scale(${(0.9 * window.innerHeight) / flagbox.getBoundingClientRect().height})`;
 }
 
 //Display bonus selection

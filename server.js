@@ -629,9 +629,11 @@ const writeIconsJson = (req, res, next) => {
 
 router.get("/", function (req, res) {
   res.sendFile(__dirname + "/public/html/civbuilder_home.html");
+  // res.sendFile(__dirname + "/public/html/updating.html");
 });
 
 router.get("/build", function (req, res) {
+  // res.sendFile(__dirname + "/public/html/updating.html");
   res.sendFile(__dirname + "/public/html/civbuilder.html");
 });
 

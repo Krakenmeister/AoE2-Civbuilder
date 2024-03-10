@@ -86,14 +86,16 @@ const uniqueNames = [
   "Chakram Throwers",
   "Urumi Swordsmen",
   "Rathas",
+  "Composite Bowmen",
+  "Monaspas",
 ];
 const civBonusStrings = [
   "Town Centers cost -50% wood starting in the Castle Age",
   "Foot archers (except skirmishers) +1 range in Castle and Imperial Age (+2 total)",
   "Shepherds work 25% faster",
-  "Castles cost -25%",
+  "Castles cost -15% in Castle, -25% in Imperial Age",
   "Mounted units +20% hit points starting in Feudal Age",
-  "Foragers work 15% faster",
+  "Foragers work 10% faster",
   "Loom can be researched instantly",
   "Villagers +5 attack vs. wild boar; hunters carry +15 meat; hunt contains +20% meat",
   "+10 population in Imperial Age",
@@ -103,22 +105,22 @@ const civBonusStrings = [
   "Towers garrison 2x units; Town Centers garrison +10",
   "Farms cost -40%",
   "Barracks and Stable units +1 armor in Castle and Imperial Age (+2 total)",
-  "Mill, Lumber, Mining Camps cost -50%",
+  "Economic drop-off buildings cost -50%",
   "Fishing Ships 2x hit points; +2P armor; work rate +5% Dark, +10% Feudal, +15% Castle, +20% Imperial Age",
   "Infantry attack 33% faster starting in Feudal Age",
-  "Start with +3 villagers, -50 wood, -200 food; Town Centers support 10 population and +5 LOS",
+  "Start with +3 villagers, -50 wood, -200 food; Town Centers support 15 population and +7 LOS",
   "Demolition ships +50% hit points",
-  "Technologies cost -10% Feudal, -15% Castle, -20% Imperial Age",
+  "Technologies cost -5% Feudal, -10% Castle, -15% Imperial Age",
   "Buildings +10% HP Dark, +20% Feudal, +30% Castle, +40% Imperial Age",
   "Fire ships attack 25% faster",
   "Camel Riders, Skirmishers, Pikemen, Halberdiers cost -25%",
   "Start with +50 wood, food",
   "Town Center, Dock 2x hit points",
-  "Town Center, Dock work rate +10% Feudal, +15% Castle, +20% Imperial Age",
+  "Town Center, Dock work rate +5% Dark, +10% Feudal, +15% Castle, +20% Imperial Age",
   "Market costs -100 wood; market trade cost only 5%",
   "Transport Ships 2x hit points, 2x carry capacity",
   "Galleys attack 25% faster",
-  "Camel units +10 hit points",
+  "Camel units +25% hit points",
   "Gunpowder units +25% hit points",
   "Gold miners work 20% faster",
   "Scout Cavalry, Light Cavalry, Hussar +1P armor",
@@ -136,7 +138,7 @@ const civBonusStrings = [
   "+5 Monk hit points for each Monastery technology",
   "Start with +1 villager, but -50 food",
   "Cavalry Archers cost -10% Castle, -20% Imperial Age",
-  "Miltary units (except siege weapons) cost -20% wood",
+  "Archers and Infantry cost -50% wood, Warships cost -20% wood",
   "Archer armor upgrades free",
   "Can train Turtle Ships in docks",
   "Can recruit Longboats from docks",
@@ -144,8 +146,8 @@ const civBonusStrings = [
   "Can upgrade Heavy Camel Riders to Imperial Camel Riders",
   "Fishermen work 10% faster",
   "Stable units +1P armor in Castle and Imperial Age (+2 total)",
-  "Villagers cost -5% Dark, -10% Feudal, -15% Castle, -20% Imperial Age",
-  "Military units cost -15/20/25/30% food in Dark/Feudal/Castle/Imperial",
+  "Villagers cost -8% Dark, -13% Feudal, -18% Castle, -23% Imperial Age",
+  "Military units cost -10/15/20/25% food in Dark/Feudal/Castle/Imperial",
   "Buildings cost -15% stone",
   "Houses support 10 population",
   "Villagers affected by Blacksmith upgrades (starting in Feudal Age)",
@@ -163,7 +165,7 @@ const civBonusStrings = [
   "Pikeman upgrade free",
   "Buildings cost -15% wood",
   "Barracks units +1P armor per age (starting from Feudal Age)",
-  "Villagers drop off 15% more gold",
+  "Villagers drop off 10% more gold",
   "Villagers move 5% faster in Dark Age, 10% faster in Feudal Age",
   "Ships move 10% faster",
   "Stable units cost -15% in Castle, -20% in Imperial Age",
@@ -208,7 +210,7 @@ const civBonusStrings = [
   "Wheelbarrow, Hand Cart free",
   "Tower upgrades free (Bombard Tower requires Chemistry)",
   "Conscription free",
-  "Farmers work 10% faster",
+  "Farmers work 15% faster",
   "Advancing to the next age costs -15%",
   "Fishing Ships cost -15%",
   "Dock and University technologies cost -33%",
@@ -309,7 +311,7 @@ const civBonusStrings = [
   "Completed castles provide 400 gold as long as they stay standing",
   "Monk units move 20% faster",
   "Melee Cavalry gain +2 bonus damage vs Skirmishers",
-  "Long Swordsman, Two-Handed Swordsman upgrades available one age earlier",
+  "Non-unique Barracks units (except Men-at-Arms) available one age earlier",
   "Can buy cows in mills",
   "Start with an extra horse",
   "Siege Towers 2x HP",
@@ -390,7 +392,7 @@ const civBonusStrings = [
   "Can recruit Shrivamsha Riders",
   "Can recruit Camel Scouts in Feudal Age",
   "Gain 20 gold for each technology researched",
-  "War Galleys +1/+1P armor, Galleons and Dromons +2/+2P armor",
+  "Galley-line and Dromons +1/+1 armor",
   "Battle Elephants +1/+1P armor",
   "Monks +3/+3P armor",
   "Infantry receives double effect from Blacksmith armor upgrades",
@@ -399,6 +401,17 @@ const civBonusStrings = [
   "Can upgrade Heavy Scorpions to Imperial Scorpions",
   "Can upgrade Elite Battle Elephants to Royal Battle Elephants",
   "Can upgrade Elite Steppe Lancers to Royal Lancers",
+  "Cavalry archers +2 attack vs. archers (except skirmishers)",
+  "Wood and mining upgrades are 40% more effective, economic drop-off buildings cost -25%",
+  "First religious building receives a free relic",
+  "Savar replaces Paladin",
+  "Galley-line and Dromons fire an additional projectile",
+  "Fortified church replaces monastery, can recruit Warrior Priests",
+  "Mule Carts replace Lumber Camps and Mining Camps",
+  "Start with a Mule Cart but -50 food",
+  "Religious buildings provide Villagers in an 8 tile radius with +10% work rate",
+  "Units and buildings receive -15% damage when fighting from higher elevation",
+  "Cavalry regenerates 5 HP per minute in Feudal, 10 in Castle, 15 in Imperial Age",
 ];
 
 var uniqueCastleStrings = [
@@ -407,8 +420,8 @@ var uniqueCastleStrings = [
   "Yeomen (+1 foot archer and skirmisher range, +2 tower attack)",
   "Stirrups (Cavalry attack 33% faster)",
   "Burgundian Vineyards (Farmers slowly generate gold in addition to food)",
-  "Howdah (Elephant units +1/+1P armor)",
-  "Greek Fire (Fire ships +1 range, Bombard Towers +5 splash damage)",
+  "Manipur Cavalry (Cavalry +4 attack vs. archers)",
+  "Greek Fire (Fire ships +1 range, Bombard Towers and Dromons increased blast radius)",
   "Stronghold (Castles, Kreposts, and Towers fire 33% faster, Castles and Kreposts heal allied infantry in a 7 tile radius)",
   "Great Wall (Walls and towers +30% HP)",
   "Steppe Husbandry (Light Cavalry, Steppe Lancers and Cavalry Archers trained 100% faster)",
@@ -451,7 +464,10 @@ var uniqueCastleStrings = [
   "Kshatriyas (Military units cost -25% food)",
   "Detinets (40% of Castle, Tower, Krepost, and Donjon stone cost replaced with wood)",
   "Zealotry (Camel units +20 hit points)",
-  "Ballistas (Scorpions, Ballista Elephants, and Galley-line fire 33% faster)",
+  "Ballistas (Scorpions and Ballista Elephants fire 33% faster, Galleys +2 attack)",
+  "Bimaristan (Monk units automatically heal multiple nearby units)",
+  "Cilician Fleet (Demolition Ships +20% blast radius; Galley-line and Dromons +1 range)",
+  "Svan Towers (Defensive buildings +2 attack; towers fire arrows that pierce multiple units)",
 ];
 
 var uniqueImpStrings = [
@@ -460,7 +476,7 @@ var uniqueImpStrings = [
   "Warwolf (Trebuchets do blast damage)",
   "Bagains (Militia-line gains +5 armor)",
   "Flemish Revolution (Upgrades all existing Villagers to Flemish Militia; create Flemish Militia at Town Centers)",
-  "Manipur Cavalry (Cavalry +5 attack vs. archers)",
+  "Howdah (Elephant units +1/+1P armor)",
   "this text will change",
   "Furor Celtica (Siege workshop units +40% HP)",
   "this text will change",
@@ -481,7 +497,7 @@ var uniqueImpStrings = [
   "Farimba (Cavalry +3 attack)",
   "El Dorado (Eagle Warriors have +40 hit points)",
   "Drill (Siege units move 50% faster)",
-  "Mahouts (Elephants move 30% faster)",
+  "Citadels (Castles and Kreposts fire Bullets [+4 attack, +3 vs Rams, +3 vs Infantry], receive -25% bonus damage)",
   "Arquebus (gunpowder units more accurate)",
   "Counterweights (Trebuchets and Mangonel-line +15% attack)",
   "Hauberk (Knights +1/+2P armor)",
@@ -503,6 +519,8 @@ var uniqueImpStrings = [
   "Mahayana (Villagers and monk units take 10% less population space)",
   "Frontier Guards (Camel units and Elephant Archers +4 melee armor)",
   "Comitatenses (Militia-line, Knight-line, and Unique Unit train 50% faster and receive a 5 damage charge attack)",
+  "Fereters (Infantry (except Spearman-line) +30 HP, Warrior Priests +100% heal speed)",
+  "Aznauri Cavalry (Cavalry units take 15% less population space)",
 ];
 
 const teamBonusStrings = [
@@ -527,7 +545,7 @@ const teamBonusStrings = [
   "Scorpion and Ballista units +1 range",
   "Mangonel-line minimum range reduced",
   "Monasteries work 20% faster",
-  "Foot archers +2 LOS",
+  "Cavalry Archers trained 25% faster",
   "Docks +100% LOS",
   "Universities work 80% faster",
   "Walls cost -50%",
@@ -580,6 +598,7 @@ const teamBonusStrings = [
   "Camel and elephant units created 25% faster",
   "Can train spearmen from Town Centers",
   "Can train Canoes from docks",
+  "Buildings cost 25% fewer resources to repair",
 ];
 
 function getCivType(techtree) {
@@ -710,6 +729,8 @@ function interperateLanguage(json_path, txt_path) {
   );
   stringStream.write('8359 "Research Paiks (' + getUniqueName(45, "castletech") + ' and elephant units attack 20% faster)"\n');
   stringStream.write('28359 "Research <b>Paiks<b> (<cost>) \\n' + getUniqueName(45, "castletech") + ' and elephant units attack 20% faster."\n');
+  stringStream.write('8423 "Research Citadels (Castles and Kreposts fire bullets [+4 attack, +3 vs Rams, +3 vs Infantry], receive -25% bonus damage)"\n');
+  stringStream.write('28423 "Research <b>Citadels<b> (<cost>)\\nCastles and Kreposts fire bullets (+4 attack, +3 vs Rams, +3 vs Infantry), receive -25% bonus damage."\n');
   uniqueCastleStrings[10] = "Royal Heirs (" + getUniqueName(10, "castletech") + " and Camels receive -3 damage from Mounted Units)";
   uniqueCastleStrings[11] = "Bearded Axe (+2 attack for " + getUniqueName(11, "castletech") + ")";
   uniqueCastleStrings[12] = "Anarchy (create " + getUniqueName(12, "castletech") + " at Barracks)";
@@ -1285,33 +1306,43 @@ function interperateLanguage(json_path, txt_path) {
   stringStream.write('7500 "Deconstruction"\n');
   stringStream.write('8500 "Research Deconstruction (Siege units +30 vs. buildings)"\n');
   stringStream.write('28500 "Research <b>Deconstruction<b> (<cost>)\\nSiege units +30 vs. buildings."\n');
+  stringStream.write('17500 "Deconstruction"\n');
   stringStream.write('7501 "Obsidian Arrows"\n');
   stringStream.write('8501 "Research Obsidian Arrows (Archer-line +6 attack vs. buildings)"\n');
   stringStream.write('28501 "Research <b>Obsidian Arrows<b> (<cost>)\\nArcher-line +6 attack vs. buildings."\n');
+  stringStream.write('17501 "Obsidian\\nArrows"\n');
   stringStream.write('7502 "Tortoise Engineers"\n');
   stringStream.write('8502 "Research Tortoise Engineers (Rams train 100% faster)"\n');
   stringStream.write('28502 "Research <b>Tortoise Engineers<b> (<cost>)\\nRams train 100% faster."\n');
+  stringStream.write('17502 "Tortoise\\nEngineers"\n');
   stringStream.write('7503 "Lamellar Armor"\n');
   stringStream.write('8503 "Research Lamellar Armor (Camels and Cavalry Archers +2/+1P armor)"\n');
   stringStream.write('28503 "Research <b>Lamellar Armor<b> (<cost>)\\nCamels and Cavalry Archers +2/+1P armor."\n');
+  stringStream.write('17503 "Lamellar\\nArmor"\n');
   stringStream.write('7504 "Field Repairmen"\n');
   stringStream.write('8504 "Research Field Repairmen (Rams regain HP)"\n');
   stringStream.write('28504 "Research <b>Field Repairmen<b> (<cost>)\\nRams regain HP."\n');
+  stringStream.write('17504 "Field\\nRepairmen"\n');
   stringStream.write('7505 "Golden Age"\n');
   stringStream.write('8505 "Research Golden Age (All buildings work 10% faster)"\n');
   stringStream.write('28505 "Research <b>Golden Age<b> (<cost>)\\nAll buildings work 10% faster."\n');
+  stringStream.write('17505 "Golden\\nAge"\n');
   stringStream.write('7506 "Villager\'s Revenge"\n');
   stringStream.write('8506 "Research Villager\'s Revenge (Dead villagers become Halberdiers)"\n');
   stringStream.write('28506 "Research <b>Villager\'s Revenge<b> (<cost>)\\nDead villagers become Halberdiers."\n');
+  stringStream.write('17506 "Villager\'s\\nRevenge"\n');
   stringStream.write('7507 "Panoply"\n');
   stringStream.write('8507 "Research Panoply (Infantry +1/+1P armor, +1 attack)"\n');
   stringStream.write('28507 "Research <b>Panoply<b> (<cost>)\\nInfantry +1/+1P armor, +1 attack."\n');
+  stringStream.write('17507 "Panoply"\n');
   stringStream.write('7508  "Clout Archery"\n');
   stringStream.write('8508 "Research Clout Archery (Archery Ranges work 50% faster)"\n');
   stringStream.write('28508 "Research <b>Clout Archery<b> (<cost>)\\nArchery Ranges work 50% faster."\n');
+  stringStream.write('17508 "Clout\\nArchery"\n');
   stringStream.write('7509 "Gate Crashing"\n');
   stringStream.write('8509 "Research Gate Crashing (Ram gold cost is replaced by additional wood cost)"\n');
   stringStream.write('28509 "Research <b>Gate Crashing<b> (<cost>)\\nRam gold cost is replaced by additional wood cost."\n');
+  stringStream.write('17509 "Gate\\nCrashing"\n');
 
   stringStream.end();
 }

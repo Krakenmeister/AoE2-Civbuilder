@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { iconids } = require("./constants.js");
+const { iconids, techtreeNames } = require("./constants.js");
 
 module.exports = {
   createCivilizationsJson,
@@ -125,7 +125,8 @@ function createCivilizationsJson(data_json, civilizations_json) {
     let civilization = {};
 
     civilization.internal_name = internal_names[i];
-    civilization.tech_tree_name = civ.name[i];
+    //civilization.tech_tree_name = civ.name[i];
+    civilization.tech_tree_name = techtreeNames[i];
     civilization.data_name = data_names[i];
     civilization.hud_style = hud_styles[civ.architecture[i]];
     civilization.name_string_id = 10271 + i;

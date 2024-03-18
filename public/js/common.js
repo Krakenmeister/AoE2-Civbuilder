@@ -321,10 +321,11 @@ const card_descriptions = [
     "Galley-line and Dromons fire an additional projectile",
     "Fortified church replaces monastery, can recruit Warrior Priests",
     "Mule Carts replace Lumber Camps and Mining Camps",
-    "Start with a Mule Cart but -50 food",
+    "Start with a Mule Cart",
     "Religious buildings provide Villagers in an 8 tile radius with +10% work rate",
     "Units and buildings receive -15% damage when fighting from higher elevation",
-    "Cavalry regenerates 5 HP per minute in Feudal, 10 in Castle, 15 in Imperial Age",
+    "Cavalry regenerates 15% HP per minute, starting in Feudal Age",
+    "Flaming Camels available in Siege Workshops in Imperial Age",
   ],
 
   [
@@ -717,8 +718,8 @@ const colours = [
 const categories = ["Color 1", "Color 2", "Color 3", "Color 4", "Color 5", "Division", "Overlay", "Symbol"];
 const palette_sizes = [15, 15, 15, 15, 15, 12, 12, 84];
 
-const num_cards = [322, 83, 53, 50, 75];
-const max_sizes = [322, 1, 1, 1, 75];
+const num_cards = [323, 83, 53, 50, 75];
+const max_sizes = [323, 1, 1, 1, 75];
 
 const numCivs = 45;
 

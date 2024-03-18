@@ -705,6 +705,8 @@ if (btn7) {
     instructionstext.id = "instructionstext";
     instructionstext.innerHTML =
       "" +
+      "<b>03-17-2024</b><br>" +
+      "&emsp;&emsp;• Updated website for compatibility with AoE2 Update 107882" +
       "<b>03-10-2024</b><br>" +
       "&emsp;&emsp;• Updated website to work with The Mountain Royals<br><br>" +
       "<b>05-31-2023</b><br>" +

@@ -7,3 +7,5 @@ modding/requested_mods/*
 !modding/requested_mods/README.md
 !modding/requested_mods/cleanup.sh
 database.json
+drafts/*.json
+process_mod/randomName.js

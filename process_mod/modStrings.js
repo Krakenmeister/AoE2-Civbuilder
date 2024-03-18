@@ -408,10 +408,11 @@ const civBonusStrings = [
   "Galley-line and Dromons fire an additional projectile",
   "Fortified church replaces monastery, can recruit Warrior Priests",
   "Mule Carts replace Lumber Camps and Mining Camps",
-  "Start with a Mule Cart but -50 food",
+  "Start with a Mule Cart",
   "Religious buildings provide Villagers in an 8 tile radius with +10% work rate",
   "Units and buildings receive -15% damage when fighting from higher elevation",
-  "Cavalry regenerates 5 HP per minute in Feudal, 10 in Castle, 15 in Imperial Age",
+  "Cavalry regenerates 15% HP per minute, starting in Feudal Age",
+  "Flaming Camels available in Siege Workshops in Imperial Age",
 ];
 
 var uniqueCastleStrings = [
@@ -503,7 +504,7 @@ var uniqueImpStrings = [
   "Hauberk (Knights +1/+2P armor)",
   "Druzhina (Infantry damage adjacent units)",
   "Supremacy (Villagers stronger in combat)",
-  "Timurid Siegecraft (Trebuchets +2 range, enables Flaming Camels)",
+  "Timurid Siegecraft (Trebuchets +2 range)",
   "Crenellations (+3 range Castles garrisoned infantry fire arrows)",
   "Artillery (+2 range Bombard Towers, Bombard Cannons, Cannon Galleons)",
   "Paper Money (Lumberjacks slowly generate gold in addition to wood)",

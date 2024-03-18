@@ -1,6 +1,6 @@
 //0 = vanilla, 1 = allow generated bonuses
 const numBonuses = [
-  [322, 322], //Civ bonuses
+  [323, 323], //Civ bonuses
   [83, 83], //Unique units
   [53, 53], //Castle techs
   [50, 50], //Imp techs
@@ -10,6 +10,54 @@ const numBonuses = [
 const numCivs = 45;
 
 const numBasicTechs = 162;
+
+const techtreeNames = [
+  "BRITONS",
+  "FRANKS",
+  "GOTHS",
+  "TEUTONS",
+  "JAPANESE",
+  "CHINESE",
+  "BYZANTINES",
+  "PERSIANS",
+  "SARACENS",
+  "TURKS",
+  "VIKINGS",
+  "MONGOLS",
+  "CELTS",
+  "SPANISH",
+  "AZTECS",
+  "MAYANS",
+  "HUNS",
+  "KOREANS",
+  "ITALIANS",
+  "INDIANS",
+  "INCAS",
+  "MAGYAR",
+  "SLAVS",
+  "PORTUGUESE",
+  "ETHIOPIANS",
+  "MALIANS",
+  "BERBERS",
+  "KHMER",
+  "MALAY",
+  "BURMESE",
+  "VIETNAMESE",
+  "BULGARIANS",
+  "TATARS",
+  "CUMANS",
+  "LITHUANIANS",
+  "BURGUNDIANS",
+  "SICILIANS",
+  "POLES",
+  "BOHEMIANS",
+  "DRAVIDIANS",
+  "BENGALIS",
+  "GURJARAS",
+  "ROMANS",
+  "ARMENIANS",
+  "GEORGIANS",
+];
 
 //Names and colours for flags
 const nameArr = [
@@ -161,8 +209,11 @@ const iconids = [
   "386",
   "389",
   "390",
+  "405",
+  "407",
+  "408",
 ];
-const blanks = ["040", "079", "107", "116", "134", "143", "185", "198", "201", "229", "270", "354", "371", "372", "387", "385", "391", "392"];
+const blanks = ["040", "079", "107", "116", "134", "143", "185", "198", "201", "229", "270", "354", "371", "372", "387", "385", "391", "392", "409", "410"];
 
 //Maps website techtree indices to data.json techtree indices
 const indexDictionary = [
@@ -342,4 +393,5 @@ module.exports = {
   blanks,
   indexDictionary,
   numCivs,
+  techtreeNames,
 };

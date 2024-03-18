@@ -3247,7 +3247,53 @@ void Civbuilder::createCivBonuses() {
 	this->civBonuses[320] = {926};
 
 	//Cavalry regen
-	this->civBonuses[321] = {937, 938, 939};
+	this->civBonuses[321] = {937, 938};
+
+	//Flaming camel bonus
+	this->civBonuses[322] = {703};
+
+	//Make the regen bonus work with other HP increases
+	//Cav 20%
+	e.EffectCommands.clear();
+	e.Name = "Cavalry +20% HP + regen";
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Cavalry +20% HP + regen";
+	t.RequiredTechs.push_back(290);
+	t.RequiredTechs.push_back(937);
+	t.RequiredTechCount = 2;
+	t.EffectID = (this->df->Effects.size() - 1);
+	t.Civ = -1;
+	this->df->Techs.push_back(t);
+
+	//Camel 25%
+	e.EffectCommands.clear();
+	e.Name = "Camels +25% HP + regen";
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Camels +25% HP + regen";
+	t.RequiredTechs.push_back(312);
+	t.RequiredTechs.push_back(937);
+	t.RequiredTechCount = 2;
+	t.EffectID = (this->df->Effects.size() - 1);
+	t.Civ = -1;
+	this->df->Techs.push_back(t);
+
+	//Zealotry
+	e.EffectCommands.clear();
+	e.Name = "Zealotry + regen";
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Zealotry + regen";
+	t.RequiredTechs.push_back(9);
+	t.RequiredTechs.push_back(937);
+	t.RequiredTechCount = 2;
+	t.EffectID = (this->df->Effects.size() - 1);
+	t.Civ = -1;
+	this->df->Techs.push_back(t);
 	
 	//Make all the trickle bonuses work with each other
 	//Stone to gold + roman villagers
@@ -3806,6 +3852,35 @@ void Civbuilder::reconfigureEffects() {
 		this->df->Effects[239].EffectCommands.push_back(createEC(5, workshopUnits[i], -1, 0, 1.4));
 		//Drill
 		this->df->Effects[457].EffectCommands.push_back(createEC(5, workshopUnits[i], -1, 5, 1.5));
+	}
+
+	//Cavalry regen
+	int hpID = -1;
+	int camelID = -1;
+	int zealotryID = -1;
+	for (int i=0; i<this->df->Effects.size(); i++) {
+		if (this->df->Effects[i].Name == "Cavalry +20% HP + regen") {
+			hpID = i;
+		} else if (this->df->Effects[i].Name == "Camels +25% HP + regen") {
+			camelID = i;
+		} else if (this->df->Effects[i].Name == "Zealotry + regen") {
+			zealotryID = i;
+		}
+	}
+	this->df->Effects[954].EffectCommands.clear();
+	this->df->Effects[961].EffectCommands.clear();
+	this->df->Effects[hpID].EffectCommands.clear();
+	this->df->Effects[camelID].EffectCommands.clear();
+	for (int i=0; i<this->df->Civs[0].Units.size(); i++) {
+		if (this->df->Civs[0].Units[i].Class == 12) {
+			this->df->Effects[954].EffectCommands.push_back(createEC(4, i, -1, 109, this->df->Civs[0].Units[i].HitPoints * 0.15));
+			this->df->Effects[961].EffectCommands.push_back(createEC(4, i, -1, 109, 3));
+			this->df->Effects[hpID].EffectCommands.push_back(createEC(4, i, -1, 109, this->df->Civs[0].Units[i].HitPoints * 0.15 * 0.2));
+		}
+	}
+	for (int i=0; i<this->unitClasses["camel"].size(); i++) {
+		this->df->Effects[camelID].EffectCommands.push_back(createEC(4, this->unitClasses["camel"][i], -1, 109, this->df->Civs[0].Units[this->unitClasses["camel"][i]].HitPoints * 0.15 * 0.25));
+		this->df->Effects[zealotryID].EffectCommands.push_back(createEC(4, this->unitClasses["camel"][i], -1, 109, 3));
 	}
 
 	//Recreate old Indian bonus

@@ -1,855 +1,1137 @@
 @import url("https://fonts.googleapis.com/css2?family=Cinzel&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
 :root {
-  --primary: hsl(52, 100%, 50%);
-  --secondary: hsl(0, 100%, 34%);
+	--primary: hsl(52, 100%, 50%);
+	--secondary: hsl(0, 100%, 34%);
 }
 
 body {
-  cursor: default;
-  font-family: "Cinzel", serif;
-  background-image: url("../img/aoe2background.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
+	cursor: default;
+	font-family: "Cinzel", serif;
+	background-image: url("../img/aoe2background.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% 100%;
+	user-select: none;
+	-webkit-user-select: none;
 }
 
 a {
-  color: var(--primary);
+	color: var(--primary);
 }
 
 #title {
-  font-size: 12vh;
-  color: var(--primary);
-  text-shadow: 3px 3px 5px black;
-  text-align: center;
-  margin: 5vh auto;
+	font-size: 12vh;
+	color: var(--primary);
+	text-shadow: 3px 3px 5px black;
+	text-align: center;
+	margin: 5vh auto;
 }
 
 #update {
-  font-size: 1.5rem;
-  color: var(--primary);
-  text-align: center;
-  margin: 0 auto;
+	font-size: 1.5rem;
+	color: var(--primary);
+	text-align: center;
+	margin: 0 auto;
 }
 
 #phase {
-  font-size: 5vw;
-  color: black;
-  text-align: center;
-  margin-bottom: -2vw;
-  margin-top: 0.5vw;
+	font-size: 5vw;
+	color: black;
+	text-align: center;
+	margin-bottom: -2vw;
+	margin-top: 0.5vw;
 }
 
 #round {
-  font-size: 2.5vw;
-  color: black;
-  text-align: center;
-  margin: 0;
+	font-size: 2.5vw;
+	color: black;
+	text-align: center;
+	margin: 0;
 }
 
 #generateButton {
-  margin-top: 15vh;
-  font-size: 6vh;
+	margin-top: 15vh;
+	font-size: 6vh;
 }
 
 #startBuild {
-  font-size: 6vh;
+	margin-top: 15vh;
+	font-size: 6vh;
 }
 
 #startDraft {
-  font-size: 6vh;
+	font-size: 6vh;
+}
+
+#combineButton {
+	font-size: 6vh;
 }
 
 #spacer {
-  height: 10vh;
+	height: 10vh;
 }
 
 #or {
-  font-size: 2rem;
-  color: var(--primary);
-  text-shadow: 3px 3px 5px black;
-  text-align: center;
-  margin: 0 auto;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+	font-size: 2rem;
+	color: var(--primary);
+	text-shadow: 3px 3px 5px black;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
 
 #navigation {
-  position: fixed;
-  width: 8rem;
-  height: 30rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-  bottom: 2rem;
-  left: 2rem;
+	position: fixed;
+	width: 8rem;
+	height: 30rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-start;
+	bottom: 2rem;
+	left: 2rem;
 }
 
 #navigation > * {
-  margin: 0.5rem 0 0.5rem 0;
-  width: 8rem;
-  font-size: 2rem;
-  text-align: center;
-  padding: 5px;
+	margin: 0.5rem 0 0.5rem 0;
+	width: 8rem;
+	font-size: 2rem;
+	text-align: center;
+	padding: 5px;
 }
 
 #navigation > #updates {
-  font-size: 1.6rem;
+	font-size: 1.6rem;
 }
 
 #navigation > #events {
-  font-size: 1.8rem;
+	font-size: 1.8rem;
 }
 
 button {
-  font-family: "Cinzel", serif;
-  text-shadow: 1px 1px 3px black;
-  font-size: 3rem;
-  color: var(--primary);
-  background-color: var(--secondary);
-  padding: 5px 30px;
-  border: 2px solid var(--primary);
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  transition-duration: 0.3s;
-  cursor: pointer;
+	font-family: "Cinzel", serif;
+	text-shadow: 1px 1px 3px black;
+	font-size: 3rem;
+	color: var(--primary);
+	background-color: var(--secondary);
+	padding: 5px 30px;
+	border: 2px solid var(--primary);
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	transition-duration: 0.3s;
+	cursor: pointer;
 }
 
 button:hover {
-  background-color: hsl(0, 100%, 64%);
-  transition-duration: 0.3s;
+	background-color: hsl(0, 100%, 64%);
+	transition-duration: 0.3s;
 }
 
 button:active {
-  outline: none;
+	outline: none;
 }
 
 button:focus {
-  outline: none;
+	outline: none;
 }
 
 form.draft_form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: "Cinzel", serif;
-  text-shadow: 1px 1px 3px black;
-  font-size: 2rem;
-  margin: 0 auto;
-  width: 580px;
-  background-color: var(--secondary);
-  padding: 20px;
-  border: 2px solid var(--primary);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: "Cinzel", serif;
+	text-shadow: 1px 1px 3px black;
+	font-size: 2rem;
+	margin: 0 auto;
+	width: 580px;
+	background-color: var(--secondary);
+	padding: 20px;
+	border: 2px solid var(--primary);
 }
 
 input[type="submit"] {
-  font-family: "Cinzel", serif;
-  text-shadow: 1px 1px 3px black;
-  font-size: 3rem;
-  color: var(--primary);
-  background-color: var(--secondary);
-  padding: 5px 30px;
-  border: 2px solid var(--primary);
-  margin: 2rem auto 1rem auto;
-  transition-duration: 0.3s;
+	font-family: "Cinzel", serif;
+	text-shadow: 1px 1px 3px black;
+	font-size: 3rem;
+	color: var(--primary);
+	background-color: var(--secondary);
+	padding: 5px 30px;
+	border: 2px solid var(--primary);
+	margin: 2rem auto 1rem auto;
+	transition-duration: 0.3s;
 }
 
 input[type="submit"]:hover {
-  background-color: hsl(0, 100%, 64%);
-  transition-duration: 0.3s;
+	background-color: hsl(0, 100%, 64%);
+	transition-duration: 0.3s;
 }
 
 input[type="submit"]:active {
-  outline: none;
+	outline: none;
 }
 
 input[type="submit"]:focus {
-  outline: none;
+	outline: none;
 }
 
 .input_field {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
 
 label {
-  font-size: 2rem;
-  color: var(--primary);
-  margin-top: 1rem;
-  margin-right: 1rem;
-  display: inline;
+	font-size: 2rem;
+	color: var(--primary);
+	margin-top: 1rem;
+	margin-right: 1rem;
+	display: inline;
 }
 
 input[type="number"] {
-  display: inline;
-  width: 4rem;
-  font-size: 24px;
-  vertical-align: middle;
-  position: relative;
-  bottom: 3px;
+	display: inline;
+	width: 4rem;
+	font-size: 24px;
+	vertical-align: middle;
+	position: relative;
+	bottom: 3px;
 }
 
 select {
-  display: inline;
-  font-size: 24px;
+	display: inline;
+	font-size: 24px;
 }
 
 input[type="checkbox"] {
-  filter: invert(100%) hue-rotate(18deg) brightness(1.7);
-  -ms-transform: scale(2.2);
-  -moz-transform: scale(2.2);
-  -webkit-transform: scale(2.2);
-  -o-transform: scale(2.2);
-  transform: scale(2.2);
-  padding: 10px;
-  display: inline;
-  vertical-align: middle;
-  position: relative;
-  bottom: 3px;
+	filter: invert(100%) hue-rotate(18deg) brightness(1.7);
+	-ms-transform: scale(2.2);
+	-moz-transform: scale(2.2);
+	-webkit-transform: scale(2.2);
+	-o-transform: scale(2.2);
+	transform: scale(2.2);
+	padding: 10px;
+	display: inline;
+	vertical-align: middle;
+	position: relative;
+	bottom: 3px;
 }
 
 .bgbox {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  font-family: "Cinzel", serif;
-  text-shadow: 1px 1px 3px black;
-  font-size: 2rem;
-  margin: 0 auto;
-  width: 580px;
-  background-color: var(--secondary);
-  padding: 20px 20px 30px 20px;
-  border: 2px solid var(--primary);
-  color: var(--primary);
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	font-family: "Cinzel", serif;
+	text-shadow: 1px 1px 3px black;
+	font-size: 2rem;
+	margin: 0 auto;
+	width: 580px;
+	background-color: var(--secondary);
+	padding: 20px 20px 30px 20px;
+	border: 2px solid var(--primary);
+	color: var(--primary);
 }
 
 .bgbox > label {
-  text-align: center;
-  font-size: 2rem;
-  width: 450px;
-  margin: 25px 50px 4px 50px;
+	text-align: center;
+	font-size: 2rem;
+	width: 450px;
+	margin: 25px 50px 4px 50px;
 }
 
 .bgbox > button {
-  font-size: 1rem;
-  margin: 0px 10px 0px 30px;
-  padding: 5px 0px 5px 0px;
-  width: 100px;
+	font-size: 1rem;
+	margin: 0px 10px 0px 30px;
+	padding: 5px 0px 5px 0px;
+	width: 100px;
 }
 
 .bgbox > p {
-  text-align: center;
-  width: 450px;
-  margin: 10px 50px 0px 50px;
-  font-size: 2.5rem;
+	text-align: center;
+	width: 450px;
+	margin: 10px 50px 0px 50px;
+	font-size: 2.5rem;
 }
 
 input[type="text"] {
-  font-size: 1rem;
-  width: 430px;
+	font-size: 1rem;
+	width: 430px;
 }
 
 .bgbox > #error {
-  text-align: center;
-  font-size: 4rem;
+	text-align: center;
+	font-size: 4rem;
 }
 
 .bgbox#join_form > .join {
-  font-size: 2rem;
+	font-size: 2rem;
 }
 
 .bgbox > .grid-container {
-  display: grid;
-  grid-template-columns: 4fr 4fr 1fr;
-  grid-template-rows: repeat(2, 1fr);
-  width: 530px;
-  grid-gap: 10px;
+	display: grid;
+	grid-template-columns: 4fr 4fr 1fr;
+	grid-template-rows: repeat(2, 1fr);
+	width: 530px;
+	grid-gap: 10px;
 }
 
 .grid-container > .column1 {
-  text-align: left;
+	text-align: left;
 }
 
 .grid-container > .column2 {
-  text-align: right;
+	text-align: right;
 }
 
 .grid-container > .column3 {
-  text-align: center;
-  min-height: 50px;
+	text-align: center;
+	min-height: 50px;
 }
 
 .bgbox > .readybutton {
-  font-size: 2rem;
-  width: 400px;
-  margin: 40px auto 0px auto;
-  padding: 5px 30px;
+	font-size: 2rem;
+	width: 400px;
+	margin: 40px auto 0px auto;
+	padding: 5px 30px;
 }
 
 #wrapping {
-  padding: 0;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	padding: 0;
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .flagbox {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  font-family: "Cinzel", serif;
-  text-shadow: 1px 1px 3px black;
-  font-size: 2rem;
-  margin: 0 auto;
-  width: 600px;
-  background-color: var(--secondary);
-  padding: 20px 20px 30px 20px;
-  border: 2px solid var(--primary);
-  color: var(--primary);
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	font-family: "Cinzel", serif;
+	text-shadow: 1px 1px 3px black;
+	font-size: 2rem;
+	margin: 0 auto;
+	width: 600px;
+	background-color: var(--secondary);
+	padding: 20px 20px 30px 20px;
+	border: 2px solid var(--primary);
+	color: var(--primary);
 }
 
 #header {
-  font-size: 2em;
+	font-size: 2em;
 }
 
 #contain {
-  height: 400px;
-  display: flex;
-  width: 570px;
+	height: 400px;
+	display: flex;
+	width: 570px;
 }
 
 #pickGrid {
-  padding: 0px;
-  width: 200px;
-  display: grid;
-  grid-template-columns: 30px 140px 30px;
+	padding: 0px;
+	width: 200px;
+	display: grid;
+	grid-template-columns: 30px 140px 30px;
 }
 
 #flagDiv {
-  width: 370px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	width: 370px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+#flag {
+	outline: 5px solid black;
+}
+
+#customImageWrapper {
+	font-size: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: 1rem;
+}
+
+#customImageCheckboxWrapper {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	justify-content: center;
+}
+
+#customImageCheckbox {
+	margin-left: 1rem;
+}
+
+#customImageInputLabel {
+	width: 100%;
+	font-size: 1.5rem;
+	height: auto;
 }
 
 .backbutton {
-  padding: 0px;
-  width: 30px;
-  border-style: none;
-  font-size: 1em;
+	padding: 0px;
+	width: 30px;
+	border-style: none;
+	font-size: 1em;
 }
 
 .category {
-  padding: 0px;
-  width: 140px;
-  text-align: center;
-  line-height: 50px;
-  font-size: 1em;
+	padding: 0px;
+	width: 140px;
+	text-align: center;
+	line-height: 50px;
+	font-size: 1em;
 }
 
 .forwardbutton {
-  padding: 0px;
-  width: 30px;
-  border-style: none;
-  font-size: 1em;
+	padding: 0px;
+	width: 30px;
+	border-style: none;
+	font-size: 1em;
 }
 
 .flagbox > button {
-  font-size: 2rem;
-  width: 300px;
-  margin: 40px auto 0px auto;
-  padding: 5px 30px;
+	font-size: 2rem;
+	width: 300px;
+	margin: 40px auto 0px auto;
+	padding: 5px 30px;
 }
 
 .flagbox > #civlabel {
-  width: 550px;
-  font-size: 1.6rem;
-  text-align: center;
+	width: 550px;
+	font-size: 1.6rem;
+	text-align: center;
 }
 
 .flagbox > #alias {
-  width: 450px;
-  font-size: 1.6rem;
+	width: 450px;
+	font-size: 1.6rem;
 }
 
 #phaseheader {
-  height: 10rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+	height: 10rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 }
 
 #game {
-  height: 42.5rem;
-  display: flex;
+	height: 42.5rem;
+	display: flex;
 }
 
 #players {
-  width: 20%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+	width: 20%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 #board {
-  width: 80%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 #selected {
-  width: 100% !important;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+	width: 100% !important;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 #unselected {
-  width: 100% !important;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+	width: 100% !important;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .card {
-  align-self: center;
-  background-color: white;
-  text-align: center;
-  z-index: 10;
+	align-self: center;
+	background-color: white;
+	text-align: center;
+	z-index: 10;
+	position: relative;
 }
 
 .playercard {
-  margin-left: 30px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  display: flex;
-  height: 111px;
-  width: 100%;
+	margin-left: 30px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	display: flex;
+	height: 111px;
+	width: 100%;
 }
 
 .playercard > .image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 85px;
-  height: 85px;
-  padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 85px;
+	height: 85px;
+	padding: 5px;
 }
 
 .playercard > .text {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  height: 100%;
-  flex-direction: column;
-  width: 60%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	height: 100%;
+	flex-direction: column;
+	width: 60%;
 }
 
 .image > .flag {
-  width: 85px;
-  height: 85px;
+	width: 85px;
+	height: 85px;
 }
 
 .text > .playername {
-  font-size: 1.5vw;
-  word-break: break-all;
-  margin-left: 0.5rem;
-  width: 100%;
-  text-align: left;
+	font-size: 1.5vw;
+	word-break: break-all;
+	margin-left: 0.5rem;
+	width: 100%;
+	text-align: left;
 }
 
 .text > .alias {
-  font-size: 2.1vw;
-  word-break: break-all;
-  margin-left: 0.5rem;
-  width: 100%;
-  text-align: left;
-  line-height: 1.8vw;
+	font-size: 2.1vw;
+	word-break: break-all;
+	margin-left: 0.5rem;
+	width: 100%;
+	text-align: left;
+	line-height: 1.8vw;
 }
 
 #boardtoolbar {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  flex-direction: row-reverse;
-  width: 30vw;
-  height: 6vw;
-  bottom: 0;
-  right: 0;
-  position: fixed;
-  z-index: 3000;
-  padding: 0.5vw;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	flex-direction: row-reverse;
+	width: 30vw;
+	height: 6vw;
+	bottom: 0;
+	right: 0;
+	position: fixed;
+	z-index: 3000;
+	padding: 0.5vw;
 }
 
 #refill {
-  margin: 0.5vw;
-  color: white;
-  font-size: 2.5vw;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  width: 9vw;
-  height: 6vw;
-  line-height: 6vw;
-  background-image: url("../img/helpbackground.png");
-  background-size: 9vw 6vw;
-  background-repeat: no-repeat;
-  outline: none;
+	margin: 0.5vw;
+	color: white;
+	font-size: 2.5vw;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	width: 9vw;
+	height: 6vw;
+	line-height: 6vw;
+	background-image: url("../img/helpbackground.png");
+	background-size: 9vw 6vw;
+	background-repeat: no-repeat;
+	outline: none;
 }
 
 #refill:hover {
-  outline: 0.51vw solid rgba(255, 255, 255, 1);
-  outline-offset: -0.51vw;
+	outline: 0.51vw solid rgba(255, 255, 255, 1);
+	outline-offset: -0.51vw;
 }
 
 #finish {
-  margin: 0.5vw;
-  color: white;
-  font-size: 1.2vw;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  width: 9vw;
-  height: 6vw;
-  line-height: 6vw;
-  background-image: url("../img/helpbackground.png");
-  background-size: 9vw 6vw;
-  background-repeat: no-repeat;
-  outline: none;
+	margin: 0.5vw;
+	color: white;
+	font-size: 1.2vw;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	width: 9vw;
+	height: 6vw;
+	line-height: 6vw;
+	background-image: url("../img/helpbackground.png");
+	background-size: 9vw 6vw;
+	background-repeat: no-repeat;
+	outline: none;
 }
 
 #finish:hover {
-  outline: 0.51vw solid rgba(255, 255, 255, 1);
-  outline-offset: -0.51vw;
+	outline: 0.51vw solid rgba(255, 255, 255, 1);
+	outline-offset: -0.51vw;
 }
 
 #homeBtn {
-  margin: 0.5vw;
-  color: white;
-  font-size: 2.5vw;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  width: 9vw;
-  height: 6vw;
-  line-height: 6vw;
-  background-image: url("../img/helpbackground.png");
-  background-size: 9vw 6vw;
-  background-repeat: no-repeat;
-  outline: none;
+	margin: 0.5vw;
+	color: white;
+	font-size: 2.5vw;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	width: 9vw;
+	height: 6vw;
+	line-height: 6vw;
+	background-image: url("../img/helpbackground.png");
+	background-size: 9vw 6vw;
+	background-repeat: no-repeat;
+	outline: none;
 }
 
 #homeBtn:hover {
-  outline: 0.51vw solid rgba(255, 255, 255, 1);
-  outline-offset: -0.51vw;
+	outline: 0.51vw solid rgba(255, 255, 255, 1);
+	outline-offset: -0.51vw;
+}
+
+#donate {
+	width: 12rem;
+	margin: 0.5rem 0 0.5rem 0;
+	font-size: 2rem;
+	text-align: center;
+	padding: 5px;
 }
 
 #clear {
-  margin: 0.5vw;
-  color: white;
-  font-size: 2.5vw;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  width: 9vw;
-  height: 6vw;
-  line-height: 6vw;
-  background-image: url("../img/helpbackground.png");
-  background-size: 9vw 6vw;
-  background-repeat: no-repeat;
-  outline: none;
+	margin: 0.5vw;
+	color: white;
+	font-size: 2.5vw;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	width: 9vw;
+	height: 6vw;
+	line-height: 6vw;
+	background-image: url("../img/helpbackground.png");
+	background-size: 9vw 6vw;
+	background-repeat: no-repeat;
+	outline: none;
 }
 
 #clear:hover {
-  outline: 0.51vw solid rgba(255, 255, 255, 1);
-  outline-offset: -0.51vw;
+	outline: 0.51vw solid rgba(255, 255, 255, 1);
+	outline-offset: -0.51vw;
 }
 
 .cardimage {
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 #helpboxcontainer {
-  /*
+	/*
 	visibility: hidden;*/
-  bottom: 0;
-  left: 0;
-  width: 20vw;
-  height: 13.3vw;
-  position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 20vw;
+	height: 13.3vw;
+	position: fixed;
 }
 
 #helpbox {
-  width: 100%;
-  height: 100%;
-  position: relative;
+	width: 100%;
+	height: 100%;
+	position: relative;
 }
 
 #helpboximage {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 99;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99;
 }
 
 #helpboxtext {
-  margin: 0;
-  margin-right: 2vw;
-  color: white;
-  position: absolute;
-  top: 1.5vw;
-  left: 1.5vw;
-  z-index: 100;
-  width: 17vw;
-  height: 10.3vw;
+	margin: 0;
+	margin-right: 2vw;
+	color: white;
+	position: absolute;
+	top: 1.5vw;
+	left: 1.5vw;
+	z-index: 100;
+	width: 17vw;
+	height: 10.3vw;
 }
 
 #instructionsbox {
-  font-family: Arial, Helvetica, sans-serif;
-  text-shadow: 1px 1px 3px black;
-  margin: 0 auto;
-  width: 75vw;
-  background-color: var(--secondary);
-  padding: 20px 20px 30px 20px;
-  border: 2px solid var(--primary);
-  color: var(--primary);
-  margin-top: 5rem;
-  margin-bottom: 5rem;
+	font-family: Arial, Helvetica, sans-serif;
+	text-shadow: 1px 1px 3px black;
+	margin: 0 auto;
+	width: 75vw;
+	background-color: var(--secondary);
+	padding: 20px 20px 30px 20px;
+	border: 2px solid var(--primary);
+	color: var(--primary);
+	margin-top: 5rem;
+	margin-bottom: 5rem;
 }
 
 #instructionstitle {
-  display: block;
-  text-align: center;
-  font-size: 2.2rem;
-  margin: 0;
-  margin-bottom: 2rem;
+	display: block;
+	text-align: center;
+	font-size: 2.2rem;
+	margin: 0;
+	margin-bottom: 2rem;
 }
 
 #instructionstext {
-  margin: 0;
-  display: block;
-  text-align: left;
-  font-size: 1.3rem;
+	margin: 0;
+	display: block;
+	text-align: left;
+	font-size: 1.3rem;
 }
 
 #updatetext {
-  margin: 0;
-  display: block;
-  text-align: center;
-  font-size: 1.8rem;
+	margin: 0;
+	display: block;
+	text-align: center;
+	font-size: 1.8rem;
 }
 
 #buildForm {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: "Cinzel", serif;
-  text-shadow: 1px 1px 3px black;
-  font-size: 2rem;
-  margin: 0 auto;
-  width: 580px;
-  background-color: var(--secondary);
-  padding: 20px 20px 30px 20px;
-  border: 2px solid var(--primary);
-  color: var(--primary);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: "Cinzel", serif;
+	text-shadow: 1px 1px 3px black;
+	font-size: 2rem;
+	margin: 0 auto;
+	width: 600px;
+	background-color: var(--secondary);
+	padding: 20px 20px 30px 20px;
+	border: 2px solid var(--primary);
+	color: var(--primary);
 }
 
 #buildForm > button {
-  font-size: 2rem;
-  margin: 2rem;
-  padding: 5px 0px 5px 0px;
-  width: 420px;
+	font-size: 2rem;
+	margin: 2rem;
+	padding: 5px 0px 5px 0px;
+	width: 420px;
 }
 
 .upload {
-  display: block;
-  font-size: 2rem;
-  background-color: var(--secondary);
-  border: 2px solid var(--primary);
-  width: 420px;
-  height: 2.7rem;
-  text-align: center;
-  cursor: pointer;
-  margin: 0;
-  margin-top: 1rem;
+	display: block;
+	font-size: 2rem;
+	background-color: var(--secondary);
+	border: 2px solid var(--primary);
+	width: 420px;
+	height: 2.7rem;
+	text-align: center;
+	cursor: pointer;
+	margin: 0;
+	margin-top: 1rem;
+}
+
+#createModButton {
+	margin-top: 3rem;
 }
 
 .upload:hover {
-  background-color: hsl(0, 100%, 64%);
-  transition-duration: 0.3s;
+	background-color: hsl(0, 100%, 64%);
+	transition-duration: 0.3s;
 }
 
 upload:focus {
-  outline: none;
+	outline: none;
 }
 
 .upload input {
-  opacity: 0;
-  position: absolute;
-  width: 0.1px;
-  height: 0.1px;
-  z-index: -1;
-  overflow: hidden;
+	opacity: 0;
+	position: absolute;
+	width: 0.1px;
+	height: 0.1px;
+	z-index: -1;
+	overflow: hidden;
 }
 
 #sliderbox {
-  position: fixed;
-  left: 2vw;
-  display: flex;
-  flex-direction: column;
-  font-size: 2vw;
+	position: fixed;
+	left: 2vw;
+	display: flex;
+	flex-direction: column;
+	font-size: 2vw;
 }
 
 #sideheader {
-  position: fixed;
-  left: 2vw;
-  top: 50px;
-  display: flex;
-  flex-direction: row;
-  width: 18vw;
+	position: fixed;
+	left: 2vw;
+	top: 50px;
+	display: flex;
+	flex-direction: row;
+	width: 18vw;
 }
 
 #sidephase {
-  font-size: 2.2vw;
-  text-align: center;
-  width: 15vw;
+	font-size: 2.2vw;
+	text-align: center;
+	width: 15vw;
 }
 
 #buttonleft {
-  width: 1.5vw;
-  font-size: 3vw;
-  line-height: 9vw;
+	width: 1.5vw;
+	font-size: 3vw;
+	line-height: 9vw;
 }
 
 #buttonright {
-  width: 1.5vw;
-  font-size: 3vw;
-  line-height: 9vw;
+	width: 1.5vw;
+	font-size: 3vw;
+	line-height: 9vw;
 }
 
 #archbox {
-  display: flex;
-  height: 150px;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
-  margin-right: 20px;
+	display: flex;
+	height: 150px;
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+	margin-right: 20px;
 }
 
 #langbox {
-  display: flex;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+	display: flex;
+	margin-bottom: 1rem;
+	margin-top: 1rem;
 }
 
 #architectureicon {
-  width: 171px;
-  height: 127px;
+	width: 171px;
+	height: 127px;
 }
 
 #languagetext {
-  font-size: 26px;
-  width: 170px;
-  padding: 10px;
-  text-align: center;
+	font-size: 26px;
+	width: 170px;
+	padding: 10px;
+	text-align: center;
 }
 
 #vanillaDownload {
-  width: 420px;
-  margin-bottom: 1rem;
-  margin-top: 3rem;
-  line-height: 2rem;
+	width: 420px;
+	margin-bottom: 1rem;
+	margin-top: 1rem !important;
+	line-height: 2rem;
+}
+
+.tooltip {
+	position: relative;
+	display: inline-block;
+}
+
+.tooltip .tooltiptextright {
+	visibility: hidden;
+	width: 20vw;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 10px;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 110%;
+	font-size: 1vw;
+	font-family: "Open Sans", sans-serif;
+}
+
+.tooltip .tooltiptextright::after {
+	content: "";
+	position: absolute;
+	top: 15%;
+	right: 100%;
+	margin-top: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent black transparent transparent;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: auto;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 10px;
+	position: absolute;
+	z-index: 1;
+	top: 150%;
+	left: 50%;
+	margin-left: -50%;
+	font-size: 1vw;
+	font-family: "Open Sans", sans-serif;
+}
+
+.tooltip .tooltiptext::after {
+	content: "";
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	margin-left: -10px;
+	border-width: 10px;
+	border-style: solid;
+	border-color: transparent transparent black transparent;
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+
+.tooltip:hover .tooltiptextright {
+	visibility: visible;
 }
 
 #vanillaText {
-  font-size: 1.5rem;
-  margin-bottom: 0;
+	font-size: 1.5rem;
+	margin-bottom: 0;
+}
+
+#links {
+	position: fixed;
+	top: 2rem;
+	left: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
 }
 
 #discordinvite {
-  position: fixed;
-  top: 2rem;
-  left: 2rem;
-  width: 125px;
-  height: 125px;
-  margin: 1rem auto;
-  cursor: pointer;
+	width: 125px;
+	height: 125px;
+	cursor: pointer;
+	margin-bottom: 1rem;
 }
 
 #sharebox {
-  background-image: url("../img/helpbackground.png");
-  background-size: 40vw 36vh;
-  background-repeat: no-repeat;
-  z-index: 999;
-  position: fixed;
-  width: 40vw;
-  height: 36vh;
-  left: 30vw;
-  top: 32vh;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+	background-image: url("../img/helpbackground.png");
+	background-size: 40vw 36vh;
+	background-repeat: no-repeat;
+	z-index: 999;
+	position: fixed;
+	width: 40vw;
+	height: 36vh;
+	left: 30vw;
+	top: 32vh;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .sharelink {
-  display: flex;
-  margin-left: 8%;
-  margin-right: 8%;
-  justify-content: space-between;
-  margin-bottom: 15px;
+	display: flex;
+	margin-left: 8%;
+	margin-right: 8%;
+	justify-content: space-between;
+	margin-bottom: 15px;
 }
 
 .sharetext {
-  text-align: center;
+	text-align: center;
 }
 
 #done_sharing {
-  margin-left: 40%;
-  margin-right: 40%;
-  margin-top: 10px;
-  border: 2px solid white;
-  cursor: pointer;
-  text-align: center;
+	margin-left: 40%;
+	margin-right: 40%;
+	margin-top: 10px;
+	border: 2px solid white;
+	cursor: pointer;
+	text-align: center;
 }
 
 .linktext {
-  text-align: left;
-  overflow-x: scroll;
-  white-space: nowrap;
-  width: 85%;
+	text-align: left;
+	overflow-x: scroll;
+	white-space: nowrap;
+	width: 85%;
+	user-select: text;
+	cursor: text;
 }
 
 #filterbox {
-  position: fixed;
-  display: flex;
+	position: fixed;
+	display: flex;
 }
 
 #filterinput {
-  width: 10vw;
+	width: 10vw;
 }
 
 #filtertext {
-  width: auto;
-  margin-right: 10px;
-  font-size: 1.5rem;
+	width: auto;
+	margin-right: 10px;
+	font-size: 1.5rem;
+}
+
+.selectedCardWrapper {
+	position: absolute;
+	top: 0;
+	right: -3rem;
+	z-index: -5;
+	cursor: default;
+}
+
+.selectedCardBackground {
+	width: 6rem;
+	height: 6rem;
+}
+
+.selectedCardMenu {
+	position: absolute;
+	top: 1rem;
+	right: 0.25rem;
+	color: white;
+	width: 3rem;
+	height: 4.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.selectedCardPlus {
+	height: 33%;
+	width: auto;
+	cursor: pointer;
+}
+
+.selectedCardMinus {
+	height: 33%;
+	width: auto;
+	cursor: pointer;
+}
+
+#modifierWrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+#modifierTitle {
+	margin-bottom: 0.5rem;
+}
+
+.modifierWrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 90%;
+	font-size: 1.5rem;
+}
+
+.slidecontainer {
+	width: 100%;
+}
+
+.slider {
+	-webkit-appearance: none;
+	width: 100%;
+	height: 15px;
+	border-radius: 5px;
+	background: #000;
+	outline: none;
+	opacity: 0.7;
+	-webkit-transition: 0.2s;
+	transition: opacity 0.2s;
+}
+
+.slider:hover {
+	opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	background: var(--primary);
+	cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	background: var(--primary);
+	cursor: pointer;
+}
+
+.sliderValueWrapper {
+	display: flex;
+	flex-direction: row;
+	width: 50%;
+}
+
+.sliderValue {
+	margin-left: 3px;
+	width: 30%;
+	text-align: right;
+	-moz-appearance: textfield;
+	background-color: var(--secondary);
+	outline: none;
+	border: none;
+	color: var(--primary);
+	font-family: "Cinzel", serif;
+	text-shadow: 1px 1px 3px black;
+	font-size: 1.5rem;
+}
+
+.sliderValue:focus {
+	outline: none;
+}
+
+.sliderValue::-webkit-outer-spin-button,
+.sliderValue::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+#buildFormWrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+#baseInput {
+	font-family: "Cinzel", serif;
+	color: var(--primary);
+	background-color: var(--secondary);
+	outline: none;
+	border: none;
+	text-align: right;
+}
+
+#baseInput:focus {
+	outline: none;
+	border: none;
 }

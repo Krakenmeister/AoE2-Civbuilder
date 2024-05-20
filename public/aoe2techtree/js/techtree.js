@@ -594,17 +594,14 @@ function printAllCarets(tree) {
 function enable(buildings, units, techs) {
   for (let name of buildings) {
     SVG.get("building_" + formatId(name) + "_x")
-      .animate(animation_duration)
       .attr({ "fill-opacity": 0 });
   }
   for (let name of units) {
     SVG.get("unit_" + formatId(name) + "_x")
-      .animate(animation_duration)
       .attr({ "fill-opacity": 0 });
   }
   for (let name of techs) {
     SVG.get("tech_" + formatId(name) + "_x")
-      .animate(animation_duration)
       .attr({ "fill-opacity": 0 });
   }
 }
@@ -663,9 +660,9 @@ function getName(id, itemtype) {
   if (id.toString().startsWith("UNIQUE")) {
     return id;
   }
-  console.log(id);
-  console.log(itemtype);
-  console.log(data["data"][itemtype][id]);
+  // console.log(id);
+  // console.log(itemtype);
+  // console.log(data["data"][itemtype][id]);
   const languageNameId = data["data"][itemtype][id]["LanguageNameId"];
   return data["strings"][languageNameId];
 }

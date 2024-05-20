@@ -293,6 +293,13 @@ function createTechtreeJson(data_json, techtree_json) {
         case 322:
           addSpecialNodes([specialNodes["flaming_camel"]], techtree.civ_techs_units, 1, "Padded Archer Armor");
           break;
+        case 332:
+          for (let k = 0; k < techtree.civ_techs_units.length; k++) {
+            if (techtree.civ_techs_units[k]["Name"] == "Knight") {
+              techtree.civ_techs_units[k]["Age ID"] = 2;
+            }
+          }
+          break;
       }
     }
 
@@ -317,11 +324,19 @@ function createTechtreeJson(data_json, techtree_json) {
 
     //Add unique tech nodes
     let UTs = [];
-    for (let i = 0; i < civ.castletech[0].length; i++) {
-      UTs.push(UTArray[0][civ.castletech[0][i]]);
+    for (let j = 0; j < civ.castletech[i].length; j++) {
+      if (civ.castletech[i][j].length != 2) {
+        UTs.push(UTArray[0][civ.castletech[i][j]]);
+      } else {
+        UTs.push(UTArray[0][civ.castletech[i][j][0]]);
+      }
     }
-    for (let i = 0; i < civ.imptech[0].length; i++) {
-      UTs.push(UTArray[1][civ.imptech[0][i]]);
+    for (let j = 0; j < civ.imptech[i].length; j++) {
+      if (civ.imptech[i][j].length != 2) {
+        UTs.push(UTArray[1][civ.imptech[i][j]]);
+      } else {
+        UTs.push(UTArray[1][civ.imptech[i][j][0]]);
+      }
     }
     addSpecialNodes(UTs, techtree.civ_techs_units, 1, "Hoardings");
 
@@ -501,7 +516,7 @@ const unitNodeMap = {
   "Siege Elephant": 159,
   Dromon: 160,
   Loom: 151,
-  "Devotion": 161,
+  Devotion: 161,
 };
 
 const specialNodes = {
@@ -1066,28 +1081,16 @@ const specialNodes = {
     "Help String ID": 105375,
     "Link ID": 36,
     "Link Node Type": "BuildingTech",
-    "Name": "Flaming Camel",
+    Name: "Flaming Camel",
     "Name String ID": 14375,
     "Node ID": 1263,
     "Node Status": "ResearchedCompleted",
     "Node Type": "UniqueUnit",
     "Picture Index": 270,
-    "Prerequisite IDs": [
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "Prerequisite Types": [
-      "None",
-      "None",
-      "None",
-      "None",
-      "None"
-    ],
+    "Prerequisite IDs": [0, 0, 0, 0, 0],
+    "Prerequisite Types": ["None", "None", "None", "None", "None"],
     "Trigger Tech ID": -1,
-    "Use Type": "Unit"
+    "Use Type": "Unit",
   },
 };
 
@@ -2136,6 +2139,24 @@ const UTArray = [
       "Trigger Tech ID": -1,
       "Use Type": "Tech",
     },
+    {
+      "Age ID": 3,
+      "Building ID": 82,
+      "Draw Node Type": "UnitTech",
+      "Help String ID": 107510,
+      "Link ID": -1,
+      "Link Node Type": "BuildingTech",
+      Name: "Replaceable Parts",
+      "Name String ID": 17510,
+      "Node ID": numVanillaTechs + 89,
+      "Node Status": "ResearchedCompleted",
+      "Node Type": "Research",
+      "Picture Index": 107,
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
+      "Trigger Tech ID": -1,
+      "Use Type": "Tech",
+    },
   ],
   [
     {
@@ -3038,12 +3059,84 @@ const UTArray = [
       "Trigger Tech ID": -1,
       "Use Type": "Tech",
     },
+    {
+      "Age ID": 4,
+      "Building ID": 82,
+      "Draw Node Type": "UnitTech",
+      "Help String ID": 107511,
+      "Link ID": -1,
+      "Link Node Type": "BuildingTech",
+      Name: "Pila",
+      "Name String ID": 17511,
+      "Node ID": numVanillaTechs + 90,
+      "Node Status": "ResearchedCompleted",
+      "Node Type": "Research",
+      "Picture Index": 107,
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
+      "Trigger Tech ID": -1,
+      "Use Type": "Tech",
+    },
+    {
+      "Age ID": 4,
+      "Building ID": 82,
+      "Draw Node Type": "UnitTech",
+      "Help String ID": 107512,
+      "Link ID": -1,
+      "Link Node Type": "BuildingTech",
+      Name: "Enlistment",
+      "Name String ID": 17512,
+      "Node ID": numVanillaTechs + 91,
+      "Node Status": "ResearchedCompleted",
+      "Node Type": "Research",
+      "Picture Index": 107,
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
+      "Trigger Tech ID": -1,
+      "Use Type": "Tech",
+    },
+    {
+      "Age ID": 4,
+      "Building ID": 82,
+      "Draw Node Type": "UnitTech",
+      "Help String ID": 107513,
+      "Link ID": -1,
+      "Link Node Type": "BuildingTech",
+      Name: "Marshalled Hunters",
+      "Name String ID": 17513,
+      "Node ID": numVanillaTechs + 92,
+      "Node Status": "ResearchedCompleted",
+      "Node Type": "Research",
+      "Picture Index": 107,
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
+      "Trigger Tech ID": -1,
+      "Use Type": "Tech",
+    },
+    {
+      "Age ID": 4,
+      "Building ID": 82,
+      "Draw Node Type": "UnitTech",
+      "Help String ID": 107514,
+      "Link ID": -1,
+      "Link Node Type": "BuildingTech",
+      Name: "Shigetō Yumi",
+      "Name String ID": 17514,
+      "Node ID": numVanillaTechs + 93,
+      "Node Status": "ResearchedCompleted",
+      "Node Type": "Research",
+      "Picture Index": 107,
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
+      "Trigger Tech ID": -1,
+      "Use Type": "Tech",
+    },
   ],
 ];
 
 const baseTree = {
-  "civ_id": "GAIA",
-  "civ_techs_buildings": [
+  civ_id: "GAIA",
+  civ_techs_buildings: [
     {
       "Age ID": 2,
       "Building ID": 87,
@@ -3053,28 +3146,16 @@ const baseTree = {
       "Help String ID": 105128,
       "Link ID": 12,
       "Link Node Type": "BuildingTech",
-      "Name": "Archery Range",
+      Name: "Archery Range",
       "Name String ID": 14128,
       "Node ID": 87,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingTech",
       "Picture Index": 0,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 1,
@@ -3085,28 +3166,16 @@ const baseTree = {
       "Help String ID": 105135,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Barracks",
+      Name: "Barracks",
       "Name String ID": 14135,
       "Node ID": 12,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingTech",
       "Picture Index": 2,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 2,
@@ -3117,28 +3186,16 @@ const baseTree = {
       "Help String ID": 105171,
       "Link ID": 12,
       "Link Node Type": "BuildingTech",
-      "Name": "Stable",
+      Name: "Stable",
       "Name String ID": 14171,
       "Node ID": 101,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingTech",
       "Picture Index": 23,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 3,
@@ -3149,28 +3206,16 @@ const baseTree = {
       "Help String ID": 105169,
       "Link ID": 103,
       "Link Node Type": "BuildingTech",
-      "Name": "Siege Workshop",
+      Name: "Siege Workshop",
       "Name String ID": 14169,
       "Node ID": 49,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingTech",
       "Picture Index": 22,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 2,
@@ -3181,28 +3226,16 @@ const baseTree = {
       "Help String ID": 105131,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Blacksmith",
+      Name: "Blacksmith",
       "Name String ID": 14131,
       "Node ID": 103,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingTech",
       "Picture Index": 4,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 1,
@@ -3213,28 +3246,16 @@ const baseTree = {
       "Help String ID": 105144,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Dock",
+      Name: "Dock",
       "Name String ID": 14144,
       "Node ID": 45,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingTech",
       "Picture Index": 13,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 2,
@@ -3245,28 +3266,16 @@ const baseTree = {
       "Help String ID": 105495,
       "Link ID": 45,
       "Link Node Type": "BuildingTech",
-      "Name": "Fish Trap",
+      Name: "Fish Trap",
       "Name String ID": 14495,
       "Node ID": 199,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingNonTech",
       "Picture Index": 41,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 3,
@@ -3277,28 +3286,16 @@ const baseTree = {
       "Help String ID": 105176,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "University",
+      Name: "University",
       "Name String ID": 14176,
       "Node ID": 209,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingTech",
       "Picture Index": 33,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 1,
@@ -3309,28 +3306,16 @@ const baseTree = {
       "Help String ID": 105504,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Outpost",
+      Name: "Outpost",
       "Name String ID": 14504,
       "Node ID": 598,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingNonTech",
       "Picture Index": 38,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 2,
@@ -3341,28 +3326,16 @@ const baseTree = {
       "Help String ID": 105178,
       "Link ID": 598,
       "Link Node Type": "BuildingNonTech",
-      "Name": "Watch Tower",
+      Name: "Watch Tower",
       "Name String ID": 14178,
       "Node ID": 79,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingNonTech",
       "Picture Index": 25,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 3,
@@ -3373,28 +3346,16 @@ const baseTree = {
       "Help String ID": 105154,
       "Link ID": 79,
       "Link Node Type": "BuildingNonTech",
-      "Name": "Guard Tower",
+      Name: "Guard Tower",
       "Name String ID": 14154,
       "Node ID": 234,
       "Node Status": "ResearchRequired",
       "Node Type": "BuildingNonTech",
       "Picture Index": 27,
-      "Prerequisite IDs": [
-        140,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "Tech",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [140, 0, 0, 0, 0],
+      "Prerequisite Types": ["Tech", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 4,
@@ -3405,28 +3366,16 @@ const baseTree = {
       "Help String ID": 105155,
       "Link ID": 234,
       "Link Node Type": "BuildingNonTech",
-      "Name": "Keep",
+      Name: "Keep",
       "Name String ID": 14155,
       "Node ID": 235,
       "Node Status": "ResearchRequired",
       "Node Type": "BuildingNonTech",
       "Picture Index": 26,
-      "Prerequisite IDs": [
-        63,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "Tech",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [63, 0, 0, 0, 0],
+      "Prerequisite Types": ["Tech", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 4,
@@ -3437,28 +3386,16 @@ const baseTree = {
       "Help String ID": 105156,
       "Link ID": 235,
       "Link Node Type": "BuildingNonTech",
-      "Name": "Bombard Tower",
+      Name: "Bombard Tower",
       "Name String ID": 14156,
       "Node ID": 236,
       "Node Status": "NotAvailable",
       "Node Type": "BuildingNonTech",
       "Picture Index": 42,
-      "Prerequisite IDs": [
-        64,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "Tech",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [64, 0, 0, 0, 0],
+      "Prerequisite Types": ["Tech", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 1,
@@ -3469,28 +3406,16 @@ const baseTree = {
       "Help String ID": 105202,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Palisade Wall",
+      Name: "Palisade Wall",
       "Name String ID": 14202,
       "Node ID": 72,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingNonTech",
       "Picture Index": 30,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 1,
@@ -3501,28 +3426,16 @@ const baseTree = {
       "Help String ID": 105186,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Palisade Gate",
+      Name: "Palisade Gate",
       "Name String ID": 14186,
       "Node ID": 792,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingNonTech",
       "Picture Index": 44,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 2,
@@ -3533,28 +3446,16 @@ const baseTree = {
       "Help String ID": 105185,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Gate",
+      Name: "Gate",
       "Name String ID": 14185,
       "Node ID": 487,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingNonTech",
       "Picture Index": 36,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 2,
@@ -3565,28 +3466,16 @@ const baseTree = {
       "Help String ID": 105203,
       "Link ID": 487,
       "Link Node Type": "BuildingNonTech",
-      "Name": "Stone Wall",
+      Name: "Stone Wall",
       "Name String ID": 14203,
       "Node ID": 117,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingNonTech",
       "Picture Index": 31,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 3,
@@ -3597,28 +3486,16 @@ const baseTree = {
       "Help String ID": 105204,
       "Link ID": 117,
       "Link Node Type": "BuildingNonTech",
-      "Name": "Fortified Wall",
+      Name: "Fortified Wall",
       "Name String ID": 14204,
       "Node ID": 155,
       "Node Status": "ResearchRequired",
       "Node Type": "BuildingNonTech",
       "Picture Index": 32,
-      "Prerequisite IDs": [
-        194,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "Tech",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [194, 0, 0, 0, 0],
+      "Prerequisite Types": ["Tech", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 3,
@@ -3629,28 +3506,16 @@ const baseTree = {
       "Help String ID": 105142,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Castle",
+      Name: "Castle",
       "Name String ID": 14142,
       "Node ID": 82,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingTech",
       "Picture Index": 7,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 3,
@@ -3661,28 +3526,16 @@ const baseTree = {
       "Help String ID": 105138,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Monastery",
+      Name: "Monastery",
       "Name String ID": 14138,
       "Node ID": 104,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingTech",
       "Picture Index": 10,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 1,
@@ -3693,28 +3546,16 @@ const baseTree = {
       "Help String ID": 105344,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "House",
+      Name: "House",
       "Name String ID": 14344,
       "Node ID": 70,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingNonTech",
       "Picture Index": 34,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 1,
@@ -3725,28 +3566,16 @@ const baseTree = {
       "Help String ID": 105164,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Town Center",
+      Name: "Town Center",
       "Name String ID": 14164,
       "Node ID": 109,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingTech",
       "Picture Index": 28,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 3,
@@ -3757,28 +3586,16 @@ const baseTree = {
       "Help String ID": 105164,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Town Center",
+      Name: "Town Center",
       "Name String ID": 14164,
       "Node ID": 621,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingNonTech",
       "Picture Index": 28,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 4,
@@ -3789,28 +3606,16 @@ const baseTree = {
       "Help String ID": 105182,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Wonder",
+      Name: "Wonder",
       "Name String ID": 14182,
       "Node ID": 276,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingNonTech",
       "Picture Index": 37,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 1,
@@ -3821,28 +3626,16 @@ const baseTree = {
       "Help String ID": 105487,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Mining Camp",
+      Name: "Mining Camp",
       "Name String ID": 14487,
       "Node ID": 584,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingTech",
       "Picture Index": 39,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 1,
@@ -3853,28 +3646,16 @@ const baseTree = {
       "Help String ID": 105464,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Lumber Camp",
+      Name: "Lumber Camp",
       "Name String ID": 14464,
       "Node ID": 562,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingTech",
       "Picture Index": 40,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 2,
@@ -3885,28 +3666,16 @@ const baseTree = {
       "Help String ID": 105161,
       "Link ID": 68,
       "Link Node Type": "BuildingTech",
-      "Name": "Market",
+      Name: "Market",
       "Name String ID": 14161,
       "Node ID": 84,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingTech",
       "Picture Index": 16,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 1,
@@ -3917,28 +3686,16 @@ const baseTree = {
       "Help String ID": 105149,
       "Link ID": 68,
       "Link Node Type": "BuildingTech",
-      "Name": "Farm",
+      Name: "Farm",
       "Name String ID": 14149,
       "Node ID": 50,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingNonTech",
       "Picture Index": 35,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
+      "Use Type": "Building",
     },
     {
       "Age ID": 1,
@@ -3949,31 +3706,19 @@ const baseTree = {
       "Help String ID": 105157,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Mill",
+      Name: "Mill",
       "Name String ID": 14157,
       "Node ID": 68,
       "Node Status": "ResearchedCompleted",
       "Node Type": "BuildingTech",
       "Picture Index": 19,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Building"
-    }
+      "Use Type": "Building",
+    },
   ],
-  "civ_techs_units": [
+  civ_techs_units: [
     {
       "Age ID": 2,
       "Building ID": 87,
@@ -3981,28 +3726,16 @@ const baseTree = {
       "Help String ID": 105083,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Archer",
+      Name: "Archer",
       "Name String ID": 14083,
       "Node ID": 4,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 17,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -4011,28 +3744,16 @@ const baseTree = {
       "Help String ID": 105084,
       "Link ID": 4,
       "Link Node Type": "Unit",
-      "Name": "Crossbowman",
+      Name: "Crossbowman",
       "Name String ID": 14084,
       "Node ID": 24,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 18,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 100,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -4041,28 +3762,16 @@ const baseTree = {
       "Help String ID": 105418,
       "Link ID": 24,
       "Link Node Type": "UnitUpgrade",
-      "Name": "Arbalester",
+      Name: "Arbalester",
       "Name String ID": 14418,
       "Node ID": 492,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 90,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 237,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 2,
@@ -4071,28 +3780,16 @@ const baseTree = {
       "Help String ID": 105088,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Skirmisher",
+      Name: "Skirmisher",
       "Name String ID": 14088,
       "Node ID": 7,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 20,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -4101,28 +3798,16 @@ const baseTree = {
       "Help String ID": 105087,
       "Link ID": 7,
       "Link Node Type": "Unit",
-      "Name": "Elite Skirmisher",
+      Name: "Elite Skirmisher",
       "Name String ID": 14087,
       "Node ID": 6,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 21,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 98,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -4131,28 +3816,16 @@ const baseTree = {
       "Help String ID": 105086,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Hand Cannoneer",
+      Name: "Hand Cannoneer",
       "Name String ID": 14086,
       "Node ID": 5,
       "Node Status": "NotAvailable",
       "Node Type": "Unit",
       "Picture Index": 22,
-      "Prerequisite IDs": [
-        47,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "Tech",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [47, 0, 0, 0, 0],
+      "Prerequisite Types": ["Tech", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -4161,28 +3834,16 @@ const baseTree = {
       "Help String ID": 105085,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Cavalry Archer",
+      Name: "Cavalry Archer",
       "Name String ID": 14085,
       "Node ID": 39,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 19,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -4191,28 +3852,16 @@ const baseTree = {
       "Help String ID": 105412,
       "Link ID": 39,
       "Link Node Type": "Unit",
-      "Name": "Heavy Cavalry Archer",
+      Name: "Heavy Cavalry Archer",
       "Name String ID": 14412,
       "Node ID": 474,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 71,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 218,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -4221,28 +3870,16 @@ const baseTree = {
       "Help String ID": 105682,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Elephant Archer",
+      Name: "Elephant Archer",
       "Name String ID": 14682,
       "Node ID": 873,
       "Node Status": "NotAvailable",
       "Node Type": "Unit",
       "Picture Index": 393,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -4251,28 +3888,16 @@ const baseTree = {
       "Help String ID": 105684,
       "Link ID": 873,
       "Link Node Type": "Unit",
-      "Name": "Elite Elephant Archer",
+      Name: "Elite Elephant Archer",
       "Name String ID": 14684,
       "Node ID": 875,
       "Node Status": "NotAvailable",
       "Node Type": "UnitUpgrade",
       "Picture Index": 93,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 481,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -4281,28 +3906,16 @@ const baseTree = {
       "Help String ID": 107411,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Thumb Ring",
+      Name: "Thumb Ring",
       "Name String ID": 17411,
       "Node ID": 437,
       "Node Status": "NotAvailable",
       "Node Type": "Research",
       "Picture Index": 112,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -4311,28 +3924,16 @@ const baseTree = {
       "Help String ID": 107415,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Parthian Tactics",
+      Name: "Parthian Tactics",
       "Name String ID": 17415,
       "Node ID": 436,
       "Node Status": "NotAvailable",
       "Node Type": "Research",
       "Picture Index": 111,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 1,
@@ -4341,28 +3942,16 @@ const baseTree = {
       "Help String ID": 105079,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Militia",
+      Name: "Militia",
       "Name String ID": 14079,
       "Node ID": 74,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 8,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 2,
@@ -4371,28 +3960,16 @@ const baseTree = {
       "Help String ID": 105080,
       "Link ID": 74,
       "Link Node Type": "Unit",
-      "Name": "Man-at-Arms",
+      Name: "Man-at-Arms",
       "Name String ID": 14080,
       "Node ID": 75,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 10,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 222,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -4401,28 +3978,16 @@ const baseTree = {
       "Help String ID": 105081,
       "Link ID": 75,
       "Link Node Type": "UnitUpgrade",
-      "Name": "Long Swordsman",
+      Name: "Long Swordsman",
       "Name String ID": 14081,
       "Node ID": 77,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 13,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 207,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -4431,28 +3996,16 @@ const baseTree = {
       "Help String ID": 105411,
       "Link ID": 77,
       "Link Node Type": "UnitUpgrade",
-      "Name": "Two-Handed Swordsman",
+      Name: "Two-Handed Swordsman",
       "Name String ID": 14411,
       "Node ID": 473,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 12,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 217,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -4461,28 +4014,16 @@ const baseTree = {
       "Help String ID": 105469,
       "Link ID": 473,
       "Link Node Type": "UnitUpgrade",
-      "Name": "Champion",
+      Name: "Champion",
       "Name String ID": 14469,
       "Node ID": 567,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 72,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 264,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 2,
@@ -4491,28 +4032,16 @@ const baseTree = {
       "Help String ID": 105078,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Spearman",
+      Name: "Spearman",
       "Name String ID": 14078,
       "Node ID": 93,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 31,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -4521,28 +4050,16 @@ const baseTree = {
       "Help String ID": 105408,
       "Link ID": 93,
       "Link Node Type": "Unit",
-      "Name": "Pikeman",
+      Name: "Pikeman",
       "Name String ID": 14408,
       "Node ID": 358,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 11,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 197,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -4551,28 +4068,16 @@ const baseTree = {
       "Help String ID": 105409,
       "Link ID": 358,
       "Link Node Type": "UnitUpgrade",
-      "Name": "Halberdier",
+      Name: "Halberdier",
       "Name String ID": 14409,
       "Node ID": 359,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 104,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 429,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 2,
@@ -4581,28 +4086,16 @@ const baseTree = {
       "Help String ID": 105672,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Eagle Scout",
+      Name: "Eagle Scout",
       "Name String ID": 14672,
       "Node ID": 751,
       "Node Status": "NotAvailable",
       "Node Type": "Unit",
       "Picture Index": 109,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -4611,28 +4104,16 @@ const baseTree = {
       "Help String ID": 105671,
       "Link ID": 751,
       "Link Node Type": "Unit",
-      "Name": "Eagle Warrior",
+      Name: "Eagle Warrior",
       "Name String ID": 14671,
       "Node ID": 753,
       "Node Status": "NotAvailable",
       "Node Type": "UnitUpgrade",
       "Picture Index": 148,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 384,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -4641,28 +4122,16 @@ const baseTree = {
       "Help String ID": 105673,
       "Link ID": 753,
       "Link Node Type": "UnitUpgrade",
-      "Name": "Elite Eagle Warrior",
+      Name: "Elite Eagle Warrior",
       "Name String ID": 14673,
       "Node ID": 752,
       "Node Status": "NotAvailable",
       "Node Type": "UnitUpgrade",
       "Picture Index": 149,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 434,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 2,
@@ -4671,28 +4140,16 @@ const baseTree = {
       "Help String ID": 107403,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Supplies",
+      Name: "Supplies",
       "Name String ID": 17403,
       "Node ID": 716,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 124,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -4701,28 +4158,16 @@ const baseTree = {
       "Help String ID": 107450,
       "Link ID": 716,
       "Link Node Type": "Research",
-      "Name": "Gambesons",
+      Name: "Gambesons",
       "Name String ID": 17450,
       "Node ID": 875,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 116,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -4731,28 +4176,16 @@ const baseTree = {
       "Help String ID": 107210,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Squires",
+      Name: "Squires",
       "Name String ID": 17210,
       "Node ID": 215,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 80,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -4761,28 +4194,16 @@ const baseTree = {
       "Help String ID": 107258,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Arson",
+      Name: "Arson",
       "Name String ID": 17258,
       "Node ID": 602,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 118,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 2,
@@ -4791,28 +4212,16 @@ const baseTree = {
       "Help String ID": 105326,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Scout Cavalry",
+      Name: "Scout Cavalry",
       "Name String ID": 14326,
       "Node ID": 448,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 64,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -4821,28 +4230,16 @@ const baseTree = {
       "Help String ID": 105444,
       "Link ID": 448,
       "Link Node Type": "Unit",
-      "Name": "Light Cavalry",
+      Name: "Light Cavalry",
       "Name String ID": 14444,
       "Node ID": 546,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 91,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 254,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -4851,28 +4248,16 @@ const baseTree = {
       "Help String ID": 105661,
       "Link ID": 546,
       "Link Node Type": "UnitUpgrade",
-      "Name": "Hussar",
+      Name: "Hussar",
       "Name String ID": 14661,
       "Node ID": 441,
       "Node Status": "NotAvailable",
       "Node Type": "UnitUpgrade",
       "Picture Index": 103,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 428,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 2,
@@ -4881,28 +4266,16 @@ const baseTree = {
       "Help String ID": 107409,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Bloodlines",
+      Name: "Bloodlines",
       "Name String ID": 17409,
       "Node ID": 435,
       "Node Status": "NotAvailable",
       "Node Type": "Research",
       "Picture Index": 110,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -4911,28 +4284,16 @@ const baseTree = {
       "Help String ID": 105068,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Knight",
+      Name: "Knight",
       "Name String ID": 14068,
       "Node ID": 38,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 1,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -4941,28 +4302,16 @@ const baseTree = {
       "Help String ID": 105070,
       "Link ID": 38,
       "Link Node Type": "Unit",
-      "Name": "Cavalier",
+      Name: "Cavalier",
       "Name String ID": 14070,
       "Node ID": 283,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 49,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 209,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -4971,28 +4320,16 @@ const baseTree = {
       "Help String ID": 105471,
       "Link ID": 283,
       "Link Node Type": "UnitUpgrade",
-      "Name": "Paladin",
+      Name: "Paladin",
       "Name String ID": 14471,
       "Node ID": 569,
       "Node Status": "NotAvailable",
       "Node Type": "UnitUpgrade",
       "Picture Index": 2,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 265,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -5001,28 +4338,16 @@ const baseTree = {
       "Help String ID": 105416,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Camel Rider",
+      Name: "Camel Rider",
       "Name String ID": 14416,
       "Node ID": 329,
       "Node Status": "NotAvailable",
       "Node Type": "Unit",
       "Picture Index": 78,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -5031,28 +4356,16 @@ const baseTree = {
       "Help String ID": 105417,
       "Link ID": 329,
       "Link Node Type": "Unit",
-      "Name": "Heavy Camel Rider",
+      Name: "Heavy Camel Rider",
       "Name String ID": 14417,
       "Node ID": 330,
       "Node Status": "NotAvailable",
       "Node Type": "UnitUpgrade",
       "Picture Index": 79,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 236,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -5061,28 +4374,16 @@ const baseTree = {
       "Help String ID": 105167,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Battle Elephant",
+      Name: "Battle Elephant",
       "Name String ID": 14167,
       "Node ID": 1132,
       "Node Status": "NotAvailable",
       "Node Type": "UnitUpgrade",
       "Picture Index": 228,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 630,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -5091,28 +4392,16 @@ const baseTree = {
       "Help String ID": 105168,
       "Link ID": 1132,
       "Link Node Type": "UnitUpgrade",
-      "Name": "Elite Battle Elephant",
+      Name: "Elite Battle Elephant",
       "Name String ID": 14168,
       "Node ID": 1134,
       "Node Status": "NotAvailable",
       "Node Type": "UnitUpgrade",
       "Picture Index": 246,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 631,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -5121,28 +4410,16 @@ const baseTree = {
       "Help String ID": 105009,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Steppe Lancer",
+      Name: "Steppe Lancer",
       "Name String ID": 14009,
       "Node ID": 1370,
       "Node Status": "NotAvailable",
       "Node Type": "Unit",
       "Picture Index": 273,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -5151,28 +4428,16 @@ const baseTree = {
       "Help String ID": 105010,
       "Link ID": 1370,
       "Link Node Type": "Unit",
-      "Name": "Elite Steppe Lancer",
+      Name: "Elite Steppe Lancer",
       "Name String ID": 14010,
       "Node ID": 1372,
       "Node Status": "NotAvailable",
       "Node Type": "UnitUpgrade",
       "Picture Index": 274,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 715,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -5181,28 +4446,16 @@ const baseTree = {
       "Help String ID": 107039,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Husbandry",
+      Name: "Husbandry",
       "Name String ID": 17039,
       "Node ID": 39,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 10,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -5211,28 +4464,16 @@ const baseTree = {
       "Help String ID": 105094,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Battering Ram",
+      Name: "Battering Ram",
       "Name String ID": 14094,
       "Node ID": 1258,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 74,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -5241,28 +4482,16 @@ const baseTree = {
       "Help String ID": 105289,
       "Link ID": 1258,
       "Link Node Type": "Unit",
-      "Name": "Capped Ram",
+      Name: "Capped Ram",
       "Name String ID": 14289,
       "Node ID": 422,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 63,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 96,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -5271,28 +4500,16 @@ const baseTree = {
       "Help String ID": 105446,
       "Link ID": 422,
       "Link Node Type": "UnitUpgrade",
-      "Name": "Siege Ram",
+      Name: "Siege Ram",
       "Name String ID": 14446,
       "Node ID": 548,
       "Node Status": "NotAvailable",
       "Node Type": "UnitUpgrade",
       "Picture Index": 73,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 255,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -5301,28 +4518,16 @@ const baseTree = {
       "Help String ID": 105428,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Armored Elephant",
+      Name: "Armored Elephant",
       "Name String ID": 14428,
       "Node ID": 1744,
       "Node Status": "NotAvailable",
       "Node Type": "Unit",
       "Picture Index": 394,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -5331,28 +4536,16 @@ const baseTree = {
       "Help String ID": 105430,
       "Link ID": 1744,
       "Link Node Type": "Unit",
-      "Name": "Siege Elephant",
+      Name: "Siege Elephant",
       "Name String ID": 14430,
       "Node ID": 1746,
       "Node Status": "NotAvailable",
       "Node Type": "UnitUpgrade",
       "Picture Index": 395,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 838,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -5361,28 +4554,16 @@ const baseTree = {
       "Help String ID": 105095,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Mangonel",
+      Name: "Mangonel",
       "Name String ID": 14095,
       "Node ID": 280,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 27,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -5391,28 +4572,16 @@ const baseTree = {
       "Help String ID": 105448,
       "Link ID": 280,
       "Link Node Type": "Unit",
-      "Name": "Onager",
+      Name: "Onager",
       "Name String ID": 14448,
       "Node ID": 550,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 101,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 257,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -5421,28 +4590,16 @@ const baseTree = {
       "Help String ID": 105493,
       "Link ID": 550,
       "Link Node Type": "UnitUpgrade",
-      "Name": "Siege Onager",
+      Name: "Siege Onager",
       "Name String ID": 14493,
       "Node ID": 588,
       "Node Status": "NotAvailable",
       "Node Type": "UnitUpgrade",
       "Picture Index": 102,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 320,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -5451,28 +4608,16 @@ const baseTree = {
       "Help String ID": 105096,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Scorpion",
+      Name: "Scorpion",
       "Name String ID": 14096,
       "Node ID": 279,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 80,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -5481,28 +4626,16 @@ const baseTree = {
       "Help String ID": 105439,
       "Link ID": 279,
       "Link Node Type": "Unit",
-      "Name": "Heavy Scorpion",
+      Name: "Heavy Scorpion",
       "Name String ID": 14439,
       "Node ID": 542,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 89,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 239,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -5511,28 +4644,16 @@ const baseTree = {
       "Help String ID": 105445,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Siege Tower",
+      Name: "Siege Tower",
       "Name String ID": 14445,
       "Node ID": 1105,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 212,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -5541,28 +4662,16 @@ const baseTree = {
       "Help String ID": 105093,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Bombard Cannon",
+      Name: "Bombard Cannon",
       "Name String ID": 14093,
       "Node ID": 36,
       "Node Status": "NotAvailable",
       "Node Type": "Unit",
       "Picture Index": 30,
-      "Prerequisite IDs": [
-        47,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "Tech",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [47, 0, 0, 0, 0],
+      "Prerequisite Types": ["Tech", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 2,
@@ -5571,28 +4680,16 @@ const baseTree = {
       "Help String ID": 107208,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Padded Archer Armor",
+      Name: "Padded Archer Armor",
       "Name String ID": 17208,
       "Node ID": 211,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 49,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -5601,28 +4698,16 @@ const baseTree = {
       "Help String ID": 107209,
       "Link ID": 211,
       "Link Node Type": "Research",
-      "Name": "Leather Archer Armor",
+      Name: "Leather Archer Armor",
       "Name String ID": 17209,
       "Node ID": 212,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 50,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -5631,28 +4716,16 @@ const baseTree = {
       "Help String ID": 107216,
       "Link ID": 212,
       "Link Node Type": "Research",
-      "Name": "Ring Archer Armor",
+      Name: "Ring Archer Armor",
       "Name String ID": 17216,
       "Node ID": 219,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 51,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 2,
@@ -5661,28 +4734,16 @@ const baseTree = {
       "Help String ID": 107172,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Fletching",
+      Name: "Fletching",
       "Name String ID": 17172,
       "Node ID": 199,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 34,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -5691,28 +4752,16 @@ const baseTree = {
       "Help String ID": 107150,
       "Link ID": 199,
       "Link Node Type": "Research",
-      "Name": "Bodkin Arrow",
+      Name: "Bodkin Arrow",
       "Name String ID": 17150,
       "Node ID": 200,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 35,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -5721,28 +4770,16 @@ const baseTree = {
       "Help String ID": 107151,
       "Link ID": 200,
       "Link Node Type": "Research",
-      "Name": "Bracer",
+      Name: "Bracer",
       "Name String ID": 17151,
       "Node ID": 201,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 37,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 2,
@@ -5751,28 +4788,16 @@ const baseTree = {
       "Help String ID": 107067,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Forging",
+      Name: "Forging",
       "Name String ID": 17067,
       "Node ID": 67,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 17,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -5781,28 +4806,16 @@ const baseTree = {
       "Help String ID": 107068,
       "Link ID": 67,
       "Link Node Type": "Research",
-      "Name": "Iron Casting",
+      Name: "Iron Casting",
       "Name String ID": 17068,
       "Node ID": 68,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 18,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -5811,28 +4824,16 @@ const baseTree = {
       "Help String ID": 107075,
       "Link ID": 68,
       "Link Node Type": "Research",
-      "Name": "Blast Furnace",
+      Name: "Blast Furnace",
       "Name String ID": 17075,
       "Node ID": 75,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 21,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 2,
@@ -5841,28 +4842,16 @@ const baseTree = {
       "Help String ID": 107081,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Scale Barding Armor",
+      Name: "Scale Barding Armor",
       "Name String ID": 17081,
       "Node ID": 81,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 66,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -5871,28 +4860,16 @@ const baseTree = {
       "Help String ID": 107082,
       "Link ID": 81,
       "Link Node Type": "Research",
-      "Name": "Chain Barding Armor",
+      Name: "Chain Barding Armor",
       "Name String ID": 17082,
       "Node ID": 82,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 23,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -5901,28 +4878,16 @@ const baseTree = {
       "Help String ID": 107080,
       "Link ID": 82,
       "Link Node Type": "Research",
-      "Name": "Plate Barding Armor",
+      Name: "Plate Barding Armor",
       "Name String ID": 17080,
       "Node ID": 80,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 65,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 2,
@@ -5931,28 +4896,16 @@ const baseTree = {
       "Help String ID": 107074,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Scale Mail Armor",
+      Name: "Scale Mail Armor",
       "Name String ID": 17074,
       "Node ID": 74,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 63,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -5961,28 +4914,16 @@ const baseTree = {
       "Help String ID": 107076,
       "Link ID": 74,
       "Link Node Type": "Research",
-      "Name": "Chain Mail Armor",
+      Name: "Chain Mail Armor",
       "Name String ID": 17076,
       "Node ID": 76,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 22,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -5991,28 +4932,16 @@ const baseTree = {
       "Help String ID": 107077,
       "Link ID": 76,
       "Link Node Type": "Research",
-      "Name": "Plate Mail Armor",
+      Name: "Plate Mail Armor",
       "Name String ID": 17077,
       "Node ID": 77,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 64,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 1,
@@ -6021,28 +4950,16 @@ const baseTree = {
       "Help String ID": 105090,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Fishing Ship",
+      Name: "Fishing Ship",
       "Name String ID": 14090,
       "Node ID": 13,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 24,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 2,
@@ -6051,28 +4968,16 @@ const baseTree = {
       "Help String ID": 105160,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Fire Galley",
+      Name: "Fire Galley",
       "Name String ID": 14160,
       "Node ID": 1103,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 203,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -6081,28 +4986,16 @@ const baseTree = {
       "Help String ID": 105426,
       "Link ID": 1103,
       "Link Node Type": "Unit",
-      "Name": "Fire Ship",
+      Name: "Fire Ship",
       "Name String ID": 14426,
       "Node ID": 529,
       "Node Status": "ResearchRequired",
       "Node Type": "UnitUpgrade",
       "Picture Index": 86,
-      "Prerequisite IDs": [
-        21,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "Unit",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [21, 0, 0, 0, 0],
+      "Prerequisite Types": ["Unit", "None", "None", "None", "None"],
       "Trigger Tech ID": 21,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -6111,28 +5004,16 @@ const baseTree = {
       "Help String ID": 105429,
       "Link ID": 529,
       "Link Node Type": "UnitUpgrade",
-      "Name": "Fast Fire Ship",
+      Name: "Fast Fire Ship",
       "Name String ID": 14429,
       "Node ID": 532,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 85,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 246,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 1,
@@ -6141,28 +5022,16 @@ const baseTree = {
       "Help String ID": 105443,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Transport Ship",
+      Name: "Transport Ship",
       "Name String ID": 14443,
       "Node ID": 545,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 95,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 2,
@@ -6171,28 +5040,16 @@ const baseTree = {
       "Help String ID": 105089,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Trade Cog",
+      Name: "Trade Cog",
       "Name String ID": 14089,
       "Node ID": 17,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 23,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -6201,28 +5058,16 @@ const baseTree = {
       "Help String ID": 107314,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Gillnets",
+      Name: "Gillnets",
       "Name String ID": 17314,
       "Node ID": 65,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 41,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -6231,28 +5076,16 @@ const baseTree = {
       "Help String ID": 105287,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Cannon Galleon",
+      Name: "Cannon Galleon",
       "Name String ID": 14287,
       "Node ID": 420,
       "Node Status": "ResearchRequired",
       "Node Type": "Unit",
       "Picture Index": 55,
-      "Prerequisite IDs": [
-        47,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "Tech",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [47, 0, 0, 0, 0],
+      "Prerequisite Types": ["Tech", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -6261,28 +5094,16 @@ const baseTree = {
       "Help String ID": 105573,
       "Link ID": 420,
       "Link Node Type": "Unit",
-      "Name": "Elite Cannon Galleon",
+      Name: "Elite Cannon Galleon",
       "Name String ID": 14573,
       "Node ID": 691,
       "Node Status": "NotAvailable",
       "Node Type": "UnitUpgrade",
       "Picture Index": 298,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 376,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 2,
@@ -6291,28 +5112,16 @@ const baseTree = {
       "Help String ID": 105162,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Demolition Raft",
+      Name: "Demolition Raft",
       "Name String ID": 14162,
       "Node ID": 1104,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 202,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -6321,28 +5130,16 @@ const baseTree = {
       "Help String ID": 105424,
       "Link ID": 1104,
       "Link Node Type": "Unit",
-      "Name": "Demolition Ship",
+      Name: "Demolition Ship",
       "Name String ID": 14424,
       "Node ID": 527,
       "Node Status": "ResearchRequired",
       "Node Type": "UnitUpgrade",
       "Picture Index": 84,
-      "Prerequisite IDs": [
-        21,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "Unit",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [21, 0, 0, 0, 0],
+      "Prerequisite Types": ["Unit", "None", "None", "None", "None"],
       "Trigger Tech ID": 21,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -6351,28 +5148,16 @@ const baseTree = {
       "Help String ID": 105425,
       "Link ID": 527,
       "Link Node Type": "UnitUpgrade",
-      "Name": "Heavy Demolition Ship",
+      Name: "Heavy Demolition Ship",
       "Name String ID": 14425,
       "Node ID": 528,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 83,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 244,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 2,
@@ -6381,28 +5166,16 @@ const baseTree = {
       "Help String ID": 105436,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Galley",
+      Name: "Galley",
       "Name String ID": 14436,
       "Node ID": 539,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 87,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -6411,28 +5184,16 @@ const baseTree = {
       "Help String ID": 105091,
       "Link ID": 539,
       "Link Node Type": "Unit",
-      "Name": "War Galley",
+      Name: "War Galley",
       "Name String ID": 14091,
       "Node ID": 21,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 25,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 34,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -6441,28 +5202,16 @@ const baseTree = {
       "Help String ID": 105309,
       "Link ID": 21,
       "Link Node Type": "UnitUpgrade",
-      "Name": "Galleon",
+      Name: "Galleon",
       "Name String ID": 14309,
       "Node ID": 442,
       "Node Status": "ResearchedCompleted",
       "Node Type": "UnitUpgrade",
       "Picture Index": 60,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": 35,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -6471,28 +5220,16 @@ const baseTree = {
       "Help String ID": 105055,
       "Link ID": 528,
       "Link Node Type": "BuildingTech",
-      "Name": "Dromon",
+      Name: "Dromon",
       "Name String ID": 14055,
       "Node ID": 1795,
       "Node Status": "NotAvailable",
       "Node Type": "Unit",
       "Picture Index": 406,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -6501,28 +5238,16 @@ const baseTree = {
       "Help String ID": 107372,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Careening",
+      Name: "Careening",
       "Name String ID": 17372,
       "Node ID": 374,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 98,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -6531,28 +5256,16 @@ const baseTree = {
       "Help String ID": 107373,
       "Link ID": 374,
       "Link Node Type": "Research",
-      "Name": "Dry Dock",
+      Name: "Dry Dock",
       "Name String ID": 17373,
       "Node ID": 375,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 99,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -6561,28 +5274,16 @@ const baseTree = {
       "Help String ID": 107377,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Shipwright",
+      Name: "Shipwright",
       "Name String ID": 17377,
       "Node ID": 373,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 97,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -6591,28 +5292,16 @@ const baseTree = {
       "Help String ID": 107050,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Masonry",
+      Name: "Masonry",
       "Name String ID": 17050,
       "Node ID": 50,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 13,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -6621,28 +5310,16 @@ const baseTree = {
       "Help String ID": 107051,
       "Link ID": 50,
       "Link Node Type": "Research",
-      "Name": "Architecture",
+      Name: "Architecture",
       "Name String ID": 17051,
       "Node ID": 51,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 14,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -6651,28 +5328,16 @@ const baseTree = {
       "Help String ID": 107163,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Fortified Wall",
+      Name: "Fortified Wall",
       "Name String ID": 17163,
       "Node ID": 194,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 46,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -6681,28 +5346,16 @@ const baseTree = {
       "Help String ID": 107047,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Chemistry",
+      Name: "Chemistry",
       "Name String ID": 17047,
       "Node ID": 47,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 12,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -6711,28 +5364,16 @@ const baseTree = {
       "Help String ID": 107320,
       "Link ID": 47,
       "Link Node Type": "Research",
-      "Name": "Bombard Tower",
+      Name: "Bombard Tower",
       "Name String ID": 17320,
       "Node ID": 64,
       "Node Status": "NotAvailable",
       "Node Type": "Research",
       "Picture Index": 47,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -6741,28 +5382,16 @@ const baseTree = {
       "Help String ID": 107093,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Ballistics",
+      Name: "Ballistics",
       "Name String ID": 17093,
       "Node ID": 93,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 25,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -6771,28 +5400,16 @@ const baseTree = {
       "Help String ID": 107378,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Siege Engineers",
+      Name: "Siege Engineers",
       "Name String ID": 17378,
       "Node ID": 377,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 101,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -6801,28 +5418,16 @@ const baseTree = {
       "Help String ID": 107186,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Guard Tower",
+      Name: "Guard Tower",
       "Name String ID": 17186,
       "Node ID": 140,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 76,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -6831,28 +5436,16 @@ const baseTree = {
       "Help String ID": 107063,
       "Link ID": 140,
       "Link Node Type": "Research",
-      "Name": "Keep",
+      Name: "Keep",
       "Name String ID": 17063,
       "Node ID": 63,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 16,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -6861,28 +5454,16 @@ const baseTree = {
       "Help String ID": 107374,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Heated Shot",
+      Name: "Heated Shot",
       "Name String ID": 17374,
       "Node ID": 380,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 104,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -6891,28 +5472,16 @@ const baseTree = {
       "Help String ID": 107278,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Arrowslits",
+      Name: "Arrowslits",
       "Name String ID": 17278,
       "Node ID": 608,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 119,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -6921,28 +5490,16 @@ const baseTree = {
       "Help String ID": 107321,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Murder Holes",
+      Name: "Murder Holes",
       "Name String ID": 17321,
       "Node ID": 322,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 61,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -6951,28 +5508,16 @@ const baseTree = {
       "Help String ID": 107054,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Treadmill Crane",
+      Name: "Treadmill Crane",
       "Name String ID": 17054,
       "Node ID": 54,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 60,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -6981,28 +5526,16 @@ const baseTree = {
       "Help String ID": 105660,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Petard",
+      Name: "Petard",
       "Name String ID": 14660,
       "Node ID": 440,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 113,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -7011,28 +5544,16 @@ const baseTree = {
       "Help String ID": 105381,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Trebuchet (Packed)",
+      Name: "Trebuchet (Packed)",
       "Name String ID": 14381,
       "Node ID": 331,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 29,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 4,
@@ -7041,28 +5562,16 @@ const baseTree = {
       "Help String ID": 107376,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Hoardings",
+      Name: "Hoardings",
       "Name String ID": 17376,
       "Node ID": 379,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 103,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -7071,28 +5580,16 @@ const baseTree = {
       "Help String ID": 107322,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Sappers",
+      Name: "Sappers",
       "Name String ID": 17322,
       "Node ID": 321,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 5,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -7101,28 +5598,16 @@ const baseTree = {
       "Help String ID": 107319,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Conscription",
+      Name: "Conscription",
       "Name String ID": 17319,
       "Node ID": 315,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 91,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -7131,28 +5616,16 @@ const baseTree = {
       "Help String ID": 107408,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Spies/Treason",
+      Name: "Spies/Treason",
       "Name String ID": 17408,
       "Node ID": 408,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 19,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -7161,28 +5634,16 @@ const baseTree = {
       "Help String ID": 105099,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Monk",
+      Name: "Monk",
       "Name String ID": 14099,
       "Node ID": 125,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 33,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -7191,28 +5652,16 @@ const baseTree = {
       "Help String ID": 107462,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Devotion",
+      Name: "Devotion",
       "Name String ID": 17462,
       "Node ID": 46,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 131,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -7221,28 +5670,16 @@ const baseTree = {
       "Help String ID": 107045,
       "Link ID": 46,
       "Link Node Type": "Research",
-      "Name": "Faith",
+      Name: "Faith",
       "Name String ID": 17045,
       "Node ID": 45,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 11,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -7251,28 +5688,16 @@ const baseTree = {
       "Help String ID": 107315,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Redemption",
+      Name: "Redemption",
       "Name String ID": 17315,
       "Node ID": 316,
       "Node Status": "NotAvailable",
       "Node Type": "Research",
       "Picture Index": 92,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -7281,28 +5706,16 @@ const baseTree = {
       "Help String ID": 107220,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Illumination",
+      Name: "Illumination",
       "Name String ID": 17220,
       "Node ID": 233,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 84,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -7311,28 +5724,16 @@ const baseTree = {
       "Help String ID": 107316,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Atonement",
+      Name: "Atonement",
       "Name String ID": 17316,
       "Node ID": 319,
       "Node Status": "NotAvailable",
       "Node Type": "Research",
       "Picture Index": 93,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -7341,28 +5742,16 @@ const baseTree = {
       "Help String ID": 107222,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Block Printing",
+      Name: "Block Printing",
       "Name String ID": 17222,
       "Node ID": 230,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 82,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -7371,28 +5760,16 @@ const baseTree = {
       "Help String ID": 107435,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Herbal Medicine",
+      Name: "Herbal Medicine",
       "Name String ID": 17435,
       "Node ID": 441,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 114,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -7401,28 +5778,16 @@ const baseTree = {
       "Help String ID": 107416,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Theocracy",
+      Name: "Theocracy",
       "Name String ID": 17416,
       "Node ID": 438,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 109,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -7431,28 +5796,16 @@ const baseTree = {
       "Help String ID": 107412,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Heresy",
+      Name: "Heresy",
       "Name String ID": 17412,
       "Node ID": 439,
       "Node Status": "NotAvailable",
       "Node Type": "Research",
       "Picture Index": 108,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -7461,28 +5814,16 @@ const baseTree = {
       "Help String ID": 107221,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Sanctity",
+      Name: "Sanctity",
       "Name String ID": 17221,
       "Node ID": 231,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 83,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -7491,28 +5832,16 @@ const baseTree = {
       "Help String ID": 107249,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Fervor",
+      Name: "Fervor",
       "Name String ID": 17249,
       "Node ID": 252,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 73,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 1,
@@ -7521,28 +5850,16 @@ const baseTree = {
       "Help String ID": 105121,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Villager",
+      Name: "Villager",
       "Name String ID": 14121,
       "Node ID": 83,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 15,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 2,
@@ -7551,28 +5868,16 @@ const baseTree = {
       "Help String ID": 107008,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Town Watch",
+      Name: "Town Watch",
       "Name String ID": 17008,
       "Node ID": 8,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 69,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -7581,28 +5886,16 @@ const baseTree = {
       "Help String ID": 107282,
       "Link ID": 8,
       "Link Node Type": "Research",
-      "Name": "Town Patrol",
+      Name: "Town Patrol",
       "Name String ID": 17282,
       "Node ID": 280,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 89,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 1,
@@ -7611,28 +5904,16 @@ const baseTree = {
       "Help String ID": 107101,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Feudal Age",
+      Name: "Feudal Age",
       "Name String ID": 17101,
       "Node ID": 101,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 30,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 2,
@@ -7641,28 +5922,16 @@ const baseTree = {
       "Help String ID": 107102,
       "Link ID": 101,
       "Link Node Type": "Research",
-      "Name": "Castle Age",
+      Name: "Castle Age",
       "Name String ID": 17102,
       "Node ID": 102,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 31,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -7671,28 +5940,16 @@ const baseTree = {
       "Help String ID": 107103,
       "Link ID": 102,
       "Link Node Type": "Research",
-      "Name": "Imperial Age",
+      Name: "Imperial Age",
       "Name String ID": 17103,
       "Node ID": 103,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 32,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 1,
@@ -7701,28 +5958,16 @@ const baseTree = {
       "Help String ID": 107022,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Loom",
+      Name: "Loom",
       "Name String ID": 17022,
       "Node ID": 22,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 6,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 2,
@@ -7731,28 +5976,16 @@ const baseTree = {
       "Help String ID": 107211,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Wheelbarrow",
+      Name: "Wheelbarrow",
       "Name String ID": 17211,
       "Node ID": 213,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 79,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -7761,28 +5994,16 @@ const baseTree = {
       "Help String ID": 107246,
       "Link ID": 213,
       "Link Node Type": "Research",
-      "Name": "Hand Cart",
+      Name: "Hand Cart",
       "Name String ID": 17246,
       "Node ID": 249,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 42,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 2,
@@ -7791,28 +6012,16 @@ const baseTree = {
       "Help String ID": 107055,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Gold Mining",
+      Name: "Gold Mining",
       "Name String ID": 17055,
       "Node ID": 55,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 15,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -7821,28 +6030,16 @@ const baseTree = {
       "Help String ID": 107180,
       "Link ID": 55,
       "Link Node Type": "Research",
-      "Name": "Gold Shaft Mining",
+      Name: "Gold Shaft Mining",
       "Name String ID": 17180,
       "Node ID": 182,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 62,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 2,
@@ -7851,28 +6048,16 @@ const baseTree = {
       "Help String ID": 107276,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Stone Mining",
+      Name: "Stone Mining",
       "Name String ID": 17276,
       "Node ID": 278,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 87,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -7881,28 +6066,16 @@ const baseTree = {
       "Help String ID": 107277,
       "Link ID": 278,
       "Link Node Type": "Research",
-      "Name": "Stone Shaft Mining",
+      Name: "Stone Shaft Mining",
       "Name String ID": 17277,
       "Node ID": 279,
       "Node Status": "NotAvailable",
       "Node Type": "Research",
       "Picture Index": 88,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 2,
@@ -7911,28 +6084,16 @@ const baseTree = {
       "Help String ID": 107189,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Double-Bit Axe",
+      Name: "Double-Bit Axe",
       "Name String ID": 17189,
       "Node ID": 202,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 70,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -7941,28 +6102,16 @@ const baseTree = {
       "Help String ID": 107190,
       "Link ID": 202,
       "Link Node Type": "Research",
-      "Name": "Bow Saw",
+      Name: "Bow Saw",
       "Name String ID": 17190,
       "Node ID": 203,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 71,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -7971,28 +6120,16 @@ const baseTree = {
       "Help String ID": 107231,
       "Link ID": 203,
       "Link Node Type": "Research",
-      "Name": "Two-Man Saw",
+      Name: "Two-Man Saw",
       "Name String ID": 17231,
       "Node ID": 221,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 81,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 2,
@@ -8001,28 +6138,16 @@ const baseTree = {
       "Help String ID": 105100,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Trade Cart",
+      Name: "Trade Cart",
       "Name String ID": 14100,
       "Node ID": 128,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Unit",
       "Picture Index": 34,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Unit"
+      "Use Type": "Unit",
     },
     {
       "Age ID": 3,
@@ -8031,28 +6156,16 @@ const baseTree = {
       "Help String ID": 107023,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Coinage",
+      Name: "Coinage",
       "Name String ID": 17023,
       "Node ID": 23,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 7,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -8061,28 +6174,16 @@ const baseTree = {
       "Help String ID": 107017,
       "Link ID": 23,
       "Link Node Type": "Research",
-      "Name": "Banking",
+      Name: "Banking",
       "Name String ID": 17017,
       "Node ID": 17,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 3,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -8091,28 +6192,16 @@ const baseTree = {
       "Help String ID": 107410,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Caravan",
+      Name: "Caravan",
       "Name String ID": 17410,
       "Node ID": 48,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 113,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -8121,28 +6210,16 @@ const baseTree = {
       "Help String ID": 107015,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Guilds",
+      Name: "Guilds",
       "Name String ID": 17015,
       "Node ID": 15,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 58,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 2,
@@ -8151,28 +6228,16 @@ const baseTree = {
       "Help String ID": 107014,
       "Link ID": -1,
       "Link Node Type": "BuildingTech",
-      "Name": "Horse Collar",
+      Name: "Horse Collar",
       "Name String ID": 17014,
       "Node ID": 14,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 2,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 3,
@@ -8181,28 +6246,16 @@ const baseTree = {
       "Help String ID": 107013,
       "Link ID": 14,
       "Link Node Type": "Research",
-      "Name": "Heavy Plow",
+      Name: "Heavy Plow",
       "Name String ID": 17013,
       "Node ID": 13,
       "Node Status": "ResearchedCompleted",
       "Node Type": "Research",
       "Picture Index": 1,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
+      "Use Type": "Tech",
     },
     {
       "Age ID": 4,
@@ -8211,28 +6264,16 @@ const baseTree = {
       "Help String ID": 107012,
       "Link ID": 13,
       "Link Node Type": "Research",
-      "Name": "Crop Rotation",
+      Name: "Crop Rotation",
       "Name String ID": 17012,
       "Node ID": 12,
       "Node Status": "NotAvailable",
       "Node Type": "Research",
       "Picture Index": 0,
-      "Prerequisite IDs": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "Prerequisite Types": [
-        "None",
-        "None",
-        "None",
-        "None",
-        "None"
-      ],
+      "Prerequisite IDs": [0, 0, 0, 0, 0],
+      "Prerequisite Types": ["None", "None", "None", "None", "None"],
       "Trigger Tech ID": -1,
-      "Use Type": "Tech"
-    }
-  ]
+      "Use Type": "Tech",
+    },
+  ],
 };

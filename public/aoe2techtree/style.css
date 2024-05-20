@@ -69,7 +69,7 @@ a:active {
 #toolbar {
   padding: 0px;
   display: flex;
-  width: 500px;
+  width: 600px;
   height: 75px;
   bottom: 0;
   right: 0;
@@ -88,6 +88,18 @@ a:active {
 }
 
 #reset {
+  flex: 20%;
+  color: black;
+  font-size: 24px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 75px;
+  cursor: pointer;
+  outline: solid;
+  outline-offset: -10px;
+}
+
+#fill {
   flex: 20%;
   color: black;
   font-size: 24px;

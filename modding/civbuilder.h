@@ -9,6 +9,7 @@
 #include <map>
 #include <time.h>
 #include <math.h>
+#include <typeinfo>
 #include "genie/dat/DatFile.h"
 #include <jsoncpp/json/json.h>
 #include "helpers.h"
@@ -26,9 +27,16 @@ class Civbuilder {
         map<int, int> teamBonuses;
         map<string, vector<int>> unitClasses;
 
+	    int ahosiID = -1;
+	    int ehosiID = -1;
+        int vilspear = -1;
+        int vilpike = -1;
+        int vilhalb = -1;
+
         int numCivs;
 
         vector<vector<int>> duplicationUnits;
+        vector<vector<int>> multipliedEffects;
 
         Value config;
         DatFile* df;

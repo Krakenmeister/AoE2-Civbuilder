@@ -1,10 +1,10 @@
 //0 = vanilla, 1 = allow generated bonuses
 const numBonuses = [
-  [323, 323], //Civ bonuses
+  [334, 334], //Civ bonuses
   [83, 83], //Unique units
-  [53, 53], //Castle techs
-  [50, 50], //Imp techs
-  [75, 75], //Team bonuses
+  [54, 54], //Castle techs
+  [54, 54], //Imp techs
+  [76, 76], //Team bonuses
 ];
 
 const numCivs = 45;
@@ -127,91 +127,89 @@ const colours = [
 //Maps path files for unique unit icon images to their unique units
 //Swap 043 and 037? all the mapping back and forth is quite confusing and requires more testing
 const iconids = [
-  "041",
-  "046",
-  "050",
-  "045",
-  "044",
-  "036",
-  "035",
-  "043",
-  "037",
-  "039",
-  "038",
-  "042",
-  "047",
-  "106",
-  "110",
-  "108",
-  "105",
-  "117",
-  "133",
-  "093",
-  "097",
-  "099",
-  "114",
-  "190",
-  "195",
-  "197",
-  "191",
-  "231",
-  "233",
-  "230",
-  "232",
-  "249",
-  "251",
-  "252",
-  "253",
-  "355",
-  "356",
-  "369",
-  "370",
-  "377",
-  "351",
-  "058",
-  "299",
-  "144",
-  "300",
-  "138",
-  "139",
-  "132",
-  "166",
-  "165",
-  "297",
-  "357",
-  "260",
-  "146",
-  "379",
-  "256",
-  "376",
-  "325",
-  "236",
-  "053",
-  "207",
-  "350",
-  "136",
-  "359",
-  "368",
-  "366",
-  "206",
-  "163",
-  "361",
-  "216",
-  "162",
-  "181",
-  "259",
-  "119",
-  "081",
-  "243",
-  "375",
-  "327",
-  "319",
-  "386",
-  "389",
-  "390",
-  "405",
-  "407",
-  "408",
+  "041", // Longbowman
+  "046", // Throwing Axeman
+  "050", // Huskarl
+  "045", // Teutonic Knight
+  "044", // Samurai
+  "036", // Chu Ko Nu
+  "035", // Cataphract
+  "037", // Mameluke
+  "043", // War Elephant
+  "039", // Janissary
+  "038", // Berserk
+  "042", // Mangudai
+  "047", // Woad Raider
+  "106", // Conquistador
+  "110", // Jaguar Warrior
+  "108", // Plumed Archer
+  "105", // Tarkan
+  "117", // War Wagon
+  "133", // Genoese Crossbow
+  "093", // Ghulam
+  "097", // Kamayuk
+  "099", // Magyar Huszar
+  "114", // Boyar
+  "190", // Organ Gun
+  "195", // Shotel Warrior
+  "197", // Gbeto
+  "191", // Camel Archer
+  "231", // Ballista Elephant
+  "233", // Karambit Warrior
+  "230", // Arambai
+  "232", // Rattan Archer
+  "249", // Konnik
+  "251", // Keshik
+  "252", // Kipchak
+  "253", // Leitis
+  "355", // Coustillier
+  "356", // Serjeant
+  "369", // Obuch
+  "370", // Hussite Wagon
+  "377", // Crusader Knight
+  "351", // Xolotl Warrior
+  "058", // Saboteur
+  "299", // Ninja
+  "144", // Flamethrower
+  "300", // Photonman
+  "405", // Centurion
+  "319", // Apukispay
+  "132", // Monkey Boy
+  "166", // Amazon Warrior
+  "165", // Amazon Archer
+  "297", // Iroquois Warrior
+  "357", // Varangian Guard
+  "260", // Gendarme
+  "146", // Cuahchiqueh
+  "379", // Ritterbruder
+  "256", // Kazak
+  "376", // Szlachcic
+  "325", // Cuirassier
+  "236", // Rajput
+  "053", // Seljuk Archer
+  "207", // Numidian Javelinman
+  "350", // Sosso Guard
+  "136", // Swiss Pikeman
+  "359", // Headhunter
+  "368", // Teulu
+  "366", // Maillotins
+  "206", // Hashashin
+  "163", // Zweihander
+  "361", // Stradiot
+  "216", // Ahosi
+  "162", // Spadoni
+  "181", // Clibinarii
+  "259", // Silahtar
+  "119", // Jaridah
+  "081", // Wolf Warrior
+  "243", // Warrior Monk
+  "375", // Castellan
+  "327", // Lightning Warrior
+  "390", // Chakram Thrower
+  "386", // Urumi Swordsman
+  "389", // Ratha
+  "407", // Composite Bowman
+  "408", // Monaspa
 ];
 const blanks = ["040", "079", "107", "116", "134", "143", "185", "198", "201", "229", "270", "354", "371", "372", "387", "385", "391", "392", "409", "410"];
 

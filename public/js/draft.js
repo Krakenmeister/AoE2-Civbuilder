@@ -281,6 +281,8 @@ function renderFlagTech(draft) {
     wrapping.appendChild(flagbox);
 
     document.getElementsByTagName("body")[0].appendChild(wrapping);
+
+    document.getElementsByClassName("flagbox")[0].style.transform = `scale(${(0.9 * window.innerHeight) / flagbox.getBoundingClientRect().height})`;
     clientFlag(flag_palette, "flag", 1, "..");
   } else {
     $("body").contents().not("script").remove();

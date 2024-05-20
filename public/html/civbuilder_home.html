@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/styles.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
-    <script src="./aoe2techtree/js/svg.min.js"></script>
-    <title>Civilization Builder</title>
-    <link rel="icon" href="./img/kraken_logo_circular.png" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://krakenmeister.com/civbuilder" />
-    <meta property="og:site_name" content="AoE2 Civbuilder" />
-    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://krakenmeister.com/img/civbuilder_project.jpg" />
-    <meta name="description" content="Create your own Age of Empires 2 custom civilizations and generate mods to play with them in-game!" />
-  </head>
-  <body>
-    <div id="page">
-      <h1 id="title">Civilization Builder</h1>
-      <button id="generateButton">Random Civilizations</button>
-      <div id="spacer"></div>
-      <button id="startBuild">Build Civilization</button>
-      <div id="spacer"></div>
-      <button id="startDraft">Create Draft</button>
-    </div>
-    <div id="navigation">
-      <button id="home">Home</button>
-      <button id="help">Help</button>
-      <button id="about">About</button>
-      <button id="events">Events</button>
-      <button id="updates">Updates</button>
-    </div>
-    <img src="./img/kraken_invite.png" alt="Krakenmeister's Maelstrom" id="discordinvite" />
-    <script src="./js/common.js"></script>
-    <script src="./aoe2techtree/js/techtree.js"></script>
-    <script src="./aoe2techtree/js/main.js"></script>
-    <script src="./js/client.js"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/styles.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+		<script src="./aoe2techtree/js/svg.min.js"></script>
+		<title>Civilization Builder</title>
+		<link rel="icon" href="./img/kraken_logo_circular.png" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://krakenmeister.com/civbuilder" />
+		<meta property="og:site_name" content="AoE2 Civbuilder" />
+		<meta property="og:image" itemprop="image primaryImageOfPage" content="https://krakenmeister.com/img/civbuilder_project.jpg" />
+		<meta name="description" content="Create your own Age of Empires 2 custom civilizations and generate mods to play with them in-game!" />
+	</head>
+	<body>
+		<div id="page">
+			<h1 id="title">Civilization Builder</h1>
+			<button id="startBuild">Build Civilization</button>
+			<div id="spacer"></div>
+			<button id="combineButton">Combine Civilizations</button>
+			<div id="spacer"></div>
+			<button id="startDraft">Create Draft</button>
+		</div>
+		<div id="navigation">
+			<button id="home">Home</button>
+			<button id="help">Help</button>
+			<button id="about">About</button>
+			<button id="events">Events</button>
+			<button id="updates">Updates</button>
+		</div>
+		<div id="links">
+			<img src="./img/kraken_invite.png" alt="Krakenmeister's Maelstrom" id="discordinvite" />
+			<button id="donate">Donate</button>
+		</div>
+		<script src="./js/common.js"></script>
+		<script src="./aoe2techtree/js/techtree.js"></script>
+		<script src="./aoe2techtree/js/main.js"></script>
+		<script src="./js/client.js"></script>
+	</body>
 </html>

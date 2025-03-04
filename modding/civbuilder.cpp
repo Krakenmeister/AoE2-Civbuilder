@@ -48,7 +48,7 @@ Civbuilder::initialize() {
 	this->civBonuses[0] = {381};
 	this->civBonuses[1] = {382, 403};
 	this->civBonuses[2] = {383};
-	this->civBonuses[3] = {325};
+	this->civBonuses[3] = {325, 330};
 	this->civBonuses[4] = {290};
 	this->civBonuses[5] = {524};
 	this->civBonuses[6] = {343};
@@ -83,7 +83,7 @@ Civbuilder::initialize() {
 	this->civBonuses[35] = {416, 415, 391};
 	this->civBonuses[36] = {394};
 	this->civBonuses[37] = {389};
-	this->civBonuses[38] = {388};
+	this->civBonuses[38] = {286, 287, 288, 388};
 	this->civBonuses[39] = {393};
 	this->civBonuses[40] = {385};
 	this->civBonuses[41] = {386};
@@ -153,7 +153,7 @@ Civbuilder::initialize() {
 	this->civBonuses[105] = {758, 759, 760, 761, 762, 763, 764, 765, 766, 767};
 	this->civBonuses[106] = {770};
 	this->civBonuses[107] = {771};
-	this->civBonuses[108] = {772, 773, 774};
+	this->civBonuses[108] = {772, 773, 774, 815, 816, 817};
 	this->civBonuses[109] = {775};
 
 	this->teamBonuses[0] = 488;
@@ -199,7 +199,7 @@ Civbuilder::initialize() {
 	this->castleUniqueTechIDs[2] = 3;
 	this->castleUniqueTechIDs[3] = 685;
 	this->castleUniqueTechIDs[4] = 754;
-	this->castleUniqueTechIDs[5] = 626;
+	this->castleUniqueTechIDs[5] = 627;
 	this->castleUniqueTechIDs[6] = 464;
 	this->castleUniqueTechIDs[7] = 482;
 	this->castleUniqueTechIDs[8] = 462;
@@ -248,7 +248,7 @@ Civbuilder::initialize() {
 	this->impUniqueTechIDs[2] = 461;
 	this->impUniqueTechIDs[3] = 686;
 	this->impUniqueTechIDs[4] = 755;
-	this->impUniqueTechIDs[5] = 627;
+	this->impUniqueTechIDs[5] = 626;
 	this->impUniqueTechIDs[6] = 61;
 	this->impUniqueTechIDs[7] = 5;
 	this->impUniqueTechIDs[8] = 52;
@@ -390,7 +390,7 @@ Civbuilder::assignLanguages() {
 	// Remove all the old sound items
 	for (int i = 0; i < this->df->Sounds.size(); i++) {
 		for (int j = 0; j < this->df->Sounds[i].Items.size(); j++) {
-			if (this->df->Sounds[i].Items[j].Civilization<civOffset &&this->df->Sounds[i].Items[j].Civilization> 0) {
+			if (this->df->Sounds[i].Items[j].Civilization < civOffset && this->df->Sounds[i].Items[j].Civilization > 0) {
 				this->df->Sounds[i].Items.erase(this->df->Sounds[i].Items.begin() + j);
 				j--;
 			}
@@ -757,9 +757,12 @@ Civbuilder::setupData() {
 	// Give eco buildings and towers 0 population headroom so it can be increased with bonus
 	for (Civ &civ : df->Civs) {
 		for (int i = 0; i < ecoBuildings.size(); i++) {
-			civ.Units[ecoBuildings[i]].ResourceStorages[0].Type = 4;
-			civ.Units[ecoBuildings[i]].ResourceStorages[0].Amount = 0;
-			civ.Units[ecoBuildings[i]].ResourceStorages[0].Flag = 4;
+			// Except folwarks
+			if (ecoBuildings[i] != 1711 && ecoBuildings[i] != 1720 && ecoBuildings[i] != 1734) {
+				civ.Units[ecoBuildings[i]].ResourceStorages[0].Type = 4;
+				civ.Units[ecoBuildings[i]].ResourceStorages[0].Amount = 0;
+				civ.Units[ecoBuildings[i]].ResourceStorages[0].Flag = 4;
+			}
 		}
 		for (Unit &unit : civ.Units) {
 			if (unit.Class == 52) {
@@ -853,9 +856,17 @@ Civbuilder::setupData() {
 	// Make all buildings have stone storage
 	for (Civ &civ : this->df->Civs) {
 		for (Unit &unit : civ.Units) {
-			unit.ResourceStorages[2].Type = 2;
-			unit.ResourceStorages[2].Amount = 0;
-			unit.ResourceStorages[2].Flag = 8;
+			bool isBuilding = false;
+			for (int j = 0; j < buildingClasses.size(); j++) {
+				if (buildingClasses[j] == unit.Class) {
+					isBuilding = true;
+				}
+			}
+			if (isBuilding) {
+				unit.ResourceStorages[2].Type = 2;
+				unit.ResourceStorages[2].Amount = 0;
+				unit.ResourceStorages[2].Flag = 8;
+			}
 		}
 	}
 
@@ -883,6 +894,41 @@ Civbuilder::setupData() {
 	for (int i = 0; i < this->df->Techs.size(); i++) {
 		this->df->Techs[i].Name = to_string(i) + " " + this->df->Techs[i].Name;
 	}
+
+	// Orthodoxy requires Castle Age
+	this->df->Techs[512].RequiredTechs[0] = 102;
+
+	// Madrasah requires Castle Age
+	this->df->Techs[490].RequiredTechs[0] = 102;
+
+	// Make zealotry work again
+	this->df->Techs[9].RequiredTechs[0] = 102;
+
+	// Cheaper gunpowder not require anything
+	this->df->Techs[500].RequiredTechCount = 0;
+	this->df->Techs[500].RequiredTechs[0] = -1;
+
+	// Fix vanilla bug with chinese team bonus and eco upgrades
+	this->df->Effects[831].Name = "Horse collar + chinese TB + sicilian farm";
+	this->df->Effects[832].Name = "Heavy plow + chinese TB + sicilian farm";
+	this->df->Effects[833].Name = "Crop rotation + chinese TB + sicilian farm";
+
+	e.Name = "Horse collar + chinese TB";
+	e.EffectCommands.push_back(createEC(1, 36, 1, -1, 7.5));
+	this->df->Effects.push_back(e);
+	this->df->Techs[812].EffectID = (int) (this->df->Effects.size() - 1);
+
+	e.EffectCommands.clear();
+	e.Name = "Heavy plow + chinese TB";
+	e.EffectCommands.push_back(createEC(1, 36, 1, -1, 12.5));
+	this->df->Effects.push_back(e);
+	this->df->Techs[813].EffectID = (int) (this->df->Effects.size() - 1);
+
+	e.EffectCommands.clear();
+	e.Name = "Crop rotation + chinese TB";
+	e.EffectCommands.push_back(createEC(1, 36, 1, -1, 17.5));
+	this->df->Effects.push_back(e);
+	this->df->Techs[814].EffectID = (int) (this->df->Effects.size() - 1);
 }
 
 void
@@ -929,10 +975,10 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].Type50.Armours[0].Amount = 3;
 		civ.Units[eID].Type50.DisplayedMeleeArmour = 3;
 		civ.Units[eID].HitPoints = 115;
-		civ.Units[uuID].Creatable.ResourceCosts[0].Amount = 50;
-		civ.Units[uuID].Creatable.ResourceCosts[1].Amount = 100;
-		civ.Units[eID].Creatable.ResourceCosts[0].Amount = 50;
-		civ.Units[eID].Creatable.ResourceCosts[1].Amount = 100;
+		civ.Units[uuID].Creatable.ResourceCosts[0].Amount = 30;
+		civ.Units[uuID].Creatable.ResourceCosts[1].Amount = 60;
+		civ.Units[eID].Creatable.ResourceCosts[0].Amount = 30;
+		civ.Units[eID].Creatable.ResourceCosts[1].Amount = 60;
 	}
 	// Saboteur
 	createUU(41, 706, "Saboteur", {0, 600, 600, 0}, 40, 7606);
@@ -948,8 +994,8 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].Type50.Armours[2].Amount = 5;
 		civ.Units[eID].Creatable.DisplayedPierceArmour = 5;
 		civ.Units[eID].HitPoints = 70;
-		civ.Units[uuID].Creatable.TrainTime = 10;
-		civ.Units[eID].Creatable.TrainTime = 10;
+		civ.Units[uuID].Creatable.TrainTime = 15;
+		civ.Units[eID].Creatable.TrainTime = 15;
 		civ.Units[uuID].Type50.Attacks[1].Amount = 40;
 		civ.Units[eID].Type50.Attacks[1].Amount = 55;
 		civ.Units[uuID].Type50.DisplayedAttack = 40;
@@ -962,9 +1008,9 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].Type50.Attacks.push_back(siege_bonus);
 		unit::AttackOrArmor castle_bonus = unit::AttackOrArmor();
 		castle_bonus.Class = 26;
-		castle_bonus.Amount = 400;
+		castle_bonus.Amount = 600;
 		civ.Units[uuID].Type50.Attacks.push_back(castle_bonus);
-		castle_bonus.Amount = 800;
+		castle_bonus.Amount = 1200;
 		civ.Units[eID].Type50.Attacks.push_back(castle_bonus);
 		civ.Units[uuID].Type50.BlastAttackLevel = 1;
 		civ.Units[uuID].Bird.TaskList.push_back(civ.Units[1120].Bird.TaskList[5]);
@@ -973,6 +1019,7 @@ Civbuilder::createNewUnits() {
 		civ.Units[uuID].Type50.BlastWidth = 1;
 		civ.Units[eID].Type50.BlastWidth = 2.5;
 	}
+	setUnitCosts(this->df, {uuID, eID}, {0, 0, 50, 50});
 	// Ninja
 	createUU(42, 1145, "Ninja", {0, 500, 0, 600}, 100, 7607);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
@@ -989,10 +1036,10 @@ Civbuilder::createNewUnits() {
 		civ.Units[uuID].Type50.Attacks.push_back(uu_bonus);
 		uu_bonus.Amount = 7;
 		civ.Units[eID].Type50.Attacks.push_back(uu_bonus);
-		civ.Units[uuID].Type50.Attacks[2].Class = 31;
+		civ.Units[uuID].Type50.Attacks[2].Class = 4;
 		civ.Units[uuID].Type50.Attacks[2].Amount = 11;
 		civ.Units[uuID].Type50.DisplayedAttack = 11;
-		civ.Units[eID].Type50.Attacks[2].Class = 31;
+		civ.Units[eID].Type50.Attacks[2].Class = 4;
 		civ.Units[eID].Type50.Attacks[2].Amount = 14;
 		civ.Units[eID].Type50.DisplayedAttack = 14;
 		civ.Units[uuID].Speed = 1.15;
@@ -1000,6 +1047,8 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].HitPoints = 60;
 		civ.Units[eID].Type50.Armours[2].Amount = 2;
 		civ.Units[eID].Creatable.DisplayedPierceArmour = 2;
+		civ.Units[uuID].Type50.BreakOffCombat = 1;
+		civ.Units[eID].Type50.BreakOffCombat = 1;
 	}
 	// Flamethrower
 	createUU(43, 188, "Flamethrower", {0, 1000, 0, 1000}, 75, 7608);
@@ -1016,9 +1065,8 @@ Civbuilder::createNewUnits() {
 		civ.Units[uuID].Type50.Attacks.push_back(ram_bonus);
 		ram_bonus.Amount = 12;
 		civ.Units[eID].Type50.Attacks.push_back(ram_bonus);
-		civ.Units[eID].HitPoints = 220;
-		civ.Units[eID].Type50.Armours[0].Amount = 5;
-		civ.Units[eID].Type50.DisplayedMeleeArmour = 5;
+		civ.Units[eID].Type50.Armours[0].Amount = 4;
+		civ.Units[eID].Type50.DisplayedMeleeArmour = 4;
 		civ.Units[uuID].Type50.Attacks[1].Amount = 7;
 		civ.Units[uuID].Type50.DisplayedAttack = 7;
 		civ.Units[uuID].Type50.Attacks[0].Amount = 8;
@@ -1027,10 +1075,10 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].Type50.DisplayedAttack = 9;
 		civ.Units[eID].Type50.Attacks[0].Amount = 12;
 		civ.Units[eID].Type50.Attacks[2].Amount = 0;
-		civ.Units[eID].Type50.MaxRange = 6;
-		civ.Units[eID].Type50.DisplayedRange = 6;
+		civ.Units[eID].Type50.MaxRange = 5;
+		civ.Units[eID].Type50.DisplayedRange = 5;
 	}
-	setUnitCosts(this->df, {uuID, eID}, {0, 150, 0, 25});
+	setUnitCosts(this->df, {uuID, eID}, {0, 125, 0, 50});
 	// Photonman
 	createUU(44, 1577, "Photonman", {1000, 0, 0, 1000}, 120, 7609);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
@@ -1044,23 +1092,29 @@ Civbuilder::createNewUnits() {
 		civ.Units[uuID].Type50.DisplayedReloadTime = 5.5;
 		civ.Units[eID].Type50.ReloadTime = 5.5;
 		civ.Units[eID].Type50.DisplayedReloadTime = 5.5;
-		civ.Units[uuID].Creatable.ResourceCosts[1].Amount = 90;
-		civ.Units[eID].Creatable.ResourceCosts[1].Amount = 90;
-		civ.Units[uuID].Creatable.TrainTime = 35;
-		civ.Units[eID].Creatable.TrainTime = 35;
+		civ.Units[uuID].Creatable.ResourceCosts[1].Amount = 140;
+		civ.Units[eID].Creatable.ResourceCosts[1].Amount = 140;
+		civ.Units[uuID].Creatable.TrainTime = 50;
+		civ.Units[eID].Creatable.TrainTime = 50;
 		civ.Units[uuID].Type50.MaxRange = 8;
 		civ.Units[uuID].Type50.DisplayedRange = 8;
 		civ.Units[uuID].Speed = 0.9;
 		civ.Units[eID].Speed = 0.9;
-		civ.Units[uuID].Type50.Armours[0].Amount = 0;
-		civ.Units[uuID].Type50.DisplayedMeleeArmour = 0;
-		civ.Units[uuID].Type50.Armours[2].Amount = 0;
-		civ.Units[uuID].Creatable.DisplayedPierceArmour = 0;
-		civ.Units[eID].Type50.Armours[0].Amount = 0;
-		civ.Units[eID].Type50.DisplayedMeleeArmour = 0;
-		civ.Units[eID].Type50.Armours[2].Amount = 0;
-		civ.Units[eID].Creatable.DisplayedPierceArmour = 0;
-		civ.Units[uuID].HitPoints = 60;
+		civ.Units[uuID].Type50.Armours[0].Amount = -3;
+		civ.Units[uuID].Type50.DisplayedMeleeArmour = -3;
+		civ.Units[uuID].Type50.Armours[2].Amount = -3;
+		civ.Units[uuID].Creatable.DisplayedPierceArmour = -3;
+		civ.Units[eID].Type50.Armours[0].Amount = -3;
+		civ.Units[eID].Type50.DisplayedMeleeArmour = -3;
+		civ.Units[eID].Type50.Armours[2].Amount = -3;
+		civ.Units[eID].Creatable.DisplayedPierceArmour = -3;
+		civ.Units[uuID].HitPoints = 30;
+		civ.Units[eID].HitPoints = 30;
+		unit::AttackOrArmor ramAttack = unit::AttackOrArmor();
+		ramAttack.Class = 17;
+		ramAttack.Amount = 10;
+		civ.Units[uuID].Type50.Attacks.push_back(ramAttack);
+		civ.Units[eID].Type50.Attacks.push_back(ramAttack);
 	}
 	this->unitClasses["gunpowder"].push_back(uuID);
 	this->unitClasses["gunpowder"].push_back(eID);
@@ -1068,6 +1122,17 @@ Civbuilder::createNewUnits() {
 	// Centurion
 	this->uuTechIDs[45] = {881, 882};
 	// Apukispay
+	vector<Task> eaglePowerUpTasks = {};
+	for (int i = 0; i < this->unitClasses["eagle"].size(); i++) {
+		Task eaglePowerUpTask = this->df->Civs[0].Units[1790].Bird.TaskList[5];
+		eaglePowerUpTask.ClassID = -1;
+		eaglePowerUpTask.UnitID = this->unitClasses["eagle"][i];
+		eaglePowerUpTask.WorkValue1 = 100;
+		eaglePowerUpTask.WorkValue2 = 5;
+		eaglePowerUpTask.SearchWaitTime = 109;
+		eaglePowerUpTask.WorkRange = 2;
+		eaglePowerUpTasks.push_back(eaglePowerUpTask);
+	}
 	createUU(46, 1074, "Apukispay", {800, 0, 0, 900}, 70, 7643);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
 	eID = (int) (this->df->Civs[0].Units.size() - 1);
@@ -1077,16 +1142,22 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].LanguageDLLName = 5836;
 		civ.Units[eID].LanguageDLLCreation = 6836;
 		civ.Units[eID].LanguageDLLHelp = 105836;
-		civ.Units[uuID].Speed = 1;
-		civ.Units[eID].Speed = 1;
+		civ.Units[uuID].Speed = 1.15;
+		civ.Units[eID].Speed = 1.3;
 		civ.Units[uuID].HitPoints = 70;
 		civ.Units[eID].HitPoints = 90;
 		civ.Units[uuID].Creatable.TrainTime = 20;
 		civ.Units[eID].Creatable.TrainTime = 20;
+		civ.Units[uuID].Type50.BreakOffCombat = 32;
+		civ.Units[eID].Type50.BreakOffCombat = 32;
+		for (int i = 0; i < eaglePowerUpTasks.size(); i++) {
+			civ.Units[uuID].Bird.TaskList.push_back(eaglePowerUpTasks[i]);
+			civ.Units[eID].Bird.TaskList.push_back(eaglePowerUpTasks[i]);
+		}
 	}
 	setUnitCosts(this->df, {uuID, eID}, {50, 0, 0, 85});
-	setCombatStats(this->df, uuID, {{4, 10}}, {{4, 1}, {3, 0}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 14}}, {{4, 2}, {3, 0}, {19, 0}});
+	setCombatStats(this->df, uuID, {{4, 9}}, {{4, 1}, {3, 0}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 12}}, {{4, 2}, {3, 0}, {19, 0}});
 	// Monkey Boy
 	createUU(47, 860, "Monkey Boy", {2000, 0, 0, 0}, 60, 7612);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
@@ -1100,11 +1171,13 @@ Civbuilder::createNewUnits() {
 		civ.Units[uuID].Creatable.ResourceCosts[1].Amount = 20;
 		civ.Units[uuID].Creatable.ResourceCosts[1].Type = 3;
 		civ.Units[uuID].Creatable.ResourceCosts[1].Flag = 1;
+		civ.Units[uuID].Type50.Attacks[0].Amount = -99;
 		civ.Units[eID].ResourceStorages = civ.Units[1].ResourceStorages;
 		civ.Units[eID].Creatable.ResourceCosts[0].Amount = 105;
 		civ.Units[eID].Creatable.ResourceCosts[1].Amount = 25;
 		civ.Units[eID].Creatable.ResourceCosts[1].Type = 3;
 		civ.Units[eID].Creatable.ResourceCosts[1].Flag = 1;
+		civ.Units[eID].Type50.Attacks[0].Amount = -99;
 		civ.Units[eID].ResourceStorages = civ.Units[1].ResourceStorages;
 		unit::AttackOrArmor animal_armor = unit::AttackOrArmor();
 		animal_armor.Class = 14;
@@ -1112,6 +1185,14 @@ Civbuilder::createNewUnits() {
 		civ.Units[uuID].Type50.Armours.push_back(animal_armor);
 		civ.Units[eID].Type50.Armours.push_back(animal_armor);
 		civ.Units[eID].HitPoints = 16;
+		civ.Units[uuID].Bird.TaskList.push_back(civ.Units[1723].Bird.TaskList[1]);
+		civ.Units[uuID].Bird.TaskList.push_back(civ.Units[1723].Bird.TaskList[2]);
+		civ.Units[uuID].Bird.TaskList.push_back(civ.Units[1723].Bird.TaskList[3]);
+		civ.Units[uuID].Bird.TaskList.push_back(civ.Units[1723].Bird.TaskList[4]);
+		civ.Units[eID].Bird.TaskList.push_back(civ.Units[1723].Bird.TaskList[1]);
+		civ.Units[eID].Bird.TaskList.push_back(civ.Units[1723].Bird.TaskList[2]);
+		civ.Units[eID].Bird.TaskList.push_back(civ.Units[1723].Bird.TaskList[3]);
+		civ.Units[eID].Bird.TaskList.push_back(civ.Units[1723].Bird.TaskList[4]);
 	}
 	// Amazon Warrior
 	createUU(48, 825, "Amazon Warrior", {600, 0, 0, 1000}, 70, 7613);
@@ -1122,9 +1203,9 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].LanguageDLLName = 5806;
 		civ.Units[eID].LanguageDLLCreation = 6806;
 		civ.Units[eID].LanguageDLLHelp = 106806;
-		civ.Units[uuID].Creatable.ResourceCosts[0].Amount = 70;
+		civ.Units[uuID].Creatable.ResourceCosts[0].Amount = 50;
 		civ.Units[uuID].Creatable.ResourceCosts[1].Amount = 15;
-		civ.Units[eID].Creatable.ResourceCosts[0].Amount = 70;
+		civ.Units[eID].Creatable.ResourceCosts[0].Amount = 50;
 		civ.Units[eID].Creatable.ResourceCosts[1].Amount = 15;
 		civ.Units[uuID].Type50.Attacks[2].Amount = 13;
 		civ.Units[uuID].Type50.DisplayedAttack = 13;
@@ -1162,18 +1243,22 @@ Civbuilder::createNewUnits() {
 		civ.Units[uuID].Type50.Attacks[2].Amount = 5;
 		civ.Units[uuID].Type50.Attacks[5].Class = 14;
 		civ.Units[uuID].Type50.Attacks[5].Amount = 5;
-		civ.Units[uuID].Type50.Attacks[3].Amount = 8;
-		civ.Units[uuID].Type50.DisplayedAttack = 7;
+		civ.Units[uuID].Type50.Attacks[3].Amount = 4;
+		civ.Units[uuID].Type50.DisplayedAttack = 4;
 		civ.Units[eID].Type50.Attacks[2].Class = 10;
 		civ.Units[eID].Type50.Attacks[2].Amount = 10;
 		civ.Units[eID].Type50.Attacks[5].Class = 14;
 		civ.Units[eID].Type50.Attacks[5].Amount = 5;
-		civ.Units[eID].Type50.Attacks[3].Amount = 10;
-		civ.Units[eID].Type50.DisplayedAttack = 10;
-		civ.Units[uuID].HitPoints = 30;
-		civ.Units[eID].HitPoints = 30;
+		civ.Units[eID].Type50.Attacks[3].Amount = 5;
+		civ.Units[eID].Type50.DisplayedAttack = 5;
+		civ.Units[uuID].HitPoints = 35;
+		civ.Units[eID].HitPoints = 35;
 		civ.Units[uuID].Speed = 1.1;
 		civ.Units[eID].Speed = 1.2;
+		civ.Units[uuID].Creatable.ResourceCosts[0].Amount = 25;
+		civ.Units[uuID].Creatable.ResourceCosts[1].Amount = 35;
+		civ.Units[eID].Creatable.ResourceCosts[0].Amount = 25;
+		civ.Units[eID].Creatable.ResourceCosts[1].Amount = 35;
 	}
 	// Iroquois Warrior
 	createUU(50, 1374, "Iroquois Warrior", {800, 0, 0, 700}, 70, 7615);
@@ -1220,24 +1305,24 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].LanguageDLLHelp = 105809;
 		civ.Units[uuID].Creatable.HeroMode = 0;
 		civ.Units[eID].Creatable.HeroMode = 0;
-		civ.Units[uuID].HitPoints = 105;
-		civ.Units[eID].HitPoints = 140;
+		civ.Units[uuID].HitPoints = 80;
+		civ.Units[eID].HitPoints = 100;
 		civ.Units[uuID].Speed = 1.4;
 		civ.Units[eID].Speed = 1.4;
 		civ.Units[uuID].Type50.Armours.pop_back();
 		civ.Units[eID].Type50.Armours.pop_back();
-		civ.Units[uuID].Type50.Armours[0].Amount = 1;
-		civ.Units[uuID].Type50.DisplayedMeleeArmour = 1;
+		civ.Units[uuID].Type50.Armours[0].Amount = 0;
+		civ.Units[uuID].Type50.DisplayedMeleeArmour = 0;
 		civ.Units[uuID].Type50.Armours[2].Amount = 5;
 		civ.Units[uuID].Creatable.DisplayedPierceArmour = 5;
-		civ.Units[eID].Type50.Armours[0].Amount = 1;
-		civ.Units[eID].Type50.DisplayedMeleeArmour = 1;
+		civ.Units[eID].Type50.Armours[0].Amount = 0;
+		civ.Units[eID].Type50.DisplayedMeleeArmour = 0;
 		civ.Units[eID].Type50.Armours[2].Amount = 7;
 		civ.Units[eID].Creatable.DisplayedPierceArmour = 7;
-		civ.Units[uuID].Type50.Attacks[0].Amount = 10;
-		civ.Units[uuID].Type50.DisplayedAttack = 10;
-		civ.Units[eID].Type50.Attacks[0].Amount = 12;
-		civ.Units[eID].Type50.DisplayedAttack = 12;
+		civ.Units[uuID].Type50.Attacks[0].Amount = 9;
+		civ.Units[uuID].Type50.DisplayedAttack = 9;
+		civ.Units[eID].Type50.Attacks[0].Amount = 11;
+		civ.Units[eID].Type50.DisplayedAttack = 11;
 		unit::AttackOrArmor archer_bonus = unit::AttackOrArmor();
 		archer_bonus.Class = 15;
 		archer_bonus.Amount = 6;
@@ -1245,7 +1330,7 @@ Civbuilder::createNewUnits() {
 		archer_bonus.Amount = 10;
 		civ.Units[eID].Type50.Attacks.push_back(archer_bonus);
 	}
-	setUnitCosts(this->df, {uuID, eID}, {95, 0, 0, 55});
+	setUnitCosts(this->df, {uuID, eID}, {70, 0, 0, 45});
 	// Gendarme
 	createUU(52, 1281, "Gendarme", {1000, 0, 0, 850}, 110, 7617);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
@@ -1284,10 +1369,12 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].Type50.DisplayedReloadTime = 0.8;
 		civ.Units[uuID].Creatable.TrainTime = 11;
 		civ.Units[eID].Creatable.TrainTime = 11;
+		civ.Units[uuID].Speed = 1.1;
+		civ.Units[eID].Speed = 1.1;
 	}
-	setUnitCosts(this->df, {uuID, eID}, {40, 0, 0, 80});
-	setCombatStats(this->df, uuID, {{29, 5}, {21, 1}, {1, 5}, {4, 6}, {8, 0}}, {{4, 2}, {3, -1}, {19, 0}});
-	setCombatStats(this->df, eID, {{29, 7}, {21, 1}, {1, 5}, {4, 8}, {8, 0}}, {{4, 3}, {3, -1}, {19, 0}});
+	setUnitCosts(this->df, {uuID, eID}, {40, 0, 0, 30});
+	setCombatStats(this->df, uuID, {{29, 5}, {21, 1}, {1, 5}, {4, 6}, {8, 0}, {32, 5}}, {{4, 1}, {3, -1}, {19, 0}});
+	setCombatStats(this->df, eID, {{29, 7}, {21, 1}, {1, 5}, {4, 8}, {8, 0}, {32, 5}}, {{4, 1}, {3, -1}, {19, 0}});
 	// Ritterbruder
 	createUU(54, 1727, "Ritterbruder", {850, 0, 0, 850}, 60, 7619);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
@@ -1300,8 +1387,8 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].LanguageDLLHelp = 105812;
 		civ.Units[uuID].HitPoints = 125;
 		civ.Units[eID].HitPoints = 150;
-		civ.Units[uuID].Speed = 1.2;
-		civ.Units[eID].Speed = 1.2;
+		civ.Units[uuID].Speed = 1.3;
+		civ.Units[eID].Speed = 1.3;
 		civ.Units[uuID].Creatable.TrainTime = 22;
 		civ.Units[eID].Creatable.TrainTime = 22;
 	}
@@ -1324,11 +1411,29 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].Speed = 1.35;
 		civ.Units[uuID].Creatable.TrainTime = 25;
 		civ.Units[eID].Creatable.TrainTime = 25;
+		civ.Units[uuID].Type50.MaxRange = 5;
+		civ.Units[eID].Type50.MaxRange = 6;
+		civ.Units[uuID].Type50.DisplayedRange = 5;
+		civ.Units[eID].Type50.DisplayedRange = 6;
 	}
-	setUnitCosts(this->df, {uuID, eID}, {0, 90, 0, 40});
-	setCombatStats(this->df, uuID, {{27, 2}, {3, 6}, {21, 3}}, {{28, 0}, {4, 1}, {3, 0}, {15, 0}, {8, 0}, {19, 0}});
-	setCombatStats(this->df, eID, {{27, 2}, {3, 8}, {21, 5}}, {{28, 0}, {4, 2}, {3, 0}, {15, 0}, {8, 0}, {19, 0}});
+	setUnitCosts(this->df, {uuID, eID}, {0, 65, 0, 55});
+	setCombatStats(this->df, uuID, {{27, 2}, {3, 5}, {21, 3}}, {{28, 0}, {4, 1}, {3, 0}, {15, 0}, {8, 0}, {19, 0}});
+	setCombatStats(this->df, eID, {{27, 2}, {3, 7}, {21, 5}}, {{28, 0}, {4, 2}, {3, 0}, {15, 0}, {8, 0}, {19, 0}});
 	// Szlachcic
+	vector<Task> monkPowerUpTasks = {};
+	Task monkPowerUpTask = this->df->Civs[0].Units[1803].Bird.TaskList[5];
+	monkPowerUpTask.ClassID = 18;
+	monkPowerUpTask.UnitID = -1;
+	monkPowerUpTask.WorkValue1 = 5;
+	monkPowerUpTask.WorkValue2 = 5;
+	monkPowerUpTask.SearchWaitTime = 9;
+	monkPowerUpTask.WorkRange = 10;
+	monkPowerUpTasks.push_back(monkPowerUpTask);
+	monkPowerUpTask.ClassID = 43;
+	monkPowerUpTasks.push_back(monkPowerUpTask);
+	monkPowerUpTask.ClassID = -1;
+	monkPowerUpTask.UnitID = 1811;
+	monkPowerUpTasks.push_back(monkPowerUpTask);
 	createUU(56, 1721, "Szlachcic", {750, 0, 0, 650}, 60, 7621);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
 	eID = (int) (this->df->Civs[0].Units.size() - 1);
@@ -1342,10 +1447,16 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].HitPoints = 145;
 		civ.Units[uuID].Creatable.TrainTime = 18;
 		civ.Units[eID].Creatable.TrainTime = 18;
+		for (int i = 0; i < monkPowerUpTasks.size(); i++) {
+			civ.Units[uuID].Bird.TaskList.push_back(monkPowerUpTasks[i]);
+			civ.Units[eID].Bird.TaskList.push_back(monkPowerUpTasks[i]);
+		}
+		civ.Units[uuID].Type50.BreakOffCombat = 96;
+		civ.Units[eID].Type50.BreakOffCombat = 96;
 	}
-	setUnitCosts(this->df, {uuID, eID}, {80, 0, 0, 50});
-	setCombatStats(this->df, uuID, {{4, 10}}, {{4, 4}, {3, 3}, {8, 0}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 12}}, {{4, 5}, {3, 4}, {8, 0}, {19, 0}});
+	setUnitCosts(this->df, {uuID, eID}, {75, 0, 0, 60});
+	setCombatStats(this->df, uuID, {{4, 10}}, {{4, 4}, {3, 1}, {8, 0}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 12}}, {{4, 5}, {3, 2}, {8, 0}, {19, 0}});
 	// Cuirassier
 	createUU(57, 1186, "Cuirassier", {650, 0, 0, 800}, 60, 7622);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
@@ -1363,10 +1474,21 @@ Civbuilder::createNewUnits() {
 		civ.Units[uuID].Creatable.TrainTime = 11;
 		civ.Units[eID].Creatable.TrainTime = 9;
 	}
-	setUnitCosts(this->df, {uuID, eID}, {70, 0, 0, 25});
-	setCombatStats(this->df, uuID, {{4, 14}, {10, 14}}, {{4, -2}, {3, 2}, {8, 0}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 16}, {10, 16}, {23, 12}}, {{4, -2}, {3, 4}, {8, 0}, {19, 0}});
+	setUnitCosts(this->df, {uuID, eID}, {70, 0, 0, 35});
+	setCombatStats(this->df, uuID, {{4, 16}, {10, 10}, {23, 6}, {32, 6}, {25, 5}}, {{4, -2}, {3, 2}, {8, 0}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 19}, {10, 10}, {23, 9}, {32, 9}, {25, 7}}, {{4, -2}, {3, 4}, {8, 0}, {19, 0}});
 	// Rajput
+	vector<Task> camelPowerUpTasks = {};
+	for (int i = 0; i < this->unitClasses["camel"].size(); i++) {
+		Task camelPowerUpTask = this->df->Civs[0].Units[1790].Bird.TaskList[5];
+		camelPowerUpTask.ClassID = -1;
+		camelPowerUpTask.UnitID = this->unitClasses["camel"][i];
+		camelPowerUpTask.WorkValue1 = 1.05;
+		camelPowerUpTask.WorkValue2 = 1;
+		camelPowerUpTask.SearchWaitTime = 5;
+		camelPowerUpTask.WorkRange = 3;
+		camelPowerUpTasks.push_back(camelPowerUpTask);
+	}
 	createUU(58, 1184, "Rajput", {750, 0, 0, 750}, 55, 7623);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
 	eID = (int) (this->df->Civs[0].Units.size() - 1);
@@ -1376,16 +1498,22 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].LanguageDLLName = 5816;
 		civ.Units[eID].LanguageDLLCreation = 6816;
 		civ.Units[eID].LanguageDLLHelp = 105816;
-		civ.Units[uuID].Speed = 1.35;
-		civ.Units[eID].Speed = 1.35;
+		civ.Units[uuID].Speed = 1.52;
+		civ.Units[eID].Speed = 1.52;
 		civ.Units[uuID].HitPoints = 95;
 		civ.Units[eID].HitPoints = 125;
 		civ.Units[uuID].Creatable.TrainTime = 16;
 		civ.Units[eID].Creatable.TrainTime = 16;
+		civ.Units[uuID].Type50.BreakOffCombat = 32;
+		civ.Units[eID].Type50.BreakOffCombat = 32;
+		for (int i = 0; i < camelPowerUpTasks.size(); i++) {
+			civ.Units[uuID].Bird.TaskList.push_back(camelPowerUpTasks[i]);
+			civ.Units[eID].Bird.TaskList.push_back(camelPowerUpTasks[i]);
+		}
 	}
 	setUnitCosts(this->df, {uuID, eID}, {70, 0, 0, 70});
-	setCombatStats(this->df, uuID, {{4, 9}, {15, 9}, {28, 5}}, {{4, 0}, {3, 1}, {8, 0}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 12}, {15, 18}, {28, 5}}, {{4, 0}, {3, 2}, {8, 0}, {19, 0}});
+	setCombatStats(this->df, uuID, {{4, 9}}, {{4, 0}, {3, 1}, {8, 0}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 11}}, {{4, 0}, {3, 2}, {8, 0}, {19, 0}});
 	// Seljuk Archer
 	createUU(59, 943, "Seljuk Archer", {0, 800, 0, 700}, 65, 7624);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
@@ -1402,8 +1530,12 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].HitPoints = 65;
 		civ.Units[uuID].Creatable.TrainTime = 16;
 		civ.Units[eID].Creatable.TrainTime = 13;
+		civ.Units[uuID].Type50.MaxRange = 4;
+		civ.Units[eID].Type50.MaxRange = 4;
+		civ.Units[uuID].Type50.DisplayedRange = 4;
+		civ.Units[eID].Type50.DisplayedRange = 4;
 	}
-	setUnitCosts(this->df, {uuID, eID}, {0, 60, 0, 55});
+	setUnitCosts(this->df, {uuID, eID}, {0, 50, 0, 70});
 	setCombatStats(this->df, uuID, {{3, 7}}, {{28, 0}, {4, -2}, {3, 0}, {15, 0}, {8, 0}, {19, 0}});
 	setCombatStats(this->df, eID, {{3, 9}}, {{28, 0}, {4, -2}, {3, 1}, {15, 0}, {8, 0}, {19, 0}});
 	// Numidian Javelinman
@@ -1422,8 +1554,13 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].Creatable.TrainTime = 17;
 	}
 	setUnitCosts(this->df, {uuID, eID}, {0, 80, 0, 30});
-	setCombatStats(this->df, uuID, {{3, 5}, {28, 5}, {15, 3}}, {{4, 0}, {15, 1}, {8, -1}, {3, 1}, {19, 0}});
-	setCombatStats(this->df, eID, {{3, 6}, {28, 8}, {15, 5}}, {{4, 0}, {15, 1}, {8, -1}, {3, 1}, {19, 0}});
+	setCombatStats(this->df, uuID, {{3, 5}, {28, 2}, {15, 3}, {27, 1}}, {{4, 0}, {15, 1}, {8, -1}, {3, 3}, {19, 0}});
+	setCombatStats(this->df, eID, {{3, 6}, {28, 3}, {15, 5}, {27, 1}}, {{4, 0}, {15, 1}, {8, -1}, {3, 4}, {19, 0}});
+	for (Civ &civ : this->df->Civs) {
+		civ.Units[eID].Creatable.ResourceCosts[1].Amount = 15;
+	}
+	this->unitClasses["skirmisher"].push_back(uuID);
+	this->unitClasses["skirmisher"].push_back(eID);
 	// Sosso Guard
 	createUU(61, 1574, "Sosso Guard", {1000, 0, 0, 700}, 65, 7626);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
@@ -1434,16 +1571,18 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].LanguageDLLName = 5819;
 		civ.Units[eID].LanguageDLLCreation = 6819;
 		civ.Units[eID].LanguageDLLHelp = 105819;
-		civ.Units[uuID].HitPoints = 45;
-		civ.Units[eID].HitPoints = 55;
+		civ.Units[uuID].HitPoints = 60;
+		civ.Units[eID].HitPoints = 75;
 		civ.Units[uuID].Creatable.TrainTime = 12;
 		civ.Units[eID].Creatable.TrainTime = 14;
 		civ.Units[uuID].Speed = 1.1;
 		civ.Units[eID].Speed = 1.1;
 	}
-	setUnitCosts(this->df, {uuID, eID}, {55, 0, 0, 45});
-	setCombatStats(this->df, uuID, {{4, 6}, {8, 7}, {5, 25}, {30, 2}}, {{1, 0}, {4, 0}, {3, 1}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 7}, {8, 11}, {5, 50}, {30, 4}}, {{1, 0}, {4, 0}, {3, 2}, {19, 0}});
+	setUnitCosts(this->df, {uuID, eID}, {55, 0, 0, 5});
+	setCombatStats(this->df, uuID, {{4, 6}, {8, 22}, {5, 25}, {30, 16}}, {{1, 0}, {4, 0}, {3, 1}, {27, 0}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 7}, {8, 44}, {5, 50}, {30, 32}}, {{1, 0}, {4, 0}, {3, 2}, {27, 0}, {19, 0}});
+	this->unitClasses["spear"].push_back(uuID);
+	this->unitClasses["spear"].push_back(eID);
 	// Swiss Pikeman
 	createUU(62, 892, "Swiss Pikeman", {600, 0, 0, 1200}, 45, 7627);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
@@ -1466,18 +1605,14 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].Type50.DisplayedRange = 2;
 	}
 	setUnitCosts(this->df, {uuID, eID}, {40, 0, 0, 50});
-	setCombatStats(this->df, uuID, {{4, 5}, {8, 25}, {5, 20}}, {{1, 0}, {3, 0}, {4, 0}, {27, 0}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 6}, {8, 60}, {5, 25}}, {{1, 0}, {3, 0}, {4, 0}, {27, 0}, {19, 0}});
+	setCombatStats(this->df, uuID, {{4, 5}, {8, 5}, {5, 15}, {30, 3}}, {{1, 0}, {3, 1}, {4, 1}, {27, 0}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 6}, {8, 10}, {5, 20}, {30, 6}}, {{1, 0}, {3, 1}, {4, 1}, {27, 0}, {19, 0}});
+	this->unitClasses["spear"].push_back(uuID);
+	this->unitClasses["spear"].push_back(eID);
 	// Headhunter
 	createUU(63, 1673, "Headhunter", {400, 0, 0, 300}, 50, 7628);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
 	eID = (int) (this->df->Civs[0].Units.size() - 1);
-	Task kidnapTask = Task();
-	kidnapTask.ActionType = 135;
-	kidnapTask.ClassID = 4;
-	kidnapTask.WorkRange = 0.25;
-	kidnapTask.TargetDiplomacy = 2;
-	kidnapTask.GatherType = 2;
 	for (Civ &civ : this->df->Civs) {
 		civ.Units[uuID].Name = "BOUNTY";
 		civ.Units[eID].Name = "EBOUNTY";
@@ -1487,18 +1622,16 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].LanguageDLLHelp = 105821;
 		civ.Units[uuID].HitPoints = 60;
 		civ.Units[eID].HitPoints = 65;
-		civ.Units[uuID].Speed = 1.4;
-		civ.Units[eID].Speed = 1.4;
+		civ.Units[uuID].Speed = 1.33;
+		civ.Units[eID].Speed = 1.33;
 		civ.Units[uuID].Creatable.TrainTime = 15;
 		civ.Units[eID].Creatable.TrainTime = 15;
-		civ.Units[uuID].GarrisonCapacity = 1;
-		civ.Units[eID].GarrisonCapacity = 1;
-		civ.Units[uuID].Bird.TaskList.push_back(kidnapTask);
-		civ.Units[eID].Bird.TaskList.push_back(kidnapTask);
 	}
 	setUnitCosts(this->df, {uuID, eID}, {0, 0, 0, 75});
-	setCombatStats(this->df, uuID, {{4, 7}, {10, 30}}, {{4, 1}, {3, 0}, {8, 0}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 8}, {10, 40}}, {{4, 1}, {3, 0}, {8, 0}, {19, 0}});
+	setCombatStats(this->df, uuID, {{4, 7}}, {{4, 1}, {3, 0}, {8, 0}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 8}}, {{4, 1}, {3, 0}, {8, 0}, {19, 0}});
+	int headhunterID = uuID;
+	int headhunterEliteID = eID;
 	// Give it a 0 food cost so that it can be added with corvinian army
 	for (Civ &civ : this->df->Civs) {
 		civ.Units[uuID].Creatable.ResourceCosts[1].Type = 0;
@@ -1524,6 +1657,10 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].Creatable.TrainTime = 10;
 		civ.Units[uuID].Speed = 0.95;
 		civ.Units[eID].Speed = 0.95;
+		civ.Units[uuID].Creatable.MaxCharge = 10;
+		civ.Units[uuID].Creatable.RechargeRate = 0.1;
+		civ.Units[uuID].Creatable.ChargeEvent = 0;
+		civ.Units[uuID].Creatable.ChargeType = 2;
 	}
 	setUnitCosts(this->df, {uuID, eID}, {65, 0, 0, 40});
 	setCombatStats(this->df, uuID, {{4, 10}}, {{1, 0}, {4, 0}, {3, 1}, {19, 0}});
@@ -1542,16 +1679,14 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].HitPoints = 40;
 		civ.Units[uuID].Creatable.TrainTime = 8;
 		civ.Units[eID].Creatable.TrainTime = 8;
-		civ.Units[uuID].Speed = 1.1;
-		civ.Units[eID].Speed = 1.1;
-		civ.Units[uuID].Type50.ReloadTime = 4;
-		civ.Units[eID].Type50.ReloadTime = 4;
+		civ.Units[uuID].Speed = 0.9;
+		civ.Units[eID].Speed = 0.9;
 		civ.Units[uuID].Type50.DisplayedReloadTime = 4;
 		civ.Units[eID].Type50.DisplayedReloadTime = 4;
 	}
 	setUnitCosts(this->df, {uuID, eID}, {90, 0, 0, 10});
-	setCombatStats(this->df, uuID, {{4, 20}}, {{1, 0}, {4, 3}, {3, 0}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 27}}, {{1, 0}, {4, 3}, {3, 0}, {19, 0}});
+	setCombatStats(this->df, uuID, {{4, 20}}, {{1, 0}, {4, 0}, {3, 3}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 27}}, {{1, 0}, {4, 0}, {3, 5}, {19, 0}});
 	// Hashashin
 	createUU(66, 1035, "Hashashin", {500, 0, 0, 1250}, 60, 7631);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
@@ -1569,11 +1704,11 @@ Civbuilder::createNewUnits() {
 		civ.Units[uuID].Speed = 1.45;
 		civ.Units[eID].Speed = 1.45;
 	}
-	setUnitCosts(this->df, {uuID, eID}, {30, 0, 0, 85});
-	setCombatStats(this->df, uuID, {{4, 12}, {19, 8}, {36, 25}}, {{4, 0}, {3, 0}, {8, 0}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 14}, {19, 12}, {36, 50}}, {{4, 0}, {3, 1}, {8, 0}, {19, 0}});
-	// Zweihander
-	createUU(67, 453, "Zweihander", {850, 0, 0, 700}, 65, 7632);
+	setUnitCosts(this->df, {uuID, eID}, {25, 0, 0, 85});
+	setCombatStats(this->df, uuID, {{4, 12}, {19, 8}, {36, 25}}, {{4, 1}, {3, 1}, {8, 0}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 14}, {19, 12}, {36, 50}}, {{4, 1}, {3, 1}, {8, 0}, {19, 0}});
+	// Highlander
+	createUU(67, 453, "Highlander", {850, 0, 0, 700}, 65, 7632);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
 	eID = (int) (this->df->Civs[0].Units.size() - 1);
 	for (Civ &civ : this->df->Civs) {
@@ -1589,8 +1724,9 @@ Civbuilder::createNewUnits() {
 		civ.Units[uuID].Speed = 0.95;
 		civ.Units[eID].Speed = 0.95;
 	}
-	setCombatStats(this->df, uuID, {{4, 9}, {1, 4}, {29, 10}}, {{4, 1}, {3, 1}, {1, 0}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 12}, {1, 10}, {29, 10}}, {{4, 1}, {3, 1}, {1, 0}, {19, 0}});
+	setUnitCosts(this->df, {uuID, eID}, {75, 0, 0, 35});
+	setCombatStats(this->df, uuID, {{4, 9}, {1, 5}, {8, 5}, {32, 5}}, {{4, 1}, {3, 1}, {1, 0}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 13}, {1, 6}, {8, 6}, {32, 6}}, {{4, 1}, {3, 1}, {1, 0}, {19, 0}});
 	// Stradiot
 	createUU(68, 1677, "Stradiot", {800, 0, 0, 850}, 65, 7633);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
@@ -1612,11 +1748,11 @@ Civbuilder::createNewUnits() {
 		civ.Units[uuID].Speed = 1.4;
 		civ.Units[eID].Speed = 1.4;
 	}
-	setUnitCosts(this->df, {uuID, eID}, {75, 0, 0, 30});
-	setCombatStats(this->df, uuID, {{4, 9}, {8, 4}}, {{8, 0}, {4, 0}, {3, 1}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 12}, {8, 8}}, {{8, 0}, {4, 1}, {3, 2}, {19, 0}});
+	setUnitCosts(this->df, {uuID, eID}, {75, 0, 0, 55});
+	setCombatStats(this->df, uuID, {{4, 9}, {8, 4}}, {{8, 0}, {4, 0}, {3, 0}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 12}, {8, 6}}, {{8, 0}, {4, 1}, {3, 1}, {19, 0}});
 	// Ahosi
-	createUU(69, 1066, "Ahosi", {750, 0, 0, 650}, 60, 7634);
+	createUU(69, 1066, "Ahosi", {450, 0, 0, 350}, 40, 7634);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
 	eID = (int) (this->df->Civs[0].Units.size() - 1);
 	for (Civ &civ : this->df->Civs) {
@@ -1625,8 +1761,8 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].LanguageDLLName = 5827;
 		civ.Units[eID].LanguageDLLCreation = 6827;
 		civ.Units[eID].LanguageDLLHelp = 105827;
-		civ.Units[uuID].HitPoints = 35;
-		civ.Units[eID].HitPoints = 40;
+		civ.Units[uuID].HitPoints = 45;
+		civ.Units[eID].HitPoints = 55;
 		civ.Units[uuID].Creatable.TrainTime = 9;
 		civ.Units[eID].Creatable.TrainTime = 9;
 		civ.Units[uuID].Speed = 1.25;
@@ -1635,13 +1771,48 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].Type50.MaxRange = 0;
 		civ.Units[uuID].Type50.DisplayedRange = 0;
 		civ.Units[eID].Type50.DisplayedRange = 0;
+		civ.Units[uuID].Creatable.TrainTime = 7;
+		civ.Units[eID].Creatable.TrainTime = 7;
 	}
-	setCombatStats(this->df, uuID, {{3, 12}}, {{1, 0}, {4, 0}, {3, 0}, {19, 0}});
-	setCombatStats(this->df, eID, {{3, 15}}, {{1, 0}, {4, 0}, {3, 0}, {19, 0}});
+	setUnitCosts(this->df, {uuID, eID}, {45, 0, 0, 15});
+	setCombatStats(this->df, uuID, {{3, 15}}, {{1, 0}, {4, 0}, {3, 0}, {19, 0}});
+	setCombatStats(this->df, eID, {{3, 19}}, {{1, 0}, {4, 0}, {3, 0}, {19, 0}});
 	this->ahosiID = uuID;
 	this->ehosiID = eID;
-	// Spadoni
-	createUU(70, 439, "Spadoni", {850, 0, 0, 650}, 60, 7635);
+	// Landsknecht
+	vector<Task> landsknechtPowerUpTasks = {};
+	for (int i = 0; i < this->unitClasses["spear"].size(); i++) {
+		Task landsknechtPowerUpTask = this->df->Civs[0].Units[1790].Bird.TaskList[5];
+		landsknechtPowerUpTask.ClassID = -1;
+		landsknechtPowerUpTask.UnitID = this->unitClasses["spear"][i];
+		landsknechtPowerUpTask.WorkValue1 = 0.4;
+		landsknechtPowerUpTask.WorkValue2 = 6;
+		landsknechtPowerUpTask.SearchWaitTime = 10;
+		landsknechtPowerUpTask.WorkRange = 5;
+		landsknechtPowerUpTask.TargetDiplomacy = 4;
+		landsknechtPowerUpTasks.push_back(landsknechtPowerUpTask);
+	}
+	for (int i = 0; i < this->unitClasses["gunpowder"].size(); i++) {
+		Task landsknechtPowerUpTask = this->df->Civs[0].Units[1790].Bird.TaskList[5];
+		landsknechtPowerUpTask.ClassID = -1;
+		landsknechtPowerUpTask.UnitID = this->unitClasses["gunpowder"][i];
+		landsknechtPowerUpTask.WorkValue1 = 0.4;
+		landsknechtPowerUpTask.WorkValue2 = 6;
+		landsknechtPowerUpTask.SearchWaitTime = 10;
+		landsknechtPowerUpTask.WorkRange = 5;
+		landsknechtPowerUpTask.TargetDiplomacy = 4;
+		landsknechtPowerUpTasks.push_back(landsknechtPowerUpTask);
+	}
+	Task landsknechtPowerUpTask = this->df->Civs[0].Units[1790].Bird.TaskList[5];
+	landsknechtPowerUpTask.ClassID = -1;
+	landsknechtPowerUpTask.UnitID = 882;
+	landsknechtPowerUpTask.WorkValue1 = 0.4;
+	landsknechtPowerUpTask.WorkValue2 = 6;
+	landsknechtPowerUpTask.SearchWaitTime = 10;
+	landsknechtPowerUpTask.WorkRange = 5;
+	landsknechtPowerUpTask.TargetDiplomacy = 4;
+	landsknechtPowerUpTasks.push_back(landsknechtPowerUpTask);
+	createUU(70, 439, "Landsknecht", {850, 0, 0, 650}, 60, 7635);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
 	eID = (int) (this->df->Civs[0].Units.size() - 1);
 	for (Civ &civ : this->df->Civs) {
@@ -1656,11 +1827,17 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].HitPoints = 55;
 		civ.Units[uuID].Creatable.TrainTime = 11;
 		civ.Units[eID].Creatable.TrainTime = 11;
-		civ.Units[uuID].Speed = 1.1;
-		civ.Units[eID].Speed = 1.1;
+		civ.Units[uuID].Speed = 1.02;
+		civ.Units[eID].Speed = 1.02;
+		civ.Units[uuID].Type50.BreakOffCombat = 32;
+		civ.Units[eID].Type50.BreakOffCombat = 32;
+		for (int i = 0; i < landsknechtPowerUpTasks.size(); i++) {
+			civ.Units[uuID].Bird.TaskList.push_back(landsknechtPowerUpTasks[i]);
+			civ.Units[eID].Bird.TaskList.push_back(landsknechtPowerUpTasks[i]);
+		}
 	}
-	setCombatStats(this->df, uuID, {{4, 12}, {23, 12}, {21, 2}}, {{1, 3}, {4, 1}, {3, 0}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 14}, {23, 14}, {21, 2}}, {{1, 3}, {4, 1}, {3, 0}, {19, 0}});
+	setCombatStats(this->df, uuID, {{4, 12}, {21, 2}}, {{1, 3}, {4, 1}, {3, 0}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 14}, {21, 2}}, {{1, 3}, {4, 1}, {3, 0}, {19, 0}});
 	// Clibinarii
 	createUU(71, 932, "Clibinarii", {950, 0, 0, 850}, 65, 7636);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
@@ -1680,9 +1857,9 @@ Civbuilder::createNewUnits() {
 		civ.Units[uuID].Speed = 1.25;
 		civ.Units[eID].Speed = 1.25;
 	}
-	setUnitCosts(this->df, {uuID, eID}, {90, 0, 0, 70});
-	setCombatStats(this->df, uuID, {{4, 12}, {15, 12}}, {{8, 0}, {3, 3}, {4, 1}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 14}, {15, 14}}, {{8, 0}, {3, 5}, {4, 1}, {19, 0}});
+	setUnitCosts(this->df, {uuID, eID}, {95, 0, 0, 75});
+	setCombatStats(this->df, uuID, {{4, 15}}, {{8, 0}, {3, 2}, {4, 2}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 19}}, {{8, 0}, {3, 3}, {4, 3}, {19, 0}});
 	// Silahtar
 	createUU(72, 1267, "Silahtar", {0, 1100, 0, 650}, 75, 7637);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
@@ -1699,10 +1876,12 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].Creatable.TrainTime = 29;
 		civ.Units[uuID].Speed = 1.25;
 		civ.Units[eID].Speed = 1.25;
+		civ.Units[uuID].Type50.BonusDamageResistance = 0.5;
+		civ.Units[eID].Type50.BonusDamageResistance = 0.5;
 	}
 	setUnitCosts(this->df, {uuID, eID}, {0, 40, 0, 70});
-	setCombatStats(this->df, uuID, {{3, 6}, {1, 3}}, {{28, 1}, {15, 1}, {8, 0}, {19, 0}, {4, 1}, {3, 1}});
-	setCombatStats(this->df, eID, {{3, 8}, {1, 8}}, {{28, 2}, {15, 2}, {8, 0}, {19, 0}, {4, 2}, {3, 4}});
+	setCombatStats(this->df, uuID, {{3, 6}, {1, 3}, {32, 3}}, {{28, 0}, {15, 0}, {8, 0}, {19, 2}, {4, 1}, {3, 0}});
+	setCombatStats(this->df, eID, {{3, 8}, {1, 6}, {32, 6}}, {{28, 0}, {15, 0}, {8, 0}, {19, 2}, {4, 2}, {3, 1}});
 	// Jaridah
 	createUU(73, 777, "Jaridah", {900, 0, 0, 450}, 60, 7638);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
@@ -1715,13 +1894,14 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].LanguageDLLHelp = 105831;
 		civ.Units[uuID].HitPoints = 60;
 		civ.Units[eID].HitPoints = 90;
-		civ.Units[uuID].Speed = 1.45;
-		civ.Units[eID].Speed = 1.45;
+		civ.Units[uuID].Speed = 1.48;
+		civ.Units[eID].Speed = 1.48;
 		civ.Units[uuID].Creatable.TrainTime = 14;
 		civ.Units[eID].Creatable.TrainTime = 14;
 	}
-	setCombatStats(this->df, uuID, {{4, 11}, {10, 10}}, {{4, 1}, {3, 0}, {8, 12}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 13}, {10, 20}}, {{4, 1}, {3, 0}, {8, 16}, {19, 0}});
+	setUnitCosts(this->df, {uuID, eID}, {50, 0, 0, 35});
+	setCombatStats(this->df, uuID, {{4, 11}, {30, 8}, {5, 25}}, {{4, 1}, {3, 0}, {8, 12}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 13}, {30, 14}, {5, 45}}, {{4, 1}, {3, 0}, {8, 16}, {19, 0}});
 	// Wolf Warrior
 	createUU(74, 702, "Wolf Warrior", {800, 0, 0, 700}, 65, 7639);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
@@ -1741,7 +1921,7 @@ Civbuilder::createNewUnits() {
 	}
 	setUnitCosts(this->df, {uuID, eID}, {85, 0, 0, 50});
 	setCombatStats(this->df, uuID, {{4, 13}}, {{4, 3}, {3, 0}, {8, 0}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 13}}, {{4, 3}, {3, 0}, {8, 0}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 15}}, {{4, 5}, {3, 0}, {8, 0}, {19, 0}});
 	// Warrior Monk
 	createUU(75, 1178, "Warrior Monk", {800, 0, 0, 750}, 80, 7640);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
@@ -1758,10 +1938,18 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].Speed = 0.9;
 		civ.Units[uuID].Creatable.TrainTime = 45;
 		civ.Units[eID].Creatable.TrainTime = 45;
+		civ.Units[uuID].Creatable.MaxCharge = 100;
+		civ.Units[uuID].Creatable.RechargeRate = 3;
+		civ.Units[uuID].Creatable.ChargeEvent = 0;
+		civ.Units[uuID].Creatable.ChargeType = 4;
+		civ.Units[eID].Creatable.MaxCharge = 200;
+		civ.Units[eID].Creatable.RechargeRate = 10;
+		civ.Units[eID].Creatable.ChargeEvent = 0;
+		civ.Units[eID].Creatable.ChargeType = 4;
 	}
 	setUnitCosts(this->df, {uuID, eID}, {0, 0, 0, 100});
-	setCombatStats(this->df, uuID, {{4, 11}, {25, 0}, {20, 0}}, {{4, 0}, {3, 999}, {25, 0}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 14}, {25, 0}, {20, 0}}, {{4, 0}, {3, 999}, {25, 0}, {19, 0}});
+	setCombatStats(this->df, uuID, {{4, 11}, {25, 0}, {20, 0}}, {{4, 0}, {3, 0}, {25, 0}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 14}, {25, 0}, {20, 0}}, {{4, 0}, {3, 0}, {25, 0}, {19, 0}});
 	int warmonkID = uuID;
 	// Give it a 0 food cost so that it can be added with corvinian army
 	for (Civ &civ : this->df->Civs) {
@@ -1779,6 +1967,13 @@ Civbuilder::createNewUnits() {
 	setUnitCosts(this->df, {uuID, eID}, {65, 0, 0, 90});
 	setCombatStats(this->df, uuID, {{4, 13}}, {{4, 0}, {3, 0}, {8, 0}, {19, 0}, {36, 0}});
 	setCombatStats(this->df, eID, {{4, 16}}, {{4, 0}, {3, 0}, {8, 0}, {19, 0}, {36, 0}});
+	Task powerUpTask = this->df->Civs[0].Units[1803].Bird.TaskList[5];
+	powerUpTask.ClassID = 4;
+	powerUpTask.UnitID = -1;
+	powerUpTask.WorkValue1 = 1.25;
+	powerUpTask.WorkValue2 = 40;
+	powerUpTask.SearchWaitTime = 10;
+	powerUpTask.WorkRange = 12;
 	for (Civ &civ : this->df->Civs) {
 		civ.Units[uuID].Name = "YATHQUEEN";
 		civ.Units[eID].Name = "EYATHQUEEN";
@@ -1790,13 +1985,15 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].HitPoints = 65;
 		civ.Units[uuID].Creatable.TrainTime = 35;
 		civ.Units[eID].Creatable.TrainTime = 35;
-		civ.Units[uuID].Creatable.HeroMode = 70;
-		civ.Units[eID].Creatable.HeroMode = 70;
 		civ.Units[uuID].LineOfSight = 9;
 		civ.Units[eID].LineOfSight = 15;
+		civ.Units[uuID].Bird.TaskList.push_back(powerUpTask);
+		civ.Units[eID].Bird.TaskList.push_back(powerUpTask);
+		civ.Units[uuID].Type50.BreakOffCombat = 96;
+		civ.Units[eID].Type50.BreakOffCombat = 96;
 	}
-	// Lightning Warrior
-	createUU(77, 749, "Lightning Warrior", {600, 0, 0, 900}, 65, 7642);
+	// Wind Warrior
+	createUU(77, 749, "Wind Warrior", {600, 0, 0, 900}, 65, 7642);
 	uuID = (int) (this->df->Civs[0].Units.size() - 2);
 	eID = (int) (this->df->Civs[0].Units.size() - 1);
 	for (Civ &civ : this->df->Civs) {
@@ -1814,8 +2011,8 @@ Civbuilder::createNewUnits() {
 		civ.Units[eID].Creatable.TrainTime = 12;
 	}
 	setUnitCosts(this->df, {uuID, eID}, {55, 0, 0, 35});
-	setCombatStats(this->df, uuID, {{4, 8}, {15, 8}}, {{1, 0}, {4, 0}, {3, 1}, {19, 0}});
-	setCombatStats(this->df, eID, {{4, 10}, {15, 10}}, {{1, 0}, {4, 0}, {3, 2}, {19, 0}});
+	setCombatStats(this->df, uuID, {{4, 8}, {20, 8}, {11, 1}}, {{1, 0}, {4, 0}, {3, 1}, {19, 0}});
+	setCombatStats(this->df, eID, {{4, 10}, {20, 12}, {11, 2}}, {{1, 0}, {4, 0}, {3, 2}, {19, 0}});
 
 	// Create TC spearmen
 	for (Civ &civ : this->df->Civs) {
@@ -1953,7 +2150,7 @@ Civbuilder::createNewUnits() {
 		civ.Units[millCow].Creatable.TrainLocationID = 68;
 		civ.Units[millCow].Creatable.ButtonID = 2;
 		civ.Units[millCow].Creatable.ResourceCosts[0].Type = 3;
-		civ.Units[millCow].Creatable.ResourceCosts[0].Amount = 40;
+		civ.Units[millCow].Creatable.ResourceCosts[0].Amount = 25;
 	}
 
 	// Create feudal monk
@@ -1986,6 +2183,7 @@ Civbuilder::createNewUnits() {
 		civ.Units[feudalKnight].Speed = 1.25;
 		civ.Units[feudalKnight].LineOfSight = 3;
 		civ.Units[feudalKnight].Bird.SearchRadius = 3;
+		civ.Units[feudalKnight].Creatable.TrainTime = 45;
 	}
 	// this->df->Effects[175].EffectCommands.push_back(createEC(3, feudalKnight, 283, -1, 0));
 	// this->df->Effects[253].EffectCommands.push_back(createEC(3, feudalKnight, 569, -1, 0));
@@ -2039,6 +2237,38 @@ Civbuilder::createNewUnits() {
 			civ.Units[siegeTowers[i]].Type50.GraphicDisplacement = {0, 1, 5};
 			civ.Units[siegeTowers[i]].Creatable.ProjectileSpawningArea = {1, 0.5, 2};
 		}
+	}
+
+	// Headhunter kidnapper
+	Task kidnapTask = Task();
+	kidnapTask.ActionType = 135;
+	kidnapTask.ClassID = 4;
+	kidnapTask.WorkRange = 0.25;
+	kidnapTask.TargetDiplomacy = 2;
+	kidnapTask.GatherType = 2;
+	for (Civ &civ : this->df->Civs) {
+		civ.Units.push_back(civ.Units[headhunterID]);
+		civ.UnitPointers.push_back(1);
+		civ.Units.push_back(civ.Units[headhunterEliteID]);
+		civ.UnitPointers.push_back(1);
+
+		int headhunterKidnapper = ((int) (this->df->Civs[0].Units.size())) - 2;
+		int headhunterKidnapperElite = ((int) (this->df->Civs[0].Units.size())) - 1;
+
+		civ.Units[headhunterID].GarrisonCapacity = 1;
+		civ.Units[headhunterEliteID].GarrisonCapacity = 2;
+		civ.Units[headhunterKidnapper].GarrisonCapacity = 1;
+		civ.Units[headhunterKidnapperElite].GarrisonCapacity = 2;
+
+		civ.Units[headhunterID].Bird.TaskSwapGroup = 3;
+		civ.Units[headhunterKidnapper].Bird.TaskSwapGroup = 3;
+		civ.Units[headhunterEliteID].Bird.TaskSwapGroup = 4;
+		civ.Units[headhunterKidnapperElite].Bird.TaskSwapGroup = 4;
+
+		civ.Units[headhunterKidnapper].Bird.TaskList.erase(civ.Units[headhunterKidnapper].Bird.TaskList.begin());
+		civ.Units[headhunterKidnapperElite].Bird.TaskList.erase(civ.Units[headhunterKidnapperElite].Bird.TaskList.begin());
+		civ.Units[headhunterKidnapper].Bird.TaskList.push_back(kidnapTask);
+		civ.Units[headhunterKidnapperElite].Bird.TaskList.push_back(kidnapTask);
 	}
 }
 
@@ -2167,6 +2397,8 @@ Civbuilder::createUniqueTechs() {
 	e.EffectCommands.clear();
 	e.Name = "Enlistment";
 	e.EffectCommands.push_back(createEC(0, -1, 6, 110, -0.85));
+	e.EffectCommands.push_back(createEC(0, 1123, -1, 110, -0.425));
+	e.EffectCommands.push_back(createEC(0, 1125, -1, 110, -0.425));
 	createUT(51, 1, e, "Enlistment", {700, 0, 0, 300}, 55, 7512);
 
 	// Marshalled Hunters
@@ -2180,11 +2412,13 @@ Civbuilder::createUniqueTechs() {
 	e.Name = "Shigeto Yumi";
 	e.EffectCommands.push_back(createEC(5, -1, 52, 10, 0.869565));
 	e.EffectCommands.push_back(createEC(5, -1, 36, 10, 0.869565));
-	e.EffectCommands.push_back(createEC(4, -1, 52, 9, amountTypetoD(6, 19)));
-	e.EffectCommands.push_back(createEC(4, -1, 36, 9, amountTypetoD(6, 19)));
+	e.EffectCommands.push_back(createEC(4, -1, 52, 9, amountTypetoD(2, 19)));
+	e.EffectCommands.push_back(createEC(4, -1, 36, 9, amountTypetoD(2, 19)));
 	for (int i = 0; i < this->unitClasses["unique"].size(); i++) {
-		e.EffectCommands.push_back(createEC(5, this->unitClasses["unique"][i], -1, 10, 0.869565));
-		e.EffectCommands.push_back(createEC(4, this->unitClasses["unique"][i], -1, 9, amountTypetoD(6, 19)));
+		if (this->df->Civs[0].Units[this->unitClasses["unique"][i]].Class != 36) {
+			e.EffectCommands.push_back(createEC(5, this->unitClasses["unique"][i], -1, 10, 0.869565));
+			e.EffectCommands.push_back(createEC(4, this->unitClasses["unique"][i], -1, 9, amountTypetoD(6, 19)));
+		}
 	}
 	createUT(53, 1, e, "Shigeto Yumi", {750, 0, 0, 350}, 75, 7514);
 }
@@ -3043,7 +3277,7 @@ Civbuilder::createCivBonuses() {
 		e.EffectCommands.push_back(createEC(4, this->unitClasses["archery"][i], -1, 8, amountTypetoD(1, 4)));
 	}
 	for (int i = 0; i < 3; i++) {
-		this->createCivBonus(245, e, "C-Bonus, +1 armor in age " + to_string(101 + i), {101 + i});
+		this->createCivBonus(245, e, "C-Bonus, +1 arrg armor in age " + to_string(101 + i), {101 + i});
 	}
 
 	// Siege units +1 pierce armor in Castle and Imperial (+2 total)
@@ -3311,7 +3545,7 @@ Civbuilder::createCivBonuses() {
 	// Gunpowder bonus vs buildings
 	e.EffectCommands.clear();
 	for (int i = 0; i < this->unitClasses["gunpowder"].size(); i++) {
-		e.EffectCommands.push_back(createEC(4, this->unitClasses["gunpowder"][i], -1, 9, amountTypetoD(12, 11)));
+		e.EffectCommands.push_back(createEC(4, this->unitClasses["gunpowder"][i], -1, 9, amountTypetoD(8, 11)));
 	}
 	this->createCivBonus(275, e, "C-Bonus, Gunpowder bonus vs buildings");
 
@@ -3500,7 +3734,7 @@ Civbuilder::createCivBonuses() {
 	this->civBonuses[320] = {926};
 
 	// Cavalry regen
-	this->civBonuses[321] = {937, 938};
+	this->civBonuses[321] = {937, 938, 939};
 
 	// Flaming camel bonus
 	this->civBonuses[322] = {703};
@@ -3863,48 +4097,48 @@ Civbuilder::createCivBonuses() {
 	e.EffectCommands.push_back(createEC(4, tcSiegeTower, -1, 9, amountTypetoD(6, 11)));
 	this->createCivBonus(333, e, "C-Bonus, siege towers fire arrows");
 
-	// Make the regen bonus work with other HP increases
-	// Cav 20%
-	e.EffectCommands.clear();
-	e.Name = "Cavalry +20% HP + regen";
-	this->df->Effects.push_back(e);
+	// // Make the regen bonus work with other HP increases
+	// // Cav 20%
+	// e.EffectCommands.clear();
+	// e.Name = "Cavalry +20% HP + regen";
+	// this->df->Effects.push_back(e);
 
-	t = Tech();
-	t.Name = "Cavalry +20% HP + regen";
-	t.RequiredTechs.push_back(290);
-	t.RequiredTechs.push_back(937);
-	t.RequiredTechCount = 2;
-	t.EffectID = (this->df->Effects.size() - 1);
-	t.Civ = -1;
-	this->df->Techs.push_back(t);
+	// t = Tech();
+	// t.Name = "Cavalry +20% HP + regen";
+	// t.RequiredTechs.push_back(290);
+	// t.RequiredTechs.push_back(937);
+	// t.RequiredTechCount = 2;
+	// t.EffectID = (this->df->Effects.size() - 1);
+	// t.Civ = -1;
+	// this->df->Techs.push_back(t);
 
-	// Camel 25%
-	e.EffectCommands.clear();
-	e.Name = "Camels +25% HP + regen";
-	this->df->Effects.push_back(e);
+	// // Camel 25%
+	// e.EffectCommands.clear();
+	// e.Name = "Camels +25% HP + regen";
+	// this->df->Effects.push_back(e);
 
-	t = Tech();
-	t.Name = "Camels +25% HP + regen";
-	t.RequiredTechs.push_back(312);
-	t.RequiredTechs.push_back(937);
-	t.RequiredTechCount = 2;
-	t.EffectID = (this->df->Effects.size() - 1);
-	t.Civ = -1;
-	this->df->Techs.push_back(t);
+	// t = Tech();
+	// t.Name = "Camels +25% HP + regen";
+	// t.RequiredTechs.push_back(312);
+	// t.RequiredTechs.push_back(937);
+	// t.RequiredTechCount = 2;
+	// t.EffectID = (this->df->Effects.size() - 1);
+	// t.Civ = -1;
+	// this->df->Techs.push_back(t);
 
-	// Zealotry
-	e.EffectCommands.clear();
-	e.Name = "Zealotry + regen";
-	this->df->Effects.push_back(e);
+	// // Zealotry
+	// e.EffectCommands.clear();
+	// e.Name = "Zealotry + regen";
+	// this->df->Effects.push_back(e);
 
-	t = Tech();
-	t.Name = "Zealotry + regen";
-	t.RequiredTechs.push_back(9);
-	t.RequiredTechs.push_back(937);
-	t.RequiredTechCount = 2;
-	t.EffectID = (this->df->Effects.size() - 1);
-	t.Civ = -1;
-	this->df->Techs.push_back(t);
+	// t = Tech();
+	// t.Name = "Zealotry + regen";
+	// t.RequiredTechs.push_back(9);
+	// t.RequiredTechs.push_back(937);
+	// t.RequiredTechCount = 2;
+	// t.EffectID = (this->df->Effects.size() - 1);
+	// t.Civ = -1;
+	// this->df->Techs.push_back(t);
 
 	// Make all the trickle bonuses work with each other
 	// Stone to gold + roman villagers
@@ -4315,6 +4549,114 @@ Civbuilder::createCivBonuses() {
 	t.RequiredTechs.push_back(785);
 	t.EffectID = (int) (this->df->Effects.size() - 1);
 	this->df->Techs.push_back(t);
+
+	// Saracen market + guilds
+	e.EffectCommands.clear();
+	e.Name = "Guilds + better market rates";
+	e.EffectCommands.push_back(createEC(1, 78, 0, -1, 0.025));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Guilds + better market rates";
+	t.Civ = -1;
+	t.RequiredTechCount = 2;
+	t.RequiredTechs.push_back(355);
+	t.RequiredTechs.push_back(15);
+	t.EffectID = (int) (this->df->Effects.size() - 1);
+	this->df->Techs.push_back(t);
+
+	// Folwark + sicilian farm + horse collar
+	e.EffectCommands.clear();
+	e.Name = "Folwark + sicilian farm bonus + horse collar";
+	e.EffectCommands.push_back(createEC(1, 237, 1, -1, 7.5));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Folwark + sicilian farm bonus + horse collar";
+	t.Civ = -1;
+	t.RequiredTechCount = 2;
+	t.RequiredTechs.push_back(793);
+	t.RequiredTechs.push_back(772);
+	t.EffectID = (int) (this->df->Effects.size() - 1);
+	this->df->Techs.push_back(t);
+
+	// Folwark + sicilian farm + heavy plow
+	e.EffectCommands.clear();
+	e.Name = "Folwark + sicilian farm bonus + heavy plow";
+	e.EffectCommands.push_back(createEC(1, 237, 1, -1, 12.5));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Folwark + sicilian farm bonus + heavy plow";
+	t.Civ = -1;
+	t.RequiredTechCount = 2;
+	t.RequiredTechs.push_back(793);
+	t.RequiredTechs.push_back(773);
+	t.EffectID = (int) (this->df->Effects.size() - 1);
+	this->df->Techs.push_back(t);
+
+	// Folwark + sicilian farm + crop rotation
+	e.EffectCommands.clear();
+	e.Name = "Folwark + sicilian farm bonus + crop rotation";
+	e.EffectCommands.push_back(createEC(1, 237, 1, -1, 17.5));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Folwark + sicilian farm bonus + crop rotation";
+	t.Civ = -1;
+	t.RequiredTechCount = 2;
+	t.RequiredTechs.push_back(793);
+	t.RequiredTechs.push_back(774);
+	t.EffectID = (int) (this->df->Effects.size() - 1);
+	this->df->Techs.push_back(t);
+
+	// Folwark + sicilian farm + horse collar + chinese TB
+	e.EffectCommands.clear();
+	e.Name = "Folwark + sicilian farm bonus + horse collar + chinese TB";
+	e.EffectCommands.push_back(createEC(1, 237, 1, -1, 0.75));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Folwark + sicilian farm bonus + horse collar + chinese TB";
+	t.Civ = -1;
+	t.RequiredTechCount = 3;
+	t.RequiredTechs.push_back(793);
+	t.RequiredTechs.push_back(232);
+	t.RequiredTechs.push_back(772);
+	t.EffectID = (int) (this->df->Effects.size() - 1);
+	this->df->Techs.push_back(t);
+
+	// Folwark + sicilian farm + heavy plow + chinese TB
+	e.EffectCommands.clear();
+	e.Name = "Folwark + sicilian farm bonus + heavy plow + chinese TB";
+	e.EffectCommands.push_back(createEC(1, 237, 1, -1, 1.25));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Folwark + sicilian farm bonus + heavy plow + chinese TB";
+	t.Civ = -1;
+	t.RequiredTechCount = 3;
+	t.RequiredTechs.push_back(793);
+	t.RequiredTechs.push_back(232);
+	t.RequiredTechs.push_back(773);
+	t.EffectID = (int) (this->df->Effects.size() - 1);
+	this->df->Techs.push_back(t);
+
+	// Folwark + sicilian farm + crop rotation + chinese TB
+	e.EffectCommands.clear();
+	e.Name = "Folwark + sicilian farm bonus + crop rotation + chinese TB";
+	e.EffectCommands.push_back(createEC(1, 237, 1, -1, 1.75));
+	this->df->Effects.push_back(e);
+
+	t = Tech();
+	t.Name = "Folwark + sicilian farm bonus + crop rotation + chinese TB";
+	t.Civ = -1;
+	t.RequiredTechCount = 3;
+	t.RequiredTechs.push_back(793);
+	t.RequiredTechs.push_back(232);
+	t.RequiredTechs.push_back(774);
+	t.EffectID = (int) (this->df->Effects.size() - 1);
+	this->df->Techs.push_back(t);
 }
 
 void
@@ -4694,9 +5036,24 @@ Civbuilder::reconfigureEffects() {
 		// Vietnamese HP
 		this->df->Effects[672].EffectCommands.push_back(createEC(5, rangeUnits[i], -1, 0, 1.2));
 	}
+	for (Effect &effect : this->df->Effects) {
+		if (effect.Name == "C-Bonus, ARRG units +1 attack") {
+			effect.EffectCommands.clear();
+			for (int i = 0; i < rangeUnits.size(); i++) {
+				effect.EffectCommands.push_back(createEC(4, rangeUnits[i], -1, 9, amountTypetoD(1, 3)));
+			}
+		} else if (effect.Name.find("C-Bonus, +1 arrg armor in age") != string::npos) {
+			effect.EffectCommands.clear();
+			for (int i = 0; i < rangeUnits.size(); i++) {
+				effect.EffectCommands.push_back(createEC(4, rangeUnits[i], -1, 8, amountTypetoD(1, 4)));
+			}
+		}
+	}
 
 	// Recreate siege workshop bonuses
 	this->df->Effects[567].EffectCommands.clear();
+	this->df->Effects[239].EffectCommands.clear();
+	this->df->Effects[457].EffectCommands.clear();
 	for (int i = 0; i < workshopUnits.size(); i++) {
 		// Slav discount
 		this->df->Effects[567].EffectCommands.push_back(createEC(5, workshopUnits[i], -1, 100, 0.85));
@@ -4715,34 +5072,74 @@ Civbuilder::reconfigureEffects() {
 	this->df->Effects[75].EffectCommands.push_back(createEC(4, this->ehosiID, -1, 9, amountTypetoD(1, 3)));
 
 	// Cavalry regen
-	int hpID = -1;
-	int camelID = -1;
-	int zealotryID = -1;
-	for (int i = 0; i < this->df->Effects.size(); i++) {
-		if (this->df->Effects[i].Name == "Cavalry +20% HP + regen") {
-			hpID = i;
-		} else if (this->df->Effects[i].Name == "Camels +25% HP + regen") {
-			camelID = i;
-		} else if (this->df->Effects[i].Name == "Zealotry + regen") {
-			zealotryID = i;
+	// int hpID = -1;
+	// int camelID = -1;
+	// int zealotryID = -1;
+	// for (int i = 0; i < this->df->Effects.size(); i++) {
+	// 	if (this->df->Effects[i].Name == "Cavalry +20% HP + regen") {
+	// 		hpID = i;
+	// 	} else if (this->df->Effects[i].Name == "Camels +25% HP + regen") {
+	// 		camelID = i;
+	// 	} else if (this->df->Effects[i].Name == "Zealotry + regen") {
+	// 		zealotryID = i;
+	// 	}
+	// }
+	// this->df->Effects[954].EffectCommands.clear();
+	// this->df->Effects[961].EffectCommands.clear();
+	// this->df->Effects[hpID].EffectCommands.clear();
+	// this->df->Effects[camelID].EffectCommands.clear();
+	// for (int i = 0; i < this->df->Civs[0].Units.size(); i++) {
+	// 	if (this->df->Civs[0].Units[i].Class == 12 || this->df->Civs[0].Units[i].Class == 47) {
+	// 		this->df->Effects[954].EffectCommands.push_back(createEC(4, i, -1, 109, this->df->Civs[0].Units[i].HitPoints * 0.15));
+	// 		this->df->Effects[961].EffectCommands.push_back(createEC(4, i, -1, 109, 3));
+	// 		this->df->Effects[hpID].EffectCommands.push_back(createEC(4, i, -1, 109, this->df->Civs[0].Units[i].HitPoints * 0.15 * 0.2));
+	// 	}
+	// }
+	// for (int i = 0; i < this->unitClasses["camel"].size(); i++) {
+	// 	this->df->Effects[camelID].EffectCommands.push_back(
+	// 		createEC(4, this->unitClasses["camel"][i], -1, 109, this->df->Civs[0].Units[this->unitClasses["camel"][i]].HitPoints * 0.15 * 0.25));
+	// 	this->df->Effects[zealotryID].EffectCommands.push_back(createEC(4, this->unitClasses["camel"][i], -1, 109, 3));
+	// }
+
+	// Change bonus damage resistance to add
+	for (int i = 0; i < this->df->Effects[796].EffectCommands.size(); i++) {
+		this->df->Effects[796].EffectCommands[i].Type = 4;
+	}
+
+	// Militia-line upgrades free
+	this->df->Effects[730].EffectCommands.push_back(createEC(101, 264, 0, 0, 0));
+	this->df->Effects[730].EffectCommands.push_back(createEC(101, 264, 3, 0, 0));
+	this->df->Effects[730].EffectCommands.push_back(createEC(103, 264, -1, 0, 0));
+	this->df->Effects[730].EffectCommands.push_back(createEC(101, 885, 0, 0, 0));
+	this->df->Effects[730].EffectCommands.push_back(createEC(101, 885, 3, 0, 0));
+	this->df->Effects[730].EffectCommands.push_back(createEC(103, 885, -1, 0, 0));
+
+	// Spearmen upgrades work on spearmen
+	this->df->Effects[824].EffectCommands.clear();
+	this->df->Effects[729].EffectCommands.clear();
+	for (int i = 0; i < this->unitClasses["spear"].size(); i++) {
+		for (int j = 0; j < 40; j++) {
+			bool hasBonusClass = false;
+			for (unit::AttackOrArmor &attack : this->df->Civs[0].Units[this->unitClasses["spear"][i]].Type50.Attacks) {
+				if (attack.Class == j && (j != 3) && (j != 4)) {
+					hasBonusClass = true;
+				}
+			}
+			if (hasBonusClass) {
+				this->df->Effects[824].EffectCommands.push_back(createEC(5, this->unitClasses["spear"][i], -1, 9, amountTypetoD(125, j)));
+			}
 		}
+		this->df->Effects[729].EffectCommands.push_back(createEC(4, this->unitClasses["spear"][i], -1, 8, amountTypetoD(2, 3)));
 	}
-	this->df->Effects[954].EffectCommands.clear();
-	this->df->Effects[961].EffectCommands.clear();
-	this->df->Effects[hpID].EffectCommands.clear();
-	this->df->Effects[camelID].EffectCommands.clear();
-	for (int i = 0; i < this->df->Civs[0].Units.size(); i++) {
-		if (this->df->Civs[0].Units[i].Class == 12 || this->df->Civs[0].Units[i].Class == 47) {
-			this->df->Effects[954].EffectCommands.push_back(createEC(4, i, -1, 109, this->df->Civs[0].Units[i].HitPoints * 0.15));
-			this->df->Effects[961].EffectCommands.push_back(createEC(4, i, -1, 109, 3));
-			this->df->Effects[hpID].EffectCommands.push_back(createEC(4, i, -1, 109, this->df->Civs[0].Units[i].HitPoints * 0.15 * 0.2));
-		}
+
+	// Skirmisher upgrades work on skirmishers
+	this->df->Effects[864].EffectCommands.clear();
+	for (int i = 0; i < this->unitClasses["skirmisher"].size(); i++) {
+		this->df->Effects[729].EffectCommands.push_back(createEC(4, this->unitClasses["skirmisher"][i], -1, 8, amountTypetoD(2, 3)));
+		this->df->Effects[864].EffectCommands.push_back(createEC(5, this->unitClasses["skirmisher"][i], -1, 10, 0.8));
 	}
-	for (int i = 0; i < this->unitClasses["camel"].size(); i++) {
-		this->df->Effects[camelID].EffectCommands.push_back(
-			createEC(4, this->unitClasses["camel"][i], -1, 109, this->df->Civs[0].Units[this->unitClasses["camel"][i]].HitPoints * 0.15 * 0.25));
-		this->df->Effects[zealotryID].EffectCommands.push_back(createEC(4, this->unitClasses["camel"][i], -1, 109, 3));
-	}
+	this->df->Effects[864].EffectCommands.push_back(createEC(5, 873, -1, 10, 0.8));
+	this->df->Effects[864].EffectCommands.push_back(createEC(5, 875, -1, 10, 0.8));
 
 	// Byz trash affect imp camel
 	this->df->Effects[283].EffectCommands.push_back(createEC(5, 207, -1, 100, 0.75));
@@ -4752,6 +5149,7 @@ Civbuilder::reconfigureEffects() {
 	this->df->Effects[459].EffectCommands.clear();
 	this->df->Effects[608].EffectCommands.clear();
 	this->df->Effects[843].EffectCommands.clear();
+	this->df->Effects[855].EffectCommands.clear();
 	for (int i = 0; i < this->unitClasses["camel"].size(); i++) {
 		// Saracen HP
 		this->df->Effects[312].EffectCommands.push_back(createEC(5, this->unitClasses["camel"][i], -1, 0, 1.25));
@@ -4761,10 +5159,11 @@ Civbuilder::reconfigureEffects() {
 		this->df->Effects[608].EffectCommands.push_back(createEC(4, this->unitClasses["camel"][i], -1, 109, 15));
 		// Gurjaras team bonus (camels)
 		this->df->Effects[843].EffectCommands.push_back(createEC(5, this->unitClasses["camel"][i], -1, 101, 0.8));
+		// Frontier Guards
+		this->df->Effects[855].EffectCommands.push_back(createEC(4, this->unitClasses["camel"][i], -1, 8, amountTypetoD(4, 4)));
 	}
-
-	// Make zealotry work again
-	this->df->Techs[9].RequiredTechs[0] = 102;
+	this->df->Effects[855].EffectCommands.push_back(createEC(4, 873, -1, 8, amountTypetoD(4, 4)));
+	this->df->Effects[855].EffectCommands.push_back(createEC(4, 875, -1, 8, amountTypetoD(4, 4)));
 
 	// Gunpowder bonuses to all gunpowder
 	this->df->Effects[296].EffectCommands.clear();
@@ -4813,7 +5212,7 @@ Civbuilder::reconfigureEffects() {
 		// Howdah
 		this->df->Effects[666].EffectCommands.push_back(createEC(4, this->unitClasses["elephant"][i], -1, 8, amountTypetoD(1, 3)));
 		this->df->Effects[666].EffectCommands.push_back(createEC(4, this->unitClasses["elephant"][i], -1, 8, amountTypetoD(1, 4)));
-		if (this->df->Civs[0].Units[this->unitClasses["elephant"][i]].Type50.MaxRange > 0) {
+		if (this->df->Civs[0].Units[this->unitClasses["elephant"][i]].Type50.MaxRange <= 0) {
 			// Khmer speed
 			this->df->Effects[703].EffectCommands.push_back(createEC(5, this->unitClasses["elephant"][i], -1, 5, 1.1));
 			// Tusk swords
@@ -4896,7 +5295,6 @@ Civbuilder::reconfigureEffects() {
 	this->df->Effects[891].EffectCommands.push_back(createEC(0, impScorpion, -1, 20, 1));
 
 	// Make monk techs affect monk units
-	this->df->Techs[490].RequiredTechs[0] = 102;
 	for (Civ &civ : this->df->Civs) {
 		civ.Units[134].ResourceStorages[1].Type = 3;
 		civ.Units[134].ResourceStorages[1].Amount = 0;
@@ -4924,9 +5322,6 @@ Civbuilder::reconfigureEffects() {
 		}
 	}
 	this->df->Effects[853].EffectCommands.push_back(createEC(0, 1811, -1, 110, -0.9));
-
-	// Orthodoxy requires Castle Age
-	this->df->Techs[512].RequiredTechs[0] = 102;
 
 	// Pavise apply to archer-line and condottiero
 	this->df->Effects[549].EffectCommands.clear();
@@ -5005,7 +5400,12 @@ Civbuilder::reconfigureEffects() {
 	}
 	// Bearded Axe
 	this->df->Effects[291].EffectCommands.clear();
-	addAttacktoUnits(this->df, 291, 2, this->unitClasses["unique"]);
+	// addAttacktoUnits(this->df, 291, 2, this->unitClasses["unique"]);
+	for (int i = 0; i < this->unitClasses["unique"].size(); i++) {
+		this->df->Effects[291].EffectCommands.push_back(createEC(4, this->unitClasses["unique"][i], -1, 1, 1));
+		this->df->Effects[291].EffectCommands.push_back(createEC(4, this->unitClasses["unique"][i], -1, 12, 1));
+		this->df->Effects[291].EffectCommands.push_back(createEC(4, this->unitClasses["unique"][i], -1, 23, 1));
+	}
 	// Relic Bonus
 	customUnitClass = {38, 283, 569};
 	customUnitClass.insert(customUnitClass.begin(), this->unitClasses["unique"].begin(), this->unitClasses["unique"].end());
@@ -5043,6 +5443,9 @@ Civbuilder::reconfigureEffects() {
 	this->df->Effects[481].EffectCommands.push_back(createEC(4, 1251, -1, 106, -140));
 	this->df->Effects[481].EffectCommands.push_back(createEC(4, 1665, -1, 104, 70));
 	this->df->Effects[481].EffectCommands.push_back(createEC(4, 1665, -1, 106, -70));
+
+	// Fortifications built faster affects Kreposts
+	this->df->Effects[795].EffectCommands.push_back(createEC(5, 1251, -1, 101, 0.66666667));
 
 	// Great Wall affects Donjons
 	this->df->Effects[516].EffectCommands.push_back(createEC(5, 1665, -1, 0, 1.3));
@@ -5149,6 +5552,98 @@ Civbuilder::cleanup() {
 			civ.Units[i].TelemetryID = i;
 		}
 	}
+
+	// for (int i = 0; i < 83; i++) {
+	// 	int basicUnit = (int) (this->df->Effects[this->df->Techs[this->uuTechIDs[i].first].EffectID].EffectCommands[0].A);
+	// 	int eliteUnit = (int) (this->df->Effects[this->df->Techs[this->uuTechIDs[i].second].EffectID].EffectCommands[0].B);
+
+	// 	Value emptyArray;
+	// 	emptyArray.append(Value::null);
+	// 	emptyArray.clear();
+
+	// 	ai["units"][i]["hp"] = emptyArray;
+	// 	ai["units"][i]["hp"].append(this->df->Civs[0].Units[basicUnit].HitPoints);
+	// 	if (this->df->Civs[0].Units[basicUnit].HitPoints != this->df->Civs[0].Units[eliteUnit].HitPoints) {
+	// 		ai["units"][i]["hp"].append(this->df->Civs[0].Units[eliteUnit].HitPoints);
+	// 	}
+
+	// 	ai["units"][i]["range"] = emptyArray;
+	// 	ai["units"][i]["range"].append(this->df->Civs[0].Units[basicUnit].Type50.DisplayedRange);
+	// 	if (this->df->Civs[0].Units[eliteUnit].Type50.DisplayedRange != this->df->Civs[0].Units[basicUnit].Type50.DisplayedRange) {
+	// 		ai["units"][i]["range"].append((int) (this->df->Civs[0].Units[eliteUnit].Type50.DisplayedRange));
+	// 	}
+
+	// 	ai["units"][i]["speed"] = emptyArray;
+	// 	ai["units"][i]["speed"].append(this->df->Civs[0].Units[basicUnit].Speed);
+	// 	if (this->df->Civs[0].Units[basicUnit].Speed != this->df->Civs[0].Units[eliteUnit].Speed) {
+	// 		ai["units"][i]["speed"].append(this->df->Civs[0].Units[eliteUnit].Speed);
+	// 	}
+
+	// 	ai["units"][i]["reload"] = emptyArray;
+	// 	ai["units"][i]["reload"].append(this->df->Civs[0].Units[basicUnit].Type50.ReloadTime);
+	// 	if (this->df->Civs[0].Units[basicUnit].Type50.ReloadTime != this->df->Civs[0].Units[eliteUnit].Type50.ReloadTime) {
+	// 		ai["units"][i]["reload"].append(this->df->Civs[0].Units[eliteUnit].Type50.ReloadTime);
+	// 	}
+
+	// 	ai["units"][i]["cost"] = emptyArray;
+	// 	for (int j = 0; j < 4; j++) {
+	// 		int costAmount = 0;
+	// 		for (int k = 0; k < 3; k++) {
+	// 			if (this->df->Civs[0].Units[basicUnit].Creatable.ResourceCosts[k].Amount > 0 &&
+	// 				this->df->Civs[0].Units[basicUnit].Creatable.ResourceCosts[k].Type == j &&
+	// 				this->df->Civs[0].Units[basicUnit].Creatable.ResourceCosts[k].Flag == 1) {
+	// 				costAmount = this->df->Civs[0].Units[basicUnit].Creatable.ResourceCosts[k].Amount;
+	// 			}
+	// 		}
+	// 		ai["units"][i]["cost"].append(costAmount);
+	// 	}
+
+	// 	ai["units"][i]["armors"]["basic"] = emptyArray;
+	// 	for (int j = 0; j < this->df->Civs[0].Units[basicUnit].Type50.Armours.size(); j++) {
+	// 		if (this->df->Civs[0].Units[basicUnit].Type50.Armours[j].Class == 4) {
+	// 			ai["units"][i]["armors"]["basic"].append(this->df->Civs[0].Units[basicUnit].Type50.Armours[j].Amount);
+	// 		}
+	// 	}
+	// 	for (int j = 0; j < this->df->Civs[0].Units[basicUnit].Type50.Armours.size(); j++) {
+	// 		if (this->df->Civs[0].Units[basicUnit].Type50.Armours[j].Class == 3) {
+	// 			ai["units"][i]["armors"]["basic"].append(this->df->Civs[0].Units[basicUnit].Type50.Armours[j].Amount);
+	// 		}
+	// 	}
+
+	// 	ai["units"][i]["armors"]["elite"] = emptyArray;
+	// 	for (int j = 0; j < this->df->Civs[0].Units[eliteUnit].Type50.Armours.size(); j++) {
+	// 		if (this->df->Civs[0].Units[eliteUnit].Type50.Armours[j].Class == 4) {
+	// 			ai["units"][i]["armors"]["elite"].append(this->df->Civs[0].Units[eliteUnit].Type50.Armours[j].Amount);
+	// 		}
+	// 	}
+	// 	for (int j = 0; j < this->df->Civs[0].Units[eliteUnit].Type50.Armours.size(); j++) {
+	// 		if (this->df->Civs[0].Units[eliteUnit].Type50.Armours[j].Class == 3) {
+	// 			ai["units"][i]["armors"]["elite"].append(this->df->Civs[0].Units[eliteUnit].Type50.Armours[j].Amount);
+	// 		}
+	// 	}
+
+	// 	ai["units"][i]["attacks"]["basic"] = emptyArray;
+	// 	for (int j = 0; j < this->df->Civs[0].Units[basicUnit].Type50.Attacks.size(); j++) {
+	// 		if (this->df->Civs[0].Units[basicUnit].Type50.Attacks[j].Amount > 0) {
+	// 			ai["units"][i]["attacks"]["basic"].append(emptyArray);
+	// 			ai["units"][i]["attacks"]["basic"][ai["units"][i]["attacks"]["basic"].size() - 1].append(
+	// 				this->df->Civs[0].Units[basicUnit].Type50.Attacks[j].Class);
+	// 			ai["units"][i]["attacks"]["basic"][ai["units"][i]["attacks"]["basic"].size() - 1].append(
+	// 				this->df->Civs[0].Units[basicUnit].Type50.Attacks[j].Amount);
+	// 		}
+	// 	}
+
+	// 	ai["units"][i]["attacks"]["elite"] = emptyArray;
+	// 	for (int j = 0; j < this->df->Civs[0].Units[eliteUnit].Type50.Attacks.size(); j++) {
+	// 		if (this->df->Civs[0].Units[eliteUnit].Type50.Attacks[j].Amount > 0) {
+	// 			ai["units"][i]["attacks"]["elite"].append(emptyArray);
+	// 			ai["units"][i]["attacks"]["elite"][ai["units"][i]["attacks"]["elite"].size() - 1].append(
+	// 				this->df->Civs[0].Units[eliteUnit].Type50.Attacks[j].Class);
+	// 			ai["units"][i]["attacks"]["elite"][ai["units"][i]["attacks"]["elite"].size() - 1].append(
+	// 				this->df->Civs[0].Units[eliteUnit].Type50.Attacks[j].Amount);
+	// 		}
+	// 	}
+	// }
 }
 
 void
@@ -5218,9 +5713,7 @@ Civbuilder::assignUniqueTechs() {
 			// Actually give the unique tech
 			int allocatedTech = allocateTech(this->df, this->castleUniqueTechIDs[castleIndex], i + 1);
 
-			if (castleCopies > 1) {
-				this->multipliedEffects.push_back({allocatedTech, castleCopies});
-			}
+			this->multipliedEffects.push_back({allocatedTech, castleCopies});
 
 			// Readjust some of the effects to appropriate the new civ culture
 			switch (castleIndex) {
@@ -5245,7 +5738,7 @@ Civbuilder::assignUniqueTechs() {
 				int dupUUe = (int) (df->Civs[0].Units.size() - 1);
 
 				for (Tech &tech : this->df->Techs) {
-					if (tech.Name == "Gothic Anarchy" && tech.Civ == (i + 1)) {
+					if (tech.Name.find("Gothic Anarchy") != string::npos && tech.Civ == (i + 1)) {
 						Effect enableUnit = Effect();
 						enableUnit.Name = "Enable barracks unit";
 						enableUnit.EffectCommands.push_back(createEC(2, dupUU, 1, -1, 0));
@@ -5290,7 +5783,7 @@ Civbuilder::assignUniqueTechs() {
 				int dupUUe = (int) (this->df->Civs[0].Units.size() - 1);
 
 				for (Tech &tech : this->df->Techs) {
-					if (tech.Name == "Huns UT" && tech.Civ == (i + 1)) {
+					if (tech.Name.find("Huns UT") != string::npos && tech.Civ == (i + 1)) {
 						Effect enableUnit = Effect();
 						enableUnit.Name = "Enable stable unit";
 						enableUnit.EffectCommands.push_back(createEC(2, dupUU, 1, -1, 0));
@@ -5320,7 +5813,7 @@ Civbuilder::assignUniqueTechs() {
 			// First Crusade
 			case 29: {
 				for (Tech &tech : this->df->Techs) {
-					if (tech.Name == "First Crusade" && tech.Civ == (i + 1)) {
+					if (tech.Name.find("First Crusade") != string::npos && tech.Civ == (i + 1)) {
 						Effect crusadeUnit = Effect();
 						crusadeUnit.Name = "Enable crusade unit";
 						crusadeUnit.EffectCommands.push_back(createEC(1, 234, 0, -1, 5));
@@ -5360,9 +5853,7 @@ Civbuilder::assignUniqueTechs() {
 			// Actually give the unique tech
 			int allocatedTech = allocateTech(this->df, this->impUniqueTechIDs[impIndex], i + 1);
 
-			if (impCopies > 1) {
-				this->multipliedEffects.push_back({allocatedTech, impCopies});
-			}
+			this->multipliedEffects.push_back({allocatedTech, impCopies});
 
 			switch (impIndex) {
 			// Allow teammates to train ten of your unique unit for free
@@ -5406,9 +5897,7 @@ Civbuilder::assignCivBonuses() {
 			for (int k = 0; k < this->civBonuses[civBonusIndex].size(); k++) {
 				int allocatedTech = allocateTech(df, this->civBonuses[civBonusIndex][k], i + 1);
 				// Store information so that we can multiply all effects after the effectcommands have been configured correctly
-				if (civBonusCopies > 1) {
-					this->multipliedEffects.push_back({allocatedTech, civBonusCopies});
-				}
+				this->multipliedEffects.push_back({allocatedTech, civBonusCopies});
 			}
 
 			// Apply extra necessary effects
@@ -5437,7 +5926,7 @@ Civbuilder::assignCivBonuses() {
 				int dupUUe = (int) (this->df->Civs[0].Units.size() - 1);
 
 				for (Tech &tech : this->df->Techs) {
-					if (tech.Name == "C-Bonus, Enable Krepost" && tech.Civ == (i + 1)) {
+					if (tech.Name.find("C-Bonus, Enable Krepost") != string::npos && tech.Civ == (i + 1)) {
 						Effect enableUnit = Effect();
 						enableUnit.Name = "Enable Krepost & Unit";
 						enableUnit.EffectCommands.push_back(createEC(2, 1251, 1, -1, 0));
@@ -5472,7 +5961,7 @@ Civbuilder::assignCivBonuses() {
 				int dupUUe = (int) (this->df->Civs[0].Units.size() - 1);
 
 				for (Tech &tech : this->df->Techs) {
-					if (tech.Name == "Enable Donjon Unit" && tech.Civ == (i + 1)) {
+					if (tech.Name.find("Enable Donjon Unit") != string::npos && tech.Civ == (i + 1)) {
 						Effect enableUnit = Effect();
 						enableUnit.Name = "Enable Donjon Unit";
 						enableUnit.EffectCommands.push_back(createEC(2, dupUU, 1, -1, 0));
@@ -5576,6 +6065,10 @@ Civbuilder::assignTeamBonuses() {
 				allocateTech(this->df, 721, i + 1);
 				break;
 			}
+			case 68: {
+				tbEffect.Name += ", Elite costs -20%.";
+				break;
+			}
 			}
 			ai["civs"][i]["tb"].append(this->config["team_bonus"][i][j]);
 		}
@@ -5593,6 +6086,35 @@ Civbuilder::duplicateUnitEffects() {
 		for (Civ &civ : this->df->Civs) {
 			civ.Units[this->duplicationUnits[i][1]].Type50.Attacks = civ.Units[this->duplicationUnits[i][0]].Type50.Attacks;
 			civ.Units[this->duplicationUnits[i][1]].Type50.Armours = civ.Units[this->duplicationUnits[i][0]].Type50.Armours;
+		}
+
+		// Copy any area of effect tasks that apply to each duplicated unit
+		for (Civ &civ : this->df->Civs) {
+			for (Unit &unit : civ.Units) {
+				int taskListInitialSize = unit.Bird.TaskList.size();
+				for (int j = 0; j < taskListInitialSize; j++) {
+					if (unit.Bird.TaskList[j].UnitID == this->duplicationUnits[i][0]) {
+						// Check if we already have a task for the copy equivalent
+						bool hasTask = false;
+						for (int k = 0; k < taskListInitialSize; k++) {
+							if (unit.Bird.TaskList[k].UnitID == this->duplicationUnits[i][1] &&
+								unit.Bird.TaskList[k].ActionType == unit.Bird.TaskList[j].ActionType &&
+								unit.Bird.TaskList[k].SearchWaitTime == unit.Bird.TaskList[j].SearchWaitTime &&
+								unit.Bird.TaskList[k].TargetDiplomacy == unit.Bird.TaskList[j].TargetDiplomacy &&
+								unit.Bird.TaskList[k].WorkRange == unit.Bird.TaskList[j].WorkRange) {
+								hasTask = true;
+							}
+						}
+
+						// Duplicate the task for the new unit
+						if (!hasTask) {
+							Task copyTask = unit.Bird.TaskList[j];
+							copyTask.UnitID = this->duplicationUnits[i][1];
+							unit.Bird.TaskList.push_back(copyTask);
+						}
+					}
+				}
+			}
 		}
 
 		for (Effect &effect : df->Effects) {

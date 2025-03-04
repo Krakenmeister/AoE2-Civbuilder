@@ -1,5 +1,6 @@
 package-lock.json
 #modding/genieutils
+modding/oldgenieutils
 node_modules
 modding/build
 modding/vcpkg

@@ -254,7 +254,7 @@ function displayData(relativepath = ".") {
 					.move(caret.x + caret.width * 0.2, caret.y);
 
 				var image = item
-					.image(prefix + imagePrefix(caret.id) + ".png", caret.width * 0.6, caret.height * 0.6)
+					.image(prefix + imagePrefix(caret.id) + ".jpg", caret.width * 0.6, caret.height * 0.6)
 					.attr({ id: caret.id + "_img" })
 					.move(caret.x + caret.width * 0.2, caret.y);
 

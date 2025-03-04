@@ -22,6 +22,7 @@ const createTechtreeJson = require("./process_mod/createTechtreeJson.js");
 const makeai = require("./process_mod/modAI.js");
 const { numBonuses, numBasicTechs, nameArr, colours, iconids, blanks, indexDictionary } = require("./process_mod/constants.js");
 const { createCivilizationsJson } = require("./process_mod/createCivilizationsJson.js");
+const commonJs = require("./public/js/common.js");
 
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
@@ -37,7 +38,13 @@ app.use(
 	})
 );
 app.use(parser.json({ limit: "20mb" }));
-app.use("/civbuilder", express.static(path.join(__dirname, "/public")));
+app.use(
+	"/civbuilder",
+	express.static(path.join(__dirname, "/public"), {
+		maxAge: "1y",
+		immutable: true,
+	})
+);
 app.use("/civbuilder", router);
 
 app.use(zip());
@@ -88,10 +95,16 @@ const createDraft = (req, res, next) => {
 	draft["id"] = id;
 	draft["timestamp"] = Date.now();
 
+	let available_rarities = req.body.allowed_rarities.split(",");
+	for (let i = 0; i < available_rarities.length; i++) {
+		available_rarities[i] = available_rarities[i] == "true";
+	}
+
 	let preset = {};
 	preset["slots"] = parseInt(req.body.num_players, 10);
 	preset["points"] = parseInt(req.body.techtree_currency, 10);
 	preset["rounds"] = parseInt(req.body.rounds, 10);
+	preset["rarities"] = available_rarities;
 	draft["preset"] = preset;
 
 	let players = [];
@@ -123,14 +136,15 @@ const createDraft = (req, res, next) => {
 	for (var i = 0; i < 5; i++) {
 		var available_bonuses = [];
 		var numBonus;
-		console.log(req.body.new_bonuses);
 		if (req.body.new_bonuses === "on") {
 			numBonus = numBonuses[i][1];
 		} else {
 			numBonus = numBonuses[i][0];
 		}
 		for (var j = 0; j < numBonus; j++) {
-			available_bonuses.push(j);
+			if (draft["preset"]["rarities"][commonJs.card_descriptions[i][j][1]]) {
+				available_bonuses.push(j);
+			}
 		}
 		gamestate["available_cards"].push(available_bonuses);
 	}
@@ -219,6 +233,7 @@ const checkSpace = (req, res, next) => {
 
 //Refill available cards with any and all cards that players don't own and aren't currently on the board
 function reshuffleCards(draft) {
+	console.log("Reshuffling cards");
 	var numPlayers = draft["preset"]["slots"];
 	var roundType = Math.max(Math.floor(draft["gamestate"]["turn"] / numPlayers) - (draft["preset"]["rounds"] - 1), 0);
 
@@ -237,7 +252,10 @@ function reshuffleCards(draft) {
 			discarded = 0;
 		}
 		if (discarded == 1) {
-			available_bonuses.push(i);
+			if (draft["preset"]["rarities"][commonJs.card_descriptions[roundType][i][1]]) {
+				available_bonuses.push(i);
+			}
+			//			available_bonuses.push(i);
 		}
 	}
 	return available_bonuses;
@@ -488,11 +506,12 @@ const writeIconsJson = async (req, res, next) => {
 			blankOthers = true;
 		} else if (civs[i]["customFlag"] && civs[i]["customFlagData"]) {
 			// Load in custom image for flag
-			let regex = /^data:.+\/(.+);base64,(.*)$/;
 
-			let matches = civs[i]["customFlagData"].match(regex);
-			let ext = matches[1];
-			let data = matches[2];
+			//let regex = /^data:.+\/(.+);base64,(.*)$/;
+
+			//let matches = civs[i]["customFlagData"].match(regex);
+			//let ext = matches[1];
+			let data = civs[i]["customFlagData"].split(",")[1];
 			let buffer = Buffer.from(data, "base64");
 
 			let writePromises = [];
@@ -918,17 +937,16 @@ function draftIO(io) {
 			fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
 			io.in(roomID).emit("set gamestate", draft);
 		});
-		socket.on("update tree", (roomID, playerNumber, tree, techtree_points, civ_name, flag_palette, architecture, language) => {
+		socket.on("update civ info", (roomID, playerNumber, civ_name, flag_palette, architecture, language) => {
 			let draft = getDraft(roomID);
 			var numPlayers = draft["preset"]["slots"];
 
-			draft["players"][playerNumber]["tree"] = tree;
 			draft["players"][playerNumber]["ready"] = 1;
 			draft["players"][playerNumber]["alias"] = civ_name;
 			draft["players"][playerNumber]["flag_palette"] = flag_palette;
-			draft["players"][playerNumber]["priority"] = techtree_points;
 			draft["players"][playerNumber]["architecture"] = architecture;
 			draft["players"][playerNumber]["language"] = language;
+
 			var nextPhase = 1;
 			for (var i = 0; i < numPlayers; i++) {
 				if (draft["players"][i]["ready"] != 1) {
@@ -943,16 +961,17 @@ function draftIO(io) {
 				}
 
 				//Distribute the first set of civ bonus cards
-				for (var i = 0; i < (draft["preset"]["rounds"] - 1) * numPlayers + 20; i++) {
+				for (var i = 0; i < (draft["preset"]["rounds"] - 1) * numPlayers + 30; i++) {
 					var rand = Math.floor(Math.random() * draft["gamestate"]["available_cards"][0].length);
 					draft["gamestate"]["cards"].push(draft["gamestate"]["available_cards"][0][rand]);
 					draft["gamestate"]["available_cards"][0].splice(rand, 1);
 				}
 
 				//Give each player a ranking based off how many techtree points they spent
+				//Edit: we do this randomly now because techtrees are made afterwards
 				var priorities = [];
 				for (var i = 0; i < numPlayers; i++) {
-					priorities.push(draft["players"][i]["priority"]);
+					priorities.push(Math.random());
 				}
 				for (var i = 0; i < numPlayers; i++) {
 					var maxIndex = 0;
@@ -977,67 +996,27 @@ function draftIO(io) {
 				fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
 			}
 		});
-		socket.on("end turn", (roomID, pick, client_turn) => {
+		socket.on("update tree", (roomID, playerNumber, tree) => {
 			let draft = getDraft(roomID);
 			var numPlayers = draft["preset"]["slots"];
 
-			//Determine which round we're in and who's turn it is
-			draft["gamestate"]["highlighted"] = [];
-			var roundType = Math.max(Math.floor(draft["gamestate"]["turn"] / numPlayers) - (draft["preset"]["rounds"] - 1), 0);
-			var player = draft["gamestate"]["order"][draft["gamestate"]["turn"] % numPlayers];
-			if (roundType == 2 || roundType == 4) {
-				player = draft["gamestate"]["order"][numPlayers - 1 - (draft["gamestate"]["turn"] % numPlayers)];
-			}
+			draft["players"][playerNumber]["tree"] = tree;
+			draft["players"][playerNumber]["ready"] = 1;
 
-			var bug = 0;
-			if (client_turn == draft["gamestate"]["turn"]) {
-				//Give the player the card they chose
-				draft["players"][player]["bonuses"][roundType].push(pick);
-
-				//If it's the last turn of a round, distribute new cards, otherwise make the card unavailable to others
-				if (
-					(roundType > 0 || Math.floor(draft["gamestate"]["turn"] / numPlayers) == draft["preset"]["rounds"] - 1) &&
-					draft["gamestate"]["turn"] % numPlayers == numPlayers - 1
-				) {
-					if (roundType == 4) {
-						//Last turn of the game
-						draft["gamestate"]["phase"] = 3;
-					} else {
-						draft["gamestate"]["cards"] = [];
-						for (var i = 0; i < 2 * numPlayers + 20; i++) {
-							var rand = Math.floor(Math.random() * draft["gamestate"]["available_cards"][roundType + 1].length);
-							draft["gamestate"]["cards"].push(draft["gamestate"]["available_cards"][roundType + 1][rand]);
-							draft["gamestate"]["available_cards"][roundType + 1].splice(rand, 1);
-						}
-					}
-				} else {
-					var pickIndex = draft["gamestate"]["cards"].indexOf(pick);
-					if (pickIndex != -1) {
-						draft["gamestate"]["cards"][pickIndex] = -1;
-					} else {
-						bug = 1;
-						console.log("THE BUG HAPPENED");
-						console.log("RoomID: " + roomID);
-						console.log("Pick: " + pick);
-						console.log("Draft State: ", draft["gamestate"]);
-					}
+			var nextPhase = 1;
+			for (var i = 0; i < numPlayers; i++) {
+				if (draft["players"][i]["ready"] != 1) {
+					nextPhase = 0;
 				}
+			}
 
-				//Increment the turn and save the gamestate
-				draft["gamestate"]["turn"]++;
-				fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+			if (nextPhase == 1) {
+				draft["gamestate"]["phase"] = 5;
+				fs.writeFileSync(`${dir}/drafts/${draft["id"]}.json`, JSON.stringify(draft, null, 2));
 				io.in(roomID).emit("set gamestate", draft);
-			} else {
-				console.log("Duplicate socket messages, THE BUG avoided");
-			}
 
-			if (bug == 1) {
-				io.in(roomID).emit("bug");
-			}
-
-			//Create the mod
-			//Welcome to callback hell because I wasted $1800 on a web-dev class where the professor was seemingly incapable of answering a single question
-			if (draft["gamestate"]["phase"] == 3) {
+				//Create the mod
+				//Welcome to callback hell because I wasted $1800 on a web-dev class where the professor was seemingly incapable of answering a single question
 				process.chdir(dir);
 				//Create Mod Folder
 				os.execCommand(`bash ${dir}/process_mod/createModFolder.sh ./modding/requested_mods ${draft["id"]} ${dir} 1`, function () {
@@ -1056,7 +1035,6 @@ function draftIO(io) {
 							draft["players"][i]["flag_palette"][6],
 						];
 						var symbol = draft["players"][i]["flag_palette"][7] - 1;
-
 						if (civName == "berber" || civName == "inca") {
 							icons.drawFlag(
 								seed,
@@ -1135,11 +1113,9 @@ function draftIO(io) {
 									}
 								}
 								mod_data.techtree.push(player_techtree);
-
 								mod_data.civ_bonus.push(draft["players"][i]["bonuses"][0]);
 								mod_data.architecture.push(draft["players"][i]["architecture"]);
 								mod_data.language.push(draft["players"][i]["language"]);
-
 								var team_bonuses = [];
 								team_bonuses.push(draft["players"][i]["bonuses"][4][0]);
 								mod_data.team_bonus.push(team_bonuses);
@@ -1177,11 +1153,9 @@ function draftIO(io) {
 														`./modding/requested_mods/${draft["id"]}/data.json`,
 														`./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/dat/civilizations.json`
 													);
-
 													//Add voices
 													let command = `sh ./process_mod/copyVoices.sh ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/drs/sounds ${dir}/public/vanillaFiles/voiceFiles`;
 													let uniqueLanguages = [];
-
 													for (var i = 0; i < mod_data.language.length; i++) {
 														if (uniqueLanguages.indexOf(mod_data.language[i]) == -1) {
 															uniqueLanguages.push(mod_data.language[i]);
@@ -1195,7 +1169,7 @@ function draftIO(io) {
 															function () {
 																//Zip Files
 																os.execCommand(`bash ./process_mod/zipModFolder.sh ${draft["id"]} 1`, function () {
-																	draft["gamestate"]["phase"] = 4;
+																	draft["gamestate"]["phase"] = 6;
 																	fs.writeFileSync(`${dir}/drafts/${draft["id"]}.json`, JSON.stringify(draft, null, 2));
 																	io.in(roomID).emit("set gamestate", draft);
 																});
@@ -1216,6 +1190,73 @@ function draftIO(io) {
 						}
 					);
 				});
+				// fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+				// io.in(roomID).emit("set gamestate", draft);
+			} else {
+				fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+			}
+		});
+		socket.on("end turn", (roomID, pick, client_turn) => {
+			let draft = getDraft(roomID);
+			var numPlayers = draft["preset"]["slots"];
+
+			//Determine which round we're in and who's turn it is
+			draft["gamestate"]["highlighted"] = [];
+			var roundType = Math.max(Math.floor(draft["gamestate"]["turn"] / numPlayers) - (draft["preset"]["rounds"] - 1), 0);
+			var player = draft["gamestate"]["order"][draft["gamestate"]["turn"] % numPlayers];
+			if (roundType == 2 || roundType == 4) {
+				player = draft["gamestate"]["order"][numPlayers - 1 - (draft["gamestate"]["turn"] % numPlayers)];
+			}
+
+			var bug = 0;
+			if (client_turn == draft["gamestate"]["turn"]) {
+				//Give the player the card they chose
+				draft["players"][player]["bonuses"][roundType].push(pick);
+
+				//If it's the last turn of a round, distribute new cards, otherwise make the card unavailable to others
+				if (
+					(roundType > 0 || Math.floor(draft["gamestate"]["turn"] / numPlayers) == draft["preset"]["rounds"] - 1) &&
+					draft["gamestate"]["turn"] % numPlayers == numPlayers - 1
+				) {
+					if (roundType == 4) {
+						//Last turn of the game
+						draft["gamestate"]["phase"] = 3;
+					} else {
+						draft["gamestate"]["cards"] = [];
+						for (var i = 0; i < 2 * numPlayers + 20; i++) {
+							var rand = Math.floor(Math.random() * draft["gamestate"]["available_cards"][roundType + 1].length);
+							draft["gamestate"]["cards"].push(draft["gamestate"]["available_cards"][roundType + 1][rand]);
+							draft["gamestate"]["available_cards"][roundType + 1].splice(rand, 1);
+						}
+					}
+				} else {
+					var pickIndex = draft["gamestate"]["cards"].indexOf(pick);
+					if (pickIndex != -1) {
+						draft["gamestate"]["cards"][pickIndex] = -1;
+					} else {
+						bug = 1;
+						console.log("THE BUG HAPPENED");
+						console.log("RoomID: " + roomID);
+						console.log("Pick: " + pick);
+						console.log("Draft State: ", draft["gamestate"]);
+					}
+				}
+
+				//Increment the turn and save the gamestate
+				draft["gamestate"]["turn"]++;
+				if (draft["gamestate"]["phase"] == 3) {
+					for (var i = 0; i < numPlayers; i++) {
+						draft["players"][i]["ready"] = 0;
+					}
+				}
+				fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+				io.in(roomID).emit("set gamestate", draft);
+			} else {
+				console.log("Duplicate socket messages, THE BUG avoided");
+			}
+
+			if (bug == 1) {
+				io.in(roomID).emit("bug");
 			}
 		});
 		socket.on("refill", (roomID) => {

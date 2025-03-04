@@ -1,5 +1,20 @@
 /*This code is really really really bad. But it was literally my first website page so I'm keeping it out of charm (definitely not laziness!)*/
 
+let donateRoll = Math.floor(4 * Math.random());
+if (donateRoll == 0) {
+	playAd("donateAd", 5000);
+}
+playAd("eventAd", 2000);
+
+async function playAd(adId, duration) {
+	if (!document.getElementById(adId)) return;
+
+	await sleep(500);
+	document.getElementById(adId).style.visibility = "visible";
+	await sleep(duration);
+	document.getElementById(adId).style.visibility = "";
+}
+
 var dataSeed = -1;
 
 function copyToClipboard(textid, buttonid) {
@@ -79,12 +94,14 @@ function startaDraft() {
 	document.querySelector("#spacer").remove();
 	document.querySelector("#spacer").remove();
 
-	let draftForm = document.createElement("form");
+	let draftForm = document.createElement("div");
 	draftForm.className = "draft_form";
-	draftForm.method = "post";
-	draftForm.action = `${route}/draft`;
+	draftForm.id = "draftForm";
+	//	draftForm.method = "post";
+	//	draftForm.action = `${route}/draft`;
 
 	let input1 = document.createElement("input");
+	input1.id = "numPlayersInput";
 	input1.type = "number";
 	input1.name = "num_players";
 	input1.value = 2;
@@ -110,6 +127,7 @@ function startaDraft() {
 	label2.innerHTML = 'Draft Speed: '*/
 
 	let input2 = document.createElement("input");
+	input2.id = "roundsInput";
 	input2.type = "number";
 	input2.name = "rounds";
 	input2.value = 4;
@@ -120,34 +138,84 @@ function startaDraft() {
 	label2.innerHTML = "Bonuses per Player: ";
 
 	let input4 = document.createElement("input");
+	input4.id = "currencyInput";
 	input4.type = "number";
 	input4.name = "techtree_currency";
-	input4.value = 250;
+	input4.value = 200;
 	input4.min = 25;
 	input4.max = 500;
 	let label4 = document.createElement("label");
 	label4.setAttribute("for", "techtree_currency");
 	label4.innerHTML = "Starting Tech Tree Points: ";
 
+	let input6 = document.createElement("div");
+	input6.className = "multiselect";
+	input6.id = "raritybox";
+	input6.innerHTML = `
+		<div class="selectBox" onclick="showCheckboxes()">
+			<select>
+	  			<option>Ranks</option>
+			</select>
+			<div class="overSelect"></div>
+  		</div>
+  		<div id="checkboxes">
+			<label id="rarityLabel0" for="raritySelect0">
+	  			<input type="checkbox" id="raritySelect0" class="rarityInput" checked form="draftForm" />${rarityTexts[0]}</label>
+			<label id="rarityLabel1" for="raritySelect1">
+	  			<input type="checkbox" id="raritySelect1" class="rarityInput" checked form="draftForm" />${rarityTexts[1]}</label>
+			<label id="rarityLabel2" for="raritySelect2">
+	  			<input type="checkbox" id="raritySelect2" class="rarityInput" checked form="draftForm" />${rarityTexts[2]}</label>
+			<label id="rarityLabel3" for="raritySelect3">
+	  			<input type="checkbox" id="raritySelect3" class="rarityInput" checked form="draftForm" />${rarityTexts[3]}</label>
+			<label id="rarityLabel4" for="raritySelect4">
+	  			<input type="checkbox" id="raritySelect4" class="rarityInput" checked form="draftForm" />${rarityTexts[4]}</label>
+  		</div>
+	`;
+	let label6 = document.createElement("label");
+	label6.setAttribute("for", "raritybox");
+	label6.innerHTML = "Allowed ranks: ";
+	label6.style.marginTop = 0;
+	label6.style.marginRight = "20px";
+
 	let input5 = document.createElement("input");
 	input5.type = "submit";
 	input5.value = "Start Draft";
+	input5.addEventListener("click", () => {
+		post(`${route}/draft`, {
+			num_players: document.getElementById("numPlayersInput").value,
+			rounds: document.getElementById("roundsInput").value,
+			techtree_currency: document.getElementById("currencyInput").value,
+			allowed_rarities: [
+				document.getElementById("raritySelect0").checked,
+				document.getElementById("raritySelect1").checked,
+				document.getElementById("raritySelect2").checked,
+				document.getElementById("raritySelect3").checked,
+				document.getElementById("raritySelect4").checked,
+			],
+		});
+	});
 
 	let div1 = document.createElement("div");
 	let div2 = document.createElement("div");
 	let div4 = document.createElement("div");
+	let div5 = document.createElement("div");
 	div1.className = "input_field";
 	div2.className = "input_field";
 	div4.className = "input_field";
+	div5.className = "input_field";
+	div5.style.display = "flex";
 	div1.appendChild(label1);
 	div1.appendChild(input1);
 	div2.appendChild(label2);
 	div2.appendChild(input2);
 	div4.appendChild(label4);
 	div4.appendChild(input4);
+	div5.appendChild(label6);
+	div5.appendChild(input6);
 	draftForm.appendChild(div1);
 	draftForm.appendChild(div2);
 	draftForm.appendChild(div4);
+	draftForm.appendChild(div5);
 	draftForm.appendChild(input5);
 
 	document.getElementsByTagName("body")[0].appendChild(draftForm);
@@ -206,9 +274,9 @@ function startaBuild() {
 				for (var a = 0; a < civ["bonuses"][0].length; a++) {
 					description += "• ";
 					if (civ["bonuses"][0][a].length != 2) {
-						description += card_descriptions[0][civ["bonuses"][0][a]];
+						description += card_descriptions[0][civ["bonuses"][0][a]][0];
 					} else {
-						description += card_descriptions[0][civ["bonuses"][0][a][0]];
+						description += card_descriptions[0][civ["bonuses"][0][a][0]][0];
 						if (civ["bonuses"][0][a][1] > 1) {
 							description += ` [x${civ["bonuses"][0][a][1]}]`;
 						}
@@ -217,7 +285,7 @@ function startaBuild() {
 				}
 				description += "<br><span><b>Unique Unit:</b></span><br>";
 				if (civ["bonuses"][1].length != 0) {
-					description += card_descriptions[1][civ["bonuses"][1][0]];
+					description += card_descriptions[1][civ["bonuses"][1][0]][0];
 					description += "<br>";
 				}
 				description += "<br><span><b>Unique Techs:</b></span><br>";
@@ -225,9 +293,9 @@ function startaBuild() {
 					for (var a = 0; a < civ["bonuses"][2].length; a++) {
 						description += "• ";
 						if (civ["bonuses"][2][a].length != 2) {
-							description += card_descriptions[2][civ["bonuses"][2][a]];
+							description += card_descriptions[2][civ["bonuses"][2][a]][0];
 						} else {
-							description += card_descriptions[2][civ["bonuses"][2][a][0]];
+							description += card_descriptions[2][civ["bonuses"][2][a][0]][0];
 							if (civ["bonuses"][2][a][1] > 1) {
 								description += ` [x${civ["bonuses"][2][a][1]}]`;
 							}
@@ -239,9 +307,9 @@ function startaBuild() {
 					for (var a = 0; a < civ["bonuses"][3].length; a++) {
 						description += "• ";
 						if (civ["bonuses"][3][a].length != 2) {
-							description += card_descriptions[3][civ["bonuses"][3][a]];
+							description += card_descriptions[3][civ["bonuses"][3][a]][0];
 						} else {
-							description += card_descriptions[3][civ["bonuses"][3][a][0]];
+							description += card_descriptions[3][civ["bonuses"][3][a][0]][0];
 							if (civ["bonuses"][3][a][1] > 1) {
 								description += ` [x${civ["bonuses"][3][a][1]}]`;
 							}
@@ -256,9 +324,9 @@ function startaBuild() {
 							description += "• ";
 						}
 						if (civ["bonuses"][4][j].length != 2) {
-							description += card_descriptions[4][civ["bonuses"][4][j]];
+							description += card_descriptions[4][civ["bonuses"][4][j]][0];
 						} else {
-							description += card_descriptions[4][civ["bonuses"][4][j][0]];
+							description += card_descriptions[4][civ["bonuses"][4][j][0]][0];
 							if (civ["bonuses"][4][j][1] > 1) {
 								description += ` [x${civ["bonuses"][4][j][1]}]`;
 							}
@@ -342,7 +410,7 @@ function startaBuild() {
 
 	var buildButton = document.createElement("button");
 	buildButton.id = "buildButton";
-	buildButton.innerHTML = "Build Civilization";
+	buildButton.innerHTML = "New Civilization";
 	buildButton.onclick = function () {
 		location.href = `${hostname}${route}/build`;
 	};
@@ -460,6 +528,13 @@ function combineCivilizations() {
 
 	baseModifier.appendChild(baseLabel);
 	baseModifier.appendChild(baseInput);
+
+	// baseInput.outerHTML = `
+	// <select id="baseInput" name="baseInput" onfocus='this.size=3;' onblur='this.size=0;' onchange='this.size=1; this.blur();'>
+	// 	<option value="custom">Custom</option>
+	// 	<option value="random">Random</option>
+	// 	<option value="vanilla">Vanilla</option>
+	// </select>`;
 
 	let randomCostModifier = document.createElement("div");
 	randomCostModifier.className = "modifierWrapper";
@@ -599,6 +674,7 @@ function combineCivilizations() {
 	let infinityLabel = document.createElement("div");
 	infinityLabel.id = "infinityLabel";
 	infinityLabel.textContent = "x256 Ages:";
+	infinityLabel.style.textDecoration = "line-through";
 	infinityLabel.className = "tooltip modifierLabel";
 
 	let infinityHelp = document.createElement("div");
@@ -1106,6 +1182,8 @@ if (btn7) {
 		var instructionstext = document.createElement("p");
 		instructionstext.id = "instructionstext";
 		instructionstext.innerHTML = `
+			<b>05-22-2024</b><br>
+			&emsp;&emsp;• Added a rarity system to bonuses/cards to serve as a guideline in power level<br><br>
 			<b>05-19-2024</b><br>
 			&emsp;&emsp;• Added modifiers which can be applied on top of generated civilization mods<br><br>
 			<b>05-18-2024</b><br>

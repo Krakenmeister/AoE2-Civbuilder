@@ -72,17 +72,17 @@ const uniqueNames = [
 	"Teulu",
 	"Maillotins",
 	"Hashashin",
-	"Zweihander",
+	"Highlander",
 	"Stradiot",
 	"Ahosi",
-	"Spadoni",
+	"Landsknecht",
 	"Clibinarii",
 	"Silahtar",
 	"Jaridah",
 	"Wolf Warriors",
 	"Warrior Monks",
 	"Castellan",
-	"Lightning Warriors",
+	"Wind Warriors",
 	"Chakram Throwers",
 	"Urumi Swordsmen",
 	"Rathas",
@@ -101,7 +101,7 @@ const civBonusStrings = [
 	"+10 population in Imperial Age",
 	"Infantry +1 attack vs. buildings per age (starting from Feudal Age)",
 	"Infantry cost -20% in Dark, -25% in Feudal, -30% in Castle, -35% in Imperial Age",
-	"Monks healing range 2x",
+	"Monks double healing range",
 	"Towers garrison 2x units; Town Centers garrison +10",
 	"Farms cost -40%",
 	"Barracks and Stable units +1 armor in Castle and Imperial Age (+2 total)",
@@ -128,7 +128,7 @@ const civBonusStrings = [
 	"Infantry +20% hit points starting in Feudal Age",
 	"Cavalry archers fire 25% faster",
 	"Hunters work 40% faster",
-	"Light Cavalry, Hussars, Steppe Lancers +30% hit points",
+	"Light Cavalry, Hussars, Steppe Lancers +20/30% hit points in Castle/Imperial Age",
 	"Infantry move 15% faster (starting in the Feudal Age)",
 	"Lumberjacks work 15% faster",
 	"Siege units fire 25% faster",
@@ -150,7 +150,7 @@ const civBonusStrings = [
 	"Military units cost -10/15/20/25% food in Dark/Feudal/Castle/Imperial",
 	"Buildings cost -15% stone",
 	"Houses support 10 population",
-	"Villagers affected by Blacksmith upgrades",
+	"Villagers affected by Blacksmith upgrades starting in the Castle Age",
 	"Can recruit slingers from Archery Ranges",
 	"Villagers kill wolves with 1 strike",
 	"Scout Cavalry, Light Cavalry, Hussar cost -15%",
@@ -160,7 +160,7 @@ const civBonusStrings = [
 	"Ships +10% HP",
 	"Can build Feitoria in Imperial Age",
 	"Can build Caravels in docks",
-	"Foot archers and skirmishers fire 18% faster",
+	"Foot archers fire 18% faster",
 	"Receive +100 gold, +100 food when advancing to the next age",
 	"Pikeman upgrade free",
 	"Buildings cost -15% wood",
@@ -169,11 +169,11 @@ const civBonusStrings = [
 	"Villagers move 5% faster in Dark Age, 10% faster in Feudal Age",
 	"Ships move 10% faster",
 	"Stable units cost -15% in Castle, -20% in Imperial Age",
-	"Elephant units move 10% faster",
+	"Melee elephant units move 10% faster",
 	"Villagers can garrison in Houses",
 	"No buildings required to advance to the next age or to unlock other buildings",
 	"Advance to the next age 66% faster",
-	"Elephant units cost -30% Castle, -40% in Imperial Age",
+	"Elephant units cost -25% Castle, -35% in Imperial Age",
 	"Fish Traps cost -33%",
 	"Fish Traps provide +300% food",
 	"Lumber Camp upgrades free",
@@ -191,12 +191,12 @@ const civBonusStrings = [
 	"Additional Town Center can be built in the Feudal Age",
 	"Siege Workshop and Battering Ram available in the Feudal Age; Capped Ram upgrade available in Castle Age",
 	"Receive +100 food per Town Center",
-	"Spearman-line and Skirmishers move 10% faster",
+	"Spearmen and Skirmishers move 10% faster",
 	"Each garrisoned relic gives +1 attack to Knights and Unique Unit (maximum +4)",
 	"Cavalier upgrade available in Castle Age",
 	"Gunpowder units +25% attack",
 	"Economic upgrades cost -33% food and available one age earlier",
-	"Castles built 50%, Town Centers built 100% faster",
+	"Fortifications built 50%, Town Centers built 100% faster",
 	"Land military units (except siege weapons) receive 33% less bonus damage",
 	"Farm upgrades provide +125% additional food",
 	"Can build Donjon",
@@ -323,7 +323,7 @@ const civBonusStrings = [
 	"Town Centers +50% work rate in Imperial Age",
 	"Feudal Age costs -25%",
 	"Spearmen and Skirmishers train 50% faster",
-	"Spearman-line +25% HP",
+	"Spearmen +25% HP",
 	"Market techs cost no gold",
 	"Trees contain double the amount of wood",
 	"Stone resources last 30% longer",
@@ -365,7 +365,7 @@ const civBonusStrings = [
 	"Town Centers fire 25% faster",
 	"Trebuchets cost -75 gold",
 	"All explosive units 2x blast radius",
-	"Gunpowder units +12 attack vs. buildings",
+	"Gunpowder units +8 attack vs. buildings",
 	"Eagles +1 pierce armor",
 	"Gunpowder units +1 attack per university technology researched",
 	"Buildings +3% HP per university technology researched (cumulative)",
@@ -374,7 +374,7 @@ const civBonusStrings = [
 	"Stone Miners generate gold in addition to stone",
 	"Winged Hussar replaces Hussar",
 	"Chemistry and Hand Cannoneer available in Castle Age",
-	"Spearman-line deals +25% bonus damage",
+	"Spearmen deal +25% bonus damage",
 	"Fervor and Sanctity affects villagers",
 	"Can upgrade Bombard Cannons to Houfnice",
 	"Can build Caravanseri in Imperial Age",
@@ -411,7 +411,7 @@ const civBonusStrings = [
 	"Start with a Mule Cart",
 	"Religious buildings provide Villagers in an 8 tile radius with +10% work rate",
 	"Units and buildings receive -15% damage when fighting from higher elevation",
-	"Cavalry regenerates 15% HP per minute, starting in Feudal Age",
+	"Mounted units regenerate 5/10/15 HP per minute in Feudal/Castle/Imperial Age",
 	"Flaming Camels available in Siege Workshops in Imperial Age",
 	"All buildings refund +1 stone per tile of foundation",
 	"Villagers work faster when nearby other villagers",
@@ -445,7 +445,7 @@ var uniqueCastleStrings = [
 	"Grand Trunk Road (All gold income 10% faster)",
 	"this text will change",
 	"Yasama (Towers shoot extra arrows)",
-	"Tusk Swords (Elephant units +3 attack)",
+	"Tusk Swords (Melee elephant units +3 attack)",
 	"Eupseong (Watch Towers, Guard Towers, and Keeps +2 range)",
 	"Hill Forts (Town Centers +3 range)",
 	"this text will change",
@@ -504,12 +504,12 @@ var uniqueImpStrings = [
 	"Kataparuto (Trebuchets fire, pack faster)",
 	"Double Crossbow (Scorpion and Ballista units fire two projectiles)",
 	"Shinkichon (Mangonel-line +1 range)",
-	"Tower Shields (Spearman-line and Skirmishers +2P armor)",
+	"Tower Shields (Spearmen and Skirmishers +2P armor)",
 	"Recurve Bow (Cavalry archers +1 range, +1 attack)",
 	"Forced Levy (Militia-line gold cost is replaced by additional food cost)",
 	"Farimba (Cavalry +5 attack)",
 	"El Dorado (Eagle Warriors have +40 hit points)",
-	"Drill (Siege units move 50% faster)",
+	"Drill (Siege workshop units move 50% faster)",
 	"Citadels (Castles and Kreposts fire Bullets [+4 attack, +3 vs Rams, +3 vs Infantry], receive -25% bonus damage)",
 	"Arquebus (gunpowder units more accurate)",
 	"Counterweights (Trebuchets and Mangonel-line +15% attack)",
@@ -532,7 +532,7 @@ var uniqueImpStrings = [
 	"Mahayana (Villagers and monk units take 10% less population space)",
 	"Frontier Guards (Camel units and Elephant Archers +4 melee armor)",
 	"Comitatenses (Militia-line, Knight-line, and Unique Unit train 50% faster and receive a 5 damage charge attack)",
-	"Fereters (Infantry (except Spearman-line) +30 HP, Warrior Priests +100% heal speed)",
+	"Fereters (Infantry (except Spearmen) +30 HP, Warrior Priests +100% heal speed)",
 	"Aznauri Cavalry (Cavalry units take 15% less population space)",
 	"Pila (Skirmisher attacks strip armour)",
 	"Enlistment (Infantry take 15% less population space)",
@@ -727,8 +727,8 @@ function interperateLanguage(json_path, txt_path) {
 	stringStream.write('3132 "%s has offered the services of elite mercenaries to their allies!"\n');
 	stringStream.write('8398 "Research Elite Mercenaries (Team receives 5 free Elite ' + getUniqueName(9, "imptech") + ' per Castle)"\n');
 	stringStream.write('28398 "Research <b>Elite Mercenaries<b> (<cost>) \\nTeam receives 5 free Elite ' + getUniqueName(9, "imptech") + ' per Castle."\n');
-	stringStream.write('8324 "Research Bearded Axe (+2 attack for ' + getUniqueName(11, "castletech") + ')"\n');
-	stringStream.write('28324 "Research <b>Bearded Axe<b> (<cost>) \\n +2 attack for ' + getUniqueName(11, "castletech") + '."\n');
+	stringStream.write('8324 "Research Bearded Axe (+1 range for ' + getUniqueName(11, "castletech") + ')"\n');
+	stringStream.write('28324 "Research <b>Bearded Axe<b> (<cost>) \\n +1 range for ' + getUniqueName(11, "castletech") + '."\n');
 	stringStream.write('8267 "Research Fabric Shields (' + getUniqueName(14, "imptech") + ', Slingers, Eagles +1 armor/+2 pierce armor.)"\n');
 	stringStream.write(
 		'28267 "Research <b>Fabric Shields<b> (<cost>) \\n' + getUniqueName(14, "imptech") + ', Slingers, Eagles have +1 armor/+2 pierce armor."\n'
@@ -768,7 +768,7 @@ function interperateLanguage(json_path, txt_path) {
 		'28423 "Research <b>Citadels<b> (<cost>)\\nCastles and Kreposts fire bullets (+4 attack, +3 vs Rams, +3 vs Infantry), receive -25% bonus damage."\n'
 	);
 	uniqueCastleStrings[10] = "Royal Heirs (" + getUniqueName(10, "castletech") + " and Camels receive -3 damage from Mounted Units)";
-	uniqueCastleStrings[11] = "Bearded Axe (+2 attack for " + getUniqueName(11, "castletech") + ")";
+	uniqueCastleStrings[11] = "Bearded Axe (+1 range for " + getUniqueName(11, "castletech") + ")";
 	uniqueCastleStrings[12] = "Anarchy (create " + getUniqueName(12, "castletech") + " at Barracks)";
 	uniqueCastleStrings[13] = "Marauders (create " + getUniqueName(13, "castletech") + " at Stables)";
 	uniqueCastleStrings[16] = "Pavise (Archer-line, Condottieri, and " + getUniqueName(16, "castletech") + " +1 armor/+1 pierce armor)";
@@ -783,7 +783,7 @@ function interperateLanguage(json_path, txt_path) {
 	uniqueImpStrings[14] = "Fabric Shields (" + getUniqueName(14, "imptech") + ", Slingers, Eagles +1/+2P armor)";
 	// uniqueImpStrings[36] = "Berserkergang (" + getUniqueName(36, "imptech") + " can regenerate)";
 	uniqueImpStrings[53] =
-		"Shigeto Yumi (" + getUniqueName(53, "imptech") + ", Mounted Units, and Towers attack 15% faster and deal +6 anti-unique unit damage)";
+		"Shigeto Yumi (" + getUniqueName(53, "imptech") + ", Mounted Archers, and Towers attack 15% faster and deal +2 anti-unique unit damage)";
 	for (var i = 0; i < civs.techtree.length; i++) {
 		stringStream.write(i + 120150 + ' "' + getCivType(civs.techtree[i]) + " civilization \\n\\n");
 		for (var j = 0; j < civs.civ_bonus[i].length; j++) {
@@ -1260,20 +1260,20 @@ function interperateLanguage(json_path, txt_path) {
 	stringStream.write(
 		'28631 "Upgrade to <b>Elite Hashashin<b> (<cost>) \\nUpgrades your Hashashin to Elite Hashashin, organizing their murderous intentions to frightening efficiency."\n'
 	);
-	stringStream.write('5020 "Zweihander"\n');
-	stringStream.write('6020 "Create Zweihander"\n');
+	stringStream.write('5020 "Highlander"\n');
+	stringStream.write('6020 "Create Highlander"\n');
 	stringStream.write(
-		'26020 "Create <b>Zweihander<b> (<cost>) \\nInfantry unit enormously skilled with a two-handed sword. Strong vs. infantry. Weak vs. archers.<i> Upgrades: attack, armor (Blacksmith); speed (Barracks); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n <hp> <attack> <armor> <piercearmor> <range>"\n'
+		'26020 "Create <b>Highlander<b> (<cost>) \\nInfantry unit enormously skilled with a two-handed sword. Strong vs. infantry. Weak vs. archers.<i> Upgrades: attack, armor (Blacksmith); speed (Barracks); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n <hp> <attack> <armor> <piercearmor> <range>"\n'
 	);
-	stringStream.write('5825 "Elite Zweihander"\n');
-	stringStream.write('6825 "Create Elite Zweihander"\n');
+	stringStream.write('5825 "Elite Highlander"\n');
+	stringStream.write('6825 "Create Elite Highlander"\n');
 	stringStream.write(
-		'26825 "Create <b>Elite Zweihander<b> (<cost>) \\nInfantry unit enormously skilled with a two-handed sword. Strong vs. infantry. Weak vs. archers.<i> Upgrades: attack, armor (Blacksmith); speed (Barracks); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n<hp> <attack> <armor> <piercearmor> <range>"\n'
+		'26825 "Create <b>Elite Highlander<b> (<cost>) \\nInfantry unit enormously skilled with a two-handed sword. Strong vs. infantry. Weak vs. archers.<i> Upgrades: attack, armor (Blacksmith); speed (Barracks); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n<hp> <attack> <armor> <piercearmor> <range>"\n'
 	);
-	stringStream.write('7632 "Elite Zweihander"\n');
-	stringStream.write('8632 "Upgrade to Elite Zweihander"\n');
+	stringStream.write('7632 "Elite Highlander"\n');
+	stringStream.write('8632 "Upgrade to Elite Highlander"\n');
 	stringStream.write(
-		'28632 "Upgrade to <b>Elite Zweihander<b> (<cost>) \\nUpgrades your Zweihander to Elite Zweihander, giving nearly unstoppable power behind each swing of their massive sword."\n'
+		'28632 "Upgrade to <b>Elite Highlander<b> (<cost>) \\nUpgrades your Highlander to Elite Highlander, giving nearly unstoppable power behind each swing of their massive sword."\n'
 	);
 	stringStream.write('5480 "Stradiot"\n');
 	stringStream.write('6480 "Create Stradiot"\n');
@@ -1305,20 +1305,20 @@ function interperateLanguage(json_path, txt_path) {
 	stringStream.write(
 		'28634 "Upgrade to <b>Elite Ahosi<b> (<cost>) \\nUpgrades your Ahosi to Elite Ahosi, deadly female warriors often compared to the mythical Amazons, but intimidatingly real."\n'
 	);
-	stringStream.write('5300 "Spadoni"\n');
-	stringStream.write('6780 "Create Spadoni"\n');
+	stringStream.write('5300 "Landsknecht"\n');
+	stringStream.write('6780 "Create Landsknecht"\n');
 	stringStream.write(
-		'26780 "Create <b>Spadoni<b> (<cost>) \\nLight infantry, surprisingly deft with a two-handed sword. Strong vs. gunpowder and siege. Weak vs. archers.<i> Upgrades: attack, armor (Blacksmith); speed (Barracks); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n <hp> <attack> <armor> <piercearmor> <range"\n'
+		'26780 "Create <b>Landsknecht<b> (<cost>) \\nLight infantry, surprisingly deft with a two-handed sword. Strong vs. gunpowder and siege. Weak vs. archers.<i> Upgrades: attack, armor (Blacksmith); speed (Barracks); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n <hp> <attack> <armor> <piercearmor> <range"\n'
 	);
-	stringStream.write('5828 "Elite Spadoni"\n');
-	stringStream.write('6828 "Create Elite Spadoni"\n');
+	stringStream.write('5828 "Elite Landsknecht"\n');
+	stringStream.write('6828 "Create Elite Landsknecht"\n');
 	stringStream.write(
-		'26828 "Create <b>Elite Spadoni<b> (<cost>) \\nLight infantry, surprisingly deft with a two-handed sword. Strong vs. gunpowder and siege. Weak vs. archers.<i> Upgrades: attack, armor (Blacksmith); speed (Barracks); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n<hp> <attack> <armor> <piercearmor> <range>"\n'
+		'26828 "Create <b>Elite Landsknecht<b> (<cost>) \\nLight infantry, surprisingly deft with a two-handed sword. Strong vs. gunpowder and siege. Weak vs. archers.<i> Upgrades: attack, armor (Blacksmith); speed (Barracks); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n<hp> <attack> <armor> <piercearmor> <range>"\n'
 	);
-	stringStream.write('7635 "Elite Spadoni"\n');
-	stringStream.write('8635 "Upgrade to Elite Spadoni"\n');
+	stringStream.write('7635 "Elite Landsknecht"\n');
+	stringStream.write('8635 "Upgrade to Elite Landsknecht"\n');
 	stringStream.write(
-		'28635 "Upgrade to <b>Elite Spadoni<b> (<cost>) \\nUpgrades your Spadoni to Elite Spadoni, artists of the two-handed sword fighting style."\n'
+		'28635 "Upgrade to <b>Elite Landsknecht<b> (<cost>) \\nUpgrades your Landsknecht to Elite Landsknecht, artists of the two-handed sword fighting style."\n'
 	);
 	stringStream.write('5701 "Clibinarii"\n');
 	stringStream.write('5781 "Create Clibinarii"\n');
@@ -1408,20 +1408,20 @@ function interperateLanguage(json_path, txt_path) {
 	stringStream.write(
 		'28641 "Upgrade to <b>Elite Castellan<b> (<cost>) \\nUpgrades your Castellan to Elite Castellan, increasing their inspiring presence on the battlefield."\n'
 	);
-	stringStream.write('5017 "Lightning Warrior"\n');
-	stringStream.write('6017 "Create Lightning Warrior"\n');
+	stringStream.write('5017 "Wind Warrior"\n');
+	stringStream.write('6017 "Create Wind Warrior"\n');
 	stringStream.write(
-		'26017 "Create <b>Lightning Warrior<b> (<cost>) \\nMesoamerican infantry unit. Strong vs. archers. Weak vs. heavy cavalry and elephants.<i> Upgrades: attack, armor (Blacksmith); speed (Barracks); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n <hp> <attack> <armor> <piercearmor> <range>"\n'
+		'26017 "Create <b>Wind Warrior<b> (<cost>) \\nMesoamerican infantry unit. Strong vs. archers. Weak vs. heavy cavalry and elephants.<i> Upgrades: attack, armor (Blacksmith); speed (Barracks); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n <hp> <attack> <armor> <piercearmor> <range>"\n'
 	);
-	stringStream.write('5835 "Elite Lightning Warrior"\n');
+	stringStream.write('5835 "Elite Wind Warrior"\n');
 	stringStream.write('6835 "Create Elite Warrior"\n');
 	stringStream.write(
-		'26835 "Create <b>Elite Lightning Warrior<b> (<cost>) \\nMesoamerican infantry unit. Strong vs. archers. Weak vs. heavy cavalry and elephants.<i> Upgrades: attack, armor (Blacksmith); speed (Barracks); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n<hp> <attack> <armor> <piercearmor> <range>"\n'
+		'26835 "Create <b>Elite Wind Warrior<b> (<cost>) \\nMesoamerican infantry unit. Strong vs. archers. Weak vs. heavy cavalry and elephants.<i> Upgrades: attack, armor (Blacksmith); speed (Barracks); creation speed (Castle); more resistant to Monks (Monastery).<i>\\n<hp> <attack> <armor> <piercearmor> <range>"\n'
 	);
-	stringStream.write('7642 "Elite Lightning Warrior"\n');
-	stringStream.write('8642 "Upgrade to Elite Lightning Warrior"\n');
+	stringStream.write('7642 "Elite Wind Warrior"\n');
+	stringStream.write('8642 "Upgrade to Elite Wind Warrior"\n');
 	stringStream.write(
-		'28642 "Upgrade to <b>Elite Lightning Warrior<b> (<cost>) \\nUpgrades your Lightning Warriors to Elite Lightning Warriors, increasing their religious resolve and hatred of cowardly ranged combat."\n'
+		'28642 "Upgrade to <b>Elite Wind Warrior<b> (<cost>) \\nUpgrades your Wind Warriors to Elite Wind Warriors, increasing their religious resolve and hatred of cowardly ranged combat."\n'
 	);
 	stringStream.write('5213 "Apukispay"\n');
 	stringStream.write('6213 "Create Apukispay"\n');
@@ -1439,8 +1439,8 @@ function interperateLanguage(json_path, txt_path) {
 		'28643 "Upgrade to <b>Elite Apukispay<b> (<cost>) \\nUpgrades your Apukispay to Elite Apukispay, increasing their vitality and lengthening their presence on the battlefield."\n'
 	);
 	stringStream.write('7500 "Deconstruction"\n');
-	stringStream.write('8500 "Research Deconstruction (Siege units +30 vs. buildings)"\n');
-	stringStream.write('28500 "Research <b>Deconstruction<b> (<cost>)\\nSiege units +30 vs. buildings."\n');
+	stringStream.write('8500 "Research Deconstruction (Siege units fire 33% faster)"\n');
+	stringStream.write('28500 "Research <b>Deconstruction<b> (<cost>)\\nSiege units fire 33% faster."\n');
 	stringStream.write('17500 "Deconstruction"\n');
 	stringStream.write('7501 "Obsidian Arrows"\n');
 	stringStream.write('8501 "Research Obsidian Arrows (Archer-line +6 attack vs. buildings)"\n');
@@ -1498,12 +1498,12 @@ function interperateLanguage(json_path, txt_path) {
 	stringStream.write(
 		'8514 "Research Shigeto Yumi (' +
 			getUniqueName(53, "imptech") +
-			', Mounted Archers, and Towers attack 15% faster and deal +6 bonus damage vs. unique units)"\n'
+			', Mounted Archers, and Towers attack 15% faster and deal +2 bonus damage vs. unique units)"\n'
 	);
 	stringStream.write(
 		'28514 "Research <b>Shigeto Yumi<b> (<cost>)\\n' +
 			getUniqueName(53, "imptech") +
-			', Mounted Archers, and Towers attack 15% faster and deal +6 bonus damage vs. unique units."\n'
+			', Mounted Archers, and Towers attack 15% faster and deal +2 bonus damage vs. unique units."\n'
 	);
 	stringStream.write('17514 "Shigeto\\nYumi"\n');
 

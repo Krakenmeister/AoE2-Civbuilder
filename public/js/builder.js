@@ -1,3 +1,7 @@
+//const { card_descriptions } = require("./common");
+
+// const { card_descriptions } = require("./common");
+
 //Initiliaze civ preset
 var civ = {};
 civ["alias"] = "";
@@ -202,9 +206,9 @@ function renderPhase1() {
 				for (var a = 0; a < civ["bonuses"][0].length; a++) {
 					description += "• ";
 					if (civ["bonuses"][0][a].length != 2) {
-						description += card_descriptions[0][civ["bonuses"][0][a]];
+						description += card_descriptions[0][civ["bonuses"][0][a]][0];
 					} else {
-						description += card_descriptions[0][civ["bonuses"][0][a][0]];
+						description += card_descriptions[0][civ["bonuses"][0][a][0]][0];
 						if (civ["bonuses"][0][a][1] > 1) {
 							description += ` [x${civ["bonuses"][0][a][1]}]`;
 						}
@@ -213,7 +217,7 @@ function renderPhase1() {
 				}
 				description += "<br><span><b>Unique Unit:</b></span><br>";
 				if (civ["bonuses"][1].length != 0) {
-					description += card_descriptions[1][civ["bonuses"][1][0]];
+					description += card_descriptions[1][civ["bonuses"][1][0]][0];
 					description += "<br>";
 				}
 				description += "<br><span><b>Unique Techs:</b></span><br>";
@@ -221,9 +225,9 @@ function renderPhase1() {
 					for (var a = 0; a < civ["bonuses"][2].length; a++) {
 						description += "• ";
 						if (civ["bonuses"][2][a].length != 2) {
-							description += card_descriptions[2][civ["bonuses"][2][a]];
+							description += card_descriptions[2][civ["bonuses"][2][a]][0];
 						} else {
-							description += card_descriptions[2][civ["bonuses"][2][a][0]];
+							description += card_descriptions[2][civ["bonuses"][2][a][0]][0];
 							if (civ["bonuses"][2][a][1] > 1) {
 								description += ` [x${civ["bonuses"][2][a][1]}]`;
 							}
@@ -235,9 +239,9 @@ function renderPhase1() {
 					for (var a = 0; a < civ["bonuses"][3].length; a++) {
 						description += "• ";
 						if (civ["bonuses"][3][a].length != 2) {
-							description += card_descriptions[3][civ["bonuses"][3][a]];
+							description += card_descriptions[3][civ["bonuses"][3][a]][0];
 						} else {
-							description += card_descriptions[3][civ["bonuses"][3][a][0]];
+							description += card_descriptions[3][civ["bonuses"][3][a][0]][0];
 							if (civ["bonuses"][3][a][1] > 1) {
 								description += ` [x${civ["bonuses"][3][a][1]}]`;
 							}
@@ -250,9 +254,9 @@ function renderPhase1() {
 					for (var j = 0; j < civ["bonuses"][4].length; j++) {
 						description += "• ";
 						if (civ["bonuses"][4][j].length != 2) {
-							description += card_descriptions[4][civ["bonuses"][4][j]];
+							description += card_descriptions[4][civ["bonuses"][4][j]][0];
 						} else {
-							description += card_descriptions[4][civ["bonuses"][4][j][0]];
+							description += card_descriptions[4][civ["bonuses"][4][j][0]][0];
 							if (civ["bonuses"][4][j][1] > 1) {
 								description += ` [x${civ["bonuses"][4][j][1]}]`;
 							}
@@ -491,14 +495,21 @@ function renderPhase2() {
 			resized_card.style.height = cardSize + "rem";
 			resized_card.style.margin = marginSize + "rem";
 			if (includesCard(i)) {
-				resized_card.style.outline = cardSize * (22 / 256) + "rem solid rgba(0, 255, 0, 0.7)";
-				resized_card.style.outlineOffset = "-" + cardSize * (22 / 256) + "rem";
+				// resized_card.style.outline = cardSize * (22 / 256) + "rem solid rgba(0, 255, 0, 0.7)";
+				// resized_card.style.outlineOffset = "-" + cardSize * (22 / 256) + "rem";
 				resized_card.style.marginRight = cardSize * 0.6 + "rem";
 			}
 			let old_resized_card = document.getElementById("card" + i);
 			let new_resized_card = old_resized_card.cloneNode(true);
 			old_resized_card.parentNode.replaceChild(new_resized_card, old_resized_card);
-			new_resized_card.onmouseover = getFun3(card_descriptions[roundType][i], i, cardSize, [0, 255, 0, 0.7]);
+			new_resized_card.onmouseover = getFun3(
+				card_descriptions[roundType][i][0],
+				i,
+				cardSize,
+				[0, 255, 0, 0.7],
+				card_descriptions[roundType][i][1],
+				roundType
+			);
 			new_resized_card.onmouseout = getFun4(i);
 			new_resized_card.addEventListener("click", getFun5(i, cardSize));
 		}
@@ -522,6 +533,7 @@ function renderPhase2() {
 		for (let selectedCardValue of selectedCardValues) {
 			selectedCardValue.style.fontSize = `${cardSize / 5}rem`;
 		}
+		displayEdition();
 	};
 
 	//Add filtering to cards
@@ -541,26 +553,63 @@ function renderPhase2() {
 	filterinput.id = "filterinput";
 	filterinput.type = "text";
 	filterinput.onkeyup = function () {
-		var filter = document.getElementById("filterinput").value.toLowerCase();
-		if (filter == "") {
-			for (var i = 0; i < num_cards[roundType]; i++) {
-				document.getElementById("card" + i).style.display = "block";
-			}
-		} else {
-			for (var i = 0; i < num_cards[roundType]; i++) {
-				var card = document.getElementById("card" + i);
-				if (card_descriptions[roundType][i].toLowerCase().includes(filter)) {
-					card.style.display = "block";
-				} else {
-					card.style.display = "none";
-				}
-			}
-		}
+		filterCards(document.getElementById("filterinput").value.toLowerCase());
 	};
 
 	filterbox.appendChild(filtertext);
 	filterbox.appendChild(filterinput);
 	players.appendChild(filterbox);
+
+	// Allow players to filter by rarity
+	var raritybox = document.createElement("div");
+	raritybox.className = "multiselect";
+	raritybox.id = "raritybox";
+	raritybox.innerHTML = `
+		<div class="selectBox" onclick="showCheckboxes()">
+			<select>
+	  			<option>Ranks</option>
+			</select>
+			<div class="overSelect"></div>
+  		</div>
+  		<div id="checkboxes">
+			<label id="rarityLabel0" for="raritySelect0">
+	  			<input type="checkbox" id="raritySelect0" class="rarityInput" checked />${rarityTexts[0]}</label>
+			<label id="rarityLabel1" for="raritySelect1">
+	  			<input type="checkbox" id="raritySelect1" class="rarityInput" checked />${rarityTexts[1]}</label>
+			<label id="rarityLabel2" for="raritySelect2">
+	  			<input type="checkbox" id="raritySelect2" class="rarityInput" checked />${rarityTexts[2]}</label>
+			<label id="rarityLabel3" for="raritySelect3">
+	  			<input type="checkbox" id="raritySelect3" class="rarityInput" checked />${rarityTexts[3]}</label>
+			<label id="rarityLabel4" for="raritySelect4">
+	  			<input type="checkbox" id="raritySelect4" class="rarityInput" checked />${rarityTexts[4]}</label>
+  		</div>
+	`;
+	players.appendChild(raritybox);
+
+	var editionbox = document.createElement("div");
+	editionbox.className = "multiselect";
+	editionbox.id = "editionbox";
+	editionbox.innerHTML = `
+		<div class="editionWrapper">
+			<div class="selectBox" onclick="showCheckboxes2()" style="width: 12vw">
+				<select>
+					<option>Editions</option>
+				</select>
+				<div class="overSelect"></div>
+			</div>
+			<div style="width: 4vw;display: flex;justify-content: center; align-items: center">
+				<input type="checkbox" id="editionDisplay" class="editionInput" style="filter: none" checked />
+			</div>
+		</div>
+		
+		<div id="checkboxes2" style="width: 12vw">
+			<label id="editionLabel0" for="editionSelect0">
+				<input type="checkbox" id="editionSelect0" class="editionInput" checked />Base Edition</label>
+			<label id="editionLabel1" for="editionSelect1">
+				<input type="checkbox" id="editionSelect1" class="editionInput" checked />First Edition</label>
+		</div>
+	`;
+	players.appendChild(editionbox);
 
 	//Show player information to the left of the board
 	var player = document.createElement("div");
@@ -636,17 +685,133 @@ function renderPhase2() {
 	board.appendChild(unselected);
 
 	//Outline hovered card and display help text
-	function getFun3(text, cardId, size, colour) {
+	function getFun3(text, cardId, size, colour, rarity, roundType) {
 		return function () {
 			var hover_card = document.getElementById("card" + cardId);
-			hover_card.style.outline = size * (22 / 256) + "rem solid rgba(" + colour[0] + ", " + colour[1] + ", " + colour[2] + ", " + colour[3] + ")";
-			hover_card.style.outlineOffset = "-" + size * (22 / 256) + "rem";
+			document.getElementById("cardimage" + cardId).style.filter = "brightness(150%)";
+			document.getElementById("cardborder" + cardId).style.filter = "brightness(150%)";
+
 			var help = document.getElementById("helpboxcontainer");
 			help.style.visibility = "visible";
-			var helptext = document.getElementById("helpboxtext");
-			helptext.style.fontSize = "80px";
-			helptext.innerHTML = text;
-			fitText("helpboxtext");
+			if (roundType != 1) {
+				var helptext = document.getElementById("helpboxtext");
+				helptext.style.fontSize = "80px";
+				helptext.innerHTML = `<span class="rarityText${rarity}">${rarityTexts[rarity]}</span><br>${text}`;
+				fitText("helpboxtext");
+			} else {
+				var helptext = document.getElementById("helpboxtext");
+
+				let costsElement = `<div class="statwrapper">`;
+				for (let i = 0; i < 4; i++) {
+					if (unitStats[cardId].cost[i] != 0) {
+						costsElement += `<img src="./img/staticons/${costIcons[i]}" class="staticon">
+							<div class="stattext" style="margin-right:0.75vw">${unitStats[cardId].cost[i]}</div>
+						`;
+					}
+				}
+				costsElement += `</div>`;
+
+				let detailsElement = `<div id="detailedstats" style="display:flex;margin-bottom:50px;">`;
+				for (let i = 0; i < unitStats[cardId].attacks.elite.length; i++) {
+					if (unitStats[cardId].attacks.elite[i][0] == 3 || unitStats[cardId].attacks.elite[i][0] == 4) {
+						continue;
+					}
+
+					let eliteBonusAmount = unitStats[cardId].attacks.elite[i][1];
+					let basicBonusAmount = 0;
+					for (let j = 0; j < unitStats[cardId].attacks.basic.length; j++) {
+						if (unitStats[cardId].attacks.basic[j][0] == unitStats[cardId].attacks.elite[i][0]) {
+							basicBonusAmount = unitStats[cardId].attacks.basic[j][1];
+						}
+					}
+					detailsElement += `<div>+ ${
+						basicBonusAmount == eliteBonusAmount ? basicBonusAmount : basicBonusAmount + " (" + eliteBonusAmount + ")"
+					} vs. ${classToName[unitStats[cardId].attacks.elite[i][0]]}</div>`;
+				}
+				if (unitStats[cardId].special) {
+					detailsElement += `<div style="font-size:1.1vw"><u>Special Rule</u>: ${unitStats[cardId].special}</div>`;
+				}
+				detailsElement += `</div>`;
+
+				let attackType = -1;
+				let attackAmounts = [-1, -1];
+				for (let i = 0; i < unitStats[cardId].attacks.basic.length; i++) {
+					if (unitStats[cardId].attacks.basic[i][0] == 4) {
+						attackType = 4;
+						attackAmounts[0] = unitStats[cardId].attacks.basic[i][1];
+					} else if (unitStats[cardId].attacks.basic[i][0] == 3) {
+						attackType = 3;
+						attackAmounts[0] = unitStats[cardId].attacks.basic[i][1];
+					}
+				}
+				for (let i = 0; i < unitStats[cardId].attacks.elite.length; i++) {
+					if (unitStats[cardId].attacks.elite[i][0] == attackType) {
+						attackAmounts[1] = unitStats[cardId].attacks.elite[i][1];
+					}
+				}
+
+				let rangeElement = `<div class="statwrapper">
+					<img src="./img/staticons/range.png" class="staticon">
+					<div class="stattext">${
+						unitStats[cardId].range.length == 1 ? unitStats[cardId].range : unitStats[cardId].range[0] + " (" + unitStats[cardId].range[1] + ")"
+					}</div>
+				</div>`;
+
+				helptext.innerHTML = `
+					<div id="unitprofile">
+						<div class="rarityText${rarity}" style="font-size:2vw">${rarityTexts[rarity]}</div>
+						<img src="./img/unitgraphics/uu_${cardId}.jpg" class="unitgraphic">
+						<div id="unitstatswrapper">
+							<div>${card_descriptions[1][cardId][0]}</div>
+							${costsElement}
+							<div class="statwrapper">
+								<img src="./img/staticons/hp.png" class="staticon">
+								<div class="stattext">${unitStats[cardId].hp.length == 1 ? unitStats[cardId].hp : unitStats[cardId].hp[0] + " (" + unitStats[cardId].hp[1] + ")"}</div>
+							</div>
+							<div class="statwrapper">
+								<img src="./img/staticons/${attackType == 3 ? "pierceAttack.png" : "damage.png"}" class="staticon">
+								<div class="stattext">${attackAmounts[0] == attackAmounts[1] ? attackAmounts[0] : attackAmounts[0] + " (" + attackAmounts[1] + ")"}</div>
+							</div>
+							${unitStats[cardId].range[0] > 0 ? rangeElement : ""}
+							<div class="statwrapper">
+								<img src="./img/staticons/reloadTime.png" class="staticon">
+								<div class="stattext">${
+									unitStats[cardId].reload.length == 1
+										? unitStats[cardId].reload + " seconds"
+										: unitStats[cardId].reload[0] + " seconds (" + unitStats[cardId].reload[1] + ")"
+								}</div>
+							</div>
+							<div class="statwrapper">
+								<img src="./img/staticons/movementSpeed.png" class="staticon">
+								<div class="stattext">${
+									unitStats[cardId].speed.length == 1
+										? unitStats[cardId].speed
+										: unitStats[cardId].speed[0] + " (" + unitStats[cardId].speed[1] + ")"
+								}</div>
+							</div>
+							<div class="statwrapper">
+								<img src="./img/staticons/armor.png" class="staticon">
+								<div class="stattext" style="margin-right:0.75vw">${
+									unitStats[cardId].armors.basic[0] == unitStats[cardId].armors.elite[0]
+										? unitStats[cardId].armors.basic[0]
+										: unitStats[cardId].armors.basic[0] + " (" + unitStats[cardId].armors.elite[0] + ")"
+								}</div>
+								<img src="./img/staticons/range-armor.png" class="staticon">
+								<div class="stattext">${
+									unitStats[cardId].armors.basic[1] == unitStats[cardId].armors.elite[1]
+										? unitStats[cardId].armors.basic[1]
+										: unitStats[cardId].armors.basic[1] + " (" + unitStats[cardId].armors.elite[1] + ")"
+								}</div>
+							</div>
+							${detailsElement}
+						</div>
+					</div>
+				`;
+				document.getElementById("detailedstats").style.display = "flex";
+				document.getElementById("helpboximage").src = "./img/helpbackgroundextended.png";
+				document.getElementById("helpboxcontainer").style.height = "19vw";
+				fitHeight("helpboxcontainer");
+			}
 			var finish_button = document.getElementById("finish");
 			finish_button.style.visibility = "hidden";
 			var share_button = document.getElementById("clear");
@@ -660,8 +825,8 @@ function renderPhase2() {
 	function getFun4(cardId) {
 		return function () {
 			if (!includesCard(cardId)) {
-				var hover_card = document.getElementById("card" + cardId);
-				hover_card.style.outline = "none";
+				document.getElementById("cardimage" + cardId).style.filter = "";
+				document.getElementById("cardborder" + cardId).style.filter = "";
 			}
 			var help = document.getElementById("helpboxcontainer");
 			help.style.visibility = "hidden";
@@ -705,9 +870,15 @@ function renderPhase2() {
 					if (civ["bonuses"][roundType][0].length != 2) {
 						cleared_card = document.getElementById("card" + civ["bonuses"][roundType][0]);
 						console.log("card" + civ["bonuses"][roundType][0]);
+						if (document.getElementById("selectedCardWrapper" + civ["bonuses"][roundType][0])) {
+							document.getElementById("selectedCardWrapper" + civ["bonuses"][roundType][0]).remove();
+						}
 					} else {
 						cleared_card = document.getElementById("card" + civ["bonuses"][roundType][0][0]);
 						console.log("card" + civ["bonuses"][roundType][0][0]);
+						if (document.getElementById("selectedCardWrapper" + civ["bonuses"][roundType][0][0])) {
+							document.getElementById("selectedCardWrapper" + civ["bonuses"][roundType][0][0]).remove();
+						}
 					}
 					cleared_card.style.outline = "none";
 					cleared_card.style.marginRight = marginSize + "rem";
@@ -727,7 +898,7 @@ function renderPhase2() {
 
 					let selected_card_background = document.createElement("img");
 					selected_card_background.className = "selectedCardBackground";
-					selected_card_background.src = "./img/cards/card_background.png";
+					selected_card_background.src = "./img/compressedcards/card_background.jpg";
 					selected_card_background.style.width = cardSize + "rem";
 					selected_card_background.style.height = cardSize + "rem";
 
@@ -780,8 +951,8 @@ function renderPhase2() {
 					activated_card.appendChild(selected_card_wrapper);
 				}
 
-				activated_card.style.outline = size * (22 / 256) + "rem solid rgba(0, 255, 0, 0.7)";
-				activated_card.style.outlineOffset = "-" + size * (22 / 256) + "rem";
+				// activated_card.style.outline = size * (22 / 256) + "rem solid rgba(0, 255, 0, 0.7)";
+				// activated_card.style.outlineOffset = "-" + size * (22 / 256) + "rem";
 				activated_card.style.marginRight = cardSize * 0.6 + "rem";
 				if (roundType != 1) {
 					civ["bonuses"][roundType].push([cardId, 1]);
@@ -791,6 +962,25 @@ function renderPhase2() {
 				unselected.removeChild(activated_card);
 				selected.appendChild(activated_card);
 			}
+		};
+	}
+
+	function getFun6(cardId) {
+		return function (event) {
+			event.preventDefault();
+			if (document.getElementById("detailedstats")) {
+				if (document.getElementById("detailedstats").style.display == "flex") {
+					document.getElementById("detailedstats").style.display = "none";
+					document.getElementById("helpboximage").src = "./img/helpbackground.png";
+					document.getElementById("helpboxcontainer").style.height = "20vw";
+				} else {
+					document.getElementById("detailedstats").style.display = "flex";
+					document.getElementById("helpboximage").src = "./img/helpbackgroundextended.png";
+					document.getElementById("helpboxcontainer").style.height = "19vw";
+					fitHeight("helpboxcontainer");
+				}
+			}
+			return false;
 		};
 	}
 
@@ -820,16 +1010,36 @@ function renderPhase2() {
 		} else if (roundType == 4) {
 			prefix = "team";
 		}
-		var path = `${prefix}_${i}.png`;
+		var path = `${prefix}_${i}.jpg`;
+
 		var image = document.createElement("img");
-		image.className = "cardimage";
-		image.src = "./img/cards/" + path;
+		image.className = `cardimage ${rarities[card_descriptions[roundType][i][1]]}`;
+		image.id = "cardimage" + i;
+		image.src = "./img/compressedcards/" + path;
+		image.srcset = "./img/compressedcards/" + path;
 		card.appendChild(image);
+
+		var border = document.createElement("img");
+		border.id = "cardborder" + i;
+		border.className = `cardborder ${rarities[card_descriptions[roundType][i][1]]}`;
+		border.src = "./img/cards/card_border.png";
+		card.appendChild(border);
+
+		var frame = document.createElement("img");
+		frame.className = "cardframe";
+		frame.src = `./img/frames/frame_${rarities[card_descriptions[roundType][i][1]]}.png`;
+		card.appendChild(frame);
+
+		var edition = document.createElement("img");
+		edition.className = "cardedition";
+		edition.src = `./img/editions/edition_${card_descriptions[roundType][i][2]}.png`;
+		card.appendChild(edition);
+
 		//Let player pick a card
 		card.style.cursor = "pointer";
 		if (includesCard(i)) {
-			card.style.outline = cardSize * (22 / 256) + "rem solid rgba(0, 255, 0, 0.7)";
-			card.style.outlineOffset = "-" + cardSize * (22 / 256) + "rem";
+			// card.style.outline = cardSize * (22 / 256) + "rem solid rgba(0, 255, 0, 0.7)";
+			// card.style.outlineOffset = "-" + cardSize * (22 / 256) + "rem";
 
 			if (roundType != 1) {
 				let dummyIndex = i;
@@ -844,7 +1054,7 @@ function renderPhase2() {
 
 				let selected_card_background = document.createElement("img");
 				selected_card_background.className = "selectedCardBackground";
-				selected_card_background.src = "./img/cards/card_background.png";
+				selected_card_background.src = "./img/compressedcards/card_background.jpg";
 				selected_card_background.style.width = cardSize + "rem";
 				selected_card_background.style.height = cardSize + "rem";
 
@@ -896,9 +1106,10 @@ function renderPhase2() {
 				card.style.marginRight = cardSize * 0.6 + "rem";
 			}
 		}
-		card.onmouseover = getFun3(card_descriptions[roundType][i], i, cardSize, [0, 255, 0, 0.7]);
+		card.onmouseover = getFun3(card_descriptions[roundType][i][0], i, cardSize, [0, 255, 0, 0.7], card_descriptions[roundType][i][1], roundType);
 		card.onmouseout = getFun4(i);
 		card.addEventListener("click", getFun5(i, cardSize));
+		card.addEventListener("contextmenu", getFun6(i), false);
 		if (includesCard(i)) {
 			selected.appendChild(card);
 		} else {
@@ -988,10 +1199,79 @@ function renderPhase2() {
 		linkwrapper2.appendChild(edit_link);
 		linkwrapper2.appendChild(copy_edit);
 
+		let isValid = true;
+		let reason = "";
+
+		if (techtree_points > 275) {
+			isValid = false;
+			reason = `Maximum 275 techtree points, but this civ has spent ${techtree_points} points`;
+		}
+		if (civ["bonuses"][0].length > 6) {
+			isValid = false;
+			reason = `Maximum 6 civilization bonuses, but this civ has ${civ["bonuses"][0].length} bonuses`;
+		}
+		if (civ["bonuses"][4].length > 1) {
+			isValid = false;
+			reason = `Maximum 1 team bonus, but this civ has ${civ["bonuses"][4].length} bonuses`;
+		}
+		let superiorCount = 0;
+		for (let i = 0; i < civ["bonuses"].length; i++) {
+			for (let j = 0; j < civ["bonuses"][i].length; j++) {
+				if (i == 1) {
+					if (civ["bonuses"][i][j] > 38 && civ["bonuses"][i][j] < 78 && civ["bonuses"][i][j] != 45) {
+						isValid = false;
+						reason = `This civ has a custom unique unit, but only unique units that are in the base game are allowed`;
+					}
+				} else {
+					if (civ["bonuses"][i][j][1] > 1) {
+						isValid = false;
+						reason = `This civ has stacked bonuses which is not allowed`;
+					}
+					if (card_descriptions[i][civ["bonuses"][i][j][0]][1] > 2) {
+						isValid = false;
+						reason = `This civ has an epic or legendary bonus which is not allowed`;
+					}
+					if (card_descriptions[i][civ["bonuses"][i][j][0]][1] == 2) {
+						superiorCount++;
+					}
+					if (j == 3 && civ["bonuses"][i][j][0] == 9) {
+						isValid = false;
+						reason = `This civ has Elite Mercenaries which is banned`;
+					}
+					if (j == 0 && civ["bonuses"][i][j][0] == 102) {
+						isValid = false;
+						reason = `This civ has the Lithuanian relic bonus which is banned`;
+					}
+					if (j == 0 && civ["bonuses"][i][j][0] == 313) {
+						isValid = false;
+						reason = `This civ has the free relic bonus which is banned`;
+					}
+				}
+			}
+		}
+		if (superiorCount > 1) {
+			isValid = false;
+			reason = `This civ has ${superiorCount} non-UU superior bonuses, but only 1 is allowed`;
+		}
+
+		var validityWrapper = document.createElement("div");
+		validityWrapper.style.display = "flex";
+		validityWrapper.style.flexDirection = "column";
+		validityWrapper.style.justifyContent = "center";
+		validityWrapper.style.alignItems = "center";
+		validityWrapper.style.width = "80%";
+		validityWrapper.style.marginLeft = "10%";
+		validityWrapper.style.textAlign = "center";
+		validityWrapper.innerHTML = `
+			<div>Is a FFA 2 valid civ: ${isValid ? "YES" : "NO"}</div>
+			${isValid ? "" : "<div>" + reason + "</div>"}
+		`;
+
 		sharebox.appendChild(view_text);
 		sharebox.appendChild(linkwrapper1);
 		sharebox.appendChild(edit_text);
 		sharebox.appendChild(linkwrapper2);
+		sharebox.appendChild(validityWrapper);
 		sharebox.appendChild(done_sharing);
 		document.body.appendChild(sharebox);
 	};
@@ -1037,6 +1317,51 @@ function renderPhase2() {
 	document.getElementsByTagName("body")[0].appendChild(game);
 	document.getElementsByTagName("body")[0].appendChild(sideheader);
 
+	game.style.position = "relative";
+
+	sideheader.style.position = "absolute";
+	player.style.position = "absolute";
+	sliderbox.style.position = "absolute";
+	filterbox.style.position = "absolute";
+	raritybox.style.position = "absolute";
+	editionbox.style.position = "absolute";
+	boardtoolbar.style.position = "absolute";
+
+	for (let i = 0; i < 5; i++) {
+		if (document.getElementById(`raritySelect${i}`)) {
+			document.getElementById(`raritySelect${i}`).checked = filterRarities[i];
+			filterCards(document.getElementById("filterinput").value.toLowerCase());
+			document.getElementById(`raritySelect${i}`).addEventListener("change", () => {
+				filterRarities[i] = document.getElementById(`raritySelect${i}`).checked;
+				filterCards(document.getElementById("filterinput").value.toLowerCase());
+			});
+		}
+	}
+
+	for (let i = 0; i < 2; i++) {
+		if (document.getElementById(`editionSelect${i}`)) {
+			document.getElementById(`editionSelect${i}`).checked = filterEditions[i];
+			filterCards(document.getElementById("filterinput").value.toLowerCase());
+			document.getElementById(`editionSelect${i}`).addEventListener("change", () => {
+				filterEditions[i] = document.getElementById(`editionSelect${i}`).checked;
+				filterCards(document.getElementById("filterinput").value.toLowerCase());
+			});
+		}
+	}
+
+	if (document.getElementById("editionDisplay")) {
+		document.getElementById("editionDisplay").checked = editionDisplay;
+		displayEdition();
+		document.getElementById("editionDisplay").addEventListener("change", () => {
+			editionDisplay = document.getElementById("editionDisplay").checked;
+			displayEdition();
+		});
+	}
+
+	document.getElementsByTagName("body")[0].style.overflowX = "hidden";
+
+	resize();
+
 	//Render flag
 	if (civ["customFlag"]) {
 		var c = document.getElementById("flag");
@@ -1051,3 +1376,6 @@ function renderPhase2() {
 		clientFlag(civ["flag_palette"], "flag", 85 / 256);
 	}
 }
+
+window.addEventListener("resize", resize);
+//resize();

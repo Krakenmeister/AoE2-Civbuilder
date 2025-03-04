@@ -33,11 +33,11 @@ createEC(int type, int A, int B, int C, float D) {
 void
 recalculateTechDiscounts(DatFile *df) {
 	for (Effect &effect : df->Effects) {
-		if (effect.Name == "Elite costs -20%") {
+		if (effect.Name.find("Elite costs -20%") != string::npos) {
 			// Check for duplicated elite techs
 			for (int i = 0; i < df->Techs.size(); i++) {
 				if (df->Techs[i].ResearchLocation == 82) {
-					if (df->Techs[i].Name.substr(0, 5) == "Elite") {
+					if (df->Techs[i].Name.find("Elite") != string::npos && df->Techs[i].Civ != -1) {
 						for (int j = 0; j < 3; j++) {
 							if (j < df->Techs[i].ResourceCosts.size()) {
 								if ((df->Techs[i].ResourceCosts[j].Type >= 0) && (df->Techs[i].ResourceCosts[j].Type <= 3)) {
@@ -142,7 +142,7 @@ recalculateTechDiscounts(DatFile *df) {
 					}
 				}
 			}
-		} else if (effect.Name == "C-Bonus Archery techs cost -50%") {
+		} else if (effect.Name == "C-Bonus, Archery techs cost -50%") {
 			effect.EffectCommands.clear();
 			for (int i = 0; i < df->Techs.size(); i++) {
 				if (df->Techs[i].ResearchLocation == 87) {
@@ -428,6 +428,10 @@ allocateRequirements(DatFile *df, int techID, int civID) {
 // Multiply effectcommands of the specified effect (for repeated bonuses)
 void
 multiplyEffects(DatFile *df, int effectID, int multiplier) {
+	if (multiplier == 1) {
+		return;
+	}
+
 	int initialEffectSize = df->Effects[effectID].EffectCommands.size();
 	for (int i = 0; i < initialEffectSize; i++) {
 		for (int j = 0; j < multiplier - 1; j++) {
@@ -440,10 +444,10 @@ multiplyEffects(DatFile *df, int effectID, int multiplier) {
 // Multiply all of the effects of the desired technologies, allocating new effects as necessary
 void
 multiplyAllEffects(DatFile *df, vector<vector<int>> multipliedTechs) {
-	// Build a vector of [techID, effectID, multiplier] that actually require multiplication
+	// Build a vector of [techID, effectID, multiplier] that actually make sense
 	vector<vector<int>> multiplieds = {};
 	for (int i = 0; i < multipliedTechs.size(); i++) {
-		if (!(multipliedTechs[i][0] < 0 || multipliedTechs[i][1] == 1)) {
+		if (!(multipliedTechs[i][0] < 0)) {
 			int effectID = df->Techs[multipliedTechs[i][0]].EffectID;
 			if (effectID > 0) {
 				multiplieds.push_back({multipliedTechs[i][0], effectID, multipliedTechs[i][1]});
@@ -531,6 +535,26 @@ allocateTech(DatFile *df, int techID, int civID /*, ofstream &logfile*/) {
 								tech.RequiredTechs.push_back((int) (df->Techs.size() - 1));
 							}
 						}
+					}
+				}
+			}
+			// If any effects affected the old tech, make them affect the new tech as well
+			for (Effect &effect : df->Effects) {
+				for (EffectCommand &ec : effect.EffectCommands) {
+					if ((ec.Type == 101 || ec.Type == 103) && ec.A == techID) {
+						EffectCommand copyEC = EffectCommand();
+						copyEC.A = newTechID;
+						copyEC.B = ec.B;
+						copyEC.C = ec.C;
+						copyEC.D = ec.D;
+						effect.EffectCommands.push_back(copyEC);
+					} else if ((ec.Type == 102) && ec.D == techID) {
+						EffectCommand copyEC = EffectCommand();
+						copyEC.A = ec.A;
+						copyEC.B = ec.B;
+						copyEC.C = ec.C;
+						copyEC.D = newTechID;
+						effect.EffectCommands.push_back(copyEC);
 					}
 				}
 			}

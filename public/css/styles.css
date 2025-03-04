@@ -27,6 +27,7 @@ a {
 	text-shadow: 3px 3px 5px black;
 	text-align: center;
 	margin: 5vh auto;
+	max-width: 70vw;
 }
 
 #update {
@@ -139,7 +140,7 @@ button:focus {
 	outline: none;
 }
 
-form.draft_form {
+.draft_form {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -467,7 +468,7 @@ input[type="text"] {
 
 .card {
 	align-self: center;
-	background-color: white;
+	background-color: transparent;
 	text-align: center;
 	z-index: 10;
 	position: relative;
@@ -532,7 +533,7 @@ input[type="text"] {
 	bottom: 0;
 	right: 0;
 	position: fixed;
-	z-index: 3000;
+	z-index: 10;
 	padding: 0.5vw;
 }
 
@@ -631,6 +632,49 @@ input[type="text"] {
 .cardimage {
 	width: 100%;
 	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	mask-size: 100% 100%;
+	mask-mode: alpha;
+}
+
+.common {
+	mask-image: url("../img/frames/mask_common.png");
+}
+
+.uncommon {
+	mask-image: url("../img/frames/mask_uncommon.png");
+}
+
+.rare {
+	mask-image: url("../img/frames/mask_rare.png");
+}
+
+.epic {
+	mask-image: url("../img/frames/mask_epic.png");
+}
+
+.legendary {
+	mask-image: url("../img/frames/mask_legendary.png");
+}
+
+.cardborder {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	mask-size: 100% 100%;
+	mask-mode: alpha;
+}
+
+.cardframe {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 #helpboxcontainer {
@@ -639,8 +683,9 @@ input[type="text"] {
 	bottom: 0;
 	left: 0;
 	width: 20vw;
-	height: 13.3vw;
+	height: 20vw;
 	position: fixed;
+	z-index: 98;
 }
 
 #helpbox {
@@ -664,11 +709,11 @@ input[type="text"] {
 	margin-right: 2vw;
 	color: white;
 	position: absolute;
-	top: 1.5vw;
-	left: 1.5vw;
+	top: 1.7vw;
+	left: 1.7vw;
 	z-index: 100;
-	width: 17vw;
-	height: 10.3vw;
+	width: 16.6vw;
+	height: 16.6vw;
 }
 
 #instructionsbox {
@@ -846,7 +891,7 @@ upload:focus {
 	border-radius: 6px;
 	padding: 10px;
 	position: absolute;
-	z-index: 1;
+	z-index: 2;
 	top: 0;
 	left: 110%;
 	font-size: 1vw;
@@ -873,7 +918,7 @@ upload:focus {
 	border-radius: 6px;
 	padding: 10px;
 	position: absolute;
-	z-index: 1;
+	z-index: 2;
 	top: 150%;
 	left: 50%;
 	margin-left: -50%;
@@ -908,7 +953,7 @@ upload:focus {
 #links {
 	position: fixed;
 	top: 2rem;
-	left: 2rem;
+	right: 2rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -994,6 +1039,9 @@ upload:focus {
 .selectedCardBackground {
 	width: 6rem;
 	height: 6rem;
+	mask-size: 100% 100%;
+	mask-mode: alpha;
+	mask-image: url("../img/frames/mask_background.png");
 }
 
 .selectedCardMenu {
@@ -1040,6 +1088,8 @@ upload:focus {
 	align-items: center;
 	width: 90%;
 	font-size: 1.5rem;
+	height: 2.1rem;
+	position: relative;
 }
 
 .slidecontainer {
@@ -1129,9 +1179,209 @@ upload:focus {
 	outline: none;
 	border: none;
 	text-align: right;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
 }
 
 #baseInput:focus {
 	outline: none;
 	border: none;
+}
+
+.multiselect {
+	left: 2vw;
+	width: 16vw;
+}
+
+.selectBox {
+	position: relative;
+	z-index: 11;
+}
+
+.selectBox select {
+	width: 100%;
+	font-weight: bold;
+	font-family: "Open Sans", sans-serif;
+	z-index: 11;
+}
+
+.overSelect {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 11;
+}
+
+#checkboxes {
+	display: none;
+	position: relative;
+	border: 1px #dadada solid;
+	background-color: white;
+	color: black;
+	z-index: 12;
+}
+
+#checkboxes label {
+	display: block;
+	color: black;
+	font-family: "Open Sans", sans-serif;
+	font-size: 1.5vw;
+	width: 100%;
+	margin: 0;
+	padding: 3px 0 3px 0;
+}
+
+#checkboxes input {
+	filter: invert(100%) grayscale(100%) brightness(1.7);
+	-ms-transform: scale(1);
+	-moz-transform: scale(1);
+	-webkit-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+	margin-right: 5px;
+}
+
+#checkboxes2 {
+	display: none;
+	position: relative;
+	border: 1px #dadada solid;
+	background-color: white;
+	color: black;
+	z-index: 11;
+}
+
+#checkboxes2 label {
+	display: block;
+	color: black;
+	font-family: "Open Sans", sans-serif;
+	font-size: 1.5vw;
+	width: 100%;
+	margin: 0;
+	padding: 3px 0 3px 0;
+}
+
+#checkboxes2 input {
+	filter: invert(100%) grayscale(100%) brightness(1.7);
+	-ms-transform: scale(1);
+	-moz-transform: scale(1);
+	-webkit-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+	margin-right: 5px;
+}
+
+#editionLabel0:hover {
+	background-color: rgb(204, 204, 204);
+	text-decoration: underline;
+}
+
+#ditionLabel1:hover {
+	background-color: rgb(204, 204, 204);
+	text-decoration: underline;
+}
+
+#rarityLabel0:hover {
+	background-color: rgb(204, 204, 204);
+	text-decoration: underline;
+}
+
+#rarityLabel1:hover {
+	background-color: rgb(0, 255, 0);
+	text-decoration: underline;
+}
+
+#rarityLabel2:hover {
+	background-color: cyan;
+	text-decoration: underline;
+}
+
+#rarityLabel3:hover {
+	background-color: #ab51ff;
+	text-decoration: underline;
+}
+
+#rarityLabel4:hover {
+	background-color: red;
+	text-decoration: underline;
+}
+
+.rarityText0 {
+	color: rgb(141, 141, 141);
+	text-decoration: underline;
+}
+
+.rarityText1 {
+	color: rgb(0, 255, 0);
+	text-decoration: underline;
+}
+
+.rarityText2 {
+	color: cyan;
+	text-decoration: underline;
+}
+
+.rarityText3 {
+	color: #8400ff;
+	text-decoration: underline;
+	/* text-shadow: 0 0 8px rgba(255, 255, 255, 0.25); */
+}
+
+.rarityText4 {
+	color: red;
+	text-decoration: underline;
+}
+/* select option:hover {
+	box-shadow: 0 0 0px 200px hsl(0, 100%, 64%) inset !important;
+	color: var(--primary);
+}
+select option:checked {
+	box-shadow: 0 0 0px 200px hsl(0, 100%, 64%) inset !important;
+} */
+
+.unitgraphic {
+	width: 5vw;
+	height: 7.5vw;
+	float: right;
+}
+
+#unitprofile {
+	position: relative;
+	font-size: 1.2vw;
+}
+
+.statwrapper {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.staticon {
+	width: 1.2vw;
+	height: 1.2vw;
+	margin-right: 0.25vw;
+}
+
+#detailedstats {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	font-size: 1vw;
+}
+
+.cardedition {
+	width: 100%;
+	height: 50%;
+	position: absolute;
+	bottom: -33%;
+	left: 0;
+}
+
+.editionWrapper {
+	display: flex;
+	flex-direction: row;
 }

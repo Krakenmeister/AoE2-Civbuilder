@@ -684,13 +684,15 @@ function renderDraftTable(draft) {
 		}
 		//Add all cards stored in gamestate to the board
 		for (var i = 0; i < draft["gamestate"]["cards"].length; i++) {
+			var cardIndex = draft.gamestate.cards[i];
+			
 			var card = document.createElement("div");
 			card.className = "card";
 			card.id = "card" + i;
 			card.style.width = cardSize + "vw";
 			card.style.height = cardSize + "vw";
 			card.style.margin = marginSize + "vw";
-			if (draft["gamestate"]["cards"][i] == -1) {
+			if (cardIndex == -1) {
 				card.style.visibility = "hidden";
 				card.onmouseover = getNoFun();
 				card.onmouseout = getNoFun();
@@ -710,23 +712,23 @@ function renderDraftTable(draft) {
 				} else if (roundType == 4) {
 					prefix = "team";
 				}
-				var path = `${prefix}_${draft["gamestate"]["cards"][i]}.jpg`;
+				var path = `${prefix}_${cardIndex}_v${card_descriptions[roundType][cardIndex][3]}.jpg`;
 
 				var image = document.createElement("img");
-				image.className = `cardimage ${rarities[card_descriptions[roundType][draft["gamestate"]["cards"][i]][1]]}`;
+				image.className = `cardimage ${rarities[card_descriptions[roundType][cardIndex][1]]}`;
 				image.id = "cardimage" + i;
 				image.src = "../img/compressedcards/" + path;
 				card.appendChild(image);
 
 				var border = document.createElement("img");
 				border.id = "cardborder" + i;
-				border.className = `cardborder ${rarities[card_descriptions[roundType][draft["gamestate"]["cards"][i]][1]]}`;
+				border.className = `cardborder ${rarities[card_descriptions[roundType][cardIndex][1]]}`;
 				border.src = "../img/cards/card_border.png";
 				card.appendChild(border);
 
 				var frame = document.createElement("img");
 				frame.className = "cardframe";
-				frame.src = `../img/frames/frame_${rarities[card_descriptions[roundType][draft["gamestate"]["cards"][i]][1]]}.png`;
+				frame.src = `../img/frames/frame_${rarities[card_descriptions[roundType][cardIndex][1]]}.png`;
 				card.appendChild(frame);
 
 				//Let the active player pick a card
@@ -734,45 +736,45 @@ function renderDraftTable(draft) {
 					if (draft["gamestate"]["highlighted"].length == 0) {
 						card.style.cursor = "pointer";
 						card.onmouseover = getFun3(
-							card_descriptions[roundType][draft["gamestate"]["cards"][i]][0],
+							card_descriptions[roundType][cardIndex][0],
 							i,
 							cardSize,
 							[0, 255, 0, 0.7],
-							card_descriptions[roundType][draft["gamestate"]["cards"][i]][1],
+							card_descriptions[roundType][cardIndex][1],
 							roundType,
-							draft["gamestate"]["cards"][i]
+							cardIndex
 						);
 						card.onmouseout = getFun4(i);
-						card.onclick = getFun2(draft["gamestate"]["cards"][i]);
+						card.onclick = getFun2(cardIndex);
 					} else if (draft["gamestate"]["highlighted"].includes(i)) {
 						card.style.cursor = "pointer";
 						card.onmouseover = getFun3(
-							card_descriptions[roundType][draft["gamestate"]["cards"][i]][0],
+							card_descriptions[roundType][cardIndex][0],
 							i,
 							cardSize,
 							[0, 255, 0, 0.7],
-							card_descriptions[roundType][draft["gamestate"]["cards"][i]][1],
+							card_descriptions[roundType][cardIndex][1],
 							roundType,
-							draft["gamestate"]["cards"][i]
+							cardIndex
 						);
 						card.onmouseout = getFun4(i);
-						card.onclick = getFun2(draft["gamestate"]["cards"][i]);
+						card.onclick = getFun2(cardIndex);
 					} else {
 						card.onmouseover = getNoFun(); //These lines are part of the fix as well
 						card.onmouseout = getNoFun(); //
 						card.onclick = getNoFun(); //
-						card.style.filter = "brightness(25%)";
+						card.style.filter = "brightness(35%)";
 					}
 				} else {
-					card.style.filter = "brightness(25%)";
+					card.style.filter = "brightness(35%)";
 					card.onmouseover = getFun3(
-						card_descriptions[roundType][draft["gamestate"]["cards"][i]][0],
+						card_descriptions[roundType][cardIndex][0],
 						i,
 						cardSize,
 						[255, 255, 0, 0.7],
-						card_descriptions[roundType][draft["gamestate"]["cards"][i]][1],
+						card_descriptions[roundType][cardIndex][1],
 						roundType,
-						draft["gamestate"]["cards"][i]
+						cardIndex
 					);
 					card.onmouseout = getFun4(i);
 					card.onclick = getNoFun(); //I think this should fix the bug!

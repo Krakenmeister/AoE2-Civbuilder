@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# run this script from the project root: ./scripts/builds.sh
+# run this script from the modding directory: ./scripts/build.sh
 # It will build the entire project for production
 
 set -e

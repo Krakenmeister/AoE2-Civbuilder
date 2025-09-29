@@ -1,0 +1,54 @@
+# --- Stage 1: Build C++ binaries ---
+FROM node:20-bullseye AS cpp-build
+
+# Install build tools for C++ compilation
+RUN apt-get update && \
+    apt-get install -y build-essential cmake git liblz4-dev libboost-iostreams-dev libjsoncpp-dev dos2unix && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy only the genieutils source and CMakeLists.txt for C++ build
+# COPY modding/genieutils/ modding/genieutils/
+COPY modding/ modding/
+
+# Ensure Unix line endings for build.sh to avoid cross-platform issues
+RUN dos2unix modding/scripts/build.sh && chmod +x modding/scripts/build.sh
+
+# Build all C++ targets (run from modding directory so CMakeLists.txt works)
+RUN cd ./modding/ && ./scripts/build.sh
+
+# --- Stage 2: Build Node.js app and assemble final image ---
+FROM node:20-bullseye AS build
+
+RUN apt-get update && \
+    apt-get install -y dos2unix libjsoncpp24 zip && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy just package.json and package-lock.json
+COPY package*.json ./
+
+# Install Node.js dependencies
+RUN npm install --omit=dev
+
+
+# Copy all source code
+COPY . .
+
+# Copy built C++ build directory from cpp-build stage
+COPY --from=cpp-build /app/modding/build /app/modding/build
+
+# Ensure Unix line endings for build.sh to avoid cross-platform issues
+RUN find ./process_mod -name "*.sh" -exec dos2unix {} \; && \
+    find ./modding/scripts -name "*.sh" -exec dos2unix {} \;
+
+
+ENV NODE_ENV=production
+
+EXPOSE 4000
+
+VOLUME ["/app/modding/requested_mods"]
+
+ENTRYPOINT ["node", "server.js"]

@@ -1,0 +1,25 @@
+# Dockerfile.prebuilt-cpp
+FROM node:20-bullseye
+
+WORKDIR /app
+
+# Copy source code including prebuilt C++ binaries
+COPY . .
+# Ensure Unix line endings for all shell scripts after copying source
+RUN apt-get update && apt-get install -y dos2unix && \
+    find ./process_mod -name "*.sh" -exec dos2unix {} \; && \
+    find ./modding/scripts -name "*.sh" -exec dos2unix {} \;
+
+# No C++ build tools or build steps needed; uses precompiled binaries
+COPY ./modding/create-data-mod ./modding/build/create-data-mod
+
+# Install Node.js dependencies
+RUN npm install --omit=dev
+
+ENV NODE_ENV=production
+
+EXPOSE 4000
+
+VOLUME ["/app/modding/requested_mods"]
+
+ENTRYPOINT ["node", "server.js"]

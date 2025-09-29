@@ -1404,6 +1404,6 @@ if (donatebutton) {
 var btn8 = document.getElementById("events");
 if (btn8) {
 	btn8.addEventListener("click", function () {
-		window.location.href = `${hostname}/events`;
+		window.location.href = `${hostname}/events`; // this does not work locally since its hosted directly on krakenmeister.com/events
 	});
 }

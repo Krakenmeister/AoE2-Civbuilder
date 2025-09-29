@@ -1,8 +1,4 @@
-const dir = "/home/kraken/website/civbuilder";
-//const dir = "/home/kraken/development/civbuilder";
-
-const hostname = "https://krakenmeister.com/civbuilder";
-const port = 4000;
+const os = require("os");
 
 const http = require("http");
 const express = require("express");
@@ -25,8 +21,29 @@ const { numBonuses, numBasicTechs, nameArr, colours, iconids, blanks, indexDicti
 const { createCivilizationsJson } = require("./process_mod/createCivilizationsJson.js");
 const commonJs = require("./public/js/common.js");
 
+console.log("Starting server...");
+
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
+
+
+const tempdir = path.join(os.tmpdir(), "civbuilder");
+const hostname = process.env.CIVBUILDER_HOSTNAME || "https://krakenmeister.com/civbuilder";
+const routeSubdir = new URL(hostname).pathname.replace(/\/$/, "") || "/";
+const port = 4000;
+
+console.log("running with hostname:", hostname);
+console.log("route subdir:", routeSubdir);
+console.log("temp directory:", tempdir);
+
+// create temp directory if it doesn't exist
+if (!fs.existsSync(tempdir)) {
+	console.log("Creating temp directory:", tempdir);
+	fs.mkdirSync(tempdir);
+
+	// Ensure drafts directory exists
+	fs.mkdirSync(`${tempdir}/drafts`, { recursive: true });
+}
 
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
@@ -39,9 +56,30 @@ app.use(
 	})
 );
 app.use(parser.json({ limit: "20mb" }));
+// Serve dynamic common.js with correct hostname and route
+// TODO maybe always set those lines on top without replacing at all? or inject them into index html script tag
+app.get(path.join(routeSubdir, "js/common.js"), (req, res) => {
+	const defaultHostname = "https://krakenmeister.com";
+	const defaultRoute = "/civbuilder";
+	const jsPath = path.join(__dirname, "public/js/common.js");
+	fs.readFile(jsPath, "utf8", (err, data) => {
+		if (err) return res.status(500).send("Error loading common.js");
+		let lines = data.split("\n");
+		let needsReplace =
+			hostname !== (defaultHostname + defaultRoute) ||
+			routeSubdir !== defaultRoute;
+		if (needsReplace) {
+			lines[0] = `const hostname = "${hostname.replace(/\/$/, "")}";`;
 
+			// subdir should NOT end with /; remove LAST slash if any
+			let cleanSubdir = routeSubdir.replace(/\/$/, "");
+			lines[1] = `const route = "${cleanSubdir}";`;
+		}
+		res.type("application/javascript").send(lines.join("\n"));
+	});
+});
 app.use(
-	"/civbuilder",
+	routeSubdir,
 	express.static(path.join(__dirname, "/public"), {
 		maxAge: "1y", // Cache images for a year
 		immutable: false, // Allow query string versioning to work
@@ -56,7 +94,7 @@ app.use(
 		},
 	})
 );
-app.use("/civbuilder", router);
+app.use(routeSubdir, router);
 
 app.use(zip());
 app.use(cookieParser());
@@ -67,7 +105,7 @@ function os_func() {
 			if (error) {
 				console.log(`stdout: ${stdout}`);
 				console.error(`exec error: ${error}`);
-				failure();
+				failure(); // TODO this function is not existing as it seems
 			}
 			if (stdout) {
 				console.log(stdout);
@@ -77,7 +115,7 @@ function os_func() {
 	};
 }
 
-var os = new os_func();
+var osUtil = new os_func();
 
 function retrieveCookies(header) {
 	let pairs = header.split(";");
@@ -99,7 +137,7 @@ const createDraft = (req, res, next) => {
 			id += rand;
 		}
 		uniqueID = true;
-		uniqueID = !fs.existsSync(`${dir}/drafts/${id}.json`);
+		uniqueID = !fs.existsSync(`${tempdir}/drafts/${id}.json`);
 	}
 
 	let draft = {};
@@ -162,7 +200,7 @@ const createDraft = (req, res, next) => {
 	gamestate["order"] = [];
 	gamestate["highlighted"] = [];
 	draft["gamestate"] = gamestate;
-	fs.writeFileSync(`${dir}/drafts/${id}.json`, JSON.stringify(draft, null, 2));
+	fs.writeFileSync(`${tempdir}/drafts/${id}.json`, JSON.stringify(draft, null, 2));
 	req.playerlink = `${hostname}/draft/player/${id}`;
 	req.hostlink = `${hostname}/draft/host/${id}`;
 	req.spectatorlink = `${hostname}/draft/${id}`;
@@ -184,17 +222,17 @@ const authenticateDraft = (req, res, next) => {
 		return next();
 	}
 	req.authenticated = 0;
-	if (fs.existsSync(`${dir}/drafts/${req.params.id}.json`)) {
+	if (fs.existsSync(`${tempdir}/drafts/${req.params.id}.json`)) {
 		req.authenticated = 1;
 	}
 	next();
 };
 
 function getDraft(id) {
-	if (!fs.existsSync(`${dir}/drafts/${id}.json`)) {
+	if (!fs.existsSync(`${tempdir}/drafts/${id}.json`)) {
 		return -1;
 	}
-	let data = fs.readFileSync(`${dir}/drafts/${id}.json`);
+	let data = fs.readFileSync(`${tempdir}/drafts/${id}.json`);
 	let draft = JSON.parse(data);
 	return draft;
 }
@@ -209,18 +247,18 @@ const checkSpace = (req, res, next) => {
 	if (req.authenticated == -1) {
 		return next();
 	}
-	if (!fs.existsSync(`${dir}/drafts/${req.body.draftID}.json`)) {
+	if (!fs.existsSync(`${tempdir}/drafts/${req.body.draftID}.json`)) {
 		console.log("Draft authentication failed");
 		return next();
 	}
 
-	let data = fs.readFileSync(`${dir}/drafts/${req.body.draftID}.json`);
+	let data = fs.readFileSync(`${tempdir}/drafts/${req.body.draftID}.json`);
 	let draft = JSON.parse(data);
 	if (req.body.joinType == 0) {
 		//Joining as a host
 		if (draft["players"][0]["name"] == "") {
 			draft["players"][0]["name"] = req.body.civ_name;
-			fs.writeFileSync(`${dir}/drafts/${req.body.draftID}.json`, JSON.stringify(draft, null, 2));
+			fs.writeFileSync(`${tempdir}/drafts/${req.body.draftID}.json`, JSON.stringify(draft, null, 2));
 			req.playerNumber = 0;
 		} else {
 			req.authenticated = 2;
@@ -232,7 +270,7 @@ const checkSpace = (req, res, next) => {
 			if (draft["players"][i]["name"] == "") {
 				draft["players"][i]["name"] = req.body.civ_name;
 				req.playerNumber = i;
-				fs.writeFileSync(`${dir}/drafts/${req.body.draftID}.json`, JSON.stringify(draft, null, 2));
+				fs.writeFileSync(`${tempdir}/drafts/${req.body.draftID}.json`, JSON.stringify(draft, null, 2));
 				return next();
 			}
 		}
@@ -271,16 +309,24 @@ function reshuffleCards(draft) {
 	return available_bonuses;
 }
 
-const chDir = (req, res, next) => {
-	process.chdir(dir);
+const chToTmpDir = (req, res, next) => {
+	console.log(`[${req.body.seed}]: changing directory to temp: ${tempdir}`);
+	process.chdir(tempdir);
+	next();
+};
+
+const chToAppDir = (req, res, next) => {
+	console.log(`[${req.body.seed}]: changing directory to app: ${__dirname}`);
+	process.chdir(__dirname);
 	next();
 };
 
 const createModFolder = (req, res, next) => {
+	console.log(`[${req.body.seed}]: creating mod folder`);
 	if (req.body.civs === "false") {
-		execSync(`bash ./process_mod/createModFolder.sh ./modding/requested_mods ${req.body.seed} ${dir} 0`);
+		execSync(`bash ./process_mod/createModFolder.sh ./modding/requested_mods ${req.body.seed} ${__dirname} 0`);
 	} else {
-		execSync(`bash ./process_mod/createModFolder.sh ./modding/requested_mods ${req.body.seed} ${dir} 1`);
+		execSync(`bash ./process_mod/createModFolder.sh ./modding/requested_mods ${req.body.seed} ${__dirname} 1`);
 	}
 	next();
 };
@@ -303,7 +349,7 @@ const copyCivIcons = (req, res, next) => {
 	}
 
 	console.log(`[${req.body.seed}]: Copying civ icons...`);
-	os.execCommand(`cp -r ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/. ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/wpfg/resources/civ_techtree`, function () {
+	osUtil.execCommand(`cp -r ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/. ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/wpfg/resources/civ_techtree`, function () {
 		next();
 	});
 };
@@ -332,7 +378,7 @@ const copyNames = (req, res, next) => {
 	}
 
 	console.log(`[${req.body.seed}]: Copying strings...`);
-	os.execCommand(`sh ./process_mod/copyLanguages.sh ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources`, function () {
+	osUtil.execCommand(`sh ./process_mod/copyLanguages.sh ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources`, function () {
 		next();
 	});
 };
@@ -344,7 +390,7 @@ const addVoiceFiles = (req, res, next) => {
 	}
 
 	console.log(`[${req.body.seed}]: Adding voice files...`);
-	let command = `sh ./process_mod/copyVoices.sh ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/drs/sounds ${dir}/public/vanillaFiles/voiceFiles`;
+	let command = `sh ./process_mod/copyVoices.sh ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/drs/sounds ./public/vanillaFiles/voiceFiles`;
 	let data = fs.readFileSync(path.join(__dirname, `/modding/requested_mods/${req.body.seed}/data.json`));
 	let info = JSON.parse(data);
 
@@ -357,7 +403,7 @@ const addVoiceFiles = (req, res, next) => {
 		}
 	}
 
-	os.execCommand(command, function () {
+	osUtil.execCommand(command, function () {
 		next();
 	});
 };
@@ -370,7 +416,7 @@ const writeUUIcons = (req, res, next) => {
 
 	console.log(`[${req.body.seed}]: Writing UU icons...`);
 	for (var i = 0; i < blanks.length; i++) {
-		os.execCommand(`cp ./public/img/uniticons/blank.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/wpfg/resources/uniticons/${blanks[i]}_50730.png`, function () {});
+		osUtil.execCommand(`cp ./public/img/uniticons/blank.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/wpfg/resources/uniticons/${blanks[i]}_50730.png`, function () {});
 	}
 	var data = fs.readFileSync(`./modding/requested_mods/${req.body.seed}/data.json`);
 	var civ = JSON.parse(data);
@@ -378,11 +424,11 @@ const writeUUIcons = (req, res, next) => {
 		//Persians and Saracens are index 7 & 8 but War Elephants and Mamelukes are index 8 & 7
 		var iconsrc = iconids[civ.techtree[i][0]];
 		if (i == civ.techtree.length - 1) {
-			os.execCommand(`cp ./public/img/uniticons/${iconsrc}_50730.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/wpfg/resources/uniticons/${iconsrc}_50730.png`, function () {
+			osUtil.execCommand(`cp ./public/img/uniticons/${iconsrc}_50730.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/wpfg/resources/uniticons/${iconsrc}_50730.png`, function () {
 				next();
 			});
 		} else {
-			os.execCommand(`cp ./public/img/uniticons/${iconsrc}_50730.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/wpfg/resources/uniticons/${iconsrc}_50730.png`, function () {});
+			osUtil.execCommand(`cp ./public/img/uniticons/${iconsrc}_50730.png ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/wpfg/resources/uniticons/${iconsrc}_50730.png`, function () {});
 		}
 	}
 };
@@ -410,9 +456,10 @@ const writeTechTree = (req, res, next) => {
 };
 
 const writeDatFile = async (req, res, next) => {
-	console.log(`[${req.body.seed}]: Writing dat file...`);
-	os.execCommand(
-		`./modding/build/create-data-mod ./modding/requested_mods/${req.body.seed}/data.json ./public/vanillaFiles/empires2_x2_p1.dat ./modding/requested_mods/${req.body.seed}/${req.body.seed}-data/resources/_common/dat/empires2_x2_p1.dat ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/ai/aiconfig.json`,
+	console.log(`[${req.body.seed}]: Writing dat file (with gdb)...`);
+	const cmd = `./modding/build/create-data-mod ./modding/requested_mods/${req.body.seed}/data.json ./public/vanillaFiles/empires2_x2_p1.dat ./modding/requested_mods/${req.body.seed}/${req.body.seed}-data/resources/_common/dat/empires2_x2_p1.dat ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/ai/aiconfig.json`;
+	osUtil.execCommand(
+		cmd,
 		() => {
 			next();
 		},
@@ -436,11 +483,11 @@ const writeAIFiles = (req, res, next) => {
 const zipModFolder = (req, res, next) => {
 	console.log(`[${req.body.seed}]: Zipping folder...`);
 	if (req.body.civs === "false") {
-		os.execCommand(`bash ./process_mod/zipModFolder.sh ${req.body.seed} 0`, function () {
+		osUtil.execCommand(`bash ./process_mod/zipModFolder.sh ${req.body.seed} 0`, function () {
 			next();
 		});
 	} else {
-		os.execCommand(`bash ./process_mod/zipModFolder.sh ${req.body.seed} 1`, function () {
+		osUtil.execCommand(`bash ./process_mod/zipModFolder.sh ${req.body.seed} 1`, function () {
 			next();
 		});
 	}
@@ -608,7 +655,7 @@ const writeIconsJson = async (req, res, next) => {
 	//   }
 	// }
 	//Copy Civ Icons
-	os.execCommand(`cp -r ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/. ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/wpfg/resources/civ_techtree`, function () {
+	osUtil.execCommand(`cp -r ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/. ./modding/requested_mods/${req.body.seed}/${req.body.seed}-ui/resources/_common/wpfg/resources/civ_techtree`, function () {
 		//Generate Json
 		var mod_data = {};
 		mod_data.name = [];
@@ -726,12 +773,12 @@ router.get("/build", function (req, res) {
 	// res.sendFile(__dirname + "/public/html/donation.html");
 });
 
-router.post("/random", chDir, createModFolder, createCivIcons, copyCivIcons, generateJson, writeNames, copyNames, addVoiceFiles, writeUUIcons, writeCivilizations, writeTechTree, writeDatFile, writeAIFiles, zipModFolder, (req, res) => {
+router.post("/random", chToAppDir, createModFolder, createCivIcons, copyCivIcons, generateJson, writeNames, copyNames, addVoiceFiles, writeUUIcons, writeCivilizations, writeTechTree, writeDatFile, writeAIFiles, zipModFolder, (req, res) => {
 	console.log(`[${req.body.seed}]: Completed generation!`);
 	res.download(__dirname + "/modding/requested_mods/" + req.body.seed + ".zip");
 });
 
-router.post("/create", chDir, createModFolder, writeIconsJson, writeNames, copyNames, addVoiceFiles, writeUUIcons, writeCivilizations, writeTechTree, writeDatFile, writeAIFiles, zipModFolder, (req, res) => {
+router.post("/create", chToAppDir, createModFolder, writeIconsJson, writeNames, copyNames, addVoiceFiles, writeUUIcons, writeCivilizations, writeTechTree, writeDatFile, writeAIFiles, zipModFolder, (req, res) => {
 	console.log(`[${req.body.seed}]: Completed generation!`);
 	res.download(__dirname + "/modding/requested_mods/" + req.body.seed + ".zip");
 });
@@ -767,7 +814,7 @@ router.post("/edit", (req, res) => {
 
 router.get("/draft/host/:id", checkCookies, authenticateDraft, function (req, res) {
 	if (req.authenticated == -1) {
-		res.redirect("/civbuilder/draft/" + req.params.id);
+		res.redirect(path.join(hostname, "/draft/" + req.params.id));
 	} else if (req.authenticated == 0) {
 		res.render(__dirname + "/public/pug/error", { error: "Draft does not exist" });
 	} else if (req.authenticated == 1) {
@@ -777,7 +824,7 @@ router.get("/draft/host/:id", checkCookies, authenticateDraft, function (req, re
 
 router.get("/draft/player/:id", checkCookies, authenticateDraft, function (req, res) {
 	if (req.authenticated == -1) {
-		res.redirect("/civbuilder/draft/" + req.params.id);
+		res.redirect(new URL(`/draft/${req.params.id}`, hostname).toString());
 	} else if (req.authenticated == 0) {
 		res.render(__dirname + "/public/pug/error", { error: "Draft does not exist" });
 	} else if (req.authenticated == 1) {
@@ -787,13 +834,13 @@ router.get("/draft/player/:id", checkCookies, authenticateDraft, function (req, 
 
 router.post("/join", setID, checkCookies, authenticateDraft, checkSpace, (req, res) => {
 	if (req.authenticated == -1) {
-		res.redirect("/civbuilder/draft/" + req.body.draftID);
+		res.redirect(new URL(`/draft/${req.body.draftID}`, hostname).toString());
 	} else if (req.authenticated == 0) {
 		res.render(__dirname + "/public/pug/error", { error: "Draft does not exist" });
 	} else if (req.authenticated == 1) {
 		res.cookie("playerNumber", req.playerNumber);
 		res.cookie("draftID", req.body.draftID);
-		res.redirect("/civbuilder/draft/" + req.body.draftID);
+		res.redirect(new URL(`/draft/${req.body.draftID}`, hostname).toString());
 	} else if (req.authenticated == 2) {
 		res.render(__dirname + "/public/pug/error", { error: "Host already joined" });
 	} else if (req.authenticated == 3) {
@@ -842,7 +889,7 @@ function draftIO(io) {
 				console.log("spectator can't be ready");
 			}
 			draft["players"][playerNumber]["ready"] = (draft["players"][playerNumber]["ready"] + 1) % 2;
-			fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+			fs.writeFileSync(`${tempdir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
 			io.in(roomID).emit("set gamestate", draft);
 		});
 		socket.on("start draft", (roomID) => {
@@ -852,7 +899,7 @@ function draftIO(io) {
 			for (var i = 0; i < draft["preset"]["slots"]; i++) {
 				draft["players"][i]["ready"] = 0;
 			}
-			fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+			fs.writeFileSync(`${tempdir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
 			io.in(roomID).emit("set gamestate", draft);
 		});
 		socket.on("update civ info", (roomID, playerNumber, civ_name, flag_palette, architecture, language) => {
@@ -908,10 +955,10 @@ function draftIO(io) {
 					draft["gamestate"]["order"].push(maxIndex);
 					priorities[maxIndex] = -1;
 				}
-				fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+				fs.writeFileSync(`${tempdir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
 				io.in(roomID).emit("set gamestate", draft);
 			} else {
-				fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+				fs.writeFileSync(`${tempdir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
 			}
 		});
 		socket.on("update tree", (roomID, playerNumber, tree) => {
@@ -930,20 +977,20 @@ function draftIO(io) {
 
 			if (nextPhase == 1) {
 				draft["gamestate"]["phase"] = 5;
-				fs.writeFileSync(`${dir}/drafts/${draft["id"]}.json`, JSON.stringify(draft, null, 2));
+				fs.writeFileSync(`${tempdir}/drafts/${draft["id"]}.json`, JSON.stringify(draft, null, 2));
 				io.in(roomID).emit("set gamestate", draft);
 
 				//Create the mod
 				//Welcome to callback hell because I wasted $1800 on a web-dev class where the professor was seemingly incapable of answering a single question
-				process.chdir(dir);
+				//process.chdir(tempdir);
 				//Create Mod Folder
-				os.execCommand(`bash ${dir}/process_mod/createModFolder.sh ./modding/requested_mods ${draft["id"]} ${dir} 1`, function () {
+				osUtil.execCommand(`bash ./process_mod/createModFolder.sh ./modding/requested_mods ${draft["id"]} ${tempdir} 1`, function () {
 					//Create Civ Icons
 					for (var i = 0; i < numPlayers; i++) {
 						var civName = nameArr[i];
 						var seed = [[colours[draft["players"][i]["flag_palette"][0]], colours[draft["players"][i]["flag_palette"][1]], colours[draft["players"][i]["flag_palette"][2]], colours[draft["players"][i]["flag_palette"][3]], colours[draft["players"][i]["flag_palette"][4]]], draft["players"][i]["flag_palette"][5], draft["players"][i]["flag_palette"][6]];
 						var symbol = draft["players"][i]["flag_palette"][7] - 1;
-						if (civName == "berber" || civName == "inca") {
+						if (civName == "berber" || civName == "inca") { // TODO why do we have this here? both branches have exactly the same code
 							icons.drawFlag(
 								seed,
 								symbol,
@@ -976,7 +1023,7 @@ function draftIO(io) {
 						}
 					}
 					//Copy Civ Icons
-					os.execCommand(`cp -r ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/. ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/civ_techtree`, function () {
+					osUtil.execCommand(`cp -r ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/widgetui/textures/ingame/icons/civ_techtree_buttons/. ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/civ_techtree`, function () {
 						//Generate Json
 						var mod_data = {};
 						mod_data.name = [];
@@ -1037,20 +1084,20 @@ function draftIO(io) {
 						//Write Names
 						modStrings.interperateLanguage(`./modding/requested_mods/${draft["id"]}/data.json`, `./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/en/strings/key-value/key-value-modded-strings-utf8.txt`);
 						//Copy Names
-						os.execCommand(`sh ./process_mod/copyLanguages.sh ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources`, function () {
+						osUtil.execCommand(`sh ./process_mod/copyLanguages.sh ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources`, function () {
 							//Write UUIcons
 							for (var i = 0; i < blanks.length; i++) {
-								os.execCommand(`cp ./public/img/uniticons/blank.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${blanks[i]}_50730.png`, function () {});
+								osUtil.execCommand(`cp ./public/img/uniticons/blank.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${blanks[i]}_50730.png`, function () {});
 							}
 							for (var i = 0; i < mod_data.techtree.length; i++) {
 								var iconsrc = iconids[mod_data.techtree[i][0]];
 								if (i == mod_data.techtree.length - 1) {
-									os.execCommand(`cp ./public/img/uniticons/${iconsrc}_50730.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${iconsrc}_50730.png`, function () {
+									osUtil.execCommand(`cp ./public/img/uniticons/${iconsrc}_50730.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${iconsrc}_50730.png`, function () {
 										//Write Tech Tree
 										createTechtreeJson.createTechtreeJson(`./modding/requested_mods/${draft["id"]}/data.json`, `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/dat/civTechTrees.json`);
 										createCivilizationsJson(`./modding/requested_mods/${draft["id"]}/data.json`, `./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/dat/civilizations.json`);
 										//Add voices
-										let command = `sh ./process_mod/copyVoices.sh ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/drs/sounds ${dir}/public/vanillaFiles/voiceFiles`;
+										let command = `sh ./process_mod/copyVoices.sh ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/drs/sounds ./public/vanillaFiles/voiceFiles`;
 										let uniqueLanguages = [];
 										for (var i = 0; i < mod_data.language.length; i++) {
 											if (uniqueLanguages.indexOf(mod_data.language[i]) == -1) {
@@ -1058,11 +1105,11 @@ function draftIO(io) {
 												command += ` ${mod_data.language[i]}`;
 											}
 										}
-										os.execCommand(command, function () {
+										osUtil.execCommand(command, function () {
 											//Write Dat File
-											os.execCommand(`./modding/build/create-data-mod ./modding/requested_mods/${draft["id"]}/data.json ./public/vanillaFiles/empires2_x2_p1.dat ./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/dat/empires2_x2_p1.dat ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/ai/aiconfig.json`, function () {
+											osUtil.execCommand(`./modding/build/create-data-mod ./modding/requested_mods/${draft["id"]}/data.json ./public/vanillaFiles/empires2_x2_p1.dat ./modding/requested_mods/${draft["id"]}/${draft["id"]}-data/resources/_common/dat/empires2_x2_p1.dat ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/ai/aiconfig.json`, function () {
 												//Zip Files
-												os.execCommand(`bash ./process_mod/zipModFolder.sh ${draft["id"]} 1`, function () {
+												osUtil.execCommand(`bash ./process_mod/zipModFolder.sh ${draft["id"]} 1`, function () {
 													draft["gamestate"]["phase"] = 6;
 													fs.writeFileSync(`${dir}/drafts/${draft["id"]}.json`, JSON.stringify(draft, null, 2));
 													io.in(roomID).emit("set gamestate", draft);
@@ -1071,7 +1118,7 @@ function draftIO(io) {
 										});
 									});
 								} else {
-									os.execCommand(`cp ./public/img/uniticons/${iconsrc}_50730.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${iconsrc}_50730.png`, function () {});
+									osUtil.execCommand(`cp ./public/img/uniticons/${iconsrc}_50730.png ./modding/requested_mods/${draft["id"]}/${draft["id"]}-ui/resources/_common/wpfg/resources/uniticons/${iconsrc}_50730.png`, function () {});
 								}
 							}
 						});
@@ -1080,7 +1127,7 @@ function draftIO(io) {
 				// fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
 				// io.in(roomID).emit("set gamestate", draft);
 			} else {
-				fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+				fs.writeFileSync(`${tempdir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
 			}
 		});
 		socket.on("end turn", (roomID, pick, client_turn) => {
@@ -1133,7 +1180,7 @@ function draftIO(io) {
 						draft["players"][i]["ready"] = 0;
 					}
 				}
-				fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+				fs.writeFileSync(`${tempdir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
 				io.in(roomID).emit("set gamestate", draft);
 			} else {
 				console.log("Duplicate socket messages, THE BUG avoided");
@@ -1161,7 +1208,7 @@ function draftIO(io) {
 					draft["gamestate"]["highlighted"].push(i);
 				}
 			}
-			fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+			fs.writeFileSync(`${tempdir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
 			io.in(roomID).emit("set gamestate", draft);
 		});
 		socket.on("clear", (roomID) => {
@@ -1179,7 +1226,7 @@ function draftIO(io) {
 				draft["gamestate"]["cards"][i] = draft["gamestate"]["available_cards"][roundType][rand];
 				draft["gamestate"]["available_cards"][roundType].splice(rand, 1);
 			}
-			fs.writeFileSync(`${dir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
+			fs.writeFileSync(`${tempdir}/drafts/${roomID}.json`, JSON.stringify(draft, null, 2));
 			io.in(roomID).emit("set gamestate", draft);
 		});
 	});
@@ -1191,4 +1238,24 @@ module.exports = {
 	router: router,
 };
 
-//server.listen(port);
+server.listen(port, () => {
+	console.log(`Server listening on port ${port}`);
+});
+
+// Graceful shutdown on Ctrl+C
+process.on('SIGINT', () => {
+	console.log('Received SIGINT, shutting down...');
+	server.close(() => {
+		console.log('HTTP server closed.');
+		process.exit(0);
+	});
+	// If socket.io is still running, close it
+	if (io && typeof io.close === 'function') {
+		io.close();
+	}
+	// Fallback: force exit after 3s if not closed
+	setTimeout(() => {
+		console.error('Force exiting...');
+		process.exit(1);
+	}, 3000);
+});

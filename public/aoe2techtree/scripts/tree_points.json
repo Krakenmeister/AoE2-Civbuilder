@@ -1,0 +1,898 @@
+[
+  [
+    {
+      "name": "ARCHR",
+      "id": "4",
+      "cost": 1
+    },
+    {
+      "name": "HCANR",
+      "id": "5",
+      "cost": 4
+    },
+    {
+      "name": "HXBOW",
+      "id": "6",
+      "cost": 3
+    },
+    {
+      "name": "XBOWM",
+      "id": "7",
+      "cost": 1
+    },
+    {
+      "name": "FSHSP",
+      "id": "13",
+      "cost": 0
+    },
+    {
+      "name": "COGXX",
+      "id": "17",
+      "cost": 0
+    },
+    {
+      "name": "GALLY",
+      "id": "21",
+      "cost": 0
+    },
+    {
+      "name": "CARCH",
+      "id": "24",
+      "cost": 3
+    },
+    {
+      "name": "BCANN",
+      "id": "36",
+      "cost": 8
+    },
+    {
+      "name": "KNGHT",
+      "id": "38",
+      "cost": 3
+    },
+    {
+      "name": "CVRCH",
+      "id": "39",
+      "cost": 3
+    },
+    {
+      "name": "TREBU",
+      "id": "42",
+      "cost": 0
+    },
+    {
+      "name": "SPRMN",
+      "id": "74",
+      "cost": 0
+    },
+    {
+      "name": "SWDMN",
+      "id": "75",
+      "cost": 2
+    },
+    {
+      "name": "THSWD",
+      "id": "77",
+      "cost": 1
+    },
+    {
+      "name": "VMBAS",
+      "id": "83",
+      "cost": 0
+    },
+    {
+      "name": "PKEMN",
+      "id": "93",
+      "cost": 1
+    },
+    {
+      "name": "MONKX",
+      "id": "125",
+      "cost": 0
+    },
+    {
+      "name": "TCART",
+      "id": "128",
+      "cost": 0
+    },
+    {
+      "name": "SCBAL",
+      "id": "279",
+      "cost": 2
+    },
+    {
+      "name": "MANGO",
+      "id": "280",
+      "cost": 1
+    },
+    {
+      "name": "PALDN",
+      "id": "283",
+      "cost": 5
+    },
+    {
+      "name": "CVLRY",
+      "id": "329",
+      "cost": 3
+    },
+    {
+      "name": "HCLRY",
+      "id": "330",
+      "cost": 6
+    },
+    {
+      "name": "PTREB",
+      "id": "331",
+      "cost": 0
+    },
+    {
+      "name": "ISPKM",
+      "id": "358",
+      "cost": 3
+    },
+    {
+      "name": "HLBDM",
+      "id": "359",
+      "cost": 7
+    },
+    {
+      "name": "CANGA",
+      "id": "420",
+      "cost": 3
+    },
+    {
+      "name": "CBATR",
+      "id": "422",
+      "cost": 4
+    },
+    {
+      "name": "PETARD",
+      "id": "440",
+      "cost": 0
+    },
+    {
+      "name": "HUSSAR",
+      "id": "441",
+      "cost": 7
+    },
+    {
+      "name": "WARGA",
+      "id": "442",
+      "cost": 6
+    },
+    {
+      "name": "SCOUT",
+      "id": "448",
+      "cost": 1
+    },
+    {
+      "name": "HTHSW",
+      "id": "473",
+      "cost": 4
+    },
+    {
+      "name": "HCVAR",
+      "id": "474",
+      "cost": 6
+    },
+    {
+      "name": "ACOAR",
+      "id": "492",
+      "cost": 8
+    },
+    {
+      "name": "RMSHP",
+      "id": "527",
+      "cost": 2
+    },
+    {
+      "name": "CRMSH",
+      "id": "528",
+      "cost": 5
+    },
+    {
+      "name": "FRGAL",
+      "id": "529",
+      "cost": 2
+    },
+    {
+      "name": "HFGAL",
+      "id": "532",
+      "cost": 5
+    },
+    {
+      "name": "SGALY",
+      "id": "539",
+      "cost": 0
+    },
+    {
+      "name": "HWBAL",
+      "id": "542",
+      "cost": 7
+    },
+    {
+      "name": "XPORT",
+      "id": "545",
+      "cost": 0
+    },
+    {
+      "name": "LTCAV",
+      "id": "546",
+      "cost": 3
+    },
+    {
+      "name": "SGRAM",
+      "id": "548",
+      "cost": 6
+    },
+    {
+      "name": "ONAGR",
+      "id": "550",
+      "cost": 4
+    },
+    {
+      "name": "HEROI",
+      "id": "567",
+      "cost": 5
+    },
+    {
+      "name": "HEROC",
+      "id": "569",
+      "cost": 9
+    },
+    {
+      "name": "SNAGR",
+      "id": "588",
+      "cost": 10
+    },
+    {
+      "name": "CNGAU",
+      "id": "691",
+      "cost": 5
+    },
+    {
+      "name": "EAGLE",
+      "id": "751",
+      "cost": 5
+    },
+    {
+      "name": "EAGLEX",
+      "id": "752",
+      "cost": 5
+    },
+    {
+      "name": "EAGLEH",
+      "id": "753",
+      "cost": 5
+    },
+    {
+      "name": "ELEAR",
+      "id": "873",
+      "cost": 3
+    },
+    {
+      "name": "UELEA",
+      "id": "875",
+      "cost": 4
+    },
+    {
+      "name": "SFRGAL",
+      "id": "1103",
+      "cost": 1
+    },
+    {
+      "name": "SDGAL",
+      "id": "1104",
+      "cost": 1
+    },
+    {
+      "name": "SIEGTWR",
+      "id": "1105",
+      "cost": 1
+    },
+    {
+      "name": "BATELE",
+      "id": "1132",
+      "cost": 4
+    },
+    {
+      "name": "EBATELE",
+      "id": "1134",
+      "cost": 9
+    },
+    {
+      "name": "BTRAM",
+      "id": "1258",
+      "cost": 2
+    },
+    {
+      "name": "SLANCER",
+      "id": "1370",
+      "cost": 3
+    },
+    {
+      "name": "ESLANCER",
+      "id": "1372",
+      "cost": 4
+    },
+    {
+      "name": "ARELE",
+      "id": "1744",
+      "cost": 4
+    },
+    {
+      "name": "EARELE",
+      "id": "1746",
+      "cost": 8
+    },
+    {
+      "name": "DROMON",
+      "id": "1795",
+      "cost": 6
+    }
+  ],
+  [
+    {
+      "name": "Barracks Age1",
+      "id": "12",
+      "cost": 0
+    },
+    {
+      "name": "DOCK",
+      "id": "45",
+      "cost": 0
+    },
+    {
+      "name": "SIWS",
+      "id": "49",
+      "cost": 0
+    },
+    {
+      "name": "FARM",
+      "id": "50",
+      "cost": 0
+    },
+    {
+      "name": "MILL",
+      "id": "68",
+      "cost": 0
+    },
+    {
+      "name": "HOUS",
+      "id": "70",
+      "cost": 0
+    },
+    {
+      "name": "RTWC2",
+      "id": "71",
+      "cost": 0
+    },
+    {
+      "name": "WALL",
+      "id": "72",
+      "cost": 0
+    },
+    {
+      "name": "WCTW",
+      "id": "79",
+      "cost": 0
+    },
+    {
+      "name": "CSTL",
+      "id": "82",
+      "cost": 0
+    },
+    {
+      "name": "MRKT",
+      "id": "84",
+      "cost": 0
+    },
+    {
+      "name": "ARRG",
+      "id": "87",
+      "cost": 0
+    },
+    {
+      "name": "STBL",
+      "id": "101",
+      "cost": 0
+    },
+    {
+      "name": "BLAC",
+      "id": "103",
+      "cost": 0
+    },
+    {
+      "name": "CRCH",
+      "id": "104",
+      "cost": 0
+    },
+    {
+      "name": "RTWC",
+      "id": "109",
+      "cost": 0
+    },
+    {
+      "name": "WALL2",
+      "id": "117",
+      "cost": 1
+    },
+    {
+      "name": "WALL3",
+      "id": "155",
+      "cost": 1
+    },
+    {
+      "name": "FTRAP",
+      "id": "199",
+      "cost": 0
+    },
+    {
+      "name": "UNIV",
+      "id": "209",
+      "cost": 0
+    },
+    {
+      "name": "WCTW2",
+      "id": "234",
+      "cost": 1
+    },
+    {
+      "name": "WCTW3",
+      "id": "235",
+      "cost": 1
+    },
+    {
+      "name": "WCTW4",
+      "id": "236",
+      "cost": 2
+    },
+    {
+      "name": "WNDR",
+      "id": "276",
+      "cost": 0
+    },
+    {
+      "name": "GTAX2",
+      "id": "487",
+      "cost": 1
+    },
+    {
+      "name": "SMIL",
+      "id": "562",
+      "cost": 0
+    },
+    {
+      "name": "MINE",
+      "id": "584",
+      "cost": 0
+    },
+    {
+      "name": "WCTWX",
+      "id": "598",
+      "cost": 0
+    },
+    {
+      "name": "RTWC1X",
+      "id": "621",
+      "cost": 0
+    },
+    {
+      "name": "PGTAX",
+      "id": "792",
+      "cost": 0
+    },
+    {
+      "name": "FEITO",
+      "id": "1021",
+      "cost": 0
+    },
+    {
+      "name": "KREPOST",
+      "id": "1251",
+      "cost": 0
+    },
+    {
+      "name": "DONJON",
+      "id": "1665",
+      "cost": 0
+    }
+  ],
+  [
+    {
+      "name": "Town Watch",
+      "id": "8",
+      "cost": 1
+    },
+    {
+      "name": "Crop rotation",
+      "id": "12",
+      "cost": 2
+    },
+    {
+      "name": "Heavy plow",
+      "id": "13",
+      "cost": 5
+    },
+    {
+      "name": "Horse collar",
+      "id": "14",
+      "cost": 6
+    },
+    {
+      "name": "Guilds",
+      "id": "15",
+      "cost": 2
+    },
+    {
+      "name": "Banking",
+      "id": "17",
+      "cost": 2
+    },
+    {
+      "name": "Cartography",
+      "id": "19",
+      "cost": 0
+    },
+    {
+      "name": "Loom",
+      "id": "22",
+      "cost": 0
+    },
+    {
+      "name": "Coinage",
+      "id": "23",
+      "cost": 0
+    },
+    {
+      "name": "Husbandry",
+      "id": "39",
+      "cost": 3
+    },
+    {
+      "name": "Faith",
+      "id": "45",
+      "cost": 3
+    },
+    {
+      "name": "Devotion",
+      "id": "46",
+      "cost": 4
+    },
+    {
+      "name": "Chemistry",
+      "id": "47",
+      "cost": 6
+    },
+    {
+      "name": "Caravan",
+      "id": "48",
+      "cost": 1
+    },
+    {
+      "name": "Masonry",
+      "id": "50",
+      "cost": 2
+    },
+    {
+      "name": "Architecture",
+      "id": "51",
+      "cost": 5
+    },
+    {
+      "name": "Stone cutting",
+      "id": "54",
+      "cost": 3
+    },
+    {
+      "name": "Gold Mining",
+      "id": "55",
+      "cost": 6
+    },
+    {
+      "name": "Keep",
+      "id": "63",
+      "cost": 1
+    },
+    {
+      "name": "Bombard Tower",
+      "id": "64",
+      "cost": 2
+    },
+    {
+      "name": "Gillnets",
+      "id": "65",
+      "cost": 3
+    },
+    {
+      "name": "Forging",
+      "id": "67",
+      "cost": 1
+    },
+    {
+      "name": "Iron casting",
+      "id": "68",
+      "cost": 3
+    },
+    {
+      "name": "Scale Mail Armor",
+      "id": "74",
+      "cost": 1
+    },
+    {
+      "name": "Blast Furnace",
+      "id": "75",
+      "cost": 6
+    },
+    {
+      "name": "Chain Mail Armor",
+      "id": "76",
+      "cost": 3
+    },
+    {
+      "name": "Plate Mail Armor",
+      "id": "77",
+      "cost": 6
+    },
+    {
+      "name": "Plate Barding Armor",
+      "id": "80",
+      "cost": 8
+    },
+    {
+      "name": "Scale Barding Armor",
+      "id": "81",
+      "cost": 1
+    },
+    {
+      "name": "Chain Barding Armor",
+      "id": "82",
+      "cost": 3
+    },
+    {
+      "name": "Tracking",
+      "id": "90",
+      "cost": 0
+    },
+    {
+      "name": "Ballistics",
+      "id": "93",
+      "cost": 1
+    },
+    {
+      "name": "Middle Age",
+      "id": "101",
+      "cost": 0
+    },
+    {
+      "name": "Feudal Age",
+      "id": "102",
+      "cost": 0
+    },
+    {
+      "name": "Imperial Age",
+      "id": "103",
+      "cost": 0
+    },
+    {
+      "name": "Guard Tower",
+      "id": "140",
+      "cost": 1
+    },
+    {
+      "name": "Gold Shaft Mining",
+      "id": "182",
+      "cost": 4
+    },
+    {
+      "name": "Fortified Wall",
+      "id": "194",
+      "cost": 1
+    },
+    {
+      "name": "Fletching",
+      "id": "199",
+      "cost": 1
+    },
+    {
+      "name": "Bodkin Arrow",
+      "id": "200",
+      "cost": 3
+    },
+    {
+      "name": "Bracer",
+      "id": "201",
+      "cost": 8
+    },
+    {
+      "name": "Double Bit Axe",
+      "id": "202",
+      "cost": 10
+    },
+    {
+      "name": "Bow Saw",
+      "id": "203",
+      "cost": 6
+    },
+    {
+      "name": "Padded Archer Armor",
+      "id": "211",
+      "cost": 1
+    },
+    {
+      "name": "Leather Archer Armor",
+      "id": "212",
+      "cost": 3
+    },
+    {
+      "name": "Wheel Barrow",
+      "id": "213",
+      "cost": 12
+    },
+    {
+      "name": "Squires",
+      "id": "215",
+      "cost": 2
+    },
+    {
+      "name": "Ring Archer Armor",
+      "id": "219",
+      "cost": 6
+    },
+    {
+      "name": "Two Man Saw",
+      "id": "221",
+      "cost": 2
+    },
+    {
+      "name": "Block Printing",
+      "id": "230",
+      "cost": 3
+    },
+    {
+      "name": "Sanctity",
+      "id": "231",
+      "cost": 4
+    },
+    {
+      "name": "Illumination",
+      "id": "233",
+      "cost": 2
+    },
+    {
+      "name": "Hand Cart",
+      "id": "249",
+      "cost": 6
+    },
+    {
+      "name": "Fervor",
+      "id": "252",
+      "cost": 1
+    },
+    {
+      "name": "Stone Mining",
+      "id": "278",
+      "cost": 4
+    },
+    {
+      "name": "Stone Shaft Mining",
+      "id": "279",
+      "cost": 3
+    },
+    {
+      "name": "Town Patrol",
+      "id": "280",
+      "cost": 1
+    },
+    {
+      "name": "Conscription",
+      "id": "315",
+      "cost": 2
+    },
+    {
+      "name": "Redemption",
+      "id": "316",
+      "cost": 2
+    },
+    {
+      "name": "Atonement",
+      "id": "319",
+      "cost": 1
+    },
+    {
+      "name": "Sappers",
+      "id": "321",
+      "cost": 1
+    },
+    {
+      "name": "Murder Holes",
+      "id": "322",
+      "cost": 1
+    },
+    {
+      "name": "Shipwright",
+      "id": "373",
+      "cost": 3
+    },
+    {
+      "name": "Careening",
+      "id": "374",
+      "cost": 2
+    },
+    {
+      "name": "Dry Dock",
+      "id": "375",
+      "cost": 2
+    },
+    {
+      "name": "Siege Engineers",
+      "id": "377",
+      "cost": 7
+    },
+    {
+      "name": "Hoardings",
+      "id": "379",
+      "cost": 1
+    },
+    {
+      "name": "Heated Shot",
+      "id": "380",
+      "cost": 1
+    },
+    {
+      "name": "Spy Technology",
+      "id": "408",
+      "cost": 0
+    },
+    {
+      "name": "Bloodlines",
+      "id": "435",
+      "cost": 7
+    },
+    {
+      "name": "Parthian Tactics",
+      "id": "436",
+      "cost": 3
+    },
+    {
+      "name": "Thumb Ring",
+      "id": "437",
+      "cost": 7
+    },
+    {
+      "name": "Theocracy",
+      "id": "438",
+      "cost": 2
+    },
+    {
+      "name": "Heresy",
+      "id": "439",
+      "cost": 10
+    },
+    {
+      "name": "Herbal Medicine",
+      "id": "441",
+      "cost": 1
+    },
+    {
+      "name": "Arson",
+      "id": "602",
+      "cost": 1
+    },
+    {
+      "name": "Arrowslits",
+      "id": "608",
+      "cost": 1
+    },
+    {
+      "name": "Supplies",
+      "id": "716",
+      "cost": 2
+    },
+    {
+      "name": "Gambesons",
+      "id": "875",
+      "cost": 2
+    }
+  ]
+]

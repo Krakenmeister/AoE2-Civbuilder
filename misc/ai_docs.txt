@@ -1,0 +1,16 @@
+configure_civilizations.cpp generates a json that contains all the information necessary for mod_ai.js to build the AI scripts
+Format is as follows
+
+{
+	"civilizations": array of civilization objects (format follows)
+	{
+
+		"id": int (1 for britons-replacement, 2 for frank-replacement, etc.)
+		"name": string (civilization customized name)
+		"disabled-techs": array of ints (tech IDs of all the basic techs that are disabled by tech tree)
+		"bonuses": array of ints (civbuilder IDs of all the bonuses the civ has)
+		"uu": array of ints (0th = civbuilder ID, 1st = unit ID, 2nd = elite research ID, 3+ = unit IDs of UU in alternate train locations)
+		"ut": array of ints (0th = castle age civbuilder ID, 1st = castle age research ID, 2nd = imp age civbuilder ID, 3rd = imp age research ID)
+		"tb": int (civbuilder ID of team bonus)
+	}
+}

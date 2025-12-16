@@ -5,3 +5,5 @@ package-lock.json
 .env.*
 
 drafts/*.json
+
+.DS_Store

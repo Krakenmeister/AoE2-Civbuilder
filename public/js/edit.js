@@ -4,7 +4,13 @@ const urlParams = new URLSearchParams(window.location.search);
 let linkEdit = false;
 let civ;
 if (urlParams.get("civ")) {
-	let json = urlParams.get("civ").replaceAll("%7D", "}").replaceAll("%7C", "|").replaceAll("%7B", "{").replaceAll("%5E", "^").replaceAll("%60", "`");
+	let json = urlParams
+		.get("civ")
+		.replaceAll("%7D", "}")
+		.replaceAll("%7C", "|")
+		.replaceAll("%7B", "{")
+		.replaceAll("%5E", "^")
+		.replaceAll("%60", "`");
 	civ = JSON.parse(decryptPath(json));
 	linkEdit = true;
 } else if (document.getElementById("civ")) {
@@ -140,7 +146,9 @@ function renderPhase1() {
 			reader.onload = onReaderLoad;
 			reader.readAsDataURL(event.target.files[0]);
 			if (event.target.files[0].size > 800000) {
-				alert("This is a large image file. This could slow mod creation speed or prohibit it altogether. A smaller or more compressed image is suggested.");
+				alert(
+					"This is a large image file. This could slow mod creation speed or prohibit it altogether. A smaller or more compressed image is suggested."
+				);
 			}
 		}
 
@@ -191,7 +199,13 @@ function renderPhase1() {
 			civ["alias"] = inputbox.value;
 			document.title = "Civilization Builder - " + civ["alias"];
 			renderPhase2();
-			if (civ["bonuses"][0].length == 0 && civ["bonuses"][1].length == 0 && civ["bonuses"][2].length == 0 && civ["bonuses"][3].length == 0 && civ["bonuses"][4].length == 0) {
+			if (
+				civ["bonuses"][0].length == 0 &&
+				civ["bonuses"][1].length == 0 &&
+				civ["bonuses"][2].length == 0 &&
+				civ["bonuses"][3].length == 0 &&
+				civ["bonuses"][4].length == 0
+			) {
 				showTechtree(civ["tree"], -1, 3, 0, "");
 			} else {
 				var description = `<span><b>${civ["alias"]}</b></span><br><br>`;
@@ -534,7 +548,8 @@ function renderPhase1() {
 		clientFlag(civ["flag_palette"], "flag", 1);
 	}
 
-	let scaleFactor = (0.9 * window.innerHeight) / document.getElementById("buildwrapper").getBoundingClientRect().height;
+	let scaleFactor =
+		(0.9 * window.innerHeight) / document.getElementById("buildwrapper").getBoundingClientRect().height;
 	document.getElementById("buildwrapper").style.transform = `scale(${scaleFactor})`;
 
 	if (civ["customFlag"]) {
@@ -642,7 +657,14 @@ function renderPhase2() {
 			let old_resized_card = document.getElementById("card" + i);
 			let new_resized_card = old_resized_card.cloneNode(true);
 			old_resized_card.parentNode.replaceChild(new_resized_card, old_resized_card);
-			new_resized_card.onmouseover = getFun3(card_descriptions[roundType][i][0], i, cardSize, [0, 255, 0, 0.7], card_descriptions[roundType][i][1], roundType);
+			new_resized_card.onmouseover = getFun3(
+				card_descriptions[roundType][i][0],
+				i,
+				cardSize,
+				[0, 255, 0, 0.7],
+				card_descriptions[roundType][i][1],
+				roundType
+			);
 			new_resized_card.onmouseout = getFun4(i);
 			new_resized_card.addEventListener("click", getFun5(i, cardSize));
 		}
@@ -857,7 +879,11 @@ function renderPhase2() {
 							basicBonusAmount = unitStats[cardId].attacks.basic[j][1];
 						}
 					}
-					detailsElement += `<div>+ ${basicBonusAmount == eliteBonusAmount ? basicBonusAmount : basicBonusAmount + " (" + eliteBonusAmount + ")"} vs. ${classToName[unitStats[cardId].attacks.elite[i][0]]}</div>`;
+					detailsElement += `<div>+ ${
+						basicBonusAmount == eliteBonusAmount
+							? basicBonusAmount
+							: basicBonusAmount + " (" + eliteBonusAmount + ")"
+					} vs. ${classToName[unitStats[cardId].attacks.elite[i][0]]}</div>`;
 				}
 				if (unitStats[cardId].special) {
 					detailsElement += `<div style="font-size:1.1vw"><u>Special Rule</u>: ${unitStats[cardId].special}</div>`;
@@ -883,7 +909,11 @@ function renderPhase2() {
 
 				let rangeElement = `<div class="statwrapper">
 					<img src="./img/staticons/range.png" class="staticon">
-					<div class="stattext">${unitStats[cardId].range.length == 1 ? unitStats[cardId].range : unitStats[cardId].range[0] + " (" + unitStats[cardId].range[1] + ")"}</div>
+					<div class="stattext">${
+						unitStats[cardId].range.length == 1
+							? unitStats[cardId].range
+							: unitStats[cardId].range[0] + " (" + unitStats[cardId].range[1] + ")"
+					}</div>
 				</div>`;
 
 				helptext.innerHTML = `
@@ -895,26 +925,56 @@ function renderPhase2() {
 							${costsElement}
 							<div class="statwrapper">
 								<img src="./img/staticons/hp.png" class="staticon">
-								<div class="stattext">${unitStats[cardId].hp.length == 1 ? unitStats[cardId].hp : unitStats[cardId].hp[0] + " (" + unitStats[cardId].hp[1] + ")"}</div>
+								<div class="stattext">${
+									unitStats[cardId].hp.length == 1
+										? unitStats[cardId].hp
+										: unitStats[cardId].hp[0] + " (" + unitStats[cardId].hp[1] + ")"
+								}</div>
 							</div>
 							<div class="statwrapper">
 								<img src="./img/staticons/${attackType == 3 ? "pierceAttack.png" : "damage.png"}" class="staticon">
-								<div class="stattext">${attackAmounts[0] == attackAmounts[1] ? attackAmounts[0] : attackAmounts[0] + " (" + attackAmounts[1] + ")"}</div>
+								<div class="stattext">${
+									attackAmounts[0] == attackAmounts[1]
+										? attackAmounts[0]
+										: attackAmounts[0] + " (" + attackAmounts[1] + ")"
+								}</div>
 							</div>
 							${unitStats[cardId].range[0] > 0 ? rangeElement : ""}
 							<div class="statwrapper">
 								<img src="./img/staticons/reloadTime.png" class="staticon">
-								<div class="stattext">${unitStats[cardId].reload.length == 1 ? unitStats[cardId].reload + " seconds" : unitStats[cardId].reload[0] + " seconds (" + unitStats[cardId].reload[1] + ")"}</div>
+								<div class="stattext">${
+									unitStats[cardId].reload.length == 1
+										? unitStats[cardId].reload + " seconds"
+										: unitStats[cardId].reload[0] + " seconds (" + unitStats[cardId].reload[1] + ")"
+								}</div>
 							</div>
 							<div class="statwrapper">
 								<img src="./img/staticons/movementSpeed.png" class="staticon">
-								<div class="stattext">${unitStats[cardId].speed.length == 1 ? unitStats[cardId].speed : unitStats[cardId].speed[0] + " (" + unitStats[cardId].speed[1] + ")"}</div>
+								<div class="stattext">${
+									unitStats[cardId].speed.length == 1
+										? unitStats[cardId].speed
+										: unitStats[cardId].speed[0] + " (" + unitStats[cardId].speed[1] + ")"
+								}</div>
 							</div>
 							<div class="statwrapper">
 								<img src="./img/staticons/armor.png" class="staticon">
-								<div class="stattext" style="margin-right:0.75vw">${unitStats[cardId].armors.basic[0] == unitStats[cardId].armors.elite[0] ? unitStats[cardId].armors.basic[0] : unitStats[cardId].armors.basic[0] + " (" + unitStats[cardId].armors.elite[0] + ")"}</div>
+								<div class="stattext" style="margin-right:0.75vw">${
+									unitStats[cardId].armors.basic[0] == unitStats[cardId].armors.elite[0]
+										? unitStats[cardId].armors.basic[0]
+										: unitStats[cardId].armors.basic[0] +
+										  " (" +
+										  unitStats[cardId].armors.elite[0] +
+										  ")"
+								}</div>
 								<img src="./img/staticons/range-armor.png" class="staticon">
-								<div class="stattext">${unitStats[cardId].armors.basic[1] == unitStats[cardId].armors.elite[1] ? unitStats[cardId].armors.basic[1] : unitStats[cardId].armors.basic[1] + " (" + unitStats[cardId].armors.elite[1] + ")"}</div>
+								<div class="stattext">${
+									unitStats[cardId].armors.basic[1] == unitStats[cardId].armors.elite[1]
+										? unitStats[cardId].armors.basic[1]
+										: unitStats[cardId].armors.basic[1] +
+										  " (" +
+										  unitStats[cardId].armors.elite[1] +
+										  ")"
+								}</div>
 							</div>
 							${detailsElement}
 						</div>
@@ -1029,7 +1089,9 @@ function renderPhase2() {
 						for (let i = 0; i < civ["bonuses"][roundType].length; i++) {
 							if (civ["bonuses"][roundType][i][0] == cardId && civ["bonuses"][roundType][i][1] < 50) {
 								civ["bonuses"][roundType][i][1]++;
-								document.getElementById("selectedCard" + cardId).textContent = `x${civ["bonuses"][roundType][i][1]}`;
+								document.getElementById(
+									"selectedCard" + cardId
+								).textContent = `x${civ["bonuses"][roundType][i][1]}`;
 							}
 						}
 						e.stopPropagation();
@@ -1042,7 +1104,9 @@ function renderPhase2() {
 						for (let i = 0; i < civ["bonuses"][roundType].length; i++) {
 							if (civ["bonuses"][roundType][i][0] == cardId && civ["bonuses"][roundType][i][1] > 1) {
 								civ["bonuses"][roundType][i][1]--;
-								document.getElementById("selectedCard" + cardId).textContent = `x${civ["bonuses"][roundType][i][1]}`;
+								document.getElementById(
+									"selectedCard" + cardId
+								).textContent = `x${civ["bonuses"][roundType][i][1]}`;
 							}
 						}
 						e.stopPropagation();
@@ -1196,7 +1260,9 @@ function renderPhase2() {
 						for (let j = 0; j < civ["bonuses"][roundType].length; j++) {
 							if (civ["bonuses"][roundType][j][0] == dummyIndex && civ["bonuses"][roundType][j][1] < 16) {
 								civ["bonuses"][roundType][j][1]++;
-								document.getElementById("selectedCard" + dummyIndex).textContent = `x${civ["bonuses"][roundType][j][1]}`;
+								document.getElementById(
+									"selectedCard" + dummyIndex
+								).textContent = `x${civ["bonuses"][roundType][j][1]}`;
 							}
 						}
 						e.stopPropagation();
@@ -1209,7 +1275,9 @@ function renderPhase2() {
 						for (let j = 0; j < civ["bonuses"][roundType].length; j++) {
 							if (civ["bonuses"][roundType][j][0] == dummyIndex && civ["bonuses"][roundType][j][1] > 1) {
 								civ["bonuses"][roundType][j][1]--;
-								document.getElementById("selectedCard" + dummyIndex).textContent = `x${civ["bonuses"][roundType][j][1]}`;
+								document.getElementById(
+									"selectedCard" + dummyIndex
+								).textContent = `x${civ["bonuses"][roundType][j][1]}`;
 							}
 						}
 						e.stopPropagation();
@@ -1234,7 +1302,14 @@ function renderPhase2() {
 					card.style.marginRight = cardSize * 0.6 + "rem";
 				}
 			}
-			card.onmouseover = getFun3(card_descriptions[roundType][i][0], i, cardSize, [0, 255, 0, 0.7], card_descriptions[roundType][i][1], roundType);
+			card.onmouseover = getFun3(
+				card_descriptions[roundType][i][0],
+				i,
+				cardSize,
+				[0, 255, 0, 0.7],
+				card_descriptions[roundType][i][1],
+				roundType
+			);
 			card.onmouseout = getFun4(i);
 			card.addEventListener("click", getFun5(i, cardSize));
 			card.addEventListener("contextmenu", getFun6(i), false);

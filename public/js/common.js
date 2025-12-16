@@ -1,5 +1,4 @@
-const hostname = "https://krakenmeister.com";
-const route = "/civbuilder";
+const { hostname, route } = window.__APP_CONFIG__;
 
 const num_cards = [363, 88, 60, 59, 80];
 const max_sizes = [363, 1, 1, 1, 80];
@@ -119,7 +118,12 @@ const card_descriptions = [
 		["Farms cost -40%", 2, -4, 0],
 		["Barracks and Stable units +1 armor in Castle and Imperial Age (+2 total)", 1, -4, 0],
 		["Economic drop-off buildings cost -50%", 1, -5, 0],
-		["Fishing Ships 2x hit points; +2P armor; work rate +5% Dark, +10% Feudal, +15% Castle, +20% Imperial Age", 2, -5, 0],
+		[
+			"Fishing Ships 2x hit points; +2P armor; work rate +5% Dark, +10% Feudal, +15% Castle, +20% Imperial Age",
+			2,
+			-5,
+			0,
+		],
 		["Infantry attack 33% faster starting in Feudal Age", 1, -5, 0],
 		["Start with +3 villagers, -50 wood, -200 food; Town Centers support 15 population and +7 LOS", 2, -6, 0],
 		["Demolition ships +50% hit points", 0, 1, 0],
@@ -202,7 +206,12 @@ const card_descriptions = [
 		["Thumb Ring, Parthian Tactics free", 1, -33, 0],
 		["Mounted units 5% faster each age (starting in Feudal Age)", 2, -34, 0],
 		["Additional Town Center can be built in the Feudal Age", 1, -34, 0],
-		["Siege Workshop and Battering Ram available in the Feudal Age; Capped Ram upgrade available in Castle Age", 1, -34, 0],
+		[
+			"Siege Workshop and Battering Ram available in the Feudal Age; Capped Ram upgrade available in Castle Age",
+			1,
+			-34,
+			0,
+		],
 		["Receive +100 food per Town Center", 1, -35, 0],
 		["Spearmen and Skirmishers move 10% faster", 1, -35, 0],
 		["Each garrisoned relic gives +1 attack to Knights and Unique Unit (maximum +4)", 2, -35, 0],
@@ -373,7 +382,12 @@ const card_descriptions = [
 		["Castles and Kreposts support 50 population", 0, 1, 0],
 		["Bombard towers deal extra damage to rams", 1, 1, 0],
 		["Towers deal extra damage to cavalry", 2, 1, 0],
-		["Can build Monastery in Feudal Age; Monks recruited in Feudal Age have longer conversions and cannot pickup relics", 1, 1, 0],
+		[
+			"Can build Monastery in Feudal Age; Monks recruited in Feudal Age have longer conversions and cannot pickup relics",
+			1,
+			1,
+			0,
+		],
 		["Scorpions, Ballista Elephants, and War Wagons train 50% faster", 0, 1, 0],
 		["Town Centers fire 25% faster", 0, 1, 0],
 		["Trebuchet units cost -50% gold", 0, 1, 0],
@@ -567,9 +581,19 @@ const card_descriptions = [
 		["Burgundian Vineyards (Farmers slowly generate gold in addition to food) [400F 300G]", 2, -36, 0],
 		["Manipur Cavalry (Cavalry +4 attack vs. Ranged Soldiers) [300F 300G]", 0, -30, 0],
 		["Greek Fire (Fire ships +1 range, Bombard Towers and Dromons increased blast radius) [250F 300G]", 0, -7, 0],
-		["Stronghold (Castles, Kreposts and Towers fire 33% faster, Castles and Kreposts heal allied infantry in a 7 tile radius) [250F 200G]", 1, -13, 0],
+		[
+			"Stronghold (Castles, Kreposts and Towers fire 33% faster, Castles and Kreposts heal allied infantry in a 7 tile radius) [250F 200G]",
+			1,
+			-13,
+			0,
+		],
 		["Great Wall (Walls and towers +30% HP) [400W 200S]", 0, -6, 0],
-		["Steppe Husbandry (Light Cavalry, Steppe Lancers and Cavalry Archers trained 100% faster) [200F 300W]", 1, -34, 0],
+		[
+			"Steppe Husbandry (Light Cavalry, Steppe Lancers and Cavalry Archers trained 100% faster) [200F 300W]",
+			1,
+			-34,
+			0,
+		],
 		["Royal Heirs (Unique Unit and Camels receive -3 damage from Mounted Units) [300F 300G]", 1, -25, 0],
 		["Bearded Axe (Unique Unit +1 range) [300F 300G]", 4, -2, 0],
 		["Anarchy (create Unique Unit at barracks) [450F 250G]", 2, -3, 0],
@@ -589,14 +613,24 @@ const card_descriptions = [
 		["Kamandaran (Archer-line gold cost is replaced by additional wood cost) [400F 300G]", 3, -8, 0],
 		["Carrack (Ships +1/+1 armor) [200W 300G]", 1, -24, 0],
 		["Madrasah (Monks return 50 gold when killed) [200F 100G]", 0, 1, 0],
-		["First Crusade (Each Town Center (maxiumum 5) spawns a one-time batch of 5 of your Unique Unit; units are more resistant to conversion) [400F 300G]", 3, -37, 0],
+		[
+			"First Crusade (Each Town Center (maxiumum 5) spawns a one-time batch of 5 of your Unique Unit; units are more resistant to conversion) [400F 300G]",
+			3,
+			-37,
+			0,
+		],
 		["Orthodoxy (Monk units +3/+3P armor) [200F 300G]", 1, 1, 0],
 		["Inquisition (Monk convert faster) [100F 300G]", 1, -14, 0],
 		["Silk Armor (Light Cavalry, Steppe Lancers and Cavalry Archers receive +1/+1P armor) [400W 300G]", 1, -33, 0],
 		["Ironclad (Siege units extra melee armor) [400W 350G]", 1, -4, 0],
 		["Sipahi (Cavalry Archers +20 HP) [350F 150G]", 2, -10, 0],
 		["Chatras (Elephant units +100 HP) [250F 250G]", 2, -31, 0],
-		["Chieftains (Infantry deal bonus damage to cavalry, generate gold when killing villagers, trade units, and monks) [600F 450G]", 1, -11, 0],
+		[
+			"Chieftains (Infantry deal bonus damage to cavalry, generate gold when killing villagers, trade units, and monks) [600F 450G]",
+			1,
+			-11,
+			0,
+		],
 		["Szlachta Privileges (Knight-line costs -60% gold) [500F 300G]", 3, -38, 0],
 		["Wagenburg Tactics (Gunpowder units move 15% faster) [300F 300G]", 1, -39, 0],
 		["Deconstruction (Siege units fire 33% faster) [400W 400G]", 2, 1, 0],
@@ -611,15 +645,40 @@ const card_descriptions = [
 		["Zealotry (Camel units +20 hit points) [400F 400G]", 1, 1, 0],
 		["Ballistas (Scorpions and Ballista Elephants fire 33% faster, Galleys +2 attack) [400W 300G]", 1, -43, 0],
 		["Bimaristan (Monk units automatically heal multiple nearby units) [300W 200G]", 0, -9, 0],
-		["Cilician Fleet (Demolition Ships +20% blast radius; Galley-line and Dromons +1 range) [350W 300G]", 0, -44, 0],
-		["Svan Towers (Defensive buildings +2 attack; towers fire arrows that pierce multiple units) [300F 200G]", 2, -45, 0],
+		[
+			"Cilician Fleet (Demolition Ships +20% blast radius; Galley-line and Dromons +1 range) [350W 300G]",
+			0,
+			-44,
+			0,
+		],
+		[
+			"Svan Towers (Defensive buildings +2 attack; towers fire arrows that pierce multiple units) [300F 200G]",
+			2,
+			-45,
+			0,
+		],
 		["Replaceable Parts (Siege units +1/+1P armor, repairing siege is free) [400W 250G]", 2, 1, 0],
 		["Silk Road (Trade units cost -50%) [250F 250G]", 0, -19, 0],
-		["Coiled Serpent Array (Spearman-line and Unique Unit gain additional HP when near each other) [350F 300G]", 2, -49, 0],
-		["Red Cliff Tactics (Demolition Ships and Fire Archers deal fire damage to ships and buildings) [400F 250G]", 1, -50, 0],
+		[
+			"Coiled Serpent Array (Spearman-line and Unique Unit gain additional HP when near each other) [350F 300G]",
+			2,
+			-49,
+			0,
+		],
+		[
+			"Red Cliff Tactics (Demolition Ships and Fire Archers deal fire damage to ships and buildings) [400F 250G]",
+			1,
+			-50,
+			0,
+		],
 		["Tuntian (Soldiers passively produce food) [250F 300G]", 2, -51, 0],
 		["Fortified Bastions (Fortifications regenerate 500 HP per minute) [350F 250W]", 1, -52, 0],
-		["Lamellar Armor (Infantry and Skirmishers reflect 25% melee damage back to the attacker) [450F 300G]", 3, -53, 0],
+		[
+			"Lamellar Armor (Infantry and Skirmishers reflect 25% melee damage back to the attacker) [450F 300G]",
+			3,
+			-53,
+			0,
+		],
 	],
 
 	[
@@ -627,16 +686,36 @@ const card_descriptions = [
 		["Maghrebi Camels (Camel units regenerate) [700F 300G]", 1, -27, 0],
 		["Warwolf (Trebuchet units do blast damage) [800W 400G]", 1, -1, 0],
 		["Bagains (Militia-line gains +5 armor) [900F 450G]", 2, -32, 0],
-		["Flemish Revolution (Upgrades all existing Villagers to Flemish Militia; create Flemish Militia at Town Centers) [200F 150G + 10F 5G per villager]", 0, -36, 0],
+		[
+			"Flemish Revolution (Upgrades all existing Villagers to Flemish Militia; create Flemish Militia at Town Centers) [200F 150G + 10F 5G per villager]",
+			0,
+			-36,
+			0,
+		],
 		["Howdah (Elephant units +1/+1P armor) [400F 300W]", 1, -30, 0],
 		["Logistica (Unique Unit causes trample damage) [800F 600G]", 4, -7, 0],
 		["Furor Celtica (Siege Workshop units +40% HP) [750F 450G]", 1, -13, 0],
-		["Rocketry (Scorpions, Rocket Carts and Lou Chuans +25% attack; Lou Chuans fire rockets) [1100W 900G]", 2, -6, 0],
-		["Elite Mercenaries (team members can train 5 free elite versions of your Unique Unit per castle) [650F 400G]", 0, -34, 0],
+		[
+			"Rocketry (Scorpions, Rocket Carts and Lou Chuans +25% attack; Lou Chuans fire rockets) [1100W 900G]",
+			2,
+			-6,
+			0,
+		],
+		[
+			"Elite Mercenaries (team members can train 5 free elite versions of your Unique Unit per castle) [650F 400G]",
+			0,
+			-34,
+			0,
+		],
 		["Torsion Engines (increases blast radius of Siege Workshop units) [1000F 600G]", 3, -25, 0],
 		["Chivalry (Stables work 40% faster) [600W 500G]", 0, -2, 0],
 		["Perfusion (Barracks work 100% faster) [400W 600G]", 1, -3, 0],
-		["Atheism (+100 years for Relic, Wonder victories; enemy relics generate -50% resources) [500F 3OOW]", 0, -17, 0],
+		[
+			"Atheism (+100 years for Relic, Wonder victories; enemy relics generate -50% resources) [500F 3OOW]",
+			0,
+			-17,
+			0,
+		],
 		["Fabric Shields (Shock Infantry, Slingers, Unique Unit +1/+2 armor) [600F 600G]", 1, -21, 0],
 		["Shatagni (Hand Cannoneers +2 range) [500F 300G]", 0, -20, 0],
 		["Pirotechnia (Hand cannoneers deal +15% pass through damage and are more accurate) [650F 500G]", 2, -19, 0],
@@ -649,7 +728,12 @@ const card_descriptions = [
 		["Farimba (Cavalry +5 attack) [650F 400G]", 4, -26, 0],
 		["El Dorado (Shock Infantry have +40 hit points) [750F 450G]", 2, -16, 0],
 		["Drill (Siege workshop units move 50% faster) [500W 450G]", 2, -12, 0],
-		["Citadels (Castles and Kreposts fire Bullets [+4 attack, +3 vs Rams, +3 vs Infantry], receive -25% bonus damage) [600W 300G]", 3, -8, 0],
+		[
+			"Citadels (Castles and Kreposts fire Bullets [+4 attack, +3 vs Rams, +3 vs Infantry], receive -25% bonus damage) [600W 300G]",
+			3,
+			-8,
+			0,
+		],
 		["Arquebus (gunpowder units more accurate) [700F 400G]", 0, -24, 0],
 		["Counterweights (Trebuchet units and Mangonel-line +15% attack) [650F 500G]", 0, -9, 0],
 		["Hauberk (Knights +1/+2P armor) [700F 600G]", 1, -37, 0],
@@ -670,17 +754,32 @@ const card_descriptions = [
 		["Wootz Steel (Infantry and cavalry attacks ignore armor) [650F 550G]", 4, -40, 0],
 		["Mahayana (Villagers and monk units take 10% less population space) [800W 650G]", 2, -41, 0],
 		["Frontier Guards (Camel units and Elephant Archers +4 melee armor) [800F 700G]", 1, -42, 0],
-		["Comitatenses (Militia-line, Knight-line, and Unique Unit train 50% faster and receive a 5 damage charge attack) [700F 800G]", 1, -43, 0],
+		[
+			"Comitatenses (Militia-line, Knight-line, and Unique Unit train 50% faster and receive a 5 damage charge attack) [700F 800G]",
+			1,
+			-43,
+			0,
+		],
 		["Fereters (Infantry except Spearmen +30 HP, Warrior Priests +100% heal speed) [550F 400G]", 2, -44, 0],
 		["Aznauri Cavalry (Cavalry units take 15% less population space) [750F 250G]", 1, -45, 0],
 		["Pila (Skirmisher attacks strip armour) [700F 600G]", 3, 1, 0],
 		["Enlistment (Infantry take 15% less population space) [700F 300G]", 1, 1, 0],
 		["Marshalled Hunters (Foot archers and skirmishers take 15% less population space) [750W 250G]", 1, 1, 0],
-		["Shigetō Yumi (Unique Unit, Mounted Archers, and Towers attack 15% faster and deal +2 anti-unique unit damage) [750F 350G]", 1, 1, 0],
+		[
+			"Shigetō Yumi (Unique Unit, Mounted Archers, and Towers attack 15% faster and deal +2 anti-unique unit damage) [750F 350G]",
+			1,
+			1,
+			0,
+		],
 		["Bolt Magazine (Archer-line, Lou Chans, and War Chariots fire additional projectiles)", 3, -49, 0],
 		["Sitting Tiger (Trebuchet units fire additional projectiles) [600W, 300G]", 4, -50, 0],
 		["Ming Guang Armor (Mounted units +4 melee armor) [600F 450G]", 4, -51, 0],
-		["Thunderclap Bombs (Rocket Carts, Grenadiers, and Lou Chuans detonate when defeated; projectiles produce additional explosions) [900F 600G]", 2, -52, 0],
+		[
+			"Thunderclap Bombs (Rocket Carts, Grenadiers, and Lou Chuans detonate when defeated; projectiles produce additional explosions) [900F 600G]",
+			2,
+			-52,
+			0,
+		],
 		["Ordo Cavalry (Cavalry regenerates HP in combat) [600F 300G]", 2, -53, 0],
 	],
 
@@ -907,7 +1006,19 @@ const colours = [
 const categories = ["Color 1", "Color 2", "Color 3", "Color 4", "Color 5", "Division", "Overlay", "Symbol"];
 const palette_sizes = [15, 15, 15, 15, 15, 12, 12, 84];
 
-const architectures = ["Central European", "Western European", "East Asian", "Middle Eastern", "Mesoamerican", "Mediterranean", "Indian", "Eastern European", "African", "Southeast Asian", "Central Asian"];
+const architectures = [
+	"Central European",
+	"Western European",
+	"East Asian",
+	"Middle Eastern",
+	"Mesoamerican",
+	"Mediterranean",
+	"Indian",
+	"Eastern European",
+	"African",
+	"Southeast Asian",
+	"Central Asian",
+];
 const languages = [
 	"British Language",
 	"French Language",
@@ -1103,10 +1214,14 @@ function clientFlag(flag_palette, flag_id, scale, relative_path = ".") {
 	overlay = flag_palette[6];
 	symbol = flag_palette[7];
 
-	var primary_division_colour = "rgb(" + colour_palette[0][0] + ", " + colour_palette[0][1] + ", " + colour_palette[0][2] + ")";
-	var secondary_division_colour = "rgb(" + colour_palette[1][0] + ", " + colour_palette[1][1] + ", " + colour_palette[1][2] + ")";
-	var tertiary_division_colour = "rgb(" + colour_palette[2][0] + ", " + colour_palette[2][1] + ", " + colour_palette[2][2] + ")";
-	var overlay_colour = "rgb(" + colour_palette[3][0] + ", " + colour_palette[3][1] + ", " + colour_palette[3][2] + ")";
+	var primary_division_colour =
+		"rgb(" + colour_palette[0][0] + ", " + colour_palette[0][1] + ", " + colour_palette[0][2] + ")";
+	var secondary_division_colour =
+		"rgb(" + colour_palette[1][0] + ", " + colour_palette[1][1] + ", " + colour_palette[1][2] + ")";
+	var tertiary_division_colour =
+		"rgb(" + colour_palette[2][0] + ", " + colour_palette[2][1] + ", " + colour_palette[2][2] + ")";
+	var overlay_colour =
+		"rgb(" + colour_palette[3][0] + ", " + colour_palette[3][1] + ", " + colour_palette[3][2] + ")";
 	var image_path = `${relative_path}/img/symbols/symbol_${symbol - 1}.png`;
 
 	//Draw background
@@ -1257,7 +1372,12 @@ function clientFlag(flag_palette, flag_id, scale, relative_path = ".") {
 					} else {
 						ctx.fillStyle = secondary_division_colour;
 					}
-					ctx.fillRect(37 * (((i + 1) / 2) | 0) + 36 * ((i / 2) | 0), 37 * (((j + 1) / 2) | 0) + 36 * ((j / 2) | 0), 36 + ((i + 1) % 2), 36 + ((j + 1) % 2));
+					ctx.fillRect(
+						37 * (((i + 1) / 2) | 0) + 36 * ((i / 2) | 0),
+						37 * (((j + 1) / 2) | 0) + 36 * ((j / 2) | 0),
+						36 + ((i + 1) % 2),
+						36 + ((j + 1) % 2)
+					);
 				}
 			}
 			break;
@@ -1839,12 +1959,35 @@ function decryptPath(path) {
 
 const resize = () => {
 	if (document.getElementById("player")) {
-		document.getElementById("player").style.top = `${document.getElementById("sideheader").getBoundingClientRect().height + document.getElementById("sideheader").getBoundingClientRect().top}px`;
-		document.getElementById("sliderbox").style.top = `${document.getElementById("player").getBoundingClientRect().height + parseInt(document.getElementById("player").style.top) + 20}px`;
-		document.getElementById("filterbox").style.top = `${document.getElementById("sliderbox").getBoundingClientRect().height + parseInt(document.getElementById("sliderbox").style.top) + 20}px`;
-		document.getElementById("raritybox").style.top = `${document.getElementById("filterbox").getBoundingClientRect().height + parseInt(document.getElementById("filterbox").style.top) + 20}px`;
-		document.getElementById("editionbox").style.top = `${document.getElementById("raritybox").getBoundingClientRect().height + parseInt(document.getElementById("raritybox").style.top) + 20}px`;
-		document.getElementById("boardtoolbar").style.top = `${document.getElementById("editionbox").getBoundingClientRect().height + parseInt(document.getElementById("editionbox").style.top) + 20}px`;
+		document.getElementById("player").style.top = `${
+			document.getElementById("sideheader").getBoundingClientRect().height +
+			document.getElementById("sideheader").getBoundingClientRect().top
+		}px`;
+		document.getElementById("sliderbox").style.top = `${
+			document.getElementById("player").getBoundingClientRect().height +
+			parseInt(document.getElementById("player").style.top) +
+			20
+		}px`;
+		document.getElementById("filterbox").style.top = `${
+			document.getElementById("sliderbox").getBoundingClientRect().height +
+			parseInt(document.getElementById("sliderbox").style.top) +
+			20
+		}px`;
+		document.getElementById("raritybox").style.top = `${
+			document.getElementById("filterbox").getBoundingClientRect().height +
+			parseInt(document.getElementById("filterbox").style.top) +
+			20
+		}px`;
+		document.getElementById("editionbox").style.top = `${
+			document.getElementById("raritybox").getBoundingClientRect().height +
+			parseInt(document.getElementById("raritybox").style.top) +
+			20
+		}px`;
+		document.getElementById("boardtoolbar").style.top = `${
+			document.getElementById("editionbox").getBoundingClientRect().height +
+			parseInt(document.getElementById("editionbox").style.top) +
+			20
+		}px`;
 	}
 };
 

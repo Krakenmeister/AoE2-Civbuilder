@@ -12,6 +12,17 @@ function createCivbuilderRouter() {
 		// res.sendFile(__dirname + "/public/html/donation.html");
 	});
 
+	router.get("/config.js", (req, res) => {
+		res.type("application/javascript");
+
+		const config = {
+			hostname: process.env.PUBLIC_HOSTNAME || "http://localhost:3000",
+			route: process.env.PUBLIC_ROUTE || "",
+		};
+
+		res.send(`window.__APP_CONFIG__ = ${JSON.stringify(config)};`);
+	});
+
 	return router;
 }
 

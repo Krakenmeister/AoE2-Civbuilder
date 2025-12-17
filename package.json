@@ -1,29 +1,29 @@
 {
-  "name": "aoe2civbuilder",
-  "version": "1.0.0",
-  "description": "Web application for quickly creating and modifying custom civilizations for Age of Empires 2 Definitive Edition",
-  "homepage": "https://github.com/Krakenmeister/AoE2-Civbuilder#readme",
-  "bugs": {
-    "url": "https://github.com/Krakenmeister/AoE2-Civbuilder/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Krakenmeister/AoE2-Civbuilder.git"
-  },
-  "license": "ISC",
-  "author": "Krakenmeister",
-  "type": "commonjs",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "dev": "nodemon --legacy-watch --watch . server.js"
-  },
-  "dependencies": {
-    "express": "^5.2.1",
-    "http": "^0.0.1-security"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.11"
-  }
+	"name": "aoe2civbuilder",
+	"version": "1.0.0",
+	"description": "Web application for quickly creating and modifying custom civilizations for Age of Empires 2 Definitive Edition",
+	"homepage": "https://github.com/Krakenmeister/AoE2-Civbuilder#readme",
+	"bugs": {
+		"url": "https://github.com/Krakenmeister/AoE2-Civbuilder/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Krakenmeister/AoE2-Civbuilder.git"
+	},
+	"license": "ISC",
+	"author": "Krakenmeister",
+	"type": "commonjs",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node server.js",
+		"dev": "nodemon --legacy-watch --watch . server.js"
+	},
+	"dependencies": {
+		"express": "^5.2.1",
+		"http": "^0.0.1-security"
+	},
+	"devDependencies": {
+		"nodemon": "^3.1.11"
+	}
 }
